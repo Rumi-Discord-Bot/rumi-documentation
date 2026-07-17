@@ -1,0 +1,145 @@
+---
+title: "Personal tools"
+description: "Find recent mentions, translate messages, save bookmarks, and manage a todo list."
+icon: "toolbox"
+---
+
+These commands store or display information for the member who runs them. They
+do not create a shared server task list or expose one member's saved bookmarks
+to another member.
+
+## Mentions from the last 24 hours
+
+```text
+-mentions
+```
+
+Rumi shows direct mentions and replies addressed to you in the current server.
+Each entry includes the captured message content and reply context when
+available. If a captured message is later deleted, the saved snapshot can still
+appear until it falls outside the 24-hour window.
+
+Self-pings are ignored. The command only shows activity Rumi observed while it
+had access to the channel; it cannot recover older messages from before the
+tracker saw them.
+
+## Translate text or a reply
+
+```text
+-translate es hello
+-translate from en to ja hello
+```
+
+To translate a message without copying it, reply to that message and provide
+only the target language:
+
+```text
+-translate fr
+```
+
+The result panel lets the command author change the target language, swap the
+translation direction, or close the controls. See the available language codes
+with:
+
+```text
+-translate languages
+```
+
+## Currency tools
+
+Convert an amount by currency code or supported currency name:
+
+```text
+-currency convert 25 USD to EUR
+-currency convert 5000 JPY to KES
+```
+
+The rest of the command is useful when you do not already know the exact code:
+
+| Command | Purpose |
+| --- | --- |
+| `currency rates <base> [page]` | Browse rates using one currency as the base. |
+| `currency list [page]` | Browse supported currencies. |
+| `currency search <query>` | Find a code by part of its code or name. |
+| `currency info <code\|name>` | Inspect one supported currency. |
+| `currency popular [base]` | Show commonly used conversions from a base. |
+| `currency compare <amount> <from> <to1> <to2> ...` | Compare the same amount across several targets. |
+| `currency inverse <amount> <from> to <to>` | Show the conversion and its inverse relationship. |
+| `currency history <YYYY-MM-DD> <amount> <from> to <to>` | Convert using the rate for a historical date. |
+| `currency symbols` | Show recognised currency symbols. |
+
+Examples:
+
+```text
+-currency search shilling
+-currency info KES
+-currency rates GBP 2
+-currency compare 100 USD EUR GBP KES JPY
+-currency history 2025-01-15 100 USD to EUR
+```
+
+### Rate subscriptions
+
+Save a currency pair to follow it later:
+
+```text
+-currency subscribe USD KES
+-currency subscriptions
+-currency unsubscribe USD KES
+```
+
+Rates come from Rumi's configured currency data provider. They are useful for
+reference and comparisons, not as a guaranteed settlement quote from a bank or
+payment service.
+
+## Bookmarks
+
+Save a link with an optional note:
+
+```text
+-bookmark add https://example.com Useful reference
+```
+
+Or reply to a Discord message and run:
+
+```text
+-bookmark add Follow up later
+```
+
+Browse, search, edit, or remove saved items:
+
+```text
+-bookmark list
+-bookmark list reference
+-bookmark edit bm-1234 Better note
+-bookmark remove bm-1234
+```
+
+Rumi returns a friendly bookmark ID when an item is saved. Use that ID rather
+than its list position when editing or removing it.
+
+## Todo lists
+
+```text
+-todo add Finish the event schedule
+-todo list
+-todo view todo-1234
+-todo complete todo-1234
+-todo reopen todo-1234
+-todo edit todo-1234 Finish the event schedule tonight
+-todo remove todo-1234
+```
+
+Completed items are hidden from the normal list. Include them with:
+
+```text
+-todo list --done
+```
+
+`-todo clear` removes the entire personal todo list, so use it only when you no
+longer need any open or completed items.
+
+<Tip>
+Bookmark and todo IDs are designed to remain stable even when paging or search
+changes an item's position in the displayed list.
+</Tip>

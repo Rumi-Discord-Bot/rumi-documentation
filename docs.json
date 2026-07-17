@@ -1,0 +1,180 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Rumi Documentation",
+  "favicon": "/images/favicon.png",
+  "colors": {
+    "primary": "#3B6F9F",
+    "light": "#6A8FB3",
+    "dark": "#6A8FB3"
+  },
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.rumi.rocks"
+    }
+  },
+  "navigation": {
+    "interaction": {
+      "drilldown": false
+    },
+    "groups": [
+      {
+        "group": "Rumi",
+        "pages": [
+          "index",
+          {
+            "group": "Getting started",
+            "icon": "play",
+            "expanded": true,
+            "pages": [
+              "getting-started/invite-rumi",
+              "getting-started/first-command",
+              "getting-started/server-setup",
+              "guides/prefix-and-slash",
+              "guides/language"
+            ]
+          },
+          {
+            "group": "Commands",
+            "icon": "list",
+            "expanded": false,
+            "pages": [
+              "commands/overview",
+              "commands/reading-syntax"
+            ]
+          },
+          {
+            "group": "Management",
+            "icon": "sliders",
+            "expanded": false,
+            "pages": [
+              "features/management",
+              "management/filters",
+              "management/staff-management",
+              "management/automation",
+              "management/server-messages",
+              "management/roles-and-channels",
+              "management/verification",
+              "management/invite-tracking",
+              "management/voice-activity"
+            ]
+          },
+          {
+            "group": "Community features",
+            "icon": "users",
+            "expanded": false,
+            "pages": [
+              "features/levels",
+              "features/economy",
+              "features/giveaways"
+            ]
+          },
+          {
+            "group": "Tools and entertainment",
+            "icon": "shapes",
+            "expanded": false,
+            "pages": [
+              "features/personal-tools",
+              "features/server-customization",
+              "features/media-and-embeds",
+              "features/games"
+            ]
+          },
+          {
+            "group": "Custom commands",
+            "icon": "wand-magic-sparkles",
+            "expanded": false,
+            "pages": [
+              "custom-commands/overview",
+              "custom-commands/create-and-preview",
+              "custom-commands/syntax-and-separators",
+              "custom-commands/arguments-and-variables",
+              "custom-commands/output-controls",
+              "custom-commands/embeds-and-components",
+              "custom-commands/recipes",
+              "custom-commands/testing-and-debugging",
+              "custom-commands/restrictions",
+              "custom-commands/actions",
+              "custom-commands/data"
+            ]
+          },
+          {
+            "group": "Variables",
+            "icon": "brackets-curly",
+            "expanded": false,
+            "pages": [
+              "variables/overview",
+              {
+                "group": "Core context",
+                "expanded": false,
+                "pages": [
+                  "variables/general",
+                  "variables/user",
+                  "variables/target",
+                  "variables/guild",
+                  "variables/channel",
+                  "variables/message",
+                  "variables/date",
+                  "variables/bot",
+                  "variables/command"
+                ]
+              },
+              {
+                "group": "Systems and events",
+                "expanded": false,
+                "pages": [
+                  "variables/level",
+                  "variables/boost",
+                  "variables/moderator",
+                  "variables/punishment",
+                  "variables/giveaway",
+                  "variables/winner",
+                  "variables/ticket",
+                  "variables/verification",
+                  "variables/economy",
+                  "variables/invite"
+                ]
+              },
+              {
+                "group": "Logic and storage",
+                "expanded": false,
+                "pages": [
+                  "variables/arguments",
+                  "variables/random",
+                  "variables/conditionals",
+                  "variables/customdb",
+                  "variables/actions"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Music",
+            "icon": "music",
+            "expanded": false,
+            "pages": [
+              "features/music",
+              "features/spotify",
+              "features/lastfm"
+            ]
+          },
+          {
+            "group": "Help",
+            "icon": "circle-question",
+            "expanded": false,
+            "pages": ["troubleshooting/common-issues"]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Support",
+          "icon": "messages",
+          "href": "https://discord.gg/NYs2jF9MCc"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "rumi-documentation",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "mint dev",
+    "check": "mint validate && mint broken-links",
+    "deploy:check": "npm run check",
+    "update": "mint update"
+  },
+  "devDependencies": {
+    "mint": "4.2.700"
+  }
+}

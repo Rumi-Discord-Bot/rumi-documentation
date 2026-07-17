@@ -1,0 +1,76 @@
+---
+title: "Syntax and separators"
+description: "Understand names, declared arguments, response boundaries, fallbacks, and multi-line scripts."
+icon: "code"
+---
+
+## Why `--` is there
+
+The separator tells Rumi where the command definition ends and the saved
+response begins:
+
+```text
+-cc set greet <member> [message...] -- Hello {member}! {message|Welcome.}
+```
+
+Rumi reads the line in three sections:
+
+| Section | Value |
+| --- | --- |
+| Operation | `-cc set` |
+| Definition | `greet <member> [message...]` |
+| Saved response | `Hello {member}! {message\|Welcome.}` |
+
+Without a separator, words in the response could look like argument
+declarations. The separator removes that ambiguity. It is consumed while the
+command is saved and is never included in the reply.
+
+`=>` and `->` are accepted alternatives, but `--` is used throughout the docs
+because it is easiest to recognize in long scripts.
+
+<Warning>
+The first standalone `--`, `=>`, or `->` is the boundary. Anything after it is
+response text, even when it starts with `--`. Put argument declarations before
+the boundary.
+</Warning>
+
+## Declared arguments
+
+| Form | Meaning |
+| --- | --- |
+| `<member>` | Required one-word argument |
+| `[reason]` | Optional one-word argument |
+| `<text...>` | Required rest argument; consumes everything left |
+| `[note...]` | Optional rest argument |
+
+Argument names begin with a letter and may contain letters, numbers, `_`, `-`,
+or `.`. A rest argument should be last because it consumes all remaining input.
+
+## Multi-line scripts
+
+Discord messages can contain line breaks. Put directives on their own lines so
+they are removed from the visible response cleanly:
+
+```text
+-cc set daily --
+{cooldown:24h}
+{customdb:increment rewards && {user.id} && 1}
+You claimed reward number **{db.get:rewards:{user.id}}**.
+```
+
+Other standalone directives supported by the runtime include `{delete}` to
+remove the invoking message, `{silent}` for action-only commands,
+`{respond:#channel}` to select a response channel, `{dm:user}` to send the
+result by DM, and `{reaction:emoji}` to react to the trigger.
+
+## Values and fallbacks
+
+Use `{variable|fallback}` when a value may be absent:
+
+```text
+Nickname: {user.display_name|No server nickname}
+Target: {target.mention|No target selected}
+```
+
+Rumi resolves declared arguments first, helper values and conditionals next,
+then context variables and the final embed/component script.

@@ -1,0 +1,139 @@
+---
+title: "Testing and debugging"
+description: "Build custom commands in small steps and diagnose arguments, variables, actions, and Discord limits."
+icon: "bug"
+---
+
+A custom command is easiest to debug when you know which layer failed. Test the
+arguments first, then variables, then the embed, and add protected actions last.
+
+## Inspect what Rumi saved
+
+```text
+-cc show <name>
+```
+
+The result shows the saved argument specification, response script, and current
+restrictions. If the response starts in the wrong place, check the standalone
+`--` used in the original `cc set` command.
+
+List every saved command when you are not sure which name was used:
+
+```text
+-cc list
+```
+
+## Preview with realistic arguments
+
+```text
+-cc preview greet @member
+-cc preview announce Saturday 8pm
+```
+
+Preview runs the saved template with the sample arguments you provide. Use the
+same number and type of arguments a member would use in the real command.
+
+For an argument problem, temporarily reduce the response to plain text:
+
+```text
+-cc set announce <day> <time> -- Day: {day}
+Time: {time}
+```
+
+Once those values are correct, restore the embed or actions.
+
+## Diagnose missing variables
+
+A variable can only return information available in its current context. For
+example, a target variable needs a target argument or resolved member. Add a
+fallback where the value is optional:
+
+```text
+{target.display_name|No member selected}
+```
+
+Use the generated [Variables reference](/variables/overview) or run:
+
+```text
+-variables target
+-variables message
+-variables customdb
+```
+
+If a variable appears as literal text, check its spelling and braces. If it
+returns `N/A`, its source value was not present in that command context.
+
+## Test conditionals separately
+
+Rumi supports existence checks, comparisons, text containment, roles, and
+Discord permissions:
+
+```text
+{if:{user.id} == 123456789012345678}
+This is the configured user.
+{else}
+This is somebody else.
+{endif}
+```
+
+Other condition forms include:
+
+```text
+{if:{message.content} contains hello}
+{if:user has role 123456789012345678}
+{if:user has permission ManageMessages}
+{if:{db.get:visits:{user.id}} >= 10}
+```
+
+Keep the opening `{if:...}`, optional `{else}`, and closing `{endif}` on their
+own lines while debugging. Conditions can be nested, but a flat condition is
+usually easier to maintain.
+
+## Separate display from actions
+
+First save a harmless response:
+
+```text
+-cc set staffwarn <target> <reason...> --
+Would warn {target.mention} for: {reason}
+```
+
+Preview it with a safe target. Only then add the action:
+
+```text
+{mod:warn target && {reason}}
+Warned {target.mention} for: {reason}
+```
+
+Finally add the role, channel, or permission restriction. Rumi validates
+protected actions when saving and repeats its checks when the command runs.
+
+## Component problems
+
+When a button or dropdown does not appear:
+
+1. Preview the command and read Rumi's validation response.
+2. Check URL formatting for link buttons.
+3. Count the components in each row and the total rows.
+4. Shorten labels, option descriptions, or embed content.
+5. Check whether an action button needs a target or permission that is missing.
+
+Discord messages support up to 5 component rows. Rumi also enforces embed,
+field, button, and dropdown limits before sending the payload.
+
+## Stored-data problems
+
+Inspect the namespace and key directly:
+
+```text
+-cc data list visits
+-cc data get visits 123456789012345678
+```
+
+Namespace and key names are separate. `visits:user-id` is not the same lookup
+as `user-id:visits`.
+
+<Tip>
+Keep a working copy before a large edit. `-cc show <name>` gives you the exact
+saved response that can be copied into your notes before replacing it.
+</Tip>

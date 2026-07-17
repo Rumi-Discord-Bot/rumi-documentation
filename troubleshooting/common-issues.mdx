@@ -1,0 +1,130 @@
+---
+title: "Common issues"
+description: "Resolve common command, permission, language, management, and music problems."
+icon: "wrench"
+---
+
+## Rumi does not reply
+
+1. Confirm Rumi is online.
+2. Confirm it can view the channel and send messages.
+3. Check the prefix and command spelling.
+4. Try `/help` or `-help`.
+5. Check whether the command is restricted to a server or direct message.
+
+## A slash command is missing
+
+Discord may take time to refresh globally registered commands. Restart Discord,
+check the bot's application-command permission, and try the prefix form.
+
+## The language did not change
+
+Run `-language` to view the effective language and its source. Then set the
+intended scope explicitly:
+
+```text
+-language user de
+-language server de
+```
+
+Personal language takes priority over server language. Server-wide changes
+require administrator permission.
+
+## A management command is denied
+
+Run `-help <command>` and check both the member and bot requirements. For role
+or channel changes, Discord's role hierarchy still applies. Rumi cannot manage
+a role at or above its highest role.
+
+## I cannot find ban or kick
+
+Rumi intentionally does not provide general-purpose `ban` or `kick` commands by
+default. This keeps its baseline permission requirements smaller. Server
+managers can build carefully restricted workflows with the
+[custom command system](/custom-commands/overview).
+
+## Music does not start
+
+Confirm you are in a voice channel, Rumi can connect and speak, and the music
+service is available.
+
+If Rumi joins but does not play, try a direct track name or URL, then inspect
+the queue. A playlist or platform page can fail even when direct playback works
+because its external provider is unavailable.
+
+## Spotify controls ask me to relink
+
+The player, device, playlist, and liked-song features use different Spotify
+permissions. Run `-spotify link` again and approve the updated authorization.
+Existing links created before those features were added do not gain new access
+automatically.
+
+Spotify's personal-device controls require an active Spotify device and Spotify
+Premium. Open Spotify on the desired device, start playback once, then run:
+
+```text
+-spotify devices
+-spotify player status
+```
+
+## A level role is not assigned
+
+Check all three conditions:
+
+1. Rumi has **Manage Roles**.
+2. Rumi's highest role is above the reward role.
+3. The milestone appears in `-levels settings`.
+
+After correcting the setup, run `-levels sync` to reconcile reward roles using
+the current configuration.
+
+## Invite joins are unknown
+
+Refresh Rumi's current invite snapshot:
+
+```text
+-invites refresh
+```
+
+Rumi cannot guarantee attribution when an invite was deleted, a vanity link was
+used, invite access is missing, or Discord did not provide enough state to
+identify which counter changed. Refreshing the snapshot helps future joins but
+does not reconstruct old ones.
+
+## Media conversion fails
+
+Try a smaller or shorter input and use a direct attachment or file URL. For
+video conversion, reduce `--duration`; for GIF output, reduce duration, frame
+rate, or width. Platform downloads depend on the media service and may fail even
+when attached files work.
+
+## A custom command prints `N/A`
+
+The variable exists, but its source value was not present in that run. A target
+variable, for example, needs a resolvable target. Add a fallback:
+
+```text
+{target.display_name|No member selected}
+```
+
+Use `-cc show <name>` to inspect the saved script and `-cc preview <name>
+[sample arguments]` to reproduce it safely. The [testing guide](/custom-commands/testing-and-debugging)
+walks through each layer.
+
+## A custom action is denied
+
+Protected actions check the configuring member, the member running the custom
+command, Rumi's permissions, the target, role hierarchy, and the command's own
+restrictions. Review:
+
+```text
+-cc show <name>
+-cc restrictions <name>
+-permissions @member
+```
+
+Do not remove every restriction just to make the action pass. Fix the specific
+role, channel, permission, or hierarchy problem instead.
+
+If the issue continues, join the
+[support server](https://discord.gg/NYs2jF9MCc).

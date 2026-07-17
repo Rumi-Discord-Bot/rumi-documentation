@@ -1,0 +1,29 @@
+---
+title: "Arguments variables"
+description: "16 arguments variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;arg&#125;</code> | Everything typed after the custom command or matched autoresponder trigger. | <code>blue cake with sprinkles</code> | Custom commands, autoresponders |
+| <code>&#123;arg.1&#125;</code> | The first argument after the command or trigger. | <code>blue</code> | Custom commands, autoresponders |
+| <code>&#123;arg.2+&#125;</code> | Argument 2 and everything after it. | <code>cake with sprinkles</code> | Custom commands, autoresponders |
+| <code>&#123;arg.count&#125;</code> | Number of parsed command arguments. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;arg.raw&#125;</code> | Unmodified command argument text. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;args&#125;</code> | All text supplied after the command. Alias of &#123;arg&#125;. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;args.count&#125;</code> | Number of parsed command arguments. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;args.raw&#125;</code> | Unmodified command argument text. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;arg.1+&#125;</code> | Argument 1 and every argument after it. Replace 1 with the starting position. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;args.rest.1&#125;</code> | Argument 1 and every argument after it. Replace 1 with the starting position. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;variable&#124;fallback text&#125;</code> | Return fallback text when a normal context variable is unavailable. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;name&#125;</code> | Value of a declared &lt;name&gt; or [name] custom-command argument. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;arg.name&#125;</code> | Value of a declared named custom-command argument. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;arg1&#125;</code> | Compact alias for a numbered argument. Replace 1 with the position. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;args.1&#125;</code> | Argument at a numbered position. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;1&#125;</code> | Argument at a numbered position. Replace 1 with any positive position. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |

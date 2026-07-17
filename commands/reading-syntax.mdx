@@ -1,0 +1,113 @@
+---
+title: "How to read command syntax"
+description: "Understand required arguments, optional values, choices, flags, IDs, and quoted text."
+icon: "code"
+---
+
+Rumi's help entries use a small amount of notation to show what a command
+expects. The brackets are instructions; you normally do not type them.
+
+## Required and optional arguments
+
+`<angle brackets>` mean the value is required:
+
+```text
+role add <member> <role>
+```
+
+A valid run would be:
+
+```text
+-role add @Moon Member
+```
+
+`[square brackets]` mean the value is optional:
+
+```text
+level [user]
+```
+
+Both `-level` and `-level @Moon` are valid.
+
+## Choices
+
+A vertical bar means “choose one”:
+
+```text
+deposit <amount|all>
+```
+
+Use either `-deposit 500` or `-deposit all`. Do not type the bar.
+
+## Text with spaces
+
+Some commands treat the rest of the message as one value. Others have another
+argument after it, so quotes make the boundary clear:
+
+```text
+-giveaway start "Discord Nitro" 24h 1 #giveaways
+```
+
+Without quotes, `Discord` and `Nitro` could be read as separate positional
+arguments. Quoting is especially useful for prizes, names, reasons, and titles.
+
+## Flags
+
+Flags begin with `--` and change one part of a command without changing its
+main action:
+
+```text
+-role create Event Host --color #c8d8f2
+-media caption --position=top --size=42 Welcome!
+-giveaway start "Nitro" 24h 1 --button
+```
+
+Depending on the command, a flag can be written as `--name value` or
+`--name=value`. Follow that command's help example when both forms are not
+listed.
+
+## Mentions, names, and IDs
+
+Rumi often accepts a Discord mention, raw ID, or resolvable name. Mentions are
+the least ambiguous:
+
+```text
+-role info @Staff
+-channel rename #old-name new-name
+-inviter 123456789012345678
+```
+
+When two roles or channels have the same name, use a mention or ID.
+
+## Subcommands
+
+The first word after a command often selects an action:
+
+```text
+-economy config
+-economy config currency petals
+-economy rob chance 35
+```
+
+Read these from left to right: `economy` opens the system, `rob` selects its
+configuration area, and `chance` selects the setting.
+
+## Why custom commands use `--`
+
+The `customcommand set` command has to separate the command's own argument
+definition from the response it saves:
+
+```text
+-cc set greet <member> -- Hello {target.mention}!
+```
+
+Everything before the standalone `--` defines the custom command. Everything
+after it is the reply or script. This lets the response contain spaces,
+variables, embeds, and multiple lines without Rumi mistaking them for more
+setup arguments. See [syntax and separators](/custom-commands/syntax-and-separators)
+for the full custom-command format.
+
+<Info>
+Run `-help <command>` whenever an example is unclear. Rumi's current help entry
+is generated from the command that is actually loaded by the bot.
+</Info>

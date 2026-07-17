@@ -1,0 +1,59 @@
+---
+title: "Create and preview"
+description: "Create, inspect, test, update, and remove a custom command."
+icon: "flask"
+---
+
+## Create a command
+
+Place `--`, `=>`, or `->` between the command definition and its response.
+
+```text
+-cc set welcome -- Welcome {user.mention} to {guild.name}
+```
+
+Custom command names use lowercase letters, numbers, underscores, or hyphens
+and are limited to 32 characters. A name cannot replace an existing Rumi
+command or alias.
+
+## Add arguments
+
+Put argument specifications after the name and before the separator:
+
+```text
+-cc set say <text...> -- {text}
+-cc set link [link] -- [Open the link]({link|https://rumi.rocks})
+```
+
+- `<name>` is required.
+- `[name]` is optional.
+- Add `...` to collect the remaining words into one argument.
+
+Required arguments stop the command and identify what is missing. Optional
+arguments resolve to an empty value, so use a fallback when empty output would
+look awkward: `{link|https://rumi.rocks}`.
+
+## Preview before use
+
+Preview runs the saved command with sample arguments:
+
+```text
+-cc preview say This is a test
+-cc preview link https://example.com
+```
+
+## Inspect, update, or remove
+
+```text
+-cc show welcome
+-cc set welcome -- Hello {user.mention}
+-cc remove welcome
+```
+
+Running `set` again with the same name updates the existing custom command.
+
+<Note>
+The `--` token is a separator, not part of the saved reply. See
+[Syntax and separators](/custom-commands/syntax-and-separators) for why it is
+needed and how it behaves around arguments and response text.
+</Note>

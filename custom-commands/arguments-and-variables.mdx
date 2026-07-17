@@ -1,0 +1,111 @@
+---
+title: "Arguments and variables"
+description: "Use command input, Discord context, helpers, embeds, and components."
+icon: "brackets-curly"
+---
+
+Run `-variables` in Discord for Rumi's current variable reference. This page
+covers the most common patterns.
+
+## Read command input
+
+| Variable | Value |
+| --- | --- |
+| `{arg}` or `{args}` | Everything typed after the command |
+| `{1}`, `{2}` | A numbered argument |
+| `{arg.1}`, `{arg.2}` | A numbered argument |
+| `{arg.2+}` | Argument 2 and everything after it |
+| `{args.rest.2}` | Argument 2 and everything after it |
+| `{link}` | A named argument declared as `[link]` or `<link>` |
+
+Required and optional arguments are declared when the command is created:
+
+```text
+-cc set ship <target> [reason...] -- {user.mention} chose {target.mention}. {reason|No reason given.}
+```
+
+`<target>` is required, while `[reason...]` is optional. The three dots make
+`reason` consume every remaining word instead of only the next word. A rest
+argument should be the final declared argument because it consumes everything
+after it.
+
+Compare these two definitions:
+
+```text
+-cc set pair <first> <second> -- First: {first}; second: {second}
+-cc set quote <text...> -- “{text}”
+```
+
+`-pair red blue` assigns one word to each name. `-quote this is all one value`
+assigns the entire phrase to `text`.
+
+If a required argument is missing, Rumi stops and names the missing argument.
+An optional value can be empty, so use a fallback when the reply still needs
+readable text.
+
+## Use Discord context
+
+Common variables include `{user.mention}`, `{user.name}`, `{server.name}`, and
+`{channel.mention}`. A mentioned or first target can also expose values such as
+`{target.mention}`, `{target.name}`, and `{target.avatar}`.
+
+Named arguments are text values. Target variables are resolved separately from
+the first mentioned or resolvable member. When an action depends on a member,
+use a mention during testing so the target is unambiguous.
+
+Variables accept a fallback after `|`. The fallback is used when the value is
+unavailable in that context:
+
+```text
+{target.display_name|No member was selected}
+```
+
+<Note>
+Not every event has every value. Ticket variables need ticket context, winner
+variables need a giveaway result, and punishment variables need a management
+event. The [complete variable reference](/variables/overview) states where each
+variable is available.
+</Note>
+
+## Transform and choose values
+
+```text
+{random:red|green|blue}
+{range:score:1-100}
+{choose:item:cookie|cake|pie}
+{upper:text}
+{lower:text}
+{title:text}
+{urlencode:text}
+{len:text}
+```
+
+Named `range` and `choose` results can be reused later as `{score}` or `{item}`.
+
+Text helpers transform their input; they do not modify the saved command. For
+example, `{upper:{user.display_name}}` returns an uppercase version only in that
+response.
+
+## Create an embed
+
+Embed fields use `$v{...}` blocks:
+
+```text
+-cc set rules -- $v{title: Rules} $v{description: Welcome {user.mention}}
+```
+
+## Add interactive output
+
+Rumi supports link buttons, action buttons, dropdowns, and paginated pages.
+Start with the syntax displayed by `-variables`, then preview the command
+before sharing it.
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{page}
+```
+
+<Warning>
+Buttons that run protected actions need more review than ordinary links. Use
+`-cc actions` for their current syntax and safety requirements.
+</Warning>

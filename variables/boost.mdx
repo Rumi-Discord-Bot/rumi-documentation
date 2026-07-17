@@ -1,0 +1,19 @@
+---
+title: "Boost variables"
+description: "6 boost variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;boost.count&#125;</code> | Count value. Source: boost. | <code>128</code> | Boost messages, invoke messages |
+| <code>&#123;boost.next_tier&#125;</code> | Next Tier for boost. | <code>Example boost next tier</code> | Boost messages, invoke messages |
+| <code>&#123;boost.perks&#125;</code> | Perks for boost. | <code>Example boost perks</code> | Boost messages, invoke messages |
+| <code>&#123;boost.tier&#125;</code> | Tier for boost. | <code>Example boost tier</code> | Boost messages, invoke messages |
+| <code>&#123;boost.user_since&#125;</code> | User Since for boost. | <code>Example boost user since</code> | Boost messages, invoke messages |
+| <code>&#123;boost.user_since_timestamp&#125;</code> | Unix timestamp for user since. | <code>1781460000</code> | Boost messages, invoke messages |

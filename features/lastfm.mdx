@@ -1,0 +1,76 @@
+---
+title: "Last.fm"
+description: "Link Last.fm to view profiles, scrobbles, charts, loved tracks, collages, and taste comparisons."
+icon: "lastfm"
+---
+
+Last.fm linking lets Rumi read a user's Last.fm profile and listening history.
+It does not control Spotify playback or Rumi's Discord voice queue.
+
+## Link an account
+
+```text
+-lastfm link
+```
+
+Open the one-time authorization link Rumi provides and finish the Last.fm flow.
+Afterward, confirm the connection:
+
+```text
+-lastfm profile
+```
+
+Disconnect it with:
+
+```text
+-lastfm unlink
+```
+
+## Current and recent listening
+
+```text
+-lastfm nowplaying
+-lastfm recent
+-lastfm loved
+```
+
+`nowplaying` shows the active track when Last.fm marks one as playing;
+otherwise it can show the latest scrobble.
+
+Most viewing commands accept another linked Discord member or a Last.fm
+username:
+
+```text
+-lastfm nowplaying @member
+-lastfm recent some_lastfm_name
+```
+
+## Charts
+
+```text
+-lastfm toptracks 1month
+-lastfm topartists overall @member
+-lastfm topalbums 3month
+-lastfm collage 1month
+```
+
+The period comes before the optional member or username. `collage` returns a
+chart-style album summary using the listening data available from Last.fm.
+
+## Compare listening taste
+
+Both Discord members need linked accounts:
+
+```text
+-lastfm compare @member
+-lastfm compare @member 1month
+```
+
+Rumi compares shared artists and tracks for the chosen period. The result is
+based on Last.fm scrobbles, so unscrobbled listening will not be included.
+
+<Info>
+Last.fm and Spotify are separate connections. Use `-spotify link` for personal
+Spotify controls, playlists, and liked songs; use `-lastfm link` for scrobbles
+and Last.fm charts.
+</Info>

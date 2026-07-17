@@ -1,0 +1,25 @@
+---
+title: "Moderator variables"
+description: "12 moderator variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;moderator&#125;</code> | Display the moderator or executor for moderation/invoke events. | <code>&lt;@222222222222222222&gt;</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.avatar&#125;</code> | Avatar image URL. Source: moderator. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.bot&#125;</code> | Bot for moderator. | <code>Example moderator bot</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.color&#125;</code> | Color for moderator. | <code>Example moderator color</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.created_at&#125;</code> | Discord-formatted creation time. Source: moderator. | <code>&lt;t:1781460000:F&gt;</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.display_name&#125;</code> | Server display name of the moderator or executor. | <code>Moonlight</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.id&#125;</code> | Discord ID of the moderator or executor. | <code>123456789012345678</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.mention&#125;</code> | Mention the moderator or executor for moderation/invoke events. | <code>&lt;@123456789012345678&gt;</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.name&#125;</code> | Username of the moderator or executor. | <code>Rumi</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.role&#125;</code> | Role name or role value. Source: moderator. | <code>Example moderator role</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.tag&#125;</code> | Discord username tag/discriminator style value for the moderator. | <code>username</code> | Moderation logs, invoke messages, warn/ban/kick templates |
+| <code>&#123;moderator.username&#125;</code> | Discord username. Source: moderator. | <code>Example moderator username</code> | Moderation logs, invoke messages, warn/ban/kick templates |

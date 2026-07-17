@@ -1,0 +1,30 @@
+---
+title: "Date variables"
+description: "17 date variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;date&#125;</code> | Current date or Discord timestamp output. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.discord_relative&#125;</code> | Relative Discord timestamp for the current time. | <code>&lt;t:1781460000:R&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.discord_timestamp&#125;</code> | Current Discord timestamp. | <code>&lt;t:1781460000:F&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.now&#125;</code> | Now for date. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.now_proper&#125;</code> | Now Proper for date. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.now_short&#125;</code> | Now Short for date. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.now_shorter&#125;</code> | Now Shorter for date. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.utc_now&#125;</code> | Utc Now for date. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.utc_now_proper&#125;</code> | Utc Now Proper for date. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.utc_now_short&#125;</code> | Utc Now Short for date. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.utc_now_shorter&#125;</code> | Utc Now Shorter for date. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;date.utc_timestamp&#125;</code> | Unix timestamp for utc. | <code>1781460000</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;time&#125;</code> | Current date or Discord timestamp output. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;time.now&#125;</code> | Now for time. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;time.now_military&#125;</code> | Now Military for time. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;time.utc_now&#125;</code> | Utc Now for time. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;time.utc_now_military&#125;</code> | Utc Now Military for time. | <code>June 15, 2026, 8:52 AM</code> | Embeds, custom commands, autoresponders, invoke messages |

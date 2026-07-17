@@ -1,0 +1,99 @@
+---
+title: "Games"
+description: "Play interactive Discord games and look up supported game profiles and servers."
+icon: "gamepad"
+---
+
+Rumi's Games module contains two kinds of commands: games played inside Discord
+and lookups that fetch public information from a game or platform provider.
+Games commands are currently prefix-only.
+
+## Interactive games
+
+### Rock Paper Scissors
+
+```text
+-rps play bo3
+-rps challenge @member bo5
+-rps stats
+-rps leaderboard
+```
+
+Matches use private button choices where needed. Best-of values supported by
+the command are `bo1`, `bo3`, `bo5`, `bo7`, and `bo9`.
+
+### Tic-tac-toe and mines
+
+```text
+-tictactoe @member
+-mines
+```
+
+Both use interactive components. Only the players attached to the game can
+control its buttons.
+
+### Fast chat games
+
+```text
+-fasttype
+-fasttype Type this exact custom phrase
+-mathrace hard
+-unscramble 5 20
+```
+
+`fasttype` waits for the first exact phrase, `mathrace` waits for the first
+correct answer, and `unscramble` runs a word race. Their optional numbers change
+the target score or time where the command supports them.
+
+### Tea and survival games
+
+```text
+-blacktea 3 20
+-greentea 5 15
+-redtea 3 20
+-whitetea 3 20
+-wordchain 3 20
+-forbiddenword 30
+```
+
+The tea variants use different elimination rules. Read `-help <game>` before a
+larger session so everyone knows whether the round rewards speed, valid words,
+or avoiding a fragment.
+
+### Small games
+
+```text
+-coinflip
+-roll 2d20
+-slots
+-coinrace
+```
+
+These do not use the server economy. Economy casino games are under
+`-casino`, not the Games module.
+
+## Game and platform lookups
+
+The module currently includes commands for Roblox, Minecraft, Fortnite, Steam,
+Valorant, Apex Legends, Overwatch, League of Legends, osu!, Clash of Clans,
+Clash Royale, Brawl Stars, and Roblox groups.
+
+Examples from the current commands:
+
+```text
+-roblox user Builderman
+-roblox avatar Builderman
+-minecraft status play.example.net
+-minecraft player Notch
+-fortnite <account>
+```
+
+Run `-help roblox`, `-help minecraft`, or the relevant game command before a
+lookup. Each provider expects a different username, tag, region, account ID, or
+server address.
+
+<Info>
+Lookup data comes from external game services. A private profile, invalid
+identifier, provider outage, or missing optional API integration can prevent a
+result even while Rumi itself is online.
+</Info>

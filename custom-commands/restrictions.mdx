@@ -1,0 +1,58 @@
+---
+title: "Restrictions"
+description: "Control who can run a custom command and where it can run."
+icon: "lock-keyhole"
+---
+
+Restrictions can allow or deny users, roles, and channels. A custom command can
+also require one or more named Discord permissions.
+
+## Allow a target
+
+```text
+-cc allow <name> user @member
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+```
+
+## Deny a target
+
+```text
+-cc deny <name> user @member
+-cc deny <name> role @Muted
+-cc deny <name> channel #off-topic
+```
+
+Remove an allow or deny entry with the matching inverse command:
+
+```text
+-cc unallow <name> role @Staff
+-cc undeny <name> channel #off-topic
+```
+
+## Require Discord permissions
+
+Use Discord permission names such as `ManageMessages`:
+
+```text
+-cc requireperm cleanup ManageMessages
+```
+
+Multiple permission names can be provided. Use `clear` to remove all required
+permissions:
+
+```text
+-cc requireperm cleanup clear
+```
+
+## Review or reset restrictions
+
+```text
+-cc restrictions <name>
+-cc restrictions <name> clear
+```
+
+<Warning>
+Clearing restrictions removes every allow, deny, and required-permission rule
+from that custom command. Review the result with `-cc show <name>`.
+</Warning>

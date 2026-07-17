@@ -1,0 +1,19 @@
+---
+title: "Random variables"
+description: "6 random variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;choice:name:one&#124;two&#124;three&#125;</code> | Choose once, save the result as name, and expose it through &#123;name&#125;. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Pick one option randomly. | <code>two</code> | Custom commands, autoresponders |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Return one pipe-separated option without saving it. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;random:one&#124;two&#124;three&#125;</code> | Return one pipe-separated option without saving it. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;range:reward:100-500&#125;</code> | Pick a random number and save it as a reusable value. | <code>348, then use &#123;reward&#125;</code> | Custom commands, autoresponders |
+| <code>&#123;range:1-100&#125;</code> | Return a random whole number in the inclusive range. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |

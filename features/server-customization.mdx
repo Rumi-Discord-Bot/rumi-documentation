@@ -1,0 +1,96 @@
+---
+title: "Server customization"
+description: "Customize Rumi's server profile and standard response appearance."
+icon: "palette"
+---
+
+Rumi can keep a different server profile and response theme for each server.
+These settings do not rename or recolor command names, and they do not alter the
+bot's global profile in other communities.
+
+## View the saved customization
+
+```text
+-custom view
+-custom response list
+```
+
+`custom view` shows the server profile fields. `custom response list` shows the
+response types, modes, colors, and custom emoji currently saved by Rumi.
+
+Changing these settings requires **Manage Server**.
+
+## Server profile
+
+```text
+-custom nick Rumi Support
+-custom bio Community tools and music
+-custom avatar <image URL>
+-custom banner <image URL>
+```
+
+For avatar and banner changes, attach an image or provide an image URL. Discord
+must support that profile field for the bot in the server.
+
+Clear one field without affecting the others:
+
+```text
+-custom clear nick
+-custom clear avatar
+-custom clear banner
+-custom clear bio
+```
+
+If Discord state and the saved profile fall out of sync, re-apply it:
+
+```text
+-custom apply
+```
+
+## Response modes
+
+Each response type can use a normal embed or plain text:
+
+```text
+-custom response mode good embed
+-custom response mode bad text
+```
+
+Run `-custom response list` to see the response type names accepted by the
+running bot. A response type represents the purpose of a reply, such as a
+success, error, informational result, or list.
+
+## Response colors
+
+```text
+-custom response color good #7fc8a9
+-custom response color bad #d97b7b
+```
+
+Colors affect embed-mode replies of that type. Plain text replies have no embed
+border color.
+
+## Response emojis
+
+Rumi uses a configured custom Discord emoji, or no emoji when that type has no
+emoji. It does not substitute a default Unicode emoji.
+
+```text
+-custom response emoji good <:approved:123456789012345678>
+-custom response emoji good off
+-custom response emoji good reset
+```
+
+The custom emoji must be usable by Rumi. Use `off` for no icon and `reset` for
+Rumi's configured default.
+
+Reset one entire response type with:
+
+```text
+-custom response reset good
+```
+
+<Tip>
+Change one response type, run a command that produces that kind of reply, and
+check the result before styling the rest.
+</Tip>

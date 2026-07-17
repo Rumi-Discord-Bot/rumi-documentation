@@ -1,0 +1,205 @@
+---
+title: "Server messages"
+description: "Configure sticky messages, join pings, and reusable event responses."
+icon: "message-lines"
+---
+
+Rumi has several server-message systems. They solve different problems:
+
+- **Sticky messages** keep a reminder near the bottom of an active channel.
+- **Ping on join** mentions new members in selected channels.
+- **Invoke responses** send configured text or embeds for supported server and
+  management events.
+
+All three are configured by members with **Manage Server**.
+
+## Disboard bump reminders
+
+Set a fixed reminder channel, or use `dynamic` so the reminder returns to the
+channel where the bump was detected:
+
+```text
+-bumpreminder setup #bump-reminders @Bump Ping
+-bumpreminder setup dynamic here
+-bumpreminder status
+```
+
+The ping may be a role, member, `here`, `everyone`, or `off`. Changing the ping
+does not automatically insert it into custom text; include `{ping}` where it
+should appear.
+
+```text
+-bumpreminder channel #bump-reminders
+-bumpreminder channel dynamic
+-bumpreminder ping @Bump Ping
+-bumpreminder ping off
+```
+
+### Detection and timing
+
+Auto-detection watches for a successful Disboard bump. When detected, Rumi
+sends the configured success response and schedules the reminder:
+
+```text
+-bumpreminder autodetect on
+-bumpreminder cooldown 2h
+```
+
+If detection misses a bump, start the same timer manually:
+
+```text
+-bumpreminder done
+```
+
+`done` is intentionally available after setup without requiring server-manager
+access, so the member who ran `/bump` can mark it. Configuration and previews
+still require **Manage Server**.
+
+### Plain text and embed styles
+
+Choose the reminder style independently from the success-confirmation style:
+
+```text
+-bumpreminder mode embed
+-bumpreminder successmode text
+```
+
+Plain text settings:
+
+```text
+-bumpreminder reminder {ping} **{server}** can be bumped again. Run /bump now.
+-bumpreminder success Thanks {bumped_by}! Next bump: {next_bump}
+```
+
+Reminder embed settings:
+
+```text
+-bumpreminder content {ping}
+-bumpreminder title Time to bump
+-bumpreminder description **{server}** can be bumped again.\nRun `/bump` now.
+-bumpreminder color c8d8f2
+-bumpreminder image https://example.com/banner.png
+-bumpreminder thumbnail https://example.com/icon.png
+-bumpreminder footer Thanks for helping the server grow
+```
+
+Success embeds have matching controls: `successcontent`, `successtitle`,
+`successdescription`, `successcolor`, `successimage`, `successthumbnail`, and
+`successfooter`. Use `reset` for text, titles, descriptions, colours, or footers;
+use `off` to clear image and thumbnail URLs.
+
+### Bump placeholders
+
+Run `-bumpreminder variables` in Discord to see the live list.
+
+| Placeholder | Value |
+| --- | --- |
+| `{ping}` | Configured ping target. |
+| `{server}` | Server name. |
+| `{bumped_by}` or `{user}` | Member who bumped, when known. |
+| `{next_bump}` | Relative time until the next bump. |
+| `{next_bump_time}` | Full next-bump timestamp. |
+| `{last_bump}` | Relative time since the last bump. |
+| `{last_bump_time}` | Full last-bump timestamp. |
+| `{bump_count}` | Number of bumps Rumi has tracked. |
+| `{channel}` | Reminder channel. |
+
+Preview the current reminder without changing its timer, or disable the system:
+
+```text
+-bumpreminder test
+-bumpreminder disable
+```
+
+## Sticky messages
+
+Create a sticky that refreshes after a number of messages:
+
+```text
+-sticky add #rules --every 10 -- Read the pinned rules before chatting.
+```
+
+Or refresh it on a time interval:
+
+```text
+-sticky add #info --time 30m -- {embed}$v{title: Reminder}$v{description: Check the links above.}
+```
+
+The standalone `--` separates sticky settings from the content. Everything
+after it is stored as plain text or an embed script.
+
+Manage saved stickies by their list slot or ID:
+
+```text
+-sticky list
+-sticky preview 1
+-sticky message 1 Updated sticky text.
+-sticky remove 1
+-sticky clear
+```
+
+Rumi needs **Send Messages**, **Embed Links**, and **Manage Messages**.
+
+## Ping on join
+
+Add a destination, optional delete delay, and optional message:
+
+```text
+-pingonjoin add #general 10s
+-pingonjoin add #rules 30s Welcome {user.mention}
+```
+
+Choose whether the system targets humans, bots, or both:
+
+```text
+-pingonjoin target human
+-pingonjoin target both
+```
+
+Edit one channel or the default behavior:
+
+```text
+-pingonjoin message #general {user.mention} read the rules.
+-pingonjoin delay #general 15s
+-pingonjoin preview #general
+-pingonjoin list
+```
+
+`clear` removes every configured ping channel. `reset` also restores the other
+ping-on-join settings to their defaults.
+
+## Invoke event responses
+
+Set up a default destination:
+
+```text
+-invoke setup #mod-log
+-invoke list
+```
+
+Supported triggers are `warn`, `ban`, `unban`, `kick`, `timeout`, `untimeout`,
+`role_add`, `role_remove`, `member_join`, `member_leave`, and `boost`.
+
+Configure plain text or an embed script:
+
+```text
+-invoke set warn Staff warned {punishment.user.mention}.
+-invoke set member_join {embed}$v{title: Welcome}$v{description: Welcome {user.mention}.}
+```
+
+Choose a separate channel or DM behavior for one event:
+
+```text
+-invoke channel warn #mod-log
+-invoke dm warn on
+-invoke preview warn
+```
+
+Use `-variables punishment`, `-variables user`, or the relevant event category
+when building an invoke template.
+
+<Info>
+An invoke template does not create the event itself. It controls Rumi's response
+when the corresponding supported event is observed or triggered by another
+Rumi workflow.
+</Info>

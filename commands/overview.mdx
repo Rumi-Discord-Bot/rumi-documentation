@@ -1,0 +1,77 @@
+---
+title: "Command catalog"
+description: "Find accurate command names, descriptions, aliases, and permissions."
+icon: "list"
+---
+
+Rumi's in-Discord help menu is the source of truth for the commands available
+to you:
+
+```text
+-help
+```
+
+Use `-help <command>` to inspect a specific command. For example:
+
+```text
+-help customcommand
+```
+
+Help entries can include:
+
+- Command and subcommand names
+- Descriptions and prefix aliases
+- Usage and argument information
+- Required user and bot permissions
+- Server-only and NSFW restrictions
+- Slash-command support
+
+<Info>
+This site explains workflows in depth. If a guide and Rumi's current help entry
+differ, follow the bot's help entry.
+</Info>
+
+## Search effectively
+
+Browse the help menu by category, or search for a command by name. Useful areas
+include management, music, utility, economy, roles, channels, and server tools.
+
+<CardGroup cols={2}>
+  <Card title="Management" icon="sliders" href="/features/management">
+    Filters, staff access, automation, roles, channels, verification, and invites.
+  </Card>
+  <Card title="Community systems" icon="users" href="/features/levels">
+    Levels, economy settings, shops, and giveaways.
+  </Card>
+  <Card title="Custom commands" icon="wand-magic-sparkles" href="/custom-commands/overview">
+    Arguments, variables, embeds, components, actions, restrictions, and data.
+  </Card>
+  <Card title="Music" icon="music" href="/features/music">
+    Discord voice playback, Spotify device controls, and Last.fm listening data.
+  </Card>
+  <Card title="Media and games" icon="photo-film" href="/features/media-and-embeds">
+    Image and video tools, embeds, interactive games, and game lookups.
+  </Card>
+  <Card title="Personal tools" icon="toolbox" href="/features/personal-tools">
+    Mentions, translation, bookmarks, and todo lists.
+  </Card>
+</CardGroup>
+
+## Command aliases
+
+Some commands have shorter aliases. For example, `cc` opens `customcommand`,
+`rr` opens `reactionrole`, and `rank` opens `level`. Aliases run the same command
+and use the same permissions and saved settings.
+
+The help entry shows supported aliases. Do not assume every shortened word is
+an alias; if it is not listed, use the full command name.
+
+## Prefix-only commands
+
+Rumi has more prefix commands than slash commands. This is intentional while
+the slash catalog is being cleaned up. A command marked **Prefix only** must be
+run with the server prefix even if similarly named slash commands appear in
+Discord.
+
+See [how to read command syntax](/commands/reading-syntax) for required values,
+optional arguments, choices, flags, quotes, and subcommands.

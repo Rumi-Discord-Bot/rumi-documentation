@@ -1,0 +1,44 @@
+---
+title: "Bot variables"
+description: "31 bot variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;bot.avatar&#125;</code> | Avatar image URL. Source: bot. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.command_count&#125;</code> | Number of command for bot. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.custom.avatar&#125;</code> | Avatar image URL. Source: bot custom. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.custom.banner&#125;</code> | Banner image URL. Source: bot custom. | <code>Example bot custom banner</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.custom.bio&#125;</code> | Bio for bot custom. | <code>Example bot custom bio</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.custom.name&#125;</code> | Name value. Source: bot custom. | <code>Rumi</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.dashboard&#125;</code> | Dashboard for bot. | <code>Example bot dashboard</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.guild_count&#125;</code> | Number of guild for bot. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.id&#125;</code> | Discord ID. Source: bot. | <code>123456789012345678</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.invite&#125;</code> | Invite for bot. | <code>Example bot invite</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.mention&#125;</code> | Mention Rumi. | <code>&lt;@123456789012345678&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.name&#125;</code> | Rumi bot username. | <code>Rumi</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.prefix&#125;</code> | Current command prefix. | <code>,</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.color.alert&#125;</code> | Alert for bot reply color. | <code>Example bot reply color alert</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.color.bad&#125;</code> | Bad for bot reply color. | <code>Example bot reply color bad</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.color.good&#125;</code> | Good for bot reply color. | <code>Example bot reply color good</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.color.info&#125;</code> | Info for bot reply color. | <code>Example bot reply color info</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.color.list&#125;</code> | List for bot reply color. | <code>Example bot reply color list</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.emoji.alert&#125;</code> | Alert for bot reply emoji. | <code>Example bot reply emoji alert</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.emoji.bad&#125;</code> | Bad for bot reply emoji. | <code>Example bot reply emoji bad</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.emoji.good&#125;</code> | Good for bot reply emoji. | <code>Example bot reply emoji good</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.emoji.info&#125;</code> | Info for bot reply emoji. | <code>Example bot reply emoji info</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.emoji.list&#125;</code> | List for bot reply emoji. | <code>Example bot reply emoji list</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.reply.mode&#125;</code> | Configured mode. Source: bot reply. | <code>Example bot reply mode</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.shard_count&#125;</code> | Number of shard for bot. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.shard_id&#125;</code> | Shard Id for bot. | <code>Example bot shard id</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.support_server&#125;</code> | Support Server for bot. | <code>Example bot support server</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.uptime&#125;</code> | How long this bot process has been running. | <code>Example bot uptime</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.user_count&#125;</code> | Number of user for bot. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.version&#125;</code> | Version for bot. | <code>Example bot version</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;bot.website&#125;</code> | Website for bot. | <code>Example bot website</code> | Embeds, custom commands, autoresponders, invoke messages |

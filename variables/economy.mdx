@@ -1,0 +1,31 @@
+---
+title: "Economy variables"
+description: "18 economy variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;economy.balance&#125;</code> | Formatted total balance for the user. | <code>1,250 coins</code> | Economy commands, custom commands, autoresponders with economy context |
+| <code>&#123;economy.bank&#125;</code> | Bank balance when economy context is available. | <code>830 coins</code> | Economy commands, custom commands, autoresponders with economy context |
+| <code>&#123;economy.cash&#125;</code> | Formatted wallet balance of the command user. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;economy.currency&#125;</code> | Current server economy icon. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;economy.currency_name&#125;</code> | Current server economy currency name. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;economy.daily_streak&#125;</code> | Daily reward streak count. Source: economy. | <code>1,250 coins</code> | Economy commands, custom commands, autoresponders with economy context |
+| <code>&#123;economy.networth&#125;</code> | Wallet plus bank balance when economy context is available. | <code>1,250 coins</code> | Economy commands, custom commands, autoresponders with economy context |
+| <code>&#123;economy.rank&#125;</code> | Rank value. Source: economy. | <code>1,250 coins</code> | Economy commands, custom commands, autoresponders with economy context |
+| <code>&#123;economy.raw_balance&#125;</code> | Unformatted wallet plus bank balance of the command user. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;economy.raw_bank&#125;</code> | Unformatted whole-number bank balance of the command user. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;economy.raw_cash&#125;</code> | Unformatted whole-number wallet balance of the command user. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;economy.wallet&#125;</code> | Wallet balance when economy context is available. | <code>420 coins</code> | Economy commands, custom commands, autoresponders with economy context |
+| <code>&#123;server_currency&#125;</code> | Compatibility alias for &#123;economy.currency&#125;. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;target.economy.balance&#125;</code> | Formatted wallet plus bank balance of the resolved target. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;target.economy.bank&#125;</code> | Formatted bank balance of the resolved target. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;target.economy.cash&#125;</code> | Formatted wallet balance of the resolved target. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;user_balance&#125;</code> | Compatibility alias for the command user total balance. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;user_balance_locale&#125;</code> | Compatibility alias for the formatted command user total balance. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |

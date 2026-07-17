@@ -1,0 +1,33 @@
+---
+title: "Ticket variables"
+description: "20 ticket variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;ticket.channel&#125;</code> | Channel mention or channel value. Source: ticket. | <code>Example ticket channel</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.channel_id&#125;</code> | Discord channel ID. Source: ticket. | <code>Example ticket channel id</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.claimed_by&#125;</code> | Claimed By for ticket. | <code>Example ticket claimed by</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.claimed_by_id&#125;</code> | Claimed By Id for ticket. | <code>Example ticket claimed by id</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.claimed_by_mention&#125;</code> | Claimed By Mention for ticket. | <code>Example ticket claimed by mention</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.closed_at&#125;</code> | Closed At for ticket. | <code>Example ticket closed at</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.closed_at_timestamp&#125;</code> | Unix timestamp for closed at. | <code>1781460000</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.closed_by&#125;</code> | Closed By for ticket. | <code>Example ticket closed by</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.closed_by_id&#125;</code> | Closed By Id for ticket. | <code>Example ticket closed by id</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.closed_by_mention&#125;</code> | Closed By Mention for ticket. | <code>Example ticket closed by mention</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.created_at&#125;</code> | Discord-formatted creation time. Source: ticket. | <code>&lt;t:1781460000:F&gt;</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.created_at_timestamp&#125;</code> | Unix timestamp for creation time. Source: ticket. | <code>&lt;t:1781460000:F&gt;</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.id&#125;</code> | Discord ID. Source: ticket. | <code>123456789012345678</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.number&#125;</code> | Number for ticket. | <code>Example ticket number</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.reason&#125;</code> | Reason text. Source: ticket. | <code>No reason provided.</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.status&#125;</code> | Current status. Source: ticket. | <code>Example ticket status</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.type&#125;</code> | Type or category name. Source: ticket. | <code>Example ticket type</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.user&#125;</code> | User for ticket. | <code>Example ticket user</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.user_id&#125;</code> | User Id for ticket. | <code>Example ticket user id</code> | Ticket panels, ticket logs, ticket messages |
+| <code>&#123;ticket.user_mention&#125;</code> | User Mention for ticket. | <code>Example ticket user mention</code> | Ticket panels, ticket logs, ticket messages |

@@ -1,0 +1,48 @@
+---
+title: "Guild variables"
+description: "35 guild variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;guild.afk_channel&#125;</code> | Afk Channel for guild. | <code>Example guild afk channel</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.afk_timeout&#125;</code> | Afk Timeout for guild. | <code>Example guild afk timeout</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.banner&#125;</code> | Banner image URL. Source: guild. | <code>Example guild banner</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.boost_count&#125;</code> | Current server boost count. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.boost_tier&#125;</code> | Current server boost tier. | <code>Level 2</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.category_channels&#125;</code> | Category Channels for guild. | <code>Example guild category channels</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.category_channels_count&#125;</code> | Number of category channels for guild. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.channels&#125;</code> | Channels for guild. | <code>Example guild channels</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.channels_count&#125;</code> | Number of channels for guild. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.count&#125;</code> | Current member count. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.created_at&#125;</code> | Discord-formatted creation time. Source: guild. | <code>&lt;t:1781460000:F&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.created_at_timestamp&#125;</code> | Unix timestamp for creation time. Source: guild. | <code>&lt;t:1781460000:F&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.discovery&#125;</code> | Discovery for guild. | <code>Example guild discovery</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.emoji_count&#125;</code> | Number of custom emojis in the server. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.icon&#125;</code> | Icon image URL. Source: guild. | <code>Example guild icon</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.id&#125;</code> | Discord ID of the current server. | <code>123456789012345678</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.key_features&#125;</code> | Key Features for guild. | <code>Example guild key features</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.max_members&#125;</code> | Max Members for guild. | <code>Example guild max members</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.max_presences&#125;</code> | Max Presences for guild. | <code>Example guild max presences</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.max_video_channel_users&#125;</code> | Max Video Channel Users for guild. | <code>Example guild max video channel users</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.member_count&#125;</code> | Current member count. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.name&#125;</code> | Current server name. | <code>Rumi Development</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.owner_id&#125;</code> | Owner Id for guild. | <code>Example guild owner id</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.preferred_locale&#125;</code> | Preferred Locale for guild. | <code>Example guild preferred locale</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.region&#125;</code> | Region for guild. | <code>Example guild region</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.role_count&#125;</code> | Number of roles in the server. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.shard&#125;</code> | Shard for guild. | <code>Example guild shard</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.splash&#125;</code> | Splash for guild. | <code>Example guild splash</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.text_channels&#125;</code> | Text Channels for guild. | <code>Example guild text channels</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.text_channels_count&#125;</code> | Number of text channels for guild. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.vanity&#125;</code> | Vanity for guild. | <code>Example guild vanity</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.voice_channels&#125;</code> | Voice Channels for guild. | <code>Example guild voice channels</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;guild.voice_channels_count&#125;</code> | Number of voice channels for guild. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;server.id&#125;</code> | Discord ID. Source: server. | <code>123456789012345678</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;server.name&#125;</code> | Current server name. | <code>Rumi Development</code> | Embeds, custom commands, autoresponders, invoke messages |

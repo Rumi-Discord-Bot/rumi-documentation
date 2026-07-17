@@ -1,0 +1,86 @@
+---
+title: "Member verification"
+description: "Set up text or captcha verification, resend the panel, and customize the member-facing UI."
+icon: "user-check"
+---
+
+Rumi can place new members behind a text-keyword or captcha verification flow.
+The system stores its configuration in the server and can recreate its panel
+when needed.
+
+## Before setup
+
+The person configuring verification needs **Manage Server** and **Manage
+Roles**. Rumi needs:
+
+- Manage Roles
+- Manage Channels
+- Send Messages
+- Manage Messages
+
+Rumi's role must sit above the role the verification flow needs to manage.
+
+## Text verification
+
+Choose a channel and the keyword members must enter:
+
+```text
+-verification setup text #verify agree
+```
+
+Keep the keyword short and unambiguous. The verification channel should be
+visible to unverified members while normal community channels remain controlled
+by your Discord role permissions.
+
+## Captcha verification
+
+```text
+-verification setup captcha #verify
+```
+
+Captcha mode asks members to complete the generated challenge instead of typing
+a shared keyword.
+
+## Check or restore the panel
+
+```text
+-verification status
+-verification panel
+```
+
+`status` shows the saved mode and configuration. `panel` sends the configured
+verification panel again, which is useful if its original message was deleted.
+
+## Customize the interface
+
+The customization command accepts a key and value:
+
+```text
+-verification customize panel.title Welcome
+-verification customize panel.text Type `{keyword}` to continue.
+-verification customize button.verify.style success
+-verification customize view
+```
+
+Use `verification customize view` before editing so you can see the keys the
+running bot currently supports. Reset customization when you want to return to
+Rumi's defaults:
+
+```text
+-verification customize reset
+```
+
+## Disable verification
+
+```text
+-verification disable
+```
+
+Disabling stops the verification system. It does not automatically redesign
+your Discord channel overwrites, so review what unverified and verified roles
+can see afterward.
+
+<Tip>
+Test with a non-administrator account. Administrators bypass many Discord
+channel restrictions and do not represent what a new member will experience.
+</Tip>

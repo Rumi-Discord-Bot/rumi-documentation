@@ -1,0 +1,22 @@
+---
+title: "Channel variables"
+description: "9 channel variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;channel.category_id&#125;</code> | Category Id for channel. | <code>Example channel category id</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;channel.category_name&#125;</code> | Category Name for channel. | <code>Example channel category name</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;channel.id&#125;</code> | Discord ID of the current channel. | <code>123456789012345678</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;channel.mention&#125;</code> | Mention the current channel. | <code>&lt;@123456789012345678&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;channel.name&#125;</code> | Name of the current channel. | <code>general</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;channel.position&#125;</code> | Position for channel. | <code>Example channel position</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;channel.slowmode_delay&#125;</code> | Slowmode Delay for channel. | <code>Example channel slowmode delay</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;channel.topic&#125;</code> | Topic text for the current channel, if one exists. | <code>Example channel topic</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;channel.type&#125;</code> | Type or category name. Source: channel. | <code>Example channel type</code> | Embeds, custom commands, autoresponders, invoke messages |

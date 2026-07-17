@@ -1,0 +1,46 @@
+---
+title: "Music"
+description: "Connect Rumi to voice and use its music commands."
+icon: "music"
+---
+
+Run `-help music` to find the currently available music commands and their
+syntax.
+
+## Basic flow
+
+1. Join a Discord voice channel.
+2. Run the play command with a supported search term or URL.
+3. Use queue controls to manage playback.
+4. Disconnect Rumi when playback is finished.
+
+<Note>
+Music availability depends on the separate lightweight music service. If music
+commands respond but playback cannot start, check the service status or contact
+support.
+</Note>
+
+Use `-help <command>` before running a music command to see its current options
+and requirements.
+
+## Common controls
+
+```text
+-play <song, playlist, or supported URL>
+-queue
+-nowplaying
+-pause
+-resume
+-skip
+-volume 65
+-seek 1:30
+-loop track
+-shuffle
+```
+
+Rumi's voice queue and a user's personal Spotify device are separate playback
+targets. Commands such as `-pause` control Rumi in Discord voice. Commands such
+as `-spotify pause` control the linked user's active Spotify Connect device.
+
+See [Spotify linking and controls](/features/spotify) for playlists, liked
+songs, devices, and moving Spotify library tracks into the Discord voice queue.

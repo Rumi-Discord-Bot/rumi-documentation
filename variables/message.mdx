@@ -1,0 +1,20 @@
+---
+title: "Message variables"
+description: "7 message variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;message.author&#125;</code> | Author for message. | <code>Example message author</code> | Custom commands, autoresponders, embeds |
+| <code>&#123;message.author.id&#125;</code> | Discord ID. Source: message author. | <code>123456789012345678</code> | Custom commands, autoresponders, embeds |
+| <code>&#123;message.author.mention&#125;</code> | Discord mention text. Source: message author. | <code>&lt;@123456789012345678&gt;</code> | Custom commands, autoresponders, embeds |
+| <code>&#123;message.content&#125;</code> | The triggering message content. | <code>-warn @user spam</code> | Custom commands, autoresponders, embeds |
+| <code>&#123;message.created_at&#125;</code> | Discord-formatted creation time. Source: message. | <code>&lt;t:1781460000:F&gt;</code> | Custom commands, autoresponders, embeds |
+| <code>&#123;message.id&#125;</code> | Discord ID of the triggering message. | <code>123456789012345678</code> | Custom commands, autoresponders, embeds |
+| <code>&#123;message.url&#125;</code> | A direct link to the triggering message. | <code>https://discord.com/channels/123/456/789</code> | Custom commands, autoresponders, embeds |

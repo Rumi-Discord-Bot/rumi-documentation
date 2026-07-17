@@ -1,0 +1,19 @@
+---
+title: "Conditionals variables"
+description: "6 conditionals variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;if:&lt;left&gt;&lt;operator&gt;&lt;right&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Compare values with ==, !=, &gt;, &lt;, &gt;=, or &lt;=. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;if:&lt;value&gt; contains &lt;text&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Check whether text contains another value, ignoring case. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;if:exists &lt;value&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Check whether a resolved value exists and is not false. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;if user has permission &lt;permission&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Check a Discord permission on user or target. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;if user has role @Role&#125;Allowed&#123;else&#125;Denied&#123;endif&#125;</code> | Check whether a member has a role. | <code>Allowed</code> | Custom commands, autoresponders |
+| <code>&#123;if:&#123;user.id&#125;==&#123;target.id&#125;&#125;No self target.&#123;else&#125;OK&#123;endif&#125;</code> | Show different text when a safe condition passes or fails. | <code>OK</code> | Custom commands, autoresponders |

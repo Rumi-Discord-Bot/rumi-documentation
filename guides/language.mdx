@@ -1,0 +1,48 @@
+---
+title: "Change Rumi's language"
+description: "Choose a personal language or set the language for a Discord server."
+icon: "languages"
+---
+
+Rumi supports:
+
+- English (`en`)
+- German (`de`)
+- French (`fr`)
+- Dutch (`nl`)
+- Japanese (`ja`)
+- Simplified Chinese (`zh-CN`)
+
+## View the effective language
+
+```text
+-language
+```
+
+The response shows the current language and where the preference came from.
+
+## Set your personal language
+
+```text
+-language user de
+```
+
+Personal language settings apply to you. In direct messages, Rumi stores this
+preference on your user record.
+
+## Set the server language
+
+```text
+-language server de
+```
+
+Changing the server-wide language requires administrator permission. The
+preference is saved for that server.
+
+<Info>
+Your personal language takes priority over the server language. If you have not
+chosen a personal language, Rumi uses the server setting, then Discord's locale,
+then English.
+</Info>
+
+The confirmation is immediately displayed in the newly selected language.

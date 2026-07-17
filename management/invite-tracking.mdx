@@ -1,0 +1,63 @@
+---
+title: "Invite tracking"
+description: "Track invite joins, active invitees, vanity joins, leaderboards, and join logs."
+icon: "user-plus"
+---
+
+Rumi's invite tracker compares Discord invite usage as members join. It records
+the inviter when Discord provides enough information and separates normal
+invite, vanity, and unknown joins.
+
+## Enable and inspect tracking
+
+```text
+-invites enable
+-invites settings
+```
+
+Changing settings requires **Manage Server**. Use `settings` to confirm whether
+tracking is enabled and whether a join-log channel is configured.
+
+## Add a join log
+
+```text
+-invites log #join-logs
+-invites log off
+```
+
+The log channel receives the tracking information Rumi could resolve for new
+joins.
+
+## View member and server statistics
+
+```text
+-invites
+-invites @member
+-invites top weekly
+-inviter @member
+-joins monthly
+-vanityjoins alltime
+```
+
+The tracker distinguishes total joins, active invitees, members who left,
+normal invite joins, vanity joins, and joins whose inviter could not be
+determined.
+
+Supported report periods include `daily`, `weekly`, `monthly`, and `alltime`.
+
+## Refresh the snapshot
+
+```text
+-invites refresh
+```
+
+This asks Rumi to fetch the current invite list again. It refreshes the
+comparison snapshot; it cannot reconstruct inviter information that Discord did
+not provide for an earlier join.
+
+<Info>
+Invite attribution is not guaranteed for every join. Deleted invite links,
+vanity links, missing permissions, unavailable cache state, and simultaneous
+invite changes can leave a join marked as unknown. `-invites refresh` updates
+the snapshot Rumi uses for future comparisons.
+</Info>

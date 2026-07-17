@@ -1,0 +1,22 @@
+---
+title: "General variables"
+description: "9 general variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;len:value&#125;</code> | Return the character count. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;length:value&#125;</code> | Alias of &#123;len:value&#125;. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;lower:value&#125;</code> | Convert the resolved value to lowercase. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;title:value&#125;</code> | Convert the resolved value to title case. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;upper:value&#125;</code> | Convert the resolved value to uppercase. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;urlencode:value&#125;</code> | Encode the resolved value for use in a URL. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;newline&#125;</code> | Insert a real line break. | <code>\n</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;prefix&#125;</code> | Current server prefix. | <code>,</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;timestamp&#125;</code> | The timestamp context. | <code>1781460000</code> | Embeds, custom commands, autoresponders, invoke messages |

@@ -1,0 +1,61 @@
+mark,
+.text-highlight {
+  color: inherit;
+  background: linear-gradient(
+    transparent 38%,
+    color-mix(in srgb, var(--primary-color, #6a8fb3) 42%, transparent) 38%,
+    color-mix(in srgb, var(--primary-color, #6a8fb3) 42%, transparent) 92%,
+    transparent 92%
+  );
+  border-radius: 0.2rem;
+  padding: 0 0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+::selection {
+  color: inherit;
+  background: color-mix(in srgb, #6a8fb3 55%, transparent);
+}
+
+/* Keep the reading column generous while leaving a compact, usable sidebar. */
+@media (min-width: 1024px) {
+  #sidebar {
+    width: 15.5rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  #content-area {
+    max-width: none !important;
+  }
+
+  #content {
+    width: min(100%, 58rem) !important;
+    max-width: 58rem !important;
+  }
+}
+
+#navbar,
+#header {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border-bottom-color: transparent !important;
+}
+
+#navbar {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Keep the top-left home link accessible without rendering Mintlify's name text. */
+.nav-logo {
+  display: none !important;
+}
+
+mark,
+.text-highlight {
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

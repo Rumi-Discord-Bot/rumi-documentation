@@ -1,0 +1,99 @@
+---
+title: "Set up a server"
+description: "A practical first pass through Rumi's server settings, roles, language, and help tools."
+icon: "list-check"
+---
+
+You do not need to configure every Rumi module at once. Start with the parts
+your community will actually use, check each one, and add more later.
+
+## 1. Confirm Rumi can respond
+
+Run these in a channel where Rumi can read and send messages:
+
+```text
+-ping
+-help
+```
+
+If neither command returns anything, check the channel overrides for Rumi's
+role. The usual requirements are **View Channel**, **Send Messages**, **Embed
+Links**, and **Read Message History**. Individual features can need more; the
+relevant `-help <command>` entry lists them.
+
+## 2. Check the prefix
+
+The examples in this site use `-`. If your server has a different prefix, use
+that prefix instead. Slash command names do not change with the prefix.
+
+```text
+-help prefix
+```
+
+See [prefix and slash commands](/guides/prefix-and-slash) for the difference
+between the two command styles.
+
+## 3. Choose the language behavior
+
+Every member can keep a personal language. Administrators can also choose a
+server default for members who have not selected one.
+
+```text
+-language
+-language set user de
+-language set server fr
+```
+
+Personal preferences take priority over the server default. Command names stay
+in English; Rumi translates its replies and interface text.
+
+## 4. Prepare roles and channels
+
+Rumi follows Discord's role hierarchy. Move Rumi's role above any roles it is
+expected to assign, remove, rename, or restore.
+
+Useful checks:
+
+```text
+-permissions @Rumi
+-role info Staff
+-channelinfo #general
+```
+
+Do not give Rumi Administrator just to avoid setup work. Grant the permissions
+needed by the modules you use. This keeps the bot's access easier to understand.
+
+## 5. Enable one system at a time
+
+Here are sensible starting points:
+
+<CardGroup cols={2}>
+  <Card title="Management" icon="sliders" href="/features/management">
+    Configure roles, channels, filters, verification, and staff workflows.
+  </Card>
+  <Card title="Levels" icon="arrow-up-right-dots" href="/features/levels">
+    Enable XP, choose announcements, and add level roles.
+  </Card>
+  <Card title="Economy" icon="coins" href="/features/economy">
+    Set the currency, rewards, cooldowns, shop, robbing, and casino limits.
+  </Card>
+  <Card title="Music" icon="music" href="/features/music">
+    Join a voice channel, play a track, and learn the queue controls.
+  </Card>
+</CardGroup>
+
+After changing a system, run its status or settings command. For example,
+`-levels settings`, `-economy config`, or `-verification status` shows what Rumi
+currently has saved.
+
+## 6. Test as a regular member
+
+An administrator can accidentally hide permission problems because they bypass
+many Discord restrictions. After setup, test the workflow with a regular member
+or a test role. Check both the channel where the command runs and any channel
+where Rumi is expected to send a result.
+
+<Tip>
+When something fails, run `-help <command>` before changing permissions. It is
+usually quicker than guessing which permission or argument is missing.
+</Tip>

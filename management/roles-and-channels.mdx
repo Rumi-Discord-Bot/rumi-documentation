@@ -1,0 +1,226 @@
+---
+title: "Roles and channels"
+description: "Create and organize Discord roles and channels with Rumi's management commands."
+icon: "layer-group"
+---
+
+Rumi can create, inspect, assign, rename, recolor, delete, and restore roles. It
+can also create and organize text, voice, category, stage, forum, and
+announcement channels.
+
+## Role hierarchy comes first
+
+Discord only lets a bot manage roles below its own highest role. The same rule
+applies to the member running a role command. Before troubleshooting a failed
+assignment, check the order in **Server Settings → Roles**.
+
+Both the member and Rumi need **Manage Roles** for the `role` management
+command.
+
+## Create and inspect roles
+
+```text
+-role create Event Host --color #c8d8f2
+-role info Event Host
+-role rename Event Host Events Team
+-role color Events Team #6A8FB3
+```
+
+Use a mention or ID when multiple roles share a name.
+
+## Add and remove roles
+
+```text
+-role add @member Member
+-role remove @member Member
+```
+
+Rumi checks the target member and role hierarchy before applying the change.
+
+## Connected role purposes
+
+A connected role stores a reusable purpose name, such as `staff`, against an
+existing Discord role:
+
+```text
+-role connect staff @Staff
+-role list
+-role disconnect staff
+```
+
+This does not create a second role. It gives Rumi a stable purpose to refer to
+even if the role is otherwise used by a larger workflow.
+
+## Delete and restore
+
+`role delete` keeps a restore snapshot. `role restore` restores the most recent
+deleted or changed role snapshot supported by the command:
+
+```text
+-role delete Old Staff
+-role restore
+```
+
+Restoration creates or updates Discord state from the stored snapshot; it
+cannot reverse unrelated changes made outside Rumi after the deletion.
+
+## Join roles
+
+Automatically assign roles to humans, bots, or both when they join:
+
+```text
+-joinrole add human @Member
+-joinrole add bot @Bot
+-joinrole add both @Community
+-joinrole list
+```
+
+Remove selected roles or clear one target group:
+
+```text
+-joinrole remove human @Member
+-joinrole clear bot
+```
+
+Rumi still needs to sit above every configured join role.
+
+## Personal booster roles
+
+Active server boosters can create and style a role that Rumi manages for them:
+
+```text
+-boosterrole view
+-boosterrole create Moonlight
+-boosterrole rename Pink Dawn
+-boosterrole color #ff88cc
+-boosterrole color #ff88cc, #ffddee
+```
+
+The two-colour form requests Discord's gradient role colour. Whether Discord
+shows every role appearance feature can depend on the server's available role
+features.
+
+Set a role icon from an attachment, image URL, Unicode emoji, or custom Discord
+emoji mention. Use `clear` to remove it:
+
+```text
+-boosterrole icon ✨
+-boosterrole icon <:sparkle:123456789012345678>
+-boosterrole icon https://example.com/icon.png
+-boosterrole icon clear
+```
+
+### Share a booster role
+
+The booster who owns a role can share it with other members:
+
+```text
+-boosterrole share @friend
+-boosterrole share remove @friend
+```
+
+Staff with **Manage Roles** can inspect all owners and shares, and set how many
+members each owner may share with:
+
+```text
+-boosterrole share list
+-boosterrole share limit 3
+-boosterrole share limit none
+```
+
+`boosterrole limit off` disables creation server-wide; it is different from
+the sharing limit:
+
+```text
+-boosterrole limit on
+-boosterrole limit off
+```
+
+### Position and cleanup
+
+Keep generated roles inside an intended section of the role list by naming a
+top and bottom anchor:
+
+```text
+-boosterrole hoist @Booster Top @Booster Bottom
+```
+
+Both anchors must remain manageable by Rumi. Cleanup removes stale ownership
+and shares after boosting status changes:
+
+```text
+-boosterrole cleanup
+-boosterrole cleanup auto on
+-boosterrole cleanup auto off
+```
+
+### Name and icon filters
+
+Simple word filters block unwanted text in booster role names:
+
+```text
+-boosterrole filter add admin
+-boosterrole filter remove admin
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+Premium servers can add regular-expression filters for more precise matching:
+
+```text
+-boosterrole regex filter add ^admin
+-boosterrole regex filter list
+-boosterrole regex filter remove ^admin
+-boosterrole regex filter clear
+```
+
+Only add a regex you understand; a broad pattern can reject ordinary names.
+Icon text filtering and a combined settings view are available through:
+
+```text
+-boosterrole filtericon nsfw on
+-boosterrole filters
+```
+
+## Reaction roles
+
+The `reactionrole` command, also available as `rr`, connects an emoji on a
+message to a role:
+
+```text
+-help reactionrole
+```
+
+Use the current help entry for the message, emoji, and role argument order.
+Reaction roles require Rumi to read the target message, add reactions, and
+manage the selected role.
+
+## Create channels
+
+```text
+-channel create text announcements
+-channel create voice Lounge
+-channel create category Events
+-channel create text event-chat --category Events
+```
+
+Supported channel types are `text`, `voice`, `category`, `stage`, `forum`, and
+`announcement`.
+
+## Rename, move, and delete channels
+
+```text
+-channel rename #old-name new-name
+-channel move #event-chat Events
+-channel move #event-chat 3
+-channel delete #temporary
+```
+
+If no channel is supplied to a supported action, Rumi may use the current
+channel. Supplying a channel mention is safer when a destructive action is
+involved.
+
+<Warning>
+Channel deletion is permanent on Discord. Check the mention in your command
+before sending it; role restore does not restore deleted channels.
+</Warning>

@@ -1,0 +1,28 @@
+---
+title: "Level variables"
+description: "15 level variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;level&#125;</code> | Level and XP data for the member who leveled up. | <code>Example level</code> | Level messages, level previews |
+| <code>&#123;level.new_rank&#125;</code> | New level reached by the member. | <code>12</code> | Level messages, level previews |
+| <code>&#123;level.next_rank&#125;</code> | Next level after the current one. | <code>Example level next rank</code> | Level messages, level previews |
+| <code>&#123;level.old_rank&#125;</code> | Previous level before the level-up. | <code>11</code> | Level messages, level previews |
+| <code>&#123;level.progress&#125;</code> | Progress toward the next level. | <code>74%</code> | Level messages, level previews |
+| <code>&#123;level.rank_position&#125;</code> | Leaderboard rank position for the member. | <code>Example level rank position</code> | Level messages, level previews |
+| <code>&#123;level.server_xp&#125;</code> | Server Xp for level. | <code>Example level server xp</code> | Level messages, level previews |
+| <code>&#123;level.server_xp_total&#125;</code> | Server Xp Total for level. | <code>Example level server xp total</code> | Level messages, level previews |
+| <code>&#123;level.total_messages&#125;</code> | Total Messages for level. | <code>Example level total messages</code> | Level messages, level previews |
+| <code>&#123;level.user_xp&#125;</code> | Current XP value for the member. | <code>8,420</code> | Level messages, level previews |
+| <code>&#123;level.user_xp_total&#125;</code> | User Xp Total for level. | <code>Example level user xp total</code> | Level messages, level previews |
+| <code>&#123;level.voice_seconds&#125;</code> | Voice Seconds for level. | <code>Example level voice seconds</code> | Level messages, level previews |
+| <code>&#123;level.voice_time&#125;</code> | Voice Time for level. | <code>Example level voice time</code> | Level messages, level previews |
+| <code>&#123;level.xp_needed&#125;</code> | XP needed for the next level. | <code>9,000</code> | Level messages, level previews |
+| <code>&#123;xp&#125;</code> | Level and XP data for the member who leveled up. | <code>Example xp</code> | Level messages, level previews |

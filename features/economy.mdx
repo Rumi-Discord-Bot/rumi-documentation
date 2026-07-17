@@ -1,0 +1,186 @@
+---
+title: "Server economy"
+description: "Set up currency, rewards, banks, transfers, shops, robbing, and casino limits."
+icon: "coins"
+---
+
+Each server has its own Rumi economy. Currency names, reward amounts, settings,
+balances, and shop items are kept in that server's economy rather than shared
+between unrelated communities.
+
+## What members can do
+
+The everyday commands are straightforward:
+
+```text
+-balance
+-balance @member
+-daily
+-weekly
+-work
+-deposit 500
+-deposit all
+-withdraw 250
+-give @member 100
+-economytop
+```
+
+Cash and bank balances are separate. `deposit` moves cash into the bank;
+`withdraw` moves it back. Transfers made with `give` can be affected by the
+server's configured transfer tax.
+
+## Initial configuration
+
+Members with **Manage Server** can inspect and edit the settings:
+
+```text
+-economy config
+-economy config currency petals
+-economy config icon 🌸
+-economy config daily 250
+-economy config weekly 2500
+-economy config work 50 350
+-economy config cooldown work 3600
+```
+
+The work range is a minimum and maximum payout. Cooldowns are entered in
+seconds in the economy configuration command.
+
+Disable an economy command without disabling the entire system:
+
+```text
+-economy config disable rob
+-economy config enable rob
+```
+
+`economy config reset confirm` resets the settings to their defaults but does
+not delete balances. `economy reset confirm` is different: it resets the
+server's user balances. Read Rumi's confirmation carefully before using either.
+
+## Robbing and casino games
+
+Robbing can be tuned or disabled:
+
+```text
+-economy rob
+-economy rob on
+-economy rob cooldown 3600
+-economy rob limits 25 500
+-economy rob chance 35
+-economy rob fine 20
+-economy rob protection 12
+```
+
+Members use `-rob @member [amount]`. Rumi applies the saved chance, limits,
+failed-attempt fine, cooldown, and protection period.
+
+Casino controls work in the same way:
+
+```text
+-economy casino on
+-economy casino cooldown 20
+-economy casino limits 10 1000
+-casino coinflip 100 heads
+-casino slots 100
+```
+
+## Shops and inventories
+
+Members can browse the server shop, buy items, inspect their inventory, and
+sell supported items:
+
+```text
+-shop
+-shop view <item>
+-buy <item>
+-inventory
+-sell <item>
+```
+
+### Build a shop item
+
+Members with **Manage Server** can create and maintain server shop items. The
+create format is `name`, `buy price`, optional `sell price`, then `|` and the
+description:
+
+```text
+-shop add coffee 150 45 | Fresh server coffee
+-shop add vip-pass 5000 0 | Unlocks the VIP role
+-shop view coffee
+```
+
+Item names are single tokens, so use `vip-pass` rather than `VIP pass`. A sell
+price of `0` prevents the item from returning currency when sold. `edit` uses
+the same complete format:
+
+```text
+-shop edit coffee 175 50 | A warm drink and a small energy boost
+```
+
+For smaller changes, use the focused commands:
+
+```text
+-shop price coffee 200
+-shop sellprice coffee 60
+-shop desc coffee A limited seasonal drink
+-shop remove coffee
+```
+
+### Role-backed items
+
+Attach one or more Discord roles to an item:
+
+```text
+-shop role add vip-pass @VIP
+-shop role add vip-pass @Supporter
+-shop role remove vip-pass @Supporter
+```
+
+Rumi must be able to manage each attached role, which means its highest role
+must sit above them in Discord's role list.
+
+### Item codes and gift cards
+
+An item code is stored against an item and can be maintained by staff:
+
+```text
+-shop code create vip-pass WELCOME1
+-shop code remove vip-pass WELCOME1
+```
+
+Gift cards are redeemable currency codes associated with an item. Supply the
+currency amount and number of uses after the code:
+
+```text
+-shop giftcard create vip-pass LAUNCH500 500 25
+-shop giftcard remove vip-pass LAUNCH500
+```
+
+Members redeem a valid code with:
+
+```text
+-shop redeem LAUNCH500
+```
+
+Each successful redemption adds the configured amount to that member's
+earnings and consumes one use. Treat gift-card codes like private links: anyone
+who knows a valid code can try to redeem it while uses remain.
+
+`rumishop` is Rumi's global bot shop and is separate from the server-configured
+shop.
+
+## Auditing changes
+
+Rumi records economy setting changes and transactions:
+
+```text
+-economy audit
+-economy logs
+```
+
+These are useful after changing rewards, taxes, rob settings, or casino limits.
+
+<Tip>
+Set conservative rewards and bet limits first. It is easier to increase an
+economy's pace than to repair balances after an overly generous setup.
+</Tip>

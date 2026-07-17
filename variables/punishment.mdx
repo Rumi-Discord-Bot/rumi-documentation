@@ -1,0 +1,41 @@
+---
+title: "Punishment variables"
+description: "28 punishment variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;punishment.audit_reason&#125;</code> | Reason text from Discord audit logs when available. | <code>No reason provided.</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.case_id&#125;</code> | Friendly case ID for the punishment. | <code>WARN-A1B2</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.channel&#125;</code> | Channel mention or channel value. Source: punishment. | <code>Example punishment channel</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.channel.mention&#125;</code> | Mention the channel tied to the moderation event. | <code>&lt;@123456789012345678&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.created_at&#125;</code> | Discord-formatted creation time. Source: punishment. | <code>&lt;t:1781460000:F&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.created_at_timestamp&#125;</code> | Unix timestamp for creation time. Source: punishment. | <code>&lt;t:1781460000:F&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.duration&#125;</code> | Duration for temporary punishments, such as timeout length. | <code>10m</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.executor.id&#125;</code> | Discord ID of the audit-log executor when Discord exposes it. | <code>123456789012345678</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.executor.mention&#125;</code> | Mention the audit-log executor when Discord exposes it. | <code>&lt;@123456789012345678&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.executor.tag&#125;</code> | Username tag of the audit-log executor when Discord exposes it. | <code>username</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.expires_at&#125;</code> | Discord-formatted expiry time for temporary punishments. | <code>&lt;t:1781460000:F&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.expires_at_timestamp&#125;</code> | Unix timestamp for expiry time. Source: punishment. | <code>&lt;t:1781460000:F&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.guild&#125;</code> | Guild for punishment. | <code>Example punishment guild</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.invite_url&#125;</code> | Invite URL. Source: punishment. | <code>Example punishment invite url</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.public_id&#125;</code> | Public-friendly case ID when available. | <code>CASE-42</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.reason&#125;</code> | Reason attached to the punishment or case. | <code>Repeated spam</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.role&#125;</code> | Role name or role value. Source: punishment. | <code>Example punishment role</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.role_id&#125;</code> | Discord role ID. Source: punishment. | <code>Example punishment role id</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.role_mention&#125;</code> | Mention the affected role. Source: punishment. | <code>Example punishment role mention</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.type&#125;</code> | Punishment type, such as warn, ban, kick, timeout, role_add, or role_remove. | <code>warn</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.user&#125;</code> | Display the user affected by a moderation action. | <code>Example punishment user</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.user.avatar&#125;</code> | Avatar image URL. Source: punishment user. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.user.created_at&#125;</code> | Discord-formatted creation time. Source: punishment user. | <code>&lt;t:1781460000:F&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.user.id&#125;</code> | Discord ID of the punished user. | <code>123456789012345678</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.user.joined_at&#125;</code> | Discord-formatted server join time. Source: punishment user. | <code>&lt;t:1781460000:F&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.user.mention&#125;</code> | Mention the user who was punished. | <code>&lt;@123456789012345678&gt;</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.user.name&#125;</code> | Username of the punished user. | <code>Rumi</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |
+| <code>&#123;punishment.user.tag&#125;</code> | Discord username tag/discriminator style value for the punished user. | <code>username</code> | Moderation logs, invoke messages, warn/ban/kick/timeout responses |

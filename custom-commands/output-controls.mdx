@@ -1,0 +1,106 @@
+---
+title: "Output controls"
+description: "Route replies, send DMs, add reactions, apply cooldowns, and control the trigger message."
+icon: "route"
+---
+
+Output controls are standalone directive lines in a custom-command response.
+They change how Rumi sends the result and are not displayed as reply text.
+
+## Delete the trigger
+
+```text
+{delete}
+```
+
+Rumi removes the message that ran the custom command. This needs **Manage
+Messages** in the source channel. If deletion fails, the rest of the command can
+still be handled according to its other settings.
+
+## Silent output
+
+```text
+{silent}
+```
+
+Use silent mode for a command that only performs configured actions or data
+updates and should not send its normal visible response. During development,
+leave a visible confirmation in place until the action has been tested.
+
+## Route the response
+
+```text
+{respond:#suggestions}
+```
+
+Rumi sends the rendered output to the selected server channel. It must be able
+to view that channel and send the payload type used by the command.
+
+Example:
+
+```text
+-cc set report <text...> --
+{respond:#reports}
+$v{embed}
+$v{author: {user.display_name} && {user.avatar}}
+$v{description: {text}}
+$v{footer: Sent from {channel.name}}
+```
+
+Restrict the command's source channels if reports should only be submitted from
+specific places.
+
+## Send a direct message
+
+```text
+{dm:user}
+```
+
+The output is sent to the selected user target rather than the public channel.
+DM delivery can fail when the recipient blocks DMs from server members or has
+blocked Rumi.
+
+## Add reactions
+
+```text
+{react:✅}
+{react:✅ && ❌}
+```
+
+Rumi adds the listed reactions to the trigger message when it can read the
+message and add those reactions. Custom server emoji must also be usable by
+Rumi.
+
+## Per-user cooldowns
+
+```text
+{cooldown:10m}
+```
+
+The cooldown applies to repeated use of that custom command by a member. Use
+readable durations such as `30s`, `10m`, or `24h`.
+
+```text
+-cc set daily-note --
+{cooldown:24h}
+You can use this response again tomorrow.
+```
+
+## Combine controls carefully
+
+```text
+-cc set confidential <text...> --
+{cooldown:5m}
+{delete}
+{dm:user}
+Your saved note: {text}
+```
+
+Test routing and DMs before adding `{delete}`. Otherwise, a failed destination
+can leave you with neither the trigger message nor the expected reply.
+
+<Warning>
+Output controls change delivery, not permissions. Protected actions inside the
+same command still run through Rumi's permission, restriction, target, and role
+hierarchy checks.
+</Warning>

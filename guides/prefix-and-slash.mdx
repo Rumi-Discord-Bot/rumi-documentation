@@ -1,0 +1,34 @@
+---
+title: "Prefix and slash commands"
+description: "Understand the two ways to run Rumi commands."
+icon: "code"
+---
+
+## Prefix commands
+
+Prefix commands are typed as a normal Discord message. The default prefix is
+`-`:
+
+```text
+-command argument
+```
+
+Server configuration may provide a custom prefix. When unsure, mention Rumi or
+use Discord's slash-command picker to discover available commands.
+
+## Slash commands
+
+Slash commands use Discord's application-command interface:
+
+```text
+/command
+```
+
+Discord validates slash options before sending the command to Rumi. Some
+commands remain prefix-only when their argument format or interaction flow does
+not map cleanly to Discord's slash-command schema.
+
+## Localization
+
+Command names do not change with the selected language. Descriptions, replies,
+validation messages, buttons, menus, and modal labels may be localized.

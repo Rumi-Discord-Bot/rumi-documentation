@@ -1,0 +1,55 @@
+---
+title: "Filters"
+description: "Configure the server filters currently available in Rumi."
+icon: "filter"
+---
+
+Rumi currently provides filters for server expressions and booster roles. Run
+`-help expressionsblock` or `-help boosterrole` for the latest syntax and
+requirements.
+
+## Block expressions
+
+The `expressionsblock` command can block specific custom emojis, Unicode emoji,
+stickers, or external custom emojis. It requires server-management permission,
+and Rumi needs permission to manage messages.
+
+```text
+-expressionsblock add <emoji-or-sticker>
+-expressionsblock remove <emoji-or-sticker>
+-expressionsblock list
+-expressionsblock clear
+-expressionsblock external <on-or-off>
+```
+
+<Tip>
+`emojiblock` and `blockexpressions` are aliases for `expressionsblock`.
+</Tip>
+
+## Filter booster-role names
+
+Servers using personal booster roles can maintain a blocked-word list:
+
+```text
+-boosterrole filter add <word>
+-boosterrole filter remove <word>
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+Premium servers can also use regex name filters:
+
+```text
+-boosterrole regex filter add <pattern>
+-boosterrole regex filter remove <pattern>
+-boosterrole regex filter list
+-boosterrole regex filter clear
+```
+
+The NSFW text filter for booster-role icon input is controlled separately:
+
+```text
+-boosterrole filtericon nsfw <on-or-off>
+```
+
+Run `-boosterrole filters` to view the current booster-role filter settings.

@@ -1,0 +1,24 @@
+---
+title: "Invite variables"
+description: "11 invite variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;invite.channel&#125;</code> | Channel mention or channel value. Source: invite. | <code>Example invite channel</code> | Invite tracking messages and logs |
+| <code>&#123;invite.channel_id&#125;</code> | Discord channel ID. Source: invite. | <code>Example invite channel id</code> | Invite tracking messages and logs |
+| <code>&#123;invite.code&#125;</code> | Code for invite. | <code>Example invite code</code> | Invite tracking messages and logs |
+| <code>&#123;invite.created_at&#125;</code> | Discord-formatted creation time. Source: invite. | <code>&lt;t:1781460000:F&gt;</code> | Invite tracking messages and logs |
+| <code>&#123;invite.created_at_timestamp&#125;</code> | Unix timestamp for creation time. Source: invite. | <code>&lt;t:1781460000:F&gt;</code> | Invite tracking messages and logs |
+| <code>&#123;invite.inviter&#125;</code> | Inviter for invite. | <code>Example invite inviter</code> | Invite tracking messages and logs |
+| <code>&#123;invite.inviter_id&#125;</code> | Inviter Id for invite. | <code>Example invite inviter id</code> | Invite tracking messages and logs |
+| <code>&#123;invite.inviter_mention&#125;</code> | Inviter Mention for invite. | <code>Example invite inviter mention</code> | Invite tracking messages and logs |
+| <code>&#123;invite.max_uses&#125;</code> | Max Uses for invite. | <code>Example invite max uses</code> | Invite tracking messages and logs |
+| <code>&#123;invite.url&#125;</code> | Direct URL. Source: invite. | <code>https://discord.com/channels/123/456/789</code> | Invite tracking messages and logs |
+| <code>&#123;invite.uses&#125;</code> | Uses for invite. | <code>Example invite uses</code> | Invite tracking messages and logs |

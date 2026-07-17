@@ -1,0 +1,113 @@
+﻿---
+title: "Message automation"
+description: "Build autoresponders and autoreactions with matching modes, cooldowns, permissions, channels, embeds, and custom data."
+icon: "gears"
+---
+
+Autoresponders react to ordinary messages without adding another public
+command. Autoreactions match a message and add configured reactions.
+
+## Why `--` appears here
+
+Autoresponders have both matching flags and a response. The final standalone
+`--` ends the flags and begins the response:
+
+```text
+-autoresponder set "hello there" --exact -- General Kenobi.
+```
+
+The first `--exact` is a flag. The later standalone `--` is the boundary. This
+keeps response text from being mistaken for options.
+
+## Matching modes
+
+| Flag | Behavior |
+| --- | --- |
+| `--exact` | The entire message must match |
+| `--startswith` | The message must start with the trigger |
+| `--endswith` | The message must end with the trigger |
+| `--contains` | The trigger may appear anywhere |
+| `--match` | Treat the trigger as a regular expression |
+| `--within 30s` | Apply a per-user cooldown window |
+
+Only choose one matching mode. `exact` is safest for command-like triggers;
+`contains` is useful for phrases; `startswith` and `endswith` preserve extra
+text on the other side. `match` interprets the trigger as a regular expression
+and is intended for people already comfortable testing regex patterns.
+
+## Response and safety flags
+
+```text
+-autoresponder set "rules" --exact --embed -- $v{title: Rules}$v{description: Be kind.}
+-autoresponder set "counter" --exact --db -- {db.inc:uses:{user.id}:1}Count: {db.get:uses:{user.id}}
+-autoresponder set "staff" --exact --require-permission ManageMessages -- Staff response
+-autoresponder set "hello" --contains --ignore-channel #bots -- Hi {user.mention}
+```
+
+`--embed` parses `$v{...}` output, while `--text` forces normal text. `--db`
+enables custom-data reads and writes for that responder. Permission and ignored
+channel flags keep sensitive automations scoped.
+
+`--require-permission` checks the member who sent the matching message. Use a
+Discord permission name such as `ManageMessages`. `--ignore-channel` can be
+repeated when the same response should stay out of several channels.
+
+`--languagedetect` is a premium option. It translates incoming text to English
+before matching, which lets one English trigger recognize equivalent messages
+in other languages. It does not translate the saved response.
+
+## List, test, and remove responders
+
+Rumi numbers autoresponders in the list:
+
+```text
+-autoresponder list
+-autoresponder test 1
+-autoresponder remove 1
+```
+
+`test` runs the saved trigger through the same message-automation path. Use it
+after adding variables, custom data, or actions so you can catch a malformed
+response before members encounter it. A server can store up to 500 responders.
+
+## Exclusive targets
+
+Exclusives narrow one responder to a particular channel, role, or member. The
+first number is the responder slot shown by `autoresponder list`:
+
+```text
+-autoresponder exclusive set 1 #general
+-autoresponder exclusive set 1 @Event Team
+-autoresponder exclusive set 1 @member
+-autoresponder exclusive list 1
+```
+
+Add more than one target when the responder should work in several approved
+places or for several approved groups. Remove only the target you no longer
+need:
+
+```text
+-autoresponder exclusive remove 1 #general
+```
+
+An ignored channel and an exclusive channel solve opposite problems:
+`--ignore-channel` blocks selected channels, while an exclusive target limits
+the responder to selected targets.
+
+<Warning>
+Regular expressions and broad `--contains` triggers can match more messages
+than expected. Start in a test channel, add `--within`, and review the trigger
+before enabling a protected action.
+</Warning>
+
+## Autoreactions
+
+Autoreactions share the same core matching modes:
+
+```text
+-autoreaction add "good morning" ☀️ ❤️ --startswith
+```
+
+Use a narrow match for common words. A `contains` autoreaction attached to a
+short trigger can add reactions far more often than intended.
+

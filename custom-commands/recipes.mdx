@@ -1,0 +1,159 @@
+---
+title: "Custom command recipes"
+description: "Copy complete examples for arguments, embeds, random values, counters, cooldowns, and staff workflows."
+icon: "book-open"
+---
+
+Build one layer at a time. Save the command, preview it with realistic input,
+then add restrictions before protected actions.
+
+<AccordionGroup>
+  <Accordion title="A simple welcome command">
+    ```text
+    -cc set hello -- Hello {user.mention}! Welcome to **{guild.name}**.
+    ```
+
+    Test with `-cc preview hello`.
+  </Accordion>
+
+  <Accordion title="Repeat a required message">
+    ```text
+    -cc set say <text...> -- {text}
+    ```
+
+    Running `-say The event starts soon` returns the whole rest argument.
+  </Accordion>
+
+  <Accordion title="Choose a random response">
+    ```text
+    -cc set snack -- {choose:Cookie|Cake|Fruit|Popcorn}
+    ```
+
+    Name a result when it is reused:
+
+    ```text
+    -cc set lucky --
+    {range:number:1-100}
+    Your lucky number is **{number}**.
+    ```
+  </Accordion>
+
+  <Accordion title="Create a member profile card">
+    ```text
+    -cc set profile [member] --
+    $v{embed}
+    $v{title: {target.display_name|{user.display_name}}}
+    $v{thumbnail: {target.avatar|{user.avatar}}}
+    $v{field: Account created && {target.created_at|{user.created_at}} && false}
+    $v{field: Joined server && {target.joined_at|{user.joined_at}} && false}
+    $v{color: 6A8FB3}
+    ```
+
+    Try `-profile @member` and `-profile`.
+  </Accordion>
+
+  <Accordion title="Count uses with custom data">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    You have used this command **{db.get:visits:{user.id}}** times.
+    ```
+
+    A standalone mutation updates the value without printing the raw mutation
+    result. Inspect it with `-cc data get visits <user-id>`.
+  </Accordion>
+
+  <Accordion title="A cooldown reward">
+    ```text
+    -cc set treat --
+    {cooldown:24h}
+    {range:reward:50-150}
+    {econ:add user && reward && Custom daily treat}
+    You received **{reward}** coins.
+    ```
+
+    Economy actions are protected. Restrict the command and test it with a safe
+    amount before making it public.
+  </Accordion>
+
+  <Accordion title="A staff warning workflow">
+    ```text
+    -cc set staffwarn <target> <reason...> --
+    {mod:warn target && {reason}}
+    Warned {target.mention}: **{reason}**
+    ```
+
+    ```text
+    -cc requireperm staffwarn ModerateMembers
+    -cc allow staffwarn role @Staff
+    -cc allow staffwarn channel #staff-commands
+    ```
+
+    Rumi checks the runner, bot permissions, target, and role hierarchy when it
+    executes.
+  </Accordion>
+
+  <Accordion title="Two-page server guide">
+    ```text
+    -cc set guide --
+    $v{embed}$v{title: Getting started}$v{description: Read #rules and choose your roles.}
+    $v{page}
+    $v{embed}$v{title: Need help?}$v{description: Ask in #support.}
+    ```
+  </Accordion>
+
+  <Accordion title="Show a different response to staff">
+    ```text
+    -cc set panel --
+    {if:user has permission ManageMessages}
+    Staff controls are available in #staff-commands.
+    {else}
+    Ask a staff member if you need help.
+    {endif}
+    ```
+
+    This checks the member's live Discord permission each time the command
+    runs. It does not grant that permission.
+  </Accordion>
+
+  <Accordion title="A per-user visit milestone">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    {if:{db.get:visits:{user.id}} >= 10}
+    Welcome back {user.mention}. You have visited at least ten times.
+    {else}
+    Welcome {user.mention}. Visit number: {db.get:visits:{user.id}}.
+    {endif}
+    ```
+
+    The namespace is `visits`; each Discord user ID is a separate key.
+  </Accordion>
+
+  <Accordion title="Respond in another channel">
+    ```text
+    -cc set suggestion <text...> --
+    {respond:#suggestions}
+    $v{embed}
+    $v{author: {user.display_name} && {user.avatar}}
+    $v{description: {text}}
+    $v{footer: Submitted from {channel.name}}
+    ```
+
+    Restrict the command to the channels where submissions should be accepted.
+    Rumi must be able to view and send embeds in the destination channel.
+  </Accordion>
+
+  <Accordion title="React and remove the trigger message">
+    ```text
+    -cc set submit <text...> --
+    {react:✅}
+    {delete}
+    Submission received: {text}
+    ```
+
+    `{delete}` removes the member's trigger message when Rumi has **Manage
+    Messages**. The reaction is added before the trigger disappears when Discord
+    permits it.
+  </Accordion>
+</AccordionGroup>

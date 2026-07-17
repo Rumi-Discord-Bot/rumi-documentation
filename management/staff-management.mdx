@@ -1,0 +1,49 @@
+---
+title: "Staff management"
+description: "Prepare roles, permissions, and custom staff workflows."
+icon: "user-shield"
+---
+
+Rumi's staff-management area is being expanded. Today, the safe foundation is
+role management, permission inspection, and restricted custom commands.
+
+## Prepare staff roles
+
+Use `role` to manage Discord roles. Rumi supports creating, assigning,
+inspecting, renaming, recoloring, deleting, and restoring roles. It can also
+connect a role to a reusable purpose:
+
+```text
+-role connect staff @Staff
+-role list
+```
+
+Run `-help role` before changing roles. The person running the command and Rumi
+both need role-management access, and Discord hierarchy applies.
+
+## Inspect access
+
+Use `permissions` (or `perms`) to see a member's Discord permissions and any
+Rumi-specific permission grants:
+
+```text
+-permissions @member
+```
+
+## Build a staff-only workflow
+
+Custom commands can be limited to an allowed role, channel, or user and can
+also require named Discord permissions. This lets each server define its own
+staff tools without Rumi shipping broad default moderation commands.
+
+```text
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+-cc requireperm <name> ManageMessages
+```
+
+<Warning>
+Allowing a role to run a custom command is a security decision. Review the
+saved script with `-cc show <name>` and test it with `-cc preview <name>` before
+staff use it.
+</Warning>

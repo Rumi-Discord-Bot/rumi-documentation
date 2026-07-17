@@ -1,0 +1,44 @@
+---
+title: "Management"
+description: "Manage a community without giving Rumi unnecessary permissions."
+icon: "sliders"
+---
+
+Rumi's management tools focus on <mark>configuration, prevention, and staff
+workflows</mark>. They include server filters, role and channel management,
+permission inspection, verification, and detailed custom commands.
+
+## No built-in ban or kick commands
+
+Rumi does not include general-purpose `ban` or `kick` commands by default. This
+is intentional: a server that only needs music, utility, or community features
+should not have to grant broad moderation permissions.
+
+<Info>
+Grant only the permissions required by the commands your server actually uses.
+Each current requirement is shown by `-help <command>`.
+</Info>
+
+## What you can manage
+
+- Roles: create, connect, assign, inspect, update, delete, and restore roles.
+- Channels: lock, unlock, hide, reveal, configure slowmode, and other channel
+  tasks exposed in Rumi's help menu.
+- Filters: block selected expressions and configure booster-role name or icon
+  filters.
+- Verification: configure text or captcha verification for new members.
+- Permissions: inspect a member's Discord and Rumi-specific permissions.
+- Staff workflows: build server-specific tools with custom commands and limit
+  exactly who can run them.
+
+## Custom management workflows
+
+Managers can use [custom commands](/custom-commands/overview) to create the
+workflow their server needs. Custom commands support arguments, variables,
+restrictions, protected actions, buttons, embeds, and stored data.
+
+<Warning>
+A custom command does not bypass Discord permissions or role hierarchy. Rumi
+and the person configuring or running a protected action must still meet its
+safety checks.
+</Warning>

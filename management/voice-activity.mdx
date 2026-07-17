@@ -1,0 +1,50 @@
+---
+title: "Voice activity"
+description: "Inspect tracked voice time for the server, members, channels, and rolling periods."
+icon: "waveform"
+---
+
+Rumi records voice sessions it observes and can summarize them for server
+managers. The reports use tracked time, not Discord's server insights.
+
+## Server totals
+
+```text
+-voicecount server
+-voicecount daily
+-voicecount weekly
+-voicecount monthly
+```
+
+The server view includes lifetime totals, session count, recent rolling totals,
+and the last tracked voice activity. Daily, weekly, and monthly views cover the
+current day, 7 days, and 30 days respectively.
+
+## Members and channels
+
+```text
+-voicecount user @member
+-voicecount channel #General
+-voicecount leaderboard
+-voicecount active
+```
+
+`active` shows sessions Rumi currently considers active. `leaderboard` ranks the
+tracked member totals available in the server analytics store.
+
+## Reset tracked totals
+
+```text
+-voicecount reset user @member
+-voicecount reset channel #General
+-voicecount reset server
+```
+
+Reset is destructive. Choose the narrowest target that solves the problem.
+Resetting the server clears the stored voice analytics used by these reports.
+
+<Info>
+Voice activity starts when Rumi observes a session. Time from before the tracker
+was running, periods when Rumi was unavailable, or inaccessible voice channels
+cannot be reconstructed later.
+</Info>

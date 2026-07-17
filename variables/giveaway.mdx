@@ -1,0 +1,46 @@
+---
+title: "Giveaway variables"
+description: "33 giveaway variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;giveaway.bonus_rules&#125;</code> | Bonus Rules for giveaway. | <code>Example giveaway bonus rules</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.channel&#125;</code> | Channel mention or channel value. Source: giveaway. | <code>Example giveaway channel</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.channel_id&#125;</code> | Discord channel ID. Source: giveaway. | <code>Example giveaway channel id</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.conditions&#125;</code> | Conditions for giveaway. | <code>Example giveaway conditions</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.created_at&#125;</code> | Discord-formatted creation time. Source: giveaway. | <code>&lt;t:1781460000:F&gt;</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.created_at_timestamp&#125;</code> | Unix timestamp for creation time. Source: giveaway. | <code>&lt;t:1781460000:F&gt;</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.description&#125;</code> | Description text. Source: giveaway. | <code>Example giveaway description</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.duration&#125;</code> | Duration text. Source: giveaway. | <code>Example giveaway duration</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.ends_at&#125;</code> | Ends At for giveaway. | <code>Example giveaway ends at</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.ends_at_timestamp&#125;</code> | Unix timestamp for ends at. | <code>1781460000</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.ends_relative&#125;</code> | Ends Relative for giveaway. | <code>Example giveaway ends relative</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.entries_count&#125;</code> | Number of giveaway entries. Source: giveaway. | <code>128</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.entry_conditions&#125;</code> | Entry Conditions for giveaway. | <code>Example giveaway entry conditions</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.entry_mode&#125;</code> | Entry Mode for giveaway. | <code>Example giveaway entry mode</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.host&#125;</code> | Giveaway host. Source: giveaway. | <code>Example giveaway host</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.host_id&#125;</code> | Host Id for giveaway. | <code>Example giveaway host id</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.host_mention&#125;</code> | Mention the giveaway host. Source: giveaway. | <code>Example giveaway host mention</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.id&#125;</code> | Discord ID. Source: giveaway. | <code>123456789012345678</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.message_id&#125;</code> | Discord message ID. Source: giveaway. | <code>Example giveaway message id</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.message_url&#125;</code> | Direct Discord message link. Source: giveaway. | <code>Example giveaway message url</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.number&#125;</code> | Number for giveaway. | <code>Example giveaway number</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.prize&#125;</code> | Giveaway prize. Source: giveaway. | <code>Example giveaway prize</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.public_id&#125;</code> | Public-friendly ID. Source: giveaway. | <code>Example giveaway public id</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.reaction_emoji&#125;</code> | Reaction Emoji for giveaway. | <code>Example giveaway reaction emoji</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.reroll_count&#125;</code> | Number of reroll for giveaway. | <code>128</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.starts_at&#125;</code> | Starts At for giveaway. | <code>Example giveaway starts at</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.starts_at_timestamp&#125;</code> | Unix timestamp for starts at. | <code>1781460000</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.status&#125;</code> | Current status. Source: giveaway. | <code>Example giveaway status</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.title&#125;</code> | Display title. Source: giveaway. | <code>Example giveaway title</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.winner_conditions&#125;</code> | Winner Conditions for giveaway. | <code>Example giveaway winner conditions</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.winner_mentions&#125;</code> | Winner mention list. Source: giveaway. | <code>Example giveaway winner mentions</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.winners&#125;</code> | Winner list. Source: giveaway. | <code>Example giveaway winners</code> | Giveaway messages and giveaway result templates |
+| <code>&#123;giveaway.winners_count&#125;</code> | Number of giveaway winners. Source: giveaway. | <code>128</code> | Giveaway messages and giveaway result templates |

@@ -1,0 +1,132 @@
+---
+title: "Media and embeds"
+description: "Edit images and video, export media, and build reusable Discord embeds."
+icon: "photo-film"
+---
+
+Rumi's media command accepts attachments, direct URLs, and—in supported
+actions—the media attached to a replied message. The embed tools turn a compact
+script into a Discord embed that can be previewed, saved, and reused.
+
+## Choosing media input
+
+The least ambiguous input is a direct attachment or URL:
+
+```text
+-media blur https://example.com/image.png 3
+-media bgremove https://example.com/photo.jpg
+```
+
+You can also reply to a message containing media and run the command without a
+URL. If the source is a platform page rather than a direct file, availability
+depends on whether Rumi's media service supports that platform.
+
+## Image effects
+
+Current image actions include:
+
+- `blur [amount]`
+- `brightness [amount]`
+- `contrast [amount]`
+- `deepfry`
+- `flip`
+- `glitch`
+- `grayscale`
+- `invert`
+- `jail-bars`
+- `pixelate [factor]`
+- `resize <width>x<height>`
+- `rotate [degrees]`
+- `vaporwave`
+- `wasted`
+
+Examples:
+
+```text
+-media pixelate 18
+-media resize 512x512
+-media rotate 180
+```
+
+## Captions
+
+```text
+-media caption Welcome to the server
+-media caption --position=top --size=42 --color=#ffffff Welcome!
+```
+
+Caption flags include position, font family, text color, background color, and
+font size. Use `-help media caption` for the current aliases and accepted form.
+
+## GIF and MP4 conversion
+
+```text
+-media gif <url>
+-media mp4 <url> --start 10s --duration 30s
+-media togif <url> --start 5s --duration 6s --fps 12 --width 480
+```
+
+`media gif` retrieves the original supported GIF or media file. `media mp4`
+creates a downloadable MP4, while `media togif` creates a short GIF clip.
+Rumi applies input, output, duration, and processing limits so a large source
+may need a shorter clip or smaller dimensions.
+
+## Background removal
+
+```text
+-media bgremove
+```
+
+Attach an image, include an image URL, or reply to an image. Rumi returns a
+transparent PNG when the configured background-removal service succeeds.
+
+## Embed scripts
+
+Start with a preview:
+
+```text
+-embed preview {embed}$v{title: Rules}$v{description: Read the channels below.}$v{color: 6A8FB3}
+```
+
+`{embed}` starts the embed script. Each `$v{property: value}` adds a property.
+For example:
+
+```text
+{embed}
+$v{title: Event night}
+$v{description: Join us at {timestamp}.}
+$v{field: Where && #events && true}
+$v{field: Host && {user.mention} && true}
+$v{thumbnail: {guild.icon}}
+$v{color: 6A8FB3}
+```
+
+The three field parts are name, value, and whether it should be inline.
+
+## Save and reuse embeds
+
+```text
+-embed save event <script>
+-embed list
+-embed load event
+-embed edit event <updated script>
+-embed delete event
+```
+
+Send a script directly to the current channel, or specify another channel:
+
+```text
+-embed send {embed}$v{description: Hello!}
+-embed send #announcements {embed}$v{title: Update}$v{description: New event this weekend.}
+```
+
+Use `-embed validate <script>` when you only want syntax feedback. Saved embed
+templates and custom commands share the same embed-script ideas, so the
+[embeds and components guide](/custom-commands/embeds-and-components) is useful
+for both.
+
+<Warning>
+Rumi cannot make Discord accept an embed that exceeds Discord's field, text, or
+component limits. Validate and preview long scripts before sending them to a
+public channel.
+</Warning>

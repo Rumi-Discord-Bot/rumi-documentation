@@ -1,0 +1,163 @@
+---
+title: "Actions"
+description: "Add protected member, role, message, economy, reaction, and data actions."
+icon: "bolt"
+---
+
+Actions let a custom command do more than return text. Run:
+
+```text
+-cc actions
+```
+
+Rumi will show the current syntax for action buttons, member-management
+actions, roles, messages, economy changes, reactions, named actions, and custom
+data. Use that response as the source of truth while building a script.
+
+## Safety model
+
+Protected actions are checked when a custom command is saved and when it runs.
+Depending on the action, checks can include:
+
+- The configuring member's Discord permission
+- The running member's permission or explicit allowlist
+- Rumi's Discord permission
+- Member and role hierarchy
+- Whether the target is valid and manageable
+
+Rumi currently recognizes protected action families for banning, softbanning,
+kicking, timeouts, warnings, role changes, message deletion, economy changes,
+named actions, and custom data. These are <mark>building blocks inside custom
+commands</mark>, not default public moderation commands.
+
+## Build carefully
+
+1. Create and preview the text-only response.
+2. Add the smallest action needed.
+3. Restrict the command to a trusted role, channel, or permission.
+4. Run `-cc show <name>` and review the saved script.
+5. Test with a safe target before staff use.
+
+<Warning>
+Never make a destructive action available to everyone. Rumi's checks reduce
+risk, but server managers are responsible for the workflow and its allowlists.
+</Warning>
+
+## Direct action format
+
+Put actions on their own lines. Use `&&` between arguments so names and reasons
+can contain spaces without changing where the next argument begins.
+
+```text
+{mod:warn target && Repeated rule violation}
+{mod:timeout target && 10m && Cool down period}
+{econ:add user && 100 && Daily custom reward}
+{customdb:increment activity && {user.id} && 1}
+```
+
+The visible reply can follow those action lines. An action line itself is not
+shown to the user. Rumi validates protected permissions when the command is
+saved and repeats permission, target, and role-hierarchy checks when it runs.
+
+## Exact direct-action grammar
+
+The angle-bracket fields below are required. Square-bracket fields are
+optional. Do not type the brackets themselves.
+
+| Action | Exact arrangement |
+| --- | --- |
+| Ban | `{mod:ban <target> && [reason]}` |
+| Softban | `{mod:softban <target> && [reason]}` |
+| Kick | `{mod:kick <target> && [reason]}` |
+| Timeout | `{mod:timeout <target> && <duration> && [reason]}` |
+| Clear timeout | `{mod:untimeout <target> && [reason]}` |
+| Warn | `{mod:warn <target> && [reason]}` |
+| Add role | `{mod:role.add <target> && <role> && [reason]}` |
+| Remove role | `{mod:role.remove <target> && <role> && [reason]}` |
+| Toggle role | `{mod:role.toggle <target> && <role> && [reason]}` |
+| Add currency | `{econ:add <target> && <amount> && [reason]}` |
+| Remove currency | `{econ:remove <target> && <amount> && [reason]}` |
+| Set wallet | `{econ:set <target> && <amount> && [reason]}` |
+| Transfer currency | `{econ:transfer <source> && <destination> && <amount>}` |
+| Set custom data | `{customdb:set <namespace> && <key> && <value>}` |
+| Increment custom data | `{customdb:increment <namespace> && <key> && [amount]}` |
+| Delete custom data | `{customdb:delete <namespace> && <key>}` |
+
+`mute` is accepted as an alias for `timeout`; `unmute` is an alias for
+`untimeout`. Targets can be a declared argument such as `{target}`, a member
+mention, an ID, or `user`/`self` where that action supports the command member.
+
+`&&` separates direct-action arguments. This means a reason may contain spaces
+without being confused with the target or duration. Only rearrange arguments
+when the table shows a different order—the action executor reads them by
+position.
+
+## Action buttons
+
+A button is a `$v{button: ...}` block. Button fields are separated by `&&`.
+Keyed fields can be rearranged because their names identify them:
+
+```text
+$v{button: label=Confirm && style=danger && action=mod:kick {target} Rule violation && reply=Member removed.}
+```
+
+The exact shape is:
+
+```text
+$v{button: label=<text> && style=<style> && [emoji=<emoji>] && action=<action-spec> && [reply=<text>]}
+```
+
+Button fields:
+
+| Field | Accepted value |
+| --- | --- |
+| `label` | Button text, up to Discord's 80-character limit. |
+| `style` | `primary`, `secondary`, `success`, or `danger`. Colour aliases such as `blue`, `grey`, `green`, and `red` also work. |
+| `emoji` | Unicode emoji or a custom Discord emoji mention. |
+| `action` | One component action specification. Repeat `action=` to form a chain. |
+| `reply` | Ephemeral response shown only to the clicker. |
+| `public` | Public response in the channel instead of an ephemeral response. |
+| `dm` | Text sent to the clicker by DM. |
+| `role` and `mode` | Role to change on the clicker and `add`, `remove`, or `toggle`. |
+| `page` | `next`, `previous`, or a page number created with `$v{page}`. |
+| `await`, `once`, `defer` | Boolean execution controls such as `true` or `false`. |
+| `expires` | How long the control remains usable, such as `10m` or `1h`. |
+| `allow_user`, `allow_role`, `allow_channel` | One ID or a comma-separated ID list allowed to use the control. |
+
+Unlike direct action lines, a component action is written without the outer
+braces and uses spaces between its internal arguments:
+
+```text
+action=mod:timeout {target} 10m Cool down
+action=econ:add user 100 Button reward
+```
+
+Repeat the keyed field to run several actions in order:
+
+```text
+$v{button: label=Approve && style=success && action=mod:role.add {target} @Member Approved && action=reply:Approved {target.mention} && once=true}
+```
+
+## Link buttons and dropdowns
+
+Link buttons do not execute protected actions:
+
+```text
+$v{button: label=Website && url=https://rumi.rocks && emoji=🔗}
+```
+
+Dropdowns use this arrangement:
+
+```text
+$v{select: <id> && <placeholder> && <label>|<action-fields>|[description]|[emoji]}
+```
+
+Separate multiple keyed action fields inside one dropdown option with a
+semicolon:
+
+```text
+$v{select: staff_menu && Choose an action && Warn|action=mod:warn {target} Menu warning;reply=Warning saved.|Create a warning|⚠️}
+```
+
+Each option is separated by `&&`. Inside an option, the pipe-separated order is
+label, action fields, optional description, and optional emoji.

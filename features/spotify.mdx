@@ -1,0 +1,131 @@
+---
+title: "Spotify linking and controls"
+description: "Link Spotify, inspect devices, control personal playback, browse your library, and queue tracks in Discord voice."
+icon: "spotify"
+---
+
+Spotify linking gives Rumi permission to read the library data you request and
+send controls to your own active Spotify device. It does not expose your token
+to Discord or share private playlists with other members.
+
+## Link or refresh permissions
+
+```text
+-spotify link
+-spotify status
+-spotify unlink
+```
+
+Open the one-time link and approve the requested permissions. Users linked
+before device controls and liked songs were added need to run `-spotify link`
+again so Spotify can grant the new playback and library scopes.
+
+<Warning>
+Spotify Connect playback controls require Spotify Premium. Open Spotify on the
+target phone, computer, browser, or speaker at least once so Spotify reports an
+available device.
+</Warning>
+
+## Browse devices and playback
+
+```text
+-spotify devices
+-spotify player status
+-spotify pause
+-spotify resume
+-spotify next
+-spotify previous
+-spotify volume 45
+-spotify seek 1:30
+-spotify shuffle on
+-spotify repeat track
+```
+
+`seek` accepts seconds (`90`), clock time (`1:30`), or a duration (`2m`). Repeat
+accepts `off`, `track`, or `context`.
+
+## Transfer playback
+
+Run `-spotify devices` first. Transfer by the displayed number, exact device
+name, part of its name, or device ID:
+
+```text
+-spotify transfer 2
+-spotify transfer Kitchen speaker
+```
+
+Restricted devices can appear in the list but cannot accept Web API controls.
+Device IDs can change, so selecting by the current list or device name is more
+convenient than saving an ID.
+
+## Start or queue a track on Spotify
+
+```text
+-spotify play pink pony club
+-spotify play https://open.spotify.com/track/...
+-spotify queue deftones change
+```
+
+`spotify play` replaces playback on the personal Spotify device. `spotify
+queue` adds one item to that device's Spotify queue. Neither command changes
+Rumi's Discord voice queue.
+
+## View playlists
+
+```text
+-spotify playlists
+-spotify playlists @member
+```
+
+You can browse another member's **public** playlists only when that Discord
+member has linked Spotify. Private playlists remain visible only to their owner.
+
+To add one of your own linked playlists to Rumi's Discord voice queue, join a
+voice channel and select it by list number, name, ID, or Spotify URL:
+
+```text
+-spotify playlists queue 2
+-spotify playlists queue "Night drive" 30
+-spotify playlists queue https://open.spotify.com/playlist/... 50
+```
+
+The optional final number limits the import to 1–75 tracks.
+
+## Liked songs
+
+```text
+-spotify liked
+-spotify liked list 30
+-spotify liked queue 25
+```
+
+Liked songs are private to the linked user. Queueing them requires the user who
+owns that link to be in a Discord voice channel.
+
+<Note>
+Rumi uses Spotify URLs and metadata as search inputs for the configured music
+service. It does not download, rebroadcast, or extract audio from Spotify.
+</Note>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Rumi asks me to reconnect">
+    Your saved authorization predates one or more required scopes. Run
+    `-spotify link` and approve the updated permission screen.
+  </Accordion>
+  <Accordion title="No device is available">
+    Open Spotify on the desired device and start playback once. Then rerun
+    `-spotify devices`. Private-session or restricted devices may reject
+    controls.
+  </Accordion>
+  <Accordion title="Spotify returns Premium required">
+    Playback control endpoints are limited by Spotify to Premium users. Library
+    browsing may still work when the required read permissions are present.
+  </Accordion>
+  <Accordion title="A playlist cannot be queued">
+    Spotify currently exposes playlist items only when the linked user owns or
+    collaborates on that playlist. Also confirm that you are in voice and that
+    Rumi's music service is ready.
+  </Accordion>
+</AccordionGroup>

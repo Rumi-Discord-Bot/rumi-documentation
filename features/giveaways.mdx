@@ -1,0 +1,374 @@
+---
+title: "Giveaways"
+description: "Create, schedule, repeat, restrict, weight, and manage giveaways."
+icon: "gift"
+---
+
+Rumi can run button or reaction giveaways, choose up to 25 winners, save reusable
+presets, apply eligibility conditions, award bonus entries, schedule a later
+start, and repeat a giveaway on a fixed interval.
+
+This guide uses the default `-` prefix. Replace it if your server uses a custom
+prefix.
+
+## Start a giveaway
+
+The quickest form uses four values in this order:
+
+```text
+-giveaway start "Discord Nitro" 24h 2 #giveaways
+```
+
+1. `"Discord Nitro"` is the prize. Put quotation marks around prizes containing spaces.
+2. `24h` is how long entry remains open.
+3. `2` is the number of winners, from 1 to 25.
+4. `#giveaways` is optional. Without it, Rumi uses the configured giveaway channel, then the current channel.
+
+Durations support seconds, minutes, hours, days, and weeks: `30s`, `45m`, `12h`,
+`3d`, or `2w`. A giveaway must run for at least 10 seconds and no longer than
+365 days.
+
+### Button or reaction entry
+
+Button entry is the default unless the server configuration says otherwise:
+
+```text
+-giveaway start "Profile colour" 2h 1 --button
+```
+
+Use `--reaction` for reaction entry. Supply an emoji after it, or leave it out
+to use 🎉:
+
+```text
+-giveaway start "Nitro" 24h 1 --reaction 🎟️
+-giveaway start "Mystery prize" 30m 1 --reaction
+```
+
+Rumi needs **Add Reactions** and **Read Message History** for reaction
+giveaways. Both entry modes require **Send Messages** and **Embed Links** in the
+giveaway channel.
+
+## Appearance and delivery flags
+
+Flags can be placed after the required start values. Quote any multi-word value.
+
+| Flag | What it changes |
+| --- | --- |
+| `--winners <count>` | Overrides the positional winner count. |
+| `--host <user\|me>` | Shows another member as the host. |
+| `--title <text>` | Replaces the embed title. |
+| `--description <text>` | Adds custom body text. |
+| `--footer <text>` | Adds an embed footer. |
+| `--image <url>` | Adds a large embed image. The value must be an HTTP(S) URL. |
+| `--thumbnail <url>` | Adds a small embed thumbnail. |
+| `--color <hex>` | Changes the embed colour, for example `#c8d8f2`. |
+| `--content <text>` | Places plain text above the embed. `--message` is also accepted. |
+| `--button-label <text>` | Changes the entry button text. |
+| `--button-emoji <emoji>` | Places an emoji on the entry button. |
+| `--button-style <style>` | Uses `primary`, `secondary`, `success`, or `danger`. |
+| `--winner-message <text>` | Changes the message sent when winners are selected. |
+| `--end-message <text>` | Changes the message used when the giveaway ends. |
+| `--dm-winner <true\|false>` | Overrides the server’s winner-DM setting for this giveaway. |
+| `--preset <name>` | Loads a saved preset before applying the other flags. |
+
+For example:
+
+```text
+-giveaway start "Two months of Nitro" 3d 2 #giveaways --button --title "Weekend draw" --description "Press the button below to enter." --color #b7a7ff --dm-winner true
+```
+
+## IDs and everyday management
+
+Rumi gives each giveaway a short server ID such as `#1`. Commands that ask for
+an ID also accept the Discord message ID.
+
+```text
+-giveaway list
+-giveaway list active
+-giveaway list scheduled
+-giveaway info #1
+-giveaway entries #1
+-giveaway stats
+-giveaway stats user @moon
+```
+
+`list` accepts `active`, `ended`, `cancelled`, or `scheduled`. `entries` shows up
+to 25 valid entries. `stats user` reports the member’s recorded entries and wins
+across the server giveaways that Rumi checks.
+
+### Edit, end, cancel, and reroll
+
+```text
+-giveaway edit #1 --prize "Nitro Basic" --winners 2
+-giveaway edit #1 --duration 6h --title "Extended draw"
+-giveaway end #1
+-giveaway cancel #1
+-giveaway cancel #1 --delete-message
+-giveaway reroll #1 --winners 2
+```
+
+- `edit` changes only the supplied fields. `--duration 6h` sets the end to six hours from the edit.
+- `end` closes an active giveaway immediately and selects its winners.
+- `cancel` closes it without selecting winners. The message stays unless `--delete-message` is used.
+- `reroll` selects replacement winners from eligible entries in an ended giveaway.
+
+## Eligibility conditions
+
+A condition controls who can enter or win. Conditions are combined with **AND**:
+a member must pass every applicable condition.
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 100
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition list #1
+```
+
+### Condition scopes
+
+| Scope | When Rumi checks it | Good for |
+| --- | --- | --- |
+| `entry` | When the member presses the button or adds the reaction. | Immediate requirements that should block entry. |
+| `winner` | When Rumi selects or rerolls winners. | Requirements that may change before the draw ends. |
+| `both` | At entry and again during winner selection. | Rules that must remain true for the entire giveaway. |
+
+If a button entrant fails an entry check, Rumi tells them why. If a reaction
+entrant fails, Rumi removes their reaction. A member who fails a winner check is
+skipped and Rumi continues looking for an eligible winner.
+
+### Every condition type
+
+| Type | Required flags | Meaning |
+| --- | --- | --- |
+| `messages` | `--min <count>` | Requires at least the given number of messages recorded by Rumi in this server. |
+| `vc_time` | `--min <duration>` | Requires at least the given tracked voice time, such as `10h`. `vc-time` is also accepted. |
+| `server_age` | `--min <duration>` | Requires the member to have been in the current server for that long. |
+| `account_age` | `--min <duration>` | Requires the Discord account to be at least that old. |
+| `role` | `--role <role>` | Requires one role. |
+| `not_role` | `--role <role>` | Rejects members who have the role. |
+| `boosting` | none | Requires an active boost for the current server. |
+| `verified` | none | Requires completion of Discord’s membership screening. This is not Rumi’s captcha verification system. |
+| `warnings` | `--max <count>` | Allows no more than the given number of warning records in this server. |
+| `bans` | `--max <count>` | Allows no more than the given number of recorded ban actions in this server. |
+| `mutual_server` | `--server <server-id>` | Requires membership in another server that also has Rumi. |
+| `invited_to_server` | `--server <server-id>`, optionally `--inviter <user\|me>` | Requires tracked membership in the target server through the required inviter. |
+| `inviter` | same as `invited_to_server` | Alias for the invite-history condition. |
+| `joined_via_invite` | same as `invited_to_server` | Alias for the invite-history condition. |
+
+`warnings` and `bans` are maximums, so `--max 0` means no recorded warnings or
+ban actions. Older setups may use `--min` for these two types; Rumi still accepts
+it, but `--max` is clearer.
+
+### Practical condition examples
+
+Require 250 tracked messages before entry:
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 250
+```
+
+Require a 30-day-old account and seven days in the server:
+
+```text
+-giveaway condition add #1 --type account_age --scope both --min 30d
+-giveaway condition add #1 --type server_age --scope both --min 7d
+```
+
+Allow members but exclude a muted role:
+
+```text
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition add #1 --type not_role --scope both --role @Muted
+```
+
+Require five hours of tracked voice activity when winners are drawn:
+
+```text
+-giveaway condition add #1 --type vc_time --scope winner --min 5h
+```
+
+Require membership in another community:
+
+```text
+-giveaway condition add #1 --type mutual_server --scope entry --server 123456789012345678
+```
+
+Require a member to have joined a partner server through your invite:
+
+```text
+-giveaway condition add #1 --type invited_to_server --scope both --server 123456789012345678 --inviter me
+```
+
+For invite conditions, Rumi must be in the target server, the entrant must still
+be a member there, and Rumi needs **Manage Server** there to maintain invite
+tracking. Invite history cannot be reconstructed for joins that were never
+recorded.
+
+Remove one rule using the condition ID shown by `condition list`, or remove all
+rules:
+
+```text
+-giveaway condition remove #1 cond-1234
+-giveaway condition clear #1
+```
+
+## Bonus entries
+
+Every valid member starts with one entry. Bonus rules add weight to that entry;
+they do not bypass conditions. Matching bonuses stack, but one member cannot win
+more than one winner slot in the same draw.
+
+```text
+-giveaway bonus add #1 --role @VIP --entries 2
+-giveaway bonus add #1 --messages 500 --entries 1
+-giveaway bonus add #1 --vc-time 10h --entries 3
+-giveaway bonus add #1 --booster --entries 2
+```
+
+The available bonus types are:
+
+| Flag | Who receives the extra weight |
+| --- | --- |
+| `--role <role>` | Members with the selected role. |
+| `--messages <count>` | Members at or above the tracked message count. |
+| `--vc-time <duration>` | Members at or above the tracked voice time. |
+| `--booster` | Current server boosters. |
+
+`--entries` accepts 1 through 100. For example, a normal member has one chance;
+a member matching `--entries 2` has three weighted entries in total.
+
+```text
+-giveaway bonus list #1
+-giveaway bonus remove #1 bonus-1234
+```
+
+## Presets
+
+Presets save a complete giveaway layout so staff do not need to repeat a long
+set of flags.
+
+```text
+-giveaway preset create nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --color #b7a7ff
+-giveaway preset list
+-giveaway preset view nitro
+-giveaway start --preset nitro
+```
+
+Edit only what needs to change; the other saved fields remain intact:
+
+```text
+-giveaway preset edit nitro --duration 48h --winners 2
+```
+
+Flags supplied alongside `--preset` override its saved values for that one
+giveaway:
+
+```text
+-giveaway start --preset nitro --winners 3 --title "Three winners today"
+```
+
+Delete a preset when it is no longer needed:
+
+```text
+-giveaway preset delete nitro
+```
+
+Deleting a preset does not cancel giveaways or recurring rules that were already
+created from it.
+
+## Scheduled giveaways
+
+Scheduling stores the giveaway now and publishes it later:
+
+```text
+-giveaway schedule --starts-in 2h --prize "Discord Nitro" --duration 24h --winners 1 --channel #giveaways --button
+```
+
+`--starts-in` is the delay before publication. `--duration` is how long entry
+stays open **after Rumi publishes it**. The background runner checks roughly
+every 30 seconds, so publication may occur shortly after the exact target time.
+
+All appearance flags from the start command also work with `schedule`. You can
+also schedule from a preset:
+
+```text
+-giveaway schedule --starts-in 1d --preset nitro --channel #events
+```
+
+Before it starts, the giveaway appears under:
+
+```text
+-giveaway list scheduled
+-giveaway info #1
+```
+
+Use `giveaway cancel #1` if the scheduled giveaway should never be published.
+Scheduled rows remain due if Discord or the target channel is temporarily
+unavailable, allowing Rumi to try again on a later runner pass.
+
+## Recurring giveaways
+
+A recurring rule creates a fresh giveaway at a fixed interval. The most reliable
+setup is to build and inspect a preset first:
+
+```text
+-giveaway preset create weekly-nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --channel #giveaways
+-giveaway recurring create weekly --every 7d --preset weekly-nitro
+```
+
+You can also put the giveaway payload directly on the rule:
+
+```text
+-giveaway recurring create daily-coins --every 1d --prize "10,000 coins" --duration 2h --winners 1 --channel #giveaways --button
+```
+
+Important recurring behavior:
+
+- The first giveaway begins one full `--every` interval after rule creation.
+- Each run creates its own giveaway ID, message, entries, and winners.
+- The schedule advances from its intended cadence, so small runner delays do not move every later run.
+- A failed publication is retried after about five minutes instead of skipping the whole interval.
+- The rule stores a snapshot of its giveaway settings. Editing the original preset later does not change an existing recurring rule; delete and recreate the rule to apply the new preset.
+- Deleting a rule prevents future runs but does not cancel a giveaway that it already created.
+
+```text
+-giveaway recurring list
+-giveaway recurring delete weekly
+```
+
+## Server giveaway settings
+
+Members with **Manage Server**, administrators, and the configured giveaway
+manager role can manage giveaways. A giveaway host may also end or cancel their
+own giveaway. Viewing lists, information, entries, and stats remains available
+without management access.
+
+```text
+-giveaway config view
+-giveaway config channel #giveaways
+-giveaway config channel off
+-giveaway config manager-role @Giveaway Manager
+-giveaway config manager-role off
+-giveaway config default-entry button
+-giveaway config default-entry reaction
+-giveaway config default-color #c8d8f2
+-giveaway config dm-winners on
+-giveaway config remove-entry-on-leave on
+-giveaway config log-channel #giveaway-logs
+-giveaway config log-channel off
+```
+
+| Setting | Effect |
+| --- | --- |
+| `channel` | Default target when a start, schedule, preset, or recurring payload does not name a channel. |
+| `manager-role` | Lets that role manage giveaways without granting broad server management permissions. |
+| `default-entry` | Chooses button or reaction entry when neither flag is supplied. |
+| `default-color` | Sets the default embed colour. |
+| `dm-winners` | Attempts to send winners a direct message. Closed DMs may prevent delivery. |
+| `remove-entry-on-leave` | Invalidates an entry when its member leaves the server. |
+| `log-channel` | Sends giveaway management records to the selected channel. |
+
+<Tip>
+Build a short test giveaway first, then add conditions and bonus rules before
+sharing it widely. `-giveaway info #1` is the quickest way to confirm the current
+entry count, conditions, bonus rules, host, status, and message link.
+</Tip>

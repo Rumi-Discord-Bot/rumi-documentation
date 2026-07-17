@@ -1,0 +1,63 @@
+---
+title: "Stored data"
+description: "Store and reuse server data for custom command workflows."
+icon: "database"
+---
+
+Custom command data is organized by a `namespace` and `key`. Namespaces keep
+unrelated workflows separate—for example, `cases:latest` and `events:count`.
+
+## List data
+
+```text
+-cc data list
+-cc data list cases
+```
+
+## Read and write a value
+
+```text
+-cc data get cases latest
+-cc data set cases latest "Reviewed by staff"
+```
+
+## Increment a number
+
+The amount defaults to `1` when omitted. Providing it explicitly is clearer:
+
+```text
+-cc data inc cases next 1
+```
+
+`increment` is an alias for `inc`.
+
+## Delete a value
+
+```text
+-cc data delete cases latest
+```
+
+`del` and `remove` are aliases for the data `delete` operation.
+
+## Read data in a response
+
+Custom command templates support reads such as:
+
+```text
+{db.get:cases:latest}
+{db.exists:cases:latest}
+```
+
+They can also increment a value from the response:
+
+```text
+{db.inc:cases:next:1}
+```
+
+Place an increment instruction on its own line when you want the update without
+showing its raw result. Run `-variables customdb` for the current template reference.
+
+<Warning>
+Deleting a custom command does not imply that all data used by its workflow is
+deleted. Remove no-longer-needed entries explicitly.
+</Warning>

@@ -1,0 +1,43 @@
+---
+title: "User variables"
+description: "30 user variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;user&#125;</code> | Display the user who triggered the response. | <code>&lt;@123456789012345678&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.avatar&#125;</code> | Avatar URL for the triggering user. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.badges&#125;</code> | Badges for user. | <code>Example user badges</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.badges_icons&#125;</code> | Badges Icons for user. | <code>Example user badges icons</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.banner&#125;</code> | Banner image URL. Source: user. | <code>Example user banner</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.boost_count&#125;</code> | Number of boost for user. | <code>128</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.boost_since&#125;</code> | Boost Since for user. | <code>Example user boost since</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.boost_since_timestamp&#125;</code> | Unix timestamp for boost since. | <code>1781460000</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.color&#125;</code> | Color for user. | <code>Example user color</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.created_at&#125;</code> | Discord-formatted time when the user account was created. | <code>&lt;t:1781460000:F&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.created_at_timestamp&#125;</code> | Unix timestamp for creation time. Source: user. | <code>&lt;t:1781460000:F&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.display_avatar&#125;</code> | Display Avatar for user. | <code>Example user display avatar</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.display_name&#125;</code> | Server display name or nickname of the triggering member. | <code>Moonlight</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.global_name&#125;</code> | Global display name of the triggering user. | <code>Example user global name</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.guild_avatar&#125;</code> | Guild Avatar for user. | <code>Example user guild avatar</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.guild_banner&#125;</code> | Guild Banner for user. | <code>Example user guild banner</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.id&#125;</code> | Discord ID of the triggering user. | <code>123456789012345678</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.is_boost&#125;</code> | Is Boost for user. | <code>Example user is boost</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.is_bot&#125;</code> | Is Bot for user. | <code>Example user is bot</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.join_position&#125;</code> | Join Position for user. | <code>Example user join position</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.join_position_sfx&#125;</code> | Join Position Sfx for user. | <code>Example user join position sfx</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.joined_at&#125;</code> | Discord-formatted time when the member joined this server. | <code>&lt;t:1781460000:F&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.joined_at_timestamp&#125;</code> | Unix timestamp for server join time. Source: user. | <code>&lt;t:1781460000:F&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.mention&#125;</code> | Mention the user who triggered the message. | <code>&lt;@123456789012345678&gt;</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.name&#125;</code> | Username of the triggering user. | <code>Rumi</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.role_list&#125;</code> | Mention list of the user roles, highest first. | <code>Example user role list</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.role_list_text&#125;</code> | Plain text list of the user roles, highest first. | <code>Example user role list text</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.tag&#125;</code> | Discord username tag/discriminator style value when available. | <code>username</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.top_role&#125;</code> | Top Role for user. | <code>Example user top role</code> | Embeds, custom commands, autoresponders, invoke messages |
+| <code>&#123;user.username&#125;</code> | Username of the triggering user. | <code>Example user username</code> | Embeds, custom commands, autoresponders, invoke messages |

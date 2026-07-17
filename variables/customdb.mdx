@@ -1,0 +1,23 @@
+---
+title: "Customdb variables"
+description: "10 customdb variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;customdb.&lt;operation&gt;:namespace:key[:value]&#125;</code> | Long-form alias for every db operation: get, exists, set, inc, increment, dec, decrement, delete, and del. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;db.dec:namespace:key:amount&#125;</code> | Decrease a custom-data number. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;db.decrement:namespace:key:amount&#125;</code> | Long-form alias of db.dec. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;db.del:namespace:key&#125;</code> | Alias of db.delete. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;db.delete:namespace:key&#125;</code> | Delete a custom-data key. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;db.exists:namespace:key&#125;</code> | Return true when the custom-data key exists, otherwise false. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;db.get:namespace:key&#125;</code> | Read a saved custom data value. | <code>42</code> | Custom commands; autoresponders with --db |
+| <code>&#123;db.inc:namespace:key:1&#125;</code> | Increment a saved number. Put it on its own line to hide the raw result. | <code>43</code> | Custom commands; autoresponders with --db |
+| <code>&#123;db.increment:namespace:key:amount&#125;</code> | Increase a custom-data number. Alias of db.inc. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |
+| <code>&#123;db.set:namespace:key:value&#125;</code> | Save a custom-data value. On its own line, the mutation produces no visible output. | <code>See the syntax and examples in the custom-command guides.</code> | Custom commands; custom-data helpers also require --db in autoresponders |

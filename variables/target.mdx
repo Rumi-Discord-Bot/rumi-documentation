@@ -1,0 +1,24 @@
+---
+title: "Target variables"
+description: "11 target variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;target&#125;</code> | Display the resolved target user. | <code>&lt;@987654321098765432&gt;</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.avatar&#125;</code> | Avatar image URL. Source: target. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.created_at&#125;</code> | Discord-formatted creation time. Source: target. | <code>&lt;t:1781460000:F&gt;</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.display_name&#125;</code> | Server display name or nickname of the target member. | <code>Moonlight</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.id&#125;</code> | Discord ID of the target user. | <code>123456789012345678</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.is_bot&#125;</code> | Is Bot for target. | <code>Example target is bot</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.joined_at&#125;</code> | Discord-formatted server join time. Source: target. | <code>&lt;t:1781460000:F&gt;</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.mention&#125;</code> | Mention the target user, usually the first mentioned member. | <code>&lt;@123456789012345678&gt;</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.name&#125;</code> | Username of the target user. | <code>Rumi</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.tag&#125;</code> | Discord username tag/discriminator style value for the target. | <code>username</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |
+| <code>&#123;target.username&#125;</code> | Discord username. Source: target. | <code>Example target username</code> | Custom commands, autoresponders, roleplay, moderation/invoke contexts |

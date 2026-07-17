@@ -1,0 +1,24 @@
+---
+title: "Command variables"
+description: "11 command variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;command.alias&#125;</code> | Alias used to trigger the command when available. | <code>Example command alias</code> | Custom commands and command-aware templates |
+| <code>&#123;command.arg_count&#125;</code> | Number of arg for command. | <code>128</code> | Custom commands and command-aware templates |
+| <code>&#123;command.category&#125;</code> | Category for command. | <code>Example command category</code> | Custom commands and command-aware templates |
+| <code>&#123;command.channel&#125;</code> | Channel mention or channel value. Source: command. | <code>Example command channel</code> | Custom commands and command-aware templates |
+| <code>&#123;command.channel_id&#125;</code> | Discord channel ID. Source: command. | <code>Example command channel id</code> | Custom commands and command-aware templates |
+| <code>&#123;command.description&#125;</code> | Description text. Source: command. | <code>Example command description</code> | Custom commands and command-aware templates |
+| <code>&#123;command.name&#125;</code> | Name of the command currently rendering this response. | <code>Rumi</code> | Custom commands and command-aware templates |
+| <code>&#123;command.usage&#125;</code> | Usage for command. | <code>Example command usage</code> | Custom commands and command-aware templates |
+| <code>&#123;command.user&#125;</code> | User for command. | <code>Example command user</code> | Custom commands and command-aware templates |
+| <code>&#123;command.user_id&#125;</code> | User Id for command. | <code>Example command user id</code> | Custom commands and command-aware templates |
+| <code>&#123;command.user_mention&#125;</code> | User Mention for command. | <code>Example command user mention</code> | Custom commands and command-aware templates |

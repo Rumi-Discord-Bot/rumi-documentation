@@ -1,0 +1,82 @@
+---
+title: "Embeds and components"
+description: "Build structured embeds, link buttons, action controls, dropdowns, and paginated output."
+icon: "panels-top-left"
+---
+
+Rumi's `$v{...}` blocks describe Discord message content. They can be mixed
+with ordinary text and variables.
+
+## Embed properties
+
+```text
+-cc set profile [member] --
+$v{embed}
+$v{author: {target.display_name|{user.display_name}} && {target.avatar|{user.avatar}}}
+$v{title: Member profile}
+$v{description: Requested by {user.mention}}
+$v{thumbnail: {target.avatar|{user.avatar}}}
+$v{field: Account && {target.name|{user.name}} && true}
+$v{field: Joined && {target.joined_at|Unavailable} && true}
+$v{color: 6A8FB3}
+$v{footer: Rumi custom commands && {bot.avatar}}
+$v{timestamp: {date.utc_now}}
+```
+
+Supported embed properties are `title`, `description`/`desc`, `url`, `color`,
+`image`/`gif`, `thumbnail`/`thumb`, `timestamp`, `footer`, `author`, and
+`field`. Use `&&` inside authors, footers, and fields to separate their parts.
+
+<Accordion title="Discord limits enforced by Rumi">
+  A message can contain up to 10 embeds and 5 component rows. An embed allows
+  25 fields, a 256-character title, a 4,096-character description, and 6,000
+  total text characters. Button labels are limited to 80 characters and a
+  dropdown can contain up to 25 options.
+</Accordion>
+
+## Link buttons
+
+Link buttons do not run a bot action:
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{button: label=Support && url=https://discord.gg/NYs2jF9MCc && emoji=💬}
+```
+
+## Action buttons
+
+Buttons without a URL create an interaction session. The action still passes
+the same permission, target, role-hierarchy, and restriction checks used by a
+direct custom-command action.
+
+```text
+$v{button: Confirm && danger && action=mod:warn target && await=true && once=true}
+```
+
+Useful control options include `reply=...`, `ephemeral=true`, `dm=true`,
+`await=true`, `once=true`, `expires=10m`, and `allow_role=@Role`.
+
+## Dropdowns
+
+The first two parts are the internal name and placeholder. Each following
+option uses `label|action|description|emoji`:
+
+```text
+$v{dropdown: color && Choose a color && Red|reply=You chose red|Warm|🔴 && Blue|reply=You chose blue|Cool|🔵}
+```
+
+## Multiple pages and embeds
+
+Use `$v{embed}` to start another embed in the same message. Put `$v{page}` on
+its own line to start a separate navigable page:
+
+```text
+$v{embed}$v{title: Page one}$v{description: First section}
+$v{page}
+$v{embed}$v{title: Page two}$v{description: Second section}
+```
+
+Always run `-cc preview <name>` after adding components. Previewing catches
+invalid URLs, colors, field sizes, and Discord component limits before members
+use the command.
+

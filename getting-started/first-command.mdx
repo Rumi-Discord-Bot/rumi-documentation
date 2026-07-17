@@ -1,0 +1,34 @@
+---
+title: "Run your first command"
+description: "Use Rumi through prefix commands or Discord slash commands."
+icon: "terminal"
+---
+
+Rumi supports prefix commands and selected slash commands.
+
+## Prefix command
+
+The default prefix is a hyphen (`-`):
+
+```text
+-help
+```
+
+Do not add a space between the prefix and command name unless the command's
+arguments require one.
+
+## Slash command
+
+Type `/` in Discord, select Rumi, and choose a command from the picker. Discord
+shows the available arguments and whether each one is required.
+
+<Tip>
+If a command does not appear in the slash picker, use its prefix version and
+check the live command catalog to see whether slash execution is supported.
+</Tip>
+
+## Find command syntax
+
+Use `-help` to browse commands, then run `-help <command>` for the current
+description, syntax, aliases, and requirements. Rumi's help menu is the source
+of truth when a command changes.

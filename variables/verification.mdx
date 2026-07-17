@@ -1,0 +1,22 @@
+---
+title: "Verification variables"
+description: "9 verification variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;verification.captcha_code&#125;</code> | Captcha Code for verification. | <code>Example verification captcha code</code> | Verification panels and verification messages |
+| <code>&#123;verification.channel&#125;</code> | Channel mention or channel value. Source: verification. | <code>Example verification channel</code> | Verification panels and verification messages |
+| <code>&#123;verification.channel_id&#125;</code> | Discord channel ID. Source: verification. | <code>Example verification channel id</code> | Verification panels and verification messages |
+| <code>&#123;verification.mode&#125;</code> | Configured mode. Source: verification. | <code>Example verification mode</code> | Verification panels and verification messages |
+| <code>&#123;verification.status&#125;</code> | Current status. Source: verification. | <code>Example verification status</code> | Verification panels and verification messages |
+| <code>&#123;verification.unverified_role&#125;</code> | Unverified Role for verification. | <code>Example verification unverified role</code> | Verification panels and verification messages |
+| <code>&#123;verification.unverified_role_id&#125;</code> | Unverified Role Id for verification. | <code>Example verification unverified role id</code> | Verification panels and verification messages |
+| <code>&#123;verification.verified_role&#125;</code> | Verified Role for verification. | <code>Example verification verified role</code> | Verification panels and verification messages |
+| <code>&#123;verification.verified_role_id&#125;</code> | Verified Role Id for verification. | <code>Example verification verified role id</code> | Verification panels and verification messages |

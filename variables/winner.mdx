@@ -1,0 +1,21 @@
+---
+title: "Winner variables"
+description: "8 winner variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context matters. A variable returns `N/A` when the current command or event does not provide its source value. Add `|fallback text` before the closing brace when you need a friendlier fallback.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;winner&#125;</code> | Winner data for giveaway winner announcements. | <code>Example winner</code> | Giveaway result templates |
+| <code>&#123;winner.avatar&#125;</code> | Avatar image URL. Source: winner. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Giveaway result templates |
+| <code>&#123;winner.bonus_entries&#125;</code> | Bonus Entries for winner. | <code>Example winner bonus entries</code> | Giveaway result templates |
+| <code>&#123;winner.display_name&#125;</code> | Server display name or nickname. Source: winner. | <code>Moonlight</code> | Giveaway result templates |
+| <code>&#123;winner.entries&#125;</code> | Entries for winner. | <code>Example winner entries</code> | Giveaway result templates |
+| <code>&#123;winner.id&#125;</code> | Discord ID. Source: winner. | <code>123456789012345678</code> | Giveaway result templates |
+| <code>&#123;winner.mention&#125;</code> | Discord mention text. Source: winner. | <code>&lt;@123456789012345678&gt;</code> | Giveaway result templates |
+| <code>&#123;winner.name&#125;</code> | Name value. Source: winner. | <code>Rumi</code> | Giveaway result templates |

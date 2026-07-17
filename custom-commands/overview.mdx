@@ -1,0 +1,79 @@
+---
+title: "Custom commands"
+description: "Build server-specific commands with Rumi's custom command module."
+icon: "wand-magic-sparkles"
+---
+
+Custom commands let server managers create detailed workflows without adding a
+large set of one-size-fits-all moderation commands. They can produce text or
+embeds, accept arguments, resolve variables, show buttons, run protected
+actions, apply restrictions, and store server data.
+
+The main command is `customcommand`. Its aliases are `cc` and
+`customcommands`.
+
+<Info>
+Creating and changing custom commands requires the server-management permission.
+The current free limit is 30 commands per server; eligible premium servers can
+store up to 200.
+</Info>
+
+## Command map
+
+| Task | Command |
+| --- | --- |
+| Create or edit | `-cc set <name> [arguments] -- <response>` |
+| Test | `-cc preview <name> [sample arguments]` |
+| Inspect | `-cc show <name>` |
+| List | `-cc list` |
+| Delete | `-cc remove <name>` |
+| View variables | `-cc variables` or `-variables` |
+| View action syntax | `-cc actions` |
+| Manage restrictions | `-cc restrictions <name>` |
+| Manage saved data | `-cc data <operation> ...` |
+
+## Recommended workflow
+
+<Steps>
+  <Step title="Create the smallest useful response">
+    Start with plain text and one or two arguments.
+  </Step>
+  <Step title="Preview it">
+    Run `-cc preview <name>` with realistic sample input.
+  </Step>
+  <Step title="Restrict access">
+    Add role, channel, user, or permission restrictions before protected use.
+  </Step>
+  <Step title="Inspect the saved command">
+    Run `-cc show <name>` and confirm its response and restrictions.
+  </Step>
+</Steps>
+
+<Warning>
+Treat commands with role, message, economy, or member-management actions like
+staff tools. Only trusted managers should be able to edit them.
+</Warning>
+
+## What is stored
+
+Each command stores its response template, declared arguments, and access
+restrictions. Running `set` again updates that same command. Stored workflow
+data is separate, so replacing or deleting a command does not silently remove
+its counters or records.
+
+## Learn by building
+
+<CardGroup cols={2}>
+  <Card title="Why the separator exists" icon="code" href="/custom-commands/syntax-and-separators">
+    See exactly where the definition ends and the response begins.
+  </Card>
+  <Card title="Working recipes" icon="book-open" href="/custom-commands/recipes">
+    Copy small commands, preview them, and extend them safely.
+  </Card>
+  <Card title="Embeds and controls" icon="panels-top-left" href="/custom-commands/embeds-and-components">
+    Build fields, images, buttons, dropdowns, and multi-page responses.
+  </Card>
+  <Card title="Complete variable reference" icon="brackets-curly" href="/variables/overview">
+    Browse every variable generated from Rumi's runtime registry.
+  </Card>
+</CardGroup>

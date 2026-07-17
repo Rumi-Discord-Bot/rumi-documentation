@@ -1,0 +1,125 @@
+---
+title: "Levels and XP"
+description: "Configure XP, level-up messages, reward roles, multipliers, and ignored channels."
+icon: "arrow-up-right-dots"
+---
+
+Rumi's leveling system tracks server XP, shows rank cards, builds a leaderboard,
+and can award roles at chosen milestones. A member's XP belongs to the server
+where it was earned.
+
+## Start with the settings
+
+Server managers can enable the system and inspect the saved configuration:
+
+```text
+-levels enable
+-levels settings
+```
+
+Members can then use:
+
+```text
+-level
+-level @member
+-leaderboard
+```
+
+`level` is also available as `rank`. The leaderboard shows the server's XP
+ranking.
+
+## Level-up announcements
+
+Set a message with `levels message`. The message can span multiple lines and use
+level variables such as `{user.mention}` and `{level}`:
+
+```text
+-levels message GG {user.mention}!
+You reached level {level}. --delete 15
+```
+
+The `--delete 15` flag tells Rumi to remove the announcement after 15 seconds.
+Preview the saved result before relying on it:
+
+```text
+-levels preview
+```
+
+Choose whether announcements use normal text or an embed, and where they are
+sent:
+
+```text
+-levels messagemode text
+-levels messagemode embed
+-levels channel #level-ups
+```
+
+Run `-variables level` to see the current level-related variables available to
+message templates.
+
+## Reward roles
+
+Assign a role to a milestone:
+
+```text
+-levels role 10 @Veteran
+-levels role 25 @Regular
+```
+
+Use `stackroles` to choose whether members retain earlier milestone roles or
+only keep the role associated with their highest reached milestone:
+
+```text
+-levels stackroles on
+-levels stackroles off
+```
+
+Remove one milestone and re-apply the current role configuration with:
+
+```text
+-levels roleclear 10
+-levels sync
+```
+
+Rumi needs **Manage Roles**, and its highest role must sit above every reward
+role it is expected to assign.
+
+## Multipliers and ignored channels
+
+Set a server-wide XP multiplier or a multiplier attached to a role:
+
+```text
+-levels multiplier 1.5
+-levels rolemultiplier @Booster 2
+```
+
+Channels where normal chatting should not produce XP can be excluded:
+
+```text
+-levels ignore #spam
+-levels unignore #spam
+```
+
+## Adjusting XP and reputation
+
+The management command for direct XP changes is:
+
+```text
+-xp add @member 100
+-xp remove @member 50
+-xp set @member 1000
+```
+
+Rumi also has a separate reputation system:
+
+```text
+-rep give @member
+-rep remove @member
+-rep leaderboard
+```
+
+<Warning>
+Changing multipliers or XP can alter the meaning of existing rankings. Check
+`-levels settings` before and after a large change, then use `-levels sync` if
+reward roles need to be reconciled.
+</Warning>
