@@ -1,0 +1,19 @@
+---
+title: "Variabelen versterken"
+description: "6 boostvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;boost.count&#125;</code> | Tel waarde. Bron: boost. | <code>128</code> | Boost berichten, roep berichten op |
+| <code>&#123;boost.next_tier&#125;</code> | Volgende niveau voor boost. | <code>Voorbeeldboost volgende niveau</code> | Boost berichten, roep berichten op |
+| <code>&#123;boost.perks&#125;</code> | Extraatjes voor een boost. | <code>Voorbeeld van boostvoordelen</code> | Boost berichten, roep berichten op |
+| <code>&#123;boost.tier&#125;</code> | Niveau voor boost. | <code>Voorbeeld boostniveau</code> | Boost berichten, roep berichten op |
+| <code>&#123;boost.user_since&#125;</code> | Gebruiker Sinds voor boost. | <code>Voorbeeld boost gebruiker sinds</code> | Boost berichten, roep berichten op |
+| <code>&#123;boost.user_since_timestamp&#125;</code> | Unix-tijdstempel voor gebruiker sinds. | <code>1781460000</code> | Boost berichten, roep berichten op |

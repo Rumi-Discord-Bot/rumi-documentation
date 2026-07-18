@@ -1,0 +1,46 @@
+---
+title: "プレゼント変数"
+description: "Rumi がサポートする 33 個のプレゼント変数。"
+icon: "brackets-curly"
+---
+
+<Info>
+コンテキストが重要です。変数が返す `N/A` 現在のコマンドまたはイベントがソース値を提供しない場合。追加 `|fallback text` よりフレンドリーなフォールバックが必要な場合は、右中括弧の前に置きます。
+</Info>
+
+
+| 変数 | 返されるもの | 出力例 | で利用可能 |
+| --- | --- | --- | --- |
+| <code>&#123;giveaway.bonus_rules&#125;</code> | プレゼントのボーナスルール。 | <code>プレゼントボーナスルールの例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.channel&#125;</code> | チャンネルの言及またはチャンネルの値。出典：プレゼント。 | <code>プレゼントチャンネルの例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.channel_id&#125;</code> | Discord チャンネルID。出典：プレゼント。 | <code>プレゼントチャンネルIDの例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.conditions&#125;</code> | プレゼントの条件。 | <code>プレゼント条件例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.created_at&#125;</code> | Discord-フォーマットされた作成時間。出典：プレゼント。 | <code>&lt;t:1781460000:F&gt;</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.created_at_timestamp&#125;</code> | 作成時の Unix タイムスタンプ。出典：プレゼント。 | <code>&lt;t:1781460000:F&gt;</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.description&#125;</code> | 説明テキスト。出典：プレゼント。 | <code>プレゼントの説明例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.duration&#125;</code> | 期間テキスト。出典：プレゼント。 | <code>プレゼント期間の例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.ends_at&#125;</code> | プレゼントは に終了します。 | <code>プレゼントの例は次で終了します</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.ends_at_timestamp&#125;</code> | 終了時の Unix タイムスタンプ。 | <code>1781460000</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.ends_relative&#125;</code> | プレゼント用の親戚を終了します。 | <code>プレゼントの例は相対的に終了します</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.entries_count&#125;</code> | プレゼントの応募数。出典：プレゼント。 | <code>128</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.entry_conditions&#125;</code> | プレゼントの応募条件。 | <code>プレゼント応募条件例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.entry_mode&#125;</code> | プレゼントのエントリーモード。 | <code>プレゼント応募モードの例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.host&#125;</code> | プレゼント主催者。出典：プレゼント。 | <code>プレゼント主催者の例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.host_id&#125;</code> | プレゼント用のホスト ID。 | <code>プレゼントホスト ID の例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.host_mention&#125;</code> | プレゼントの主催者について言及します。出典：プレゼント。 | <code>プレゼント主催者の言及の例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.id&#125;</code> | Discord ID。出典：プレゼント。 | <code>123456789012345678</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.message_id&#125;</code> | Discord メッセージID。出典：プレゼント。 | <code>プレゼントメッセージIDの例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.message_url&#125;</code> | 直接 Discord メッセージリンク。出典：プレゼント。 | <code>プレゼントメッセージURLの例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.number&#125;</code> | プレゼント用の番号。 | <code>プレゼント番号の例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.prize&#125;</code> | プレゼント賞品。出典：プレゼント。 | <code>プレゼント賞品例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.public_id&#125;</code> | 一般向けの ID。出典：プレゼント。 | <code>プレゼント公開IDの例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.reaction_emoji&#125;</code> | プレゼント用のリアクション絵文字。 | <code>プレゼントリアクション絵文字の例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.reroll_count&#125;</code> | プレゼントのリロール回数。 | <code>128</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.starts_at&#125;</code> | プレゼントの場合は から始まります。 | <code>プレゼントの例は次から始まります</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.starts_at_timestamp&#125;</code> | 開始時刻の Unix タイムスタンプ。 | <code>1781460000</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.status&#125;</code> | 現在のステータス。出典：プレゼント。 | <code>プレゼントステータスの例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.title&#125;</code> | タイトルを表示します。出典：プレゼント。 | <code>プレゼントタイトル例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.winner_conditions&#125;</code> | 当選者プレゼントの条件。 | <code>プレゼント当選条件例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.winner_mentions&#125;</code> | 勝者の言及リスト。出典：プレゼント。 | <code>プレゼント当選者の言及例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.winners&#125;</code> | 勝者リスト。出典：プレゼント。 | <code>プレゼント当選者の例</code> | プレゼントメッセージとプレゼント結果テンプレート |
+| <code>&#123;giveaway.winners_count&#125;</code> | プレゼント当選者数。出典：プレゼント。 | <code>128</code> | プレゼントメッセージとプレゼント結果テンプレート |

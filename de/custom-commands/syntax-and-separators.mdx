@@ -1,0 +1,76 @@
+---
+title: "Syntax und Trennzeichen"
+description: "Verstehen Sie Namen, deklarierte Argumente, Antwortgrenzen, Fallbacks und mehrzeilige Skripte."
+icon: "code"
+---
+
+## Warum `--` ist da
+
+Das Trennzeichen sagt Rumi wo die Befehlsdefinition endet und gespeichert wird
+Antwort beginnt:
+
+```text
+-cc set greet <member> [message...] -- Hello {member}! {message|Welcome.}
+```
+
+Rumi liest die Zeile in drei Abschnitten:
+
+| Abschnitt | Wert |
+| --- | --- |
+| Betrieb | `-cc set` |
+| Definition | `greet <member> [message...]` |
+| Antwort gespeichert | `Hello {member}! {message\|Welcome.}` |
+
+Ohne ein Trennzeichen könnten Wörter in der Antwort wie Argumente aussehen
+Erklärungen. Das Trennzeichen beseitigt diese Mehrdeutigkeit. Es wird während der Zeit verbraucht
+Der Befehl wird gespeichert und nie in die Antwort einbezogen.
+
+`=>` Und `->` sind akzeptierte Alternativen, aber `--` wird in allen Dokumenten verwendet
+weil es in langen Skripten am einfachsten zu erkennen ist.
+
+<Warning>
+Der erste Standalone `--`, `=>`, oder `->` ist die Grenze. Alles danach ist
+Antworttext, auch wenn er mit beginnt `--`. Setzen Sie Argumentdeklarationen voran
+die Grenze.
+</Warning>
+
+## Deklarierte Argumente
+
+| Bilden | Bedeutung |
+| --- | --- |
+| `<member>` | Erforderliches Ein-Wort-Argument |
+| `[reason]` | Optionales Ein-Wort-Argument |
+| `<text...>` | Erforderliches Rest-Argument; verbraucht alles, was übrig bleibt |
+| `[note...]` | Optionales Restargument |
+
+Argumentnamen beginnen mit einem Buchstaben und können Buchstaben, Zahlen usw. enthalten. `_`, `-`,
+oder `.`. Ein Rest-Argument sollte das letzte sein, da es alle verbleibenden Eingaben verbraucht.
+
+## Mehrzeilige Skripte
+
+Discord Nachrichten können Zeilenumbrüche enthalten. Setzen Sie also Anweisungen in ihre eigenen Zeilen
+Sie werden sauber aus der sichtbaren Antwort entfernt:
+
+```text
+-cc set daily --
+{cooldown:24h}
+{customdb:increment rewards && {user.id} && 1}
+You claimed reward number **{db.get:rewards:{user.id}}**.
+```
+
+Weitere eigenständige Anweisungen, die von der Laufzeit unterstützt werden, sind: `{delete}` Zu
+die aufrufende Nachricht entfernen, `{silent}` für reine Aktionsbefehle,
+`{respond:#channel}` um einen Antwortkanal auszuwählen, `{dm:user}` um die zu senden
+Ergebnis von DM, und `{reaction:emoji}` auf den Auslöser reagieren.
+
+## Werte und Fallbacks
+
+Verwenden `{variable|fallback}` wenn ein Wert fehlen kann:
+
+```text
+Nickname: {user.display_name|No server nickname}
+Target: {target.mention|No target selected}
+```
+
+Rumi löst zuerst deklarierte Argumente auf, dann Hilfswerte und Bedingungen,
+dann Kontextvariablen und das endgültige Einbettungs-/Komponentenskript.

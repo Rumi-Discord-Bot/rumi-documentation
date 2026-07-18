@@ -1,0 +1,145 @@
+---
+title: "Osobni alati"
+description: "Pronađite nedavna spominjanja, prevedite poruke, spremite oznake i upravljajte popisom obveza."
+icon: "toolbox"
+---
+
+Ove naredbe pohranjuju ili prikazuju informacije za člana koji ih pokreće. Oni
+nemojte stvarati zajednički popis zadataka poslužitelja ili izlagati spremljene knjižne oznake jednog člana
+drugom članu.
+
+## Spominjanja u posljednja 24 sata
+
+```text
+-mentions
+```
+
+Rumi prikazuje izravna spominjanja i odgovore upućene vama na trenutnom poslužitelju.
+Svaki unos uključuje snimljeni sadržaj poruke i kontekst odgovora
+dostupan. Ako se snimljena poruka kasnije izbriše, spremljena snimka i dalje može
+pojaviti dok ne padne izvan 24-satnog prozora.
+
+Automatski pingovi se zanemaruju. Naredba prikazuje samo aktivnost Rumi promatrao dok je
+imao pristup kanalu; ne može oporaviti starije poruke od prije
+tragač ih je vidio.
+
+## Prevedite tekst ili odgovor
+
+```text
+-translate es hello
+-translate from en to ja hello
+```
+
+Da biste preveli poruku bez kopiranja, odgovorite na tu poruku i unesite
+samo ciljni jezik:
+
+```text
+-translate fr
+```
+
+Ploča s rezultatima omogućuje autoru naredbe promjenu ciljnog jezika, zamjenu
+smjer prijevoda ili zatvorite kontrole. Pogledajte dostupne jezične kodove
+s:
+
+```text
+-translate languages
+```
+
+## Valutni alati
+
+Pretvorite iznos prema šifri valute ili nazivu podržane valute:
+
+```text
+-currency convert 25 USD to EUR
+-currency convert 5000 JPY to KES
+```
+
+Ostatak naredbe je koristan kada već ne znate točan kod:
+
+| Naredba | Svrha |
+| --- | --- |
+| `currency rates <base> [page]` | Pregledajte tečajeve koristeći jednu valutu kao osnovu. |
+| `currency list [page]` | Pregledajte podržane valute. |
+| `currency search <query>` | Pronađite kod prema dijelu koda ili nazivu. |
+| `currency info <code\|name>` | Provjerite jednu podržanu valutu. |
+| `currency popular [base]` | Prikaži najčešće korištene konverzije iz baze. |
+| `currency compare <amount> <from> <to1> <to2> ...` | Usporedite isti iznos u nekoliko ciljeva. |
+| `currency inverse <amount> <from> to <to>` | Pokažite pretvorbu i njen inverzni odnos. |
+| `currency history <YYYY-MM-DD> <amount> <from> to <to>` | Pretvorite koristeći tečaj za povijesni datum. |
+| `currency symbols` | Prikaži prepoznate simbole valuta. |
+
+Primjeri:
+
+```text
+-currency search shilling
+-currency info KES
+-currency rates GBP 2
+-currency compare 100 USD EUR GBP KES JPY
+-currency history 2025-01-15 100 USD to EUR
+```
+
+### Ocijenite pretplate
+
+Spremite valutni par da biste ga kasnije pratili:
+
+```text
+-currency subscribe USD KES
+-currency subscriptions
+-currency unsubscribe USD KES
+```
+
+Cijene dolaze iz RumiKonfigurirani dobavljač podataka o valuti. Korisni su za
+reference i usporedbe, a ne kao zajamčena ponuda banke ili
+usluga plaćanja.
+
+## Oznake
+
+Spremite vezu s opcijskom napomenom:
+
+```text
+-bookmark add https://example.com Useful reference
+```
+
+Ili odgovorite na a Discord pošalji poruku i pokreni:
+
+```text
+-bookmark add Follow up later
+```
+
+Pregledavanje, pretraživanje, uređivanje ili uklanjanje spremljenih stavki:
+
+```text
+-bookmark list
+-bookmark list reference
+-bookmark edit bm-1234 Better note
+-bookmark remove bm-1234
+```
+
+Rumi vraća prijateljski ID knjižne oznake kada je stavka spremljena. Radije koristite taj ID
+nego njegov položaj na popisu prilikom uređivanja ili uklanjanja.
+
+## Popisi obveza
+
+```text
+-todo add Finish the event schedule
+-todo list
+-todo view todo-1234
+-todo complete todo-1234
+-todo reopen todo-1234
+-todo edit todo-1234 Finish the event schedule tonight
+-todo remove todo-1234
+```
+
+Dovršene stavke skrivene su s normalnog popisa. Uključite ih uz:
+
+```text
+-todo list --done
+```
+
+`-todo clear` uklanja cijeli osobni popis obveza, stoga ga koristite samo kada ne
+više ne trebaju otvorene ili dovršene stavke.
+
+<Tip>
+ID-ovi oznaka i zadataka dizajnirani su da ostanu stabilni čak i prilikom listanja stranica ili pretraživanja
+mijenja položaj stavke na prikazanom popisu.
+</Tip>

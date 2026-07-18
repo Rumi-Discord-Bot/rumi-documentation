@@ -1,0 +1,132 @@
+---
+title: "Mediji i ugradnje"
+description: "Uređujte slike i video zapise, izvozite medije i stvarajte višekratne Discord umetke."
+icon: "photo-film"
+---
+
+RumiMedia naredba prihvaća privitke, izravne URL-ove i—u podržano
+akcije—mediji priloženi poruci na koju je odgovoreno. Alati za ugradnju postaju kompaktni
+skripta u a Discord ugraditi koji se može pregledati, spremiti i ponovno upotrijebiti.
+
+## Odabir unosa medija
+
+Najmanje dvosmislen unos je izravni privitak ili URL:
+
+```text
+-media blur https://example.com/image.png 3
+-media bgremove https://example.com/photo.jpg
+```
+
+Također možete odgovoriti na poruku koja sadrži medije i pokrenuti naredbu bez a
+URL. Ako je izvor stranica platforme, a ne izravna datoteka, dostupnost
+ovisi o tome da li Rumimedijska usluga podržava tu platformu.
+
+## Efekti slike
+
+Trenutačne slikovne radnje uključuju:
+
+- `blur [amount]`
+- `brightness [amount]`
+- `contrast [amount]`
+- `deepfry`
+- `flip`
+- `glitch`
+- `grayscale`
+- `invert`
+- `jail-bars`
+- `pixelate [factor]`
+- `resize <width>x<height>`
+- `rotate [degrees]`
+- `vaporwave`
+- `wasted`
+
+Primjeri:
+
+```text
+-media pixelate 18
+-media resize 512x512
+-media rotate 180
+```
+
+## Opisi
+
+```text
+-media caption Welcome to the server
+-media caption --position=top --size=42 --color=#ffffff Welcome!
+```
+
+Oznake naslova uključuju položaj, obitelj fontova, boju teksta, boju pozadine i
+veličina fonta. Koristiti `-help media caption` za trenutne aliase i prihvaćeni oblik.
+
+## GIF i MP4 konverzija
+
+```text
+-media gif <url>
+-media mp4 <url> --start 10s --duration 30s
+-media togif <url> --start 5s --duration 6s --fps 12 --width 480
+```
+
+`media gif` dohvaća izvorni podržani GIF ili medijsku datoteku. `media mp4`
+stvara MP4 koji se može preuzeti, dok `media togif` stvara kratki GIF isječak.
+Rumi primjenjuje ograničenja ulaza, izlaza, trajanja i obrade tako da veliki izvor
+možda će trebati kraća kopča ili manje dimenzije.
+
+## Uklanjanje pozadine
+
+```text
+-media bgremove
+```
+
+Priložite sliku, uključite URL slike ili odgovorite na sliku. Rumi vraća a
+transparentni PNG kada konfigurirana usluga uklanjanja pozadine uspije.
+
+## Ugradi skripte
+
+Započnite s pregledom:
+
+```text
+-embed preview {embed}$v{title: Rules}$v{description: Read the channels below.}$v{color: 6A8FB3}
+```
+
+`{embed}` pokreće skriptu za ugradnju. Svaki `$v{property: value}` dodaje svojstvo.
+Na primjer:
+
+```text
+{embed}
+$v{title: Event night}
+$v{description: Join us at {timestamp}.}
+$v{field: Where && #events && true}
+$v{field: Host && {user.mention} && true}
+$v{thumbnail: {guild.icon}}
+$v{color: 6A8FB3}
+```
+
+Tri dijela polja su ime, vrijednost i treba li biti ugrađeno.
+
+## Spremite i ponovno upotrijebite ugrađene
+
+```text
+-embed save event <script>
+-embed list
+-embed load event
+-embed edit event <updated script>
+-embed delete event
+```
+
+Pošaljite skriptu izravno na trenutni kanal ili navedite drugi kanal:
+
+```text
+-embed send {embed}$v{description: Hello!}
+-embed send #announcements {embed}$v{title: Update}$v{description: New event this weekend.}
+```
+
+Koristiti `-embed validate <script>` kada želite samo povratne informacije o sintaksi. Spremljeno ugrađivanje
+predlošci i prilagođene naredbe dijele iste ideje skripte za ugradnju, tako da
+[vodič za ugradnje i komponente](../custom-commands/embeds-and-components) je koristan
+za oboje.
+
+<Warning>
+Rumi ne može napraviti Discord prihvatiti ugradnju koja premašuje Discordpolje, tekst ili
+ograničenja komponenti. Provjerite i pregledajte dugačke skripte prije nego što ih pošaljete a
+javni kanal.
+</Warning>

@@ -1,0 +1,63 @@
+---
+title: "Praćenje poziva"
+description: "Pratite pridruživanja s pozivnicom, aktivne pozvane osobe, pridruživanja s ispraznošću, ploče s najboljim rezultatima i zapisnike pridruživanja."
+icon: "user-plus"
+---
+
+Rumi's invite tracker uspoređuje Discord pozovite upotrebu dok se članovi pridružuju. Snima
+pozivatelj kada Discord pruža dovoljno informacija i odvaja normalno
+invite, vanity i unknown pridružuje se.
+
+## Omogućite i provjerite praćenje
+
+```text
+-invites enable
+-invites settings
+```
+
+Promjena postavki zahtijeva **Upravljanje poslužiteljem**. Koristiti `settings` potvrditi da li
+je li praćenje omogućeno i je li konfiguriran kanal dnevnika pridruživanja.
+
+## Dodajte zapisnik pridruživanja
+
+```text
+-invites log #join-logs
+-invites log off
+```
+
+Kanal dnevnika prima informacije o praćenju Rumi mogao riješiti za novi
+pridružuje se.
+
+## Pregledajte statistiku članova i poslužitelja
+
+```text
+-invites
+-invites @member
+-invites top weekly
+-inviter @member
+-joins monthly
+-vanityjoins alltime
+```
+
+Tragač razlikuje ukupna pridruživanja, aktivne pozvane, članove koji su otišli,
+normalna pridruživanja s pozivnicom, pridruživanja s ispraznošću i pridruživanja čiji pozivatelj ne može biti
+odlučan.
+
+Podržana razdoblja izvješća uključuju `daily`, `weekly`, `monthly`, i `alltime`.
+
+## Osvježite snimku
+
+```text
+-invites refresh
+```
+
+Ovo pita Rumi da ponovno dohvatite trenutni popis poziva. Osvježava
+usporedna snimka; ne može rekonstruirati podatke o pozivatelju koji Discord učinio
+ne predviđaju ranije pridruživanje.
+
+<Info>
+Pripisivanje pozivnice nije zajamčeno za svako pridruživanje. Izbrisane veze poziva,
+ispraznim vezama, nedostajućim dopuštenjima, nedostupnim stanjem predmemorije i simultanim
+promjene poziva mogu ostaviti pridruživanje označenim kao nepoznato. `-invites refresh` ažuriranja
+snimak Rumi koristi za buduće usporedbe.
+</Info>

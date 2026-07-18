@@ -1,0 +1,50 @@
+---
+title: "Actividad de voz"
+description: "Inspeccione el tiempo de voz registrado para el servidor, los miembros, los canales y los períodos continuos."
+icon: "waveform"
+---
+
+Rumi Graba las sesiones de voz que observa y puede resumirlas para el servidor.
+gerentes. Los informes utilizan el tiempo registrado, no DiscordInformación sobre el servidor.
+
+## Totales del servidor
+
+```text
+-voicecount server
+-voicecount daily
+-voicecount weekly
+-voicecount monthly
+```
+
+La vista del servidor incluye totales de por vida, recuento de sesiones, totales acumulativos recientes,
+y la última actividad de voz rastreada. Las vistas diarias, semanales y mensuales cubren la
+día actual, 7 días y 30 días respectivamente.
+
+## Miembros y canales
+
+```text
+-voicecount user @member
+-voicecount channel #General
+-voicecount leaderboard
+-voicecount active
+```
+
+`active` muestra sesiones Rumi actualmente considera activo. `leaderboard` clasifica el
+totales de miembros rastreados disponibles en la tienda de análisis del servidor.
+
+## Restablecer totales rastreados
+
+```text
+-voicecount reset user @member
+-voicecount reset channel #General
+-voicecount reset server
+```
+
+El reinicio es destructivo. Elija el objetivo más estrecho que resuelva el problema.
+Al restablecer el servidor se borran los análisis de voz almacenados utilizados por estos informes.
+
+<Info>
+La actividad de voz comienza cuando Rumi observa una sesión. Tiempo desde antes del rastreador
+estaba en funcionamiento, períodos en los que Rumi Los canales de voz no estaban disponibles o eran inaccesibles.
+no se puede reconstruir más tarde.
+</Info>

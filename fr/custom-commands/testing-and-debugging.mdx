@@ -1,0 +1,139 @@
+---
+title: "Test et débogage"
+description: "Créez des commandes personnalisées par petites étapes et diagnostiquez les arguments, les variables, les actions et les limites Discord."
+icon: "bug"
+---
+
+Une commande personnalisée est plus facile à déboguer lorsque vous savez quelle couche a échoué. Testez le
+les arguments d'abord, puis les variables, puis l'intégration et ajouter les actions protégées en dernier.
+
+## Inspecter quoi Rumi enregistré
+
+```text
+-cc show <name>
+```
+
+Le résultat affiche la spécification d'argument enregistrée, le script de réponse et l'état actuel.
+restrictions. Si la réponse commence au mauvais endroit, vérifiez le fichier autonome
+`--` utilisé dans l'original `cc set` commande.
+
+Répertoriez chaque commande enregistrée lorsque vous n'êtes pas sûr du nom utilisé :
+
+```text
+-cc list
+```
+
+## Aperçu avec des arguments réalistes
+
+```text
+-cc preview greet @member
+-cc preview announce Saturday 8pm
+```
+
+L'aperçu exécute le modèle enregistré avec les exemples d'arguments que vous fournissez. Utilisez le
+même nombre et type d'arguments qu'un membre utiliserait dans la vraie commande.
+
+Pour un problème d'argument, réduisez temporairement la réponse au texte brut :
+
+```text
+-cc set announce <day> <time> -- Day: {day}
+Time: {time}
+```
+
+Une fois ces valeurs correctes, restaurez l’intégration ou les actions.
+
+## Diagnostiquer les variables manquantes
+
+Une variable ne peut renvoyer que les informations disponibles dans son contexte actuel. Pour
+Par exemple, une variable cible a besoin d'un argument cible ou d'un membre résolu. Ajouter un
+repli où la valeur est facultative :
+
+```text
+{target.display_name|No member selected}
+```
+
+Utilisez la [Référence des variables générée](../variables/overview) ou exécutez :
+
+```text
+-variables target
+-variables message
+-variables customdb
+```
+
+Si une variable apparaît sous forme de texte littéral, vérifiez son orthographe et ses accolades. Si c'est
+retours `N/A`, sa valeur source n'était pas présente dans ce contexte de commande.
+
+## Tester les conditions séparément
+
+Rumi prend en charge les vérifications d'existence, les comparaisons, le confinement de texte, les rôles et
+Discord autorisations :
+
+```text
+{if:{user.id} == 123456789012345678}
+This is the configured user.
+{else}
+This is somebody else.
+{endif}
+```
+
+D'autres formes de conditions incluent :
+
+```text
+{if:{message.content} contains hello}
+{if:user has role 123456789012345678}
+{if:user has permission ManageMessages}
+{if:{db.get:visits:{user.id}} >= 10}
+```
+
+Gardez l'ouverture `{if:...}`, facultatif `{else}`, et fermeture `{endif}` sur leur
+propres lignes lors du débogage. Les conditions peuvent être imbriquées, mais une condition plate est
+généralement plus facile à entretenir.
+
+## Séparer l'affichage des actions
+
+Enregistrez d’abord une réponse inoffensive :
+
+```text
+-cc set staffwarn <target> <reason...> --
+Would warn {target.mention} for: {reason}
+```
+
+Prévisualisez-le avec une cible sûre. Ensuite seulement, ajoutez l'action :
+
+```text
+{mod:warn target && {reason}}
+Warned {target.mention} for: {reason}
+```
+
+Enfin, ajoutez le rôle, le canal ou la restriction d'autorisation. Rumi valide
+actions protégées lors de l’enregistrement et répète ses vérifications lors de l’exécution de la commande.
+
+## Problèmes de composants
+
+Lorsqu'un bouton ou une liste déroulante n'apparaît pas :
+
+1. Prévisualisez la commande et lisez RumiLa réponse de validation de.
+2. Vérifiez le formatage de l'URL pour les boutons de lien.
+3. Comptez les composants de chaque ligne et le nombre total de lignes.
+4. Raccourcissez les étiquettes, les descriptions des options ou intégrez le contenu.
+5. Vérifiez si un bouton d'action nécessite une cible ou une autorisation manquante.
+
+Discord les messages prennent en charge jusqu'à 5 lignes de composants. Rumi applique également l'intégration,
+limites des champs, des boutons et des listes déroulantes avant d'envoyer la charge utile.
+
+## Problèmes de données stockées
+
+Inspectez directement l’espace de noms et la clé :
+
+```text
+-cc data list visits
+-cc data get visits 123456789012345678
+```
+
+L'espace de noms et les noms de clés sont distincts. `visits:user-id` ce n'est pas la même recherche
+comme `user-id:visits`.
+
+<Tip>
+Conservez une copie de travail avant une modification importante. `-cc show <name>` vous donne l'exact
+réponse enregistrée qui peut être copiée dans vos notes avant de la remplacer.
+</Tip>

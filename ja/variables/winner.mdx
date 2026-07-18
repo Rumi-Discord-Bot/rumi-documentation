@@ -1,0 +1,21 @@
+---
+title: "勝者の変数"
+description: "Rumi がサポートする 8 つの勝者変数。"
+icon: "brackets-curly"
+---
+
+<Info>
+コンテキストが重要です。変数が返す `N/A` 現在のコマンドまたはイベントがソース値を提供しない場合。追加 `|fallback text` よりフレンドリーなフォールバックが必要な場合は、右中括弧の前に置きます。
+</Info>
+
+
+| 変数 | 返されるもの | 出力例 | で利用可能 |
+| --- | --- | --- | --- |
+| <code>&#123;winner&#125;</code> | プレゼント当選者発表の当選者データ。 | <code>優勝者の例</code> | プレゼント結果テンプレート |
+| <code>&#123;winner.avatar&#125;</code> | アバター画像のURL。出典：勝者。 | <code>https://cdn.discordapp.com/.../avatar.png</code> | プレゼント結果テンプレート |
+| <code>&#123;winner.bonus_entries&#125;</code> | 勝者にはボーナスエントリー。 | <code>勝者ボーナスエントリーの例</code> | プレゼント結果テンプレート |
+| <code>&#123;winner.display_name&#125;</code> | サーバーの表示名またはニックネーム。出典：勝者。 | <code>月光</code> | プレゼント結果テンプレート |
+| <code>&#123;winner.entries&#125;</code> | 優勝者のエントリー。 | <code>受賞作品の例</code> | プレゼント結果テンプレート |
+| <code>&#123;winner.id&#125;</code> | Discord ID。出典：勝者。 | <code>123456789012345678</code> | プレゼント結果テンプレート |
+| <code>&#123;winner.mention&#125;</code> | Discord 言及テキスト。出典：勝者。 | <code>&lt;@123456789012345678&gt;</code> | プレゼント結果テンプレート |
+| <code>&#123;winner.name&#125;</code> | 名前の値。出典：勝者。 | <code>ルミ</code> | プレゼント結果テンプレート |

@@ -1,0 +1,113 @@
+---
+title: "Automatización de mensajes"
+description: "Cree respuestas automáticas y reacciones automáticas con modos de coincidencia, tiempos de reutilización, permisos, canales, incrustaciones y datos personalizados."
+icon: "gears"
+---
+
+Los autorespondedores reaccionan a mensajes ordinarios sin añadir otro público
+dominio. Las reacciones automáticas coinciden con un mensaje y agregan reacciones configuradas.
+
+## Por qué `--` aparece aquí
+
+Las respuestas automáticas tienen indicadores coincidentes y una respuesta. El último independiente
+`--` finaliza las banderas y comienza la respuesta:
+
+```text
+-autoresponder set "hello there" --exact -- General Kenobi.
+```
+
+La primera `--exact` es una bandera. El posterior independiente `--` es el límite. Este
+evita que el texto de respuesta se confunda con opciones.
+
+## Modos de coincidencia
+
+| Bandera | Comportamiento |
+| --- | --- |
+| `--exact` | El mensaje completo debe coincidir |
+| `--startswith` | El mensaje debe comenzar con el disparador. |
+| `--endswith` | El mensaje debe terminar con el disparador. |
+| `--contains` | El desencadenante puede aparecer en cualquier lugar. |
+| `--match` | Trate el disparador como una expresión regular |
+| `--within 30s` | Aplicar una ventana de recuperación por usuario |
+
+Elija solo un modo coincidente. `exact` es más seguro para activadores tipo comando;
+`contains` es útil para frases; `startswith` y `endswith` conservar más
+texto en el otro lado. `match` interpreta el disparador como una expresión regular
+y está destinado a personas que ya se sienten cómodas probando patrones de expresiones regulares.
+
+## Banderas de respuesta y seguridad
+
+```text
+-autoresponder set "rules" --exact --embed -- $v{title: Rules}$v{description: Be kind.}
+-autoresponder set "counter" --exact --db -- {db.inc:uses:{user.id}:1}Count: {db.get:uses:{user.id}}
+-autoresponder set "staff" --exact --require-permission ManageMessages -- Staff response
+-autoresponder set "hello" --contains --ignore-channel #bots -- Hi {user.mention}
+```
+
+`--embed` analiza `$v{...}` salida, mientras `--text` fuerza el texto normal. `--db`
+permite lecturas y escrituras de datos personalizados para ese respondedor. Permiso e ignorado
+Los indicadores de canal mantienen el alcance de las automatizaciones sensibles.
+
+`--require-permission` comprueba el miembro que envió el mensaje coincidente. Utilice un
+Discord nombre de permiso como `ManageMessages`. `--ignore-channel` puede ser
+repetidas cuando la misma respuesta debe quedar fuera de varios canales.
+
+`--languagedetect` es una opción premium. Traduce el texto entrante al inglés.
+antes de hacer coincidir, lo que permite que un disparador en inglés reconozca mensajes equivalentes
+en otros idiomas. No traduce la respuesta guardada.
+
+## Listar, probar y eliminar respondedores
+
+Rumi números de respuestas automáticas en la lista:
+
+```text
+-autoresponder list
+-autoresponder test 1
+-autoresponder remove 1
+```
+
+`test` ejecuta el disparador guardado a través de la misma ruta de automatización de mensajes. Úselo
+después de agregar variables, datos personalizados o acciones para que pueda detectar un formato incorrecto
+respuesta antes de que los miembros la encuentren. Un servidor puede almacenar hasta 500 respondedores.
+
+## Objetivos exclusivos
+
+Las exclusivas limitan un respondedor a un canal, rol o miembro en particular. El
+El primer número es la ranura de respuesta mostrada por `autoresponder list`:
+
+```text
+-autoresponder exclusive set 1 #general
+-autoresponder exclusive set 1 @Event Team
+-autoresponder exclusive set 1 @member
+-autoresponder exclusive list 1
+```
+
+Agregue más de un objetivo cuando el respondedor deba trabajar en varios aprobados.
+plazas o para varios grupos homologados. Elimina sólo el objetivo que ya no
+necesidad:
+
+```text
+-autoresponder exclusive remove 1 #general
+```
+
+Un canal ignorado y un canal exclusivo resuelven problemas opuestos:
+`--ignore-channel` bloquea canales seleccionados, mientras que un objetivo exclusivo limita
+el respondedor a objetivos seleccionados.
+
+<Warning>
+Expresiones regulares y amplias. `--contains` Los disparadores pueden coincidir con más mensajes.
+de lo esperado. Comience en un canal de prueba, agregue `--within`y revise el disparador
+antes de habilitar una acción protegida.
+</Warning>
+
+## Autoreacciones
+
+Las autorreacciones comparten los mismos modos de coincidencia principales:
+
+```text
+-autoreaction add "good morning" ☀️ ❤️ --startswith
+```
+
+Utilice una concordancia estrecha para palabras comunes. A `contains` autorreacción adjunta a una
+Un desencadenante breve puede generar reacciones con mucha más frecuencia de lo previsto.
+

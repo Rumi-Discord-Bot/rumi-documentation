@@ -1,0 +1,43 @@
+---
+title: "用户变量"
+description: "Rumi 支持 30 个用户变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;user&#125;</code> | 显示触发响应的用户。 | <code>&lt;@123456789012345678&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.avatar&#125;</code> | 触发用户的头像 URL。 | <code>https://cdn.discordapp.com/.../avatar.png</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.badges&#125;</code> | 用户的徽章。 | <code>用户徽章示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.badges_icons&#125;</code> | 用户的徽章图标。 | <code>用户徽章图标示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.banner&#125;</code> | 横幅图像 URL。来源：用户。 | <code>用户横幅示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.boost_count&#125;</code> | 用户的提升次数。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.boost_since&#125;</code> | 为用户提升自此。 | <code>自此以来的用户提升示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.boost_since_timestamp&#125;</code> | 自此起升压的 Unix 时间戳。 | <code>1781460000</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.color&#125;</code> | 用户的颜色。 | <code>用户颜色示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.created_at&#125;</code> | Discord- 创建用户帐户时的格式化时间。 | <code>&lt;t:1781460000:F&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.created_at_timestamp&#125;</code> | 创建时间的 Unix 时间戳。来源：用户。 | <code>&lt;t:1781460000:F&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.display_avatar&#125;</code> | 显示用户头像。 | <code>用户显示头像示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.display_name&#125;</code> | 触发成员的服务器显示名称或昵称。 | <code>月光</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.global_name&#125;</code> | 触发用户的全局显示名称。 | <code>用户全局名称示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.guild_avatar&#125;</code> | 用户的公会头像。 | <code>用户公会头像示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.guild_banner&#125;</code> | 用户的公会旗帜。 | <code>用户公会横幅示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.id&#125;</code> | Discord 触发用户的ID。 | <code>123456789012345678</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.is_boost&#125;</code> | 是针对用户的Boost。 | <code>示例用户是 boost</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.is_bot&#125;</code> | 是用户的机器人。 | <code>示例用户是机器人</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.join_position&#125;</code> | 加入用户的职位。 | <code>用户加入位置示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.join_position_sfx&#125;</code> | 为用户加入 Position Sfx。 | <code>用户加入位置 sfx 示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.joined_at&#125;</code> | Discord- 成员加入此服务器时的格式化时间。 | <code>&lt;t:1781460000:F&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.joined_at_timestamp&#125;</code> | 服务器加入时间的 Unix 时间戳。来源：用户。 | <code>&lt;t:1781460000:F&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.mention&#125;</code> | 提及触发该消息的用户。 | <code>&lt;@123456789012345678&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.name&#125;</code> | 触发用户的用户名。 | <code>鲁米</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.role_list&#125;</code> | 提及用户角色列表，从最高级别开始。 | <code>用户角色列表示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.role_list_text&#125;</code> | 用户角色的纯文本列表，最高的在前。 | <code>用户角色列表文本示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.tag&#125;</code> | Discord 用户名标签/鉴别器样式值（如果可用）。 | <code>用户名</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.top_role&#125;</code> | 用户的顶级角色。 | <code>用户顶级角色示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;user.username&#125;</code> | 触发用户的用户名。 | <code>用户名示例</code> | 嵌入、自定义命令、自动回复、调用消息 |

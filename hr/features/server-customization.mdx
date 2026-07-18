@@ -1,0 +1,96 @@
+---
+title: "Prilagodba poslužitelja"
+description: "Prilagodite Rumijev profil poslužitelja i standardni izgled odgovora."
+icon: "palette"
+---
+
+Rumi može zadržati drugačiji profil poslužitelja i temu odgovora za svaki poslužitelj.
+Ove postavke ne preimenuju niti boje nazive naredbi i ne mijenjaju
+globalni profil bota u drugim zajednicama.
+
+## Pogledajte spremljenu prilagodbu
+
+```text
+-custom view
+-custom response list
+```
+
+`custom view` prikazuje polja profila poslužitelja. `custom response list` pokazuje
+vrste odgovora, načini, boje i prilagođeni emoji koje trenutno sprema Rumi.
+
+Promjena ovih postavki zahtijeva **Upravljanje poslužiteljem**.
+
+## Profil poslužitelja
+
+```text
+-custom nick Rumi Support
+-custom bio Community tools and music
+-custom avatar <image URL>
+-custom banner <image URL>
+```
+
+Za promjene avatara i bannera priložite sliku ili navedite URL slike. Discord
+mora podržavati to polje profila za bota na poslužitelju.
+
+Očistite jedno polje bez utjecaja na ostala:
+
+```text
+-custom clear nick
+-custom clear avatar
+-custom clear banner
+-custom clear bio
+```
+
+Ako Discord stanje i spremljeni profil ne budu sinkronizirani, ponovno ga primijenite:
+
+```text
+-custom apply
+```
+
+## Načini odziva
+
+Svaka vrsta odgovora može koristiti normalni ugrađeni ili čisti tekst:
+
+```text
+-custom response mode good embed
+-custom response mode bad text
+```
+
+Trčanje `-custom response list` da vidite nazive tipova odgovora koje prihvaća
+trčanje bota. Vrsta odgovora predstavlja svrhu odgovora, kao što je a
+uspjeh, pogreška, informativni rezultat ili popis.
+
+## Boje odgovora
+
+```text
+-custom response color good #7fc8a9
+-custom response color bad #d97b7b
+```
+
+Boje utječu na odgovore u načinu rada za ugradnju te vrste. Obični tekstualni odgovori nemaju ugradnju
+boja obruba.
+
+## Emojiji odgovora
+
+Rumi koristi konfigurirani prilagođeni Discord emoji ili bez emojija ako ih ta vrsta nema
+emoji. Ne zamjenjuje zadani Unicode emoji.
+
+```text
+-custom response emoji good <:approved:123456789012345678>
+-custom response emoji good off
+-custom response emoji good reset
+```
+
+Prilagođeni emotikon mora moći koristiti Rumi. Koristiti `off` za nema ikone i `reset` za
+Rumije konfigurirano zadano.
+
+Poništi jednu cijelu vrstu odgovora s:
+
+```text
+-custom response reset good
+```
+
+<Tip>
+Promijenite jednu vrstu odgovora, pokrenite naredbu koja proizvodi tu vrstu odgovora i
+provjerite rezultat prije stiliziranja ostatka.
+</Tip>

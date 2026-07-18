@@ -1,0 +1,22 @@
+---
+title: "Variables de canal"
+description: "9 variables de canal prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;channel.category_id&#125;</code> | Identifiant de catégorie pour le canal. | <code>Exemple d'identifiant de catégorie de chaîne</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;channel.category_name&#125;</code> | Catégorie Nom de la chaîne. | <code>Exemple de nom de catégorie de chaîne</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;channel.id&#125;</code> | Discord ID de la chaîne actuelle. | <code>123456789012345678</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;channel.mention&#125;</code> | Mentionnez la chaîne actuelle. | <code>&lt;@123456789012345678&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;channel.name&#125;</code> | Nom de la chaîne actuelle. | <code>général</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;channel.position&#125;</code> | Position du canal. | <code>Exemple de position de canal</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;channel.slowmode_delay&#125;</code> | Délai en mode lent pour le canal. | <code>Exemple de retard en mode lent de canal</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;channel.topic&#125;</code> | Texte du sujet pour la chaîne actuelle, s'il en existe une. | <code>Exemple de sujet de chaîne</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;channel.type&#125;</code> | Nom du type ou de la catégorie. Source : chaîne. | <code>Exemple de type de canal</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |

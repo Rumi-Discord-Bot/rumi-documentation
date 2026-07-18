@@ -1,0 +1,22 @@
+---
+title: "Kanaalvariabelen"
+description: "9 kanaalvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;channel.category_id&#125;</code> | Categorie-ID voor kanaal. | <code>Voorbeeld kanaalcategorie-ID</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;channel.category_name&#125;</code> | Categorie Naam voor kanaal. | <code>Voorbeeld kanaalcategorienaam</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;channel.id&#125;</code> | Discord ID van het huidige kanaal. | <code>123456789012345678</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;channel.mention&#125;</code> | Vermeld het huidige kanaal. | <code>&lt;@123456789012345678&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;channel.name&#125;</code> | Naam van het huidige kanaal. | <code>algemeen</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;channel.position&#125;</code> | Positie voor kanaal. | <code>Voorbeeld kanaalpositie</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;channel.slowmode_delay&#125;</code> | Slowmode-vertraging voor kanaal. | <code>Voorbeeld kanaalvertraging in slowmode</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;channel.topic&#125;</code> | Onderwerptekst voor het huidige kanaal, als dat bestaat. | <code>Voorbeeld kanaalonderwerp</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;channel.type&#125;</code> | Type- of categorienaam. Bron: kanaal. | <code>Voorbeeld kanaaltype</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |

@@ -1,0 +1,136 @@
+---
+title: "Uobičajeni problemi"
+description: "Riješite uobičajene probleme s naredbama, dozvolama, jezikom, upravljanjem i glazbom."
+icon: "wrench"
+---
+
+## Rumi ne odgovara
+
+1. Potvrdite Rumi je online.
+2. Potvrdite da može gledati kanal i slati poruke.
+3. Provjerite pravopis prefiksa i naredbe.
+4. Pokušajte `/help` ili `-help`.
+5. Provjerite je li naredba ograničena na poslužitelj ili izravnu poruku.
+
+## Nedostaje naredba kose crte
+
+Discord može potrajati neko vrijeme za osvježavanje globalno registriranih naredbi. Ponovno pokretanje Discord,
+provjerite dopuštenje aplikacije i naredbe bota i pokušajte s prefiksnim obrascem.
+
+## Jezik se nije promijenio
+
+Trčanje `-language` kako biste vidjeli učinkovit jezik i njegov izvor. Zatim postavite
+predviđeni opseg eksplicitno:
+
+```text
+-language user de
+-language server de
+```
+
+Osobni jezik ima prednost nad jezikom poslužitelja. Promjene na cijelom poslužitelju
+zahtijeva dopuštenje administratora.
+
+## Rumi napustio poslužitelj
+
+Rumi ostavlja poslužitelje bez zabilježenih aktivnosti 30 dana radi očuvanja resursa
+i stabilnost usluge. Možete pozvati Rumi ponovno u bilo koje vrijeme. Nakon što članovi koriste
+poslužitelj i Rumi bilježi aktivnost, normalni prozor neaktivnosti počinje ponovno.
+
+## Naredba upravljanja je odbijena
+
+Trčanje `-help <command>` i provjerite zahtjeve za članove i botove. Za ulogu
+ili promjene kanala, DiscordHijerarhija uloga i dalje se primjenjuje. Rumi ne može upravljati
+ulogu na ili iznad svoje najviše uloge.
+
+## Ne mogu pronaći ban ili kick
+
+Rumi namjerno ne pruža opću namjenu `ban` ili `kick` zapovijeda po
+zadana vrijednost. Time su osnovni zahtjevi za dozvolama manji. poslužitelj
+menadžeri mogu izgraditi pažljivo ograničene tijekove rada s
+[sustav prilagođenih naredbi](../custom-commands/overview).
+
+## Glazba ne počinje
+
+Potvrdite da ste u glasovnom kanalu, Rumi može povezati i govoriti, i glazbu
+usluga je dostupna.
+
+Ako Rumi pridruži se, ali ne reproducira, pokušajte s izravnim nazivom pjesme ili URL-om, a zatim provjerite
+red čekanja. Stranica popisa za reprodukciju ili platforme može biti neuspješna čak i ako izravna reprodukcija radi
+jer je njegov vanjski pružatelj nedostupan.
+
+## Spotify kontrole traže od mene da se ponovno povežem
+
+Značajke svirača, uređaja, popisa za reprodukciju i svidjele se pjesme koriste različite Spotify
+dozvole. Trčanje `-spotify link` ponovno i odobrite ažuriranu autorizaciju.
+Postojeće veze stvorene prije dodavanja tih značajki ne dobivaju novi pristup
+automatski.
+
+SpotifyKontrole osobnog uređaja korisnika zahtijevaju aktivan Spotify uređaj i Spotify
+Premija. Otvoriti Spotify na željenom uređaju jednom pokrenite reprodukciju, a zatim pokrenite:
+
+```text
+-spotify devices
+-spotify player status
+```
+
+## Uloga razine nije dodijeljena
+
+Provjerite sva tri uvjeta:
+
+1. Rumi ima **Upravljanje ulogama**.
+2. RumiNajviša uloga je iznad uloge nagrađivanja.
+3. Prekretnica se pojavljuje u `-levels settings`.
+
+Nakon ispravljanja postavki, pokrenite `-levels sync` za usklađivanje nagradnih uloga pomoću
+trenutna konfiguracija.
+
+## Pridruživanja s pozivom su nepoznata
+
+Osvježiti Rumisnimka trenutne pozivnice korisnika:
+
+```text
+-invites refresh
+```
+
+Rumi ne može jamčiti atribuciju kada je pozivnica bila izbrisana, veza s ispraznošću je bila
+koristi se, nedostaje pristup pozivnici ili Discord nije osigurao dovoljno države da
+identificirati koji se brojač promijenio. Osvježavanje snimke pomaže budućim pridruživanjima, ali
+ne rekonstruira stare.
+
+## Pretvorba medija nije uspjela
+
+Pokušajte s manjim ili kraćim unosom i upotrijebite izravni privitak ili URL datoteke. Za
+video konverzija, smanji `--duration`; za GIF izlaz, smanjite trajanje, okvir
+stopa, odnosno širina. Preuzimanja platforme ovise o medijskoj usluzi i mogu čak i uspjeti
+kada priložene datoteke rade.
+
+## Ispisuje prilagođena naredba `N/A`
+
+Varijabla postoji, ali njezina izvorna vrijednost nije bila prisutna u tom izvođenju. Cilj
+varijabla, na primjer, treba razrješivi cilj. Dodajte zamjenu:
+
+```text
+{target.display_name|No member selected}
+```
+
+Koristiti `-cc show <name>` za pregled spremljene skripte i `-cc pregleda <name>
+[uzorci argumenata]` da biste ga sigurno reproducirali. [Vodič za testiranje](../custom-commands/testing-and-debugging)
+prolazi kroz svaki sloj.
+
+## Prilagođena radnja je odbijena
+
+Zaštićene radnje provjeravaju člana koji konfigurira, člana koji pokreće prilagođeni
+naredba, Rumidopuštenja korisnika, cilj, hijerarhija uloga i vlastita naredba
+ograničenja. Pregled:
+
+```text
+-cc show <name>
+-cc restrictions <name>
+-permissions @member
+```
+
+Nemojte ukloniti svako ograničenje samo da bi akcija prošla. Popravite konkretno
+problem uloge, kanala, dozvole ili hijerarhije.
+
+Ako se problem nastavi, pridružite se
+[poslužitelj podrške](https://discord.gg/NYs2jF9MCc).

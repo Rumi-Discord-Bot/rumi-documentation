@@ -1,0 +1,145 @@
+---
+title: "Outils personnels"
+description: "Recherchez les mentions récentes, traduisez les messages, enregistrez les favoris et gérez une liste de tâches."
+icon: "toolbox"
+---
+
+Ces commandes stockent ou affichent des informations pour le membre qui les exécute. Ils
+ne créez pas de liste de tâches de serveur partagée et n'exposez pas les favoris enregistrés d'un membre
+à un autre membre.
+
+## Mentions des dernières 24 heures
+
+```text
+-mentions
+```
+
+Rumi affiche les mentions directes et les réponses qui vous sont adressées sur le serveur actuel.
+Chaque entrée inclut le contenu du message capturé et le contexte de réponse lorsque
+disponible. Si un message capturé est supprimé ultérieurement, l'instantané enregistré peut toujours
+apparaître jusqu’à ce qu’il tombe en dehors de la fenêtre de 24 heures.
+
+Les auto-pings sont ignorés. La commande affiche uniquement l'activité Rumi observé alors qu'il
+avait accès à la chaîne ; il ne peut pas récupérer les anciens messages d'avant le
+Le traqueur les a vus.
+
+## Traduire un texte ou une réponse
+
+```text
+-translate es hello
+-translate from en to ja hello
+```
+
+Pour traduire un message sans le copier, répondez à ce message et fournissez
+uniquement la langue cible :
+
+```text
+-translate fr
+```
+
+Le panneau de résultats permet à l'auteur de la commande de changer la langue cible, d'échanger le
+sens de translation, ou fermez les commandes. Voir les codes de langue disponibles
+avec:
+
+```text
+-translate languages
+```
+
+## Outils de devises
+
+Convertissez un montant par code de devise ou nom de devise pris en charge :
+
+```text
+-currency convert 25 USD to EUR
+-currency convert 5000 JPY to KES
+```
+
+Le reste de la commande est utile lorsque vous ne connaissez pas déjà le code exact :
+
+| Commande | But |
+| --- | --- |
+| `currency rates <base> [page]` | Parcourez les tarifs en utilisant une devise comme base. |
+| `currency list [page]` | Parcourez les devises prises en charge. |
+| `currency search <query>` | Recherchez un code par partie de son code ou de son nom. |
+| `currency info <code\|name>` | Inspectez une devise prise en charge. |
+| `currency popular [base]` | Afficher les conversions couramment utilisées à partir d'une base. |
+| `currency compare <amount> <from> <to1> <to2> ...` | Comparez le même montant sur plusieurs cibles. |
+| `currency inverse <amount> <from> to <to>` | Montrez la conversion et sa relation inverse. |
+| `currency history <YYYY-MM-DD> <amount> <from> to <to>` | Convertissez en utilisant le taux pour une date historique. |
+| `currency symbols` | Afficher les symboles monétaires reconnus. |
+
+Exemples :
+
+```text
+-currency search shilling
+-currency info KES
+-currency rates GBP 2
+-currency compare 100 USD EUR GBP KES JPY
+-currency history 2025-01-15 100 USD to EUR
+```
+
+### Tarifer les abonnements
+
+Enregistrez une paire de devises pour la suivre plus tard :
+
+```text
+-currency subscribe USD KES
+-currency subscriptions
+-currency unsubscribe USD KES
+```
+
+Les tarifs proviennent de RumiLe fournisseur de données monétaires configuré de . Ils sont utiles pour
+référence et comparaisons, et non comme un devis de règlement garanti d'une banque ou
+service de paiement.
+
+## Signets
+
+Enregistrez un lien avec une note facultative :
+
+```text
+-bookmark add https://example.com Useful reference
+```
+
+Ou répondez à un Discord message et exécutez :
+
+```text
+-bookmark add Follow up later
+```
+
+Parcourir, rechercher, modifier ou supprimer des éléments enregistrés :
+
+```text
+-bookmark list
+-bookmark list reference
+-bookmark edit bm-1234 Better note
+-bookmark remove bm-1234
+```
+
+Rumi renvoie un identifiant de signet convivial lorsqu'un élément est enregistré. Utilisez plutôt cet identifiant
+que sa position dans la liste lors de sa modification ou de sa suppression.
+
+## Listes de tâches
+
+```text
+-todo add Finish the event schedule
+-todo list
+-todo view todo-1234
+-todo complete todo-1234
+-todo reopen todo-1234
+-todo edit todo-1234 Finish the event schedule tonight
+-todo remove todo-1234
+```
+
+Les éléments terminés sont masqués de la liste normale. Incluez-les avec :
+
+```text
+-todo list --done
+```
+
+`-todo clear` supprime toute la liste de tâches personnelles, alors utilisez-la uniquement lorsque vous ne le faites pas
+n'ont plus besoin d'éléments ouverts ou terminés.
+
+<Tip>
+Les identifiants de signets et de tâches sont conçus pour rester stables même lors de la pagination ou de la recherche
+modifie la position d'un élément dans la liste affichée.
+</Tip>

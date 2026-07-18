@@ -1,0 +1,79 @@
+---
+title: "自定义命令"
+description: "使用 Rumi 的自定义命令模块构建特定于服务器的命令。"
+icon: "wand-magic-sparkles"
+---
+
+自定义命令使服务器管理员可以创建详细的工作流程，而无需添加
+一大套一刀切的审核命令。他们可以生成文本或
+嵌入、接受参数、解析变量、显示按钮、受保护运行
+操作、应用限制并存储服务器数据。
+
+主要命令是 `customcommand`。它的别名是 `cc` 和
+`customcommands`.
+
+<Info>
+创建和更改自定义命令需要服务器管理权限。
+当前免费限制为每台服务器 30 个命令；符合条件的高级服务器可以
+最多可存储 200 个。
+</Info>
+
+## 命令图
+
+| 任务 | 命令 |
+| --- | --- |
+| 创建或编辑 | `-cc set <name> [arguments] -- <response>` |
+| 测试 | `-cc preview <name> [sample arguments]` |
+| 检查 | `-cc show <name>` |
+| 列表 | `-cc list` |
+| 删除 | `-cc remove <name>` |
+| 查看变量 | `-cc variables` 或者 `-variables` |
+| 查看操作语法 | `-cc actions` |
+| 管理限制 | `-cc restrictions <name>` |
+| 管理保存的数据 | `-cc data <operation> ...` |
+
+## 推荐的工作流程
+
+<Steps>
+  <Step title="创建最小的有用响应">
+    从纯文本和一两个参数开始。
+  </Step>
+  <Step title="预览一下">
+    跑步 `-cc preview <name>` 具有真实的样本输入。
+  </Step>
+  <Step title="限制访问">
+    在受保护的使用之前添加角色、通道、用户或权限限制。
+  </Step>
+  <Step title="检查保存的命令">
+    跑步 `-cc show <name>` 并确认其回应和限制。
+  </Step>
+</Steps>
+
+<Warning>
+使用角色、消息、经济或成员管理操作来处理命令，例如
+员工工具。只有受信任的管理者才应该能够编辑它们。
+</Warning>
+
+## 存储了什么
+
+每个命令都存储其响应模板、声明的参数和访问权限
+限制。跑步 `set` 再次更新相同的命令。存储的工作流程
+数据是独立的，因此替换或删除命令不会静默删除
+它的计数器或记录。
+
+## 通过构建来学习
+
+<CardGroup cols={2}>
+  <Card title="为什么存在分隔符" icon="code" href="./syntax-and-separators">
+    准确查看定义结束和响应开始的位置。
+  </Card>
+  <Card title="工作食谱" icon="book-open" href="./recipes">
+    复制小命令、预览它们并安全地扩展它们。
+  </Card>
+  <Card title="嵌入和控制" icon="panels-top-left" href="./embeds-and-components">
+    构建字段、图像、按钮、下拉菜单和多页响应。
+  </Card>
+  <Card title="完整的变量引用" icon="brackets-curly" href="../variables/overview">
+    浏览生成的每个变量 Rumi的运行时注册表。
+  </Card>
+</CardGroup>

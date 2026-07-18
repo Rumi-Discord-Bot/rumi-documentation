@@ -1,0 +1,82 @@
+---
+title: "嵌入件和组件"
+description: "构建结构化嵌入、链接按钮、操作控件、下拉菜单和分页输出。"
+icon: "panels-top-left"
+---
+
+Rumi的 `$v{...}` 块描述 Discord 消息内容。它们可以混合
+与普通文本和变量。
+
+## 嵌入属性
+
+```text
+-cc set profile [member] --
+$v{embed}
+$v{author: {target.display_name|{user.display_name}} && {target.avatar|{user.avatar}}}
+$v{title: Member profile}
+$v{description: Requested by {user.mention}}
+$v{thumbnail: {target.avatar|{user.avatar}}}
+$v{field: Account && {target.name|{user.name}} && true}
+$v{field: Joined && {target.joined_at|Unavailable} && true}
+$v{color: 6A8FB3}
+$v{footer: Rumi custom commands && {bot.avatar}}
+$v{timestamp: {date.utc_now}}
+```
+
+支持的嵌入属性有 `title`, `description`/`desc`, `url`, `color`,
+`image`/`gif`, `thumbnail`/`thumb`, `timestamp`, `footer`, `author`， 和
+`field`。使用 `&&` 在作者、页脚和字段中分隔它们的部分。
+
+<Accordion title="鲁米实施的不和谐限制">
+  一条消息最多可包含 10 个嵌入和 5 个组件行。嵌入允许
+  25 个字段、256 个字符的标题、4,096 个字符的描述和 6,000 个字符
+  文本总字符数。按钮标签限制为 80 个字符和
+  下拉列表最多可包含 25 个选项。
+</Accordion>
+
+## 链接按钮
+
+链接按钮不运行机器人操作：
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{button: label=Support && url=https://discord.gg/NYs2jF9MCc && emoji=💬}
+```
+
+## 操作按钮
+
+没有 URL 的按钮会创建交互会话。行动仍然过去
+使用相同的权限、目标、角色层次结构和限制检查
+直接自定义命令操作。
+
+```text
+$v{button: Confirm && danger && action=mod:warn target && await=true && once=true}
+```
+
+有用的控制选项包括 `reply=...`, `ephemeral=true`, `dm=true`,
+`await=true`, `once=true`, `expires=10m`， 和 `allow_role=@Role`.
+
+## 下拉菜单
+
+前两部分是内部名称和占位符。以下各
+选项用途 `label|action|description|emoji`:
+
+```text
+$v{dropdown: color && Choose a color && Red|reply=You chose red|Warm|🔴 && Blue|reply=You chose blue|Cool|🔵}
+```
+
+## 多个页面和嵌入
+
+使用 `$v{embed}` 在同一条消息中开始另一个嵌入。放 `$v{page}` 在
+它自己的行来启动一个单独的可导航页面：
+
+```text
+$v{embed}$v{title: Page one}$v{description: First section}
+$v{page}
+$v{embed}$v{title: Page two}$v{description: Second section}
+```
+
+永远奔跑 `-cc preview <name>` 添加组件后。预览捕获物
+无效的 URL、颜色、字段大小和 Discord 成员之前的组件限制
+使用命令。
+

@@ -1,0 +1,44 @@
+---
+title: "Gestión"
+description: "Gestiona una comunidad sin darle permisos innecesarios a Rumi."
+icon: "sliders"
+---
+
+RumiLas herramientas de gestión se centran en <mark>configuración, prevención y personal
+flujos de trabajo</mark>. Incluyen filtros de servidor, gestión de roles y canales,
+inspección de permisos, verificación y comandos personalizados detallados.
+
+## Sin comandos integrados de prohibición o expulsión
+
+Rumi no incluye uso general `ban` o `kick` comandos de forma predeterminada. Este
+es intencional: un servidor que solo necesita música, utilidades o funciones comunitarias
+no debería tener que otorgar amplios permisos de moderación.
+
+<Info>
+Conceda sólo los permisos requeridos por los comandos que su servidor realmente utiliza.
+Cada requisito actual se muestra mediante `-help <command>`.
+</Info>
+
+## Lo que puedes gestionar
+
+- Roles: crear, conectar, asignar, inspeccionar, actualizar, eliminar y restaurar roles.
+- Canales: bloquear, desbloquear, ocultar, revelar, configurar el modo lento y otros canales
+  tareas expuestas en Rumiel menú de ayuda.
+- Filtros: bloquea expresiones seleccionadas y configura el nombre o icono del rol de refuerzo
+  filtros.
+- Verificación: configure la verificación de texto o captcha para nuevos miembros.
+- Permisos: inspeccionar el de un miembro Discord y Rumi-permisos específicos.
+- Flujos de trabajo del personal: cree herramientas específicas del servidor con comandos personalizados y limite
+  exactamente quién puede ejecutarlos.
+
+## Flujos de trabajo de gestión personalizados
+
+Los gerentes pueden usar [comandos personalizados](../custom-commands/overview) para crear el
+flujo de trabajo que su servidor necesita. Los comandos personalizados admiten argumentos, variables,
+restricciones, acciones protegidas, botones, incrustaciones y datos almacenados.
+
+<Warning>
+Un comando personalizado no omite Discord permisos o jerarquía de roles. Rumi
+y la persona que configura o ejecuta una acción protegida aún debe cumplir con sus
+controles de seguridad.
+</Warning>

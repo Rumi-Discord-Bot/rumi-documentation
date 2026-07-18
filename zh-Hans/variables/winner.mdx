@@ -1,0 +1,21 @@
+---
+title: "获胜者变量"
+description: "Rumi 支持的 8 个获胜者变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;winner&#125;</code> | 赠品获奖者公告的获奖者数据。 | <code>获奖者示例</code> | 赠品结果模板 |
+| <code>&#123;winner.avatar&#125;</code> | 头像图片网址。来源：获胜者。 | <code>https://cdn.discordapp.com/.../avatar.png</code> | 赠品结果模板 |
+| <code>&#123;winner.bonus_entries&#125;</code> | 获胜者的奖金条目。 | <code>获奖者奖金条目示例</code> | 赠品结果模板 |
+| <code>&#123;winner.display_name&#125;</code> | 服务器显示名称或昵称。来源：获胜者。 | <code>月光</code> | 赠品结果模板 |
+| <code>&#123;winner.entries&#125;</code> | 获奖者参赛作品。 | <code>获奖作品示例</code> | 赠品结果模板 |
+| <code>&#123;winner.id&#125;</code> | Discord ID。来源：获胜者。 | <code>123456789012345678</code> | 赠品结果模板 |
+| <code>&#123;winner.mention&#125;</code> | Discord 提及文字。来源：获胜者。 | <code>&lt;@123456789012345678&gt;</code> | 赠品结果模板 |
+| <code>&#123;winner.name&#125;</code> | 名称值。来源：获胜者。 | <code>鲁米</code> | 赠品结果模板 |

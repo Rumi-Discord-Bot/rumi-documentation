@@ -1,0 +1,79 @@
+---
+title: "Aangepaste opdrachten"
+description: "Bouw serverspecifieke opdrachten met de aangepaste opdrachtmodule van Rumi."
+icon: "wand-magic-sparkles"
+---
+
+Met aangepaste opdrachten kunnen serverbeheerders gedetailleerde workflows creëren zonder een
+grote set one-size-fits-all moderatieopdrachten. Ze kunnen tekst of
+insluiten, argumenten accepteren, variabelen oplossen, knoppen weergeven, beveiligd uitvoeren
+acties uitvoeren, beperkingen toepassen en servergegevens opslaan.
+
+Het hoofdcommando is `customcommand`. Zijn aliassen zijn `cc` En
+`customcommands`.
+
+<Info>
+Voor het maken en wijzigen van aangepaste opdrachten is de serverbeheermachtiging vereist.
+De huidige gratis limiet is 30 opdrachten per server; in aanmerking komende premium-servers kunnen dat wel
+maximaal 200 opslaan.
+</Info>
+
+## Commandokaart
+
+| Taak | Commando |
+| --- | --- |
+| Maken of bewerken | `-cc set <name> [arguments] -- <response>` |
+| Test | `-cc preview <name> [sample arguments]` |
+| Inspecteren | `-cc show <name>` |
+| Lijst | `-cc list` |
+| Verwijderen | `-cc remove <name>` |
+| Bekijk variabelen | `-cc variables` of `-variables` |
+| Actiesyntaxis bekijken | `-cc actions` |
+| Beheer beperkingen | `-cc restrictions <name>` |
+| Beheer opgeslagen gegevens | `-cc data <operation> ...` |
+
+## Aanbevolen werkstroom
+
+<Steps>
+  <Step title="Creëer het kleinste bruikbare antwoord">
+    Begin met platte tekst en een of twee argumenten.
+  </Step>
+  <Step title="Bekijk een voorbeeld ervan">
+    Loop `-cc preview <name>` met realistische voorbeeldinvoer.
+  </Step>
+  <Step title="Beperk de toegang">
+    Voeg rol-, kanaal-, gebruikers- of machtigingsbeperkingen toe vóór beveiligd gebruik.
+  </Step>
+  <Step title="Inspecteer de opgeslagen opdracht">
+    Loop `-cc show <name>` en bevestig de reactie en beperkingen ervan.
+  </Step>
+</Steps>
+
+<Warning>
+Behandel opdrachten met acties op het gebied van rol, boodschap, economie of ledenbeheer, zoals
+personeel gereedschap. Alleen vertrouwde managers mogen deze bewerken.
+</Warning>
+
+## Wat is opgeslagen
+
+Bij elke opdracht worden de antwoordsjabloon, de gedeclareerde argumenten en de toegang opgeslagen
+beperkingen. Rennen `set` werkt hetzelfde commando opnieuw bij. Opgeslagen werkstroom
+gegevens zijn gescheiden, dus het vervangen of verwijderen van een opdracht wordt niet stilzwijgend verwijderd
+zijn tellers of records.
+
+## Leer door te bouwen
+
+<CardGroup cols={2}>
+  <Card title="Waarom het scheidingsteken bestaat" icon="code" href="./syntax-and-separators">
+    Zie precies waar de definitie eindigt en het antwoord begint.
+  </Card>
+  <Card title="Werkende recepten" icon="book-open" href="./recipes">
+    Kopieer kleine opdrachten, bekijk ze vooraf en breid ze veilig uit.
+  </Card>
+  <Card title="Insluitingen en controles" icon="panels-top-left" href="./embeds-and-components">
+    Bouw velden, afbeeldingen, knoppen, vervolgkeuzelijsten en antwoorden van meerdere pagina's.
+  </Card>
+  <Card title="Volledige variabelenreferentie" icon="brackets-curly" href="../variables/overview">
+    Blader door elke variabele die is gegenereerd Rumi's runtime-register.
+  </Card>
+</CardGroup>

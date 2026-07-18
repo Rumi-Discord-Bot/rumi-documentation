@@ -1,0 +1,226 @@
+---
+title: "Rôles et canaux"
+description: "Créez et organisez des rôles et des chaînes Discord avec les commandes de gestion de Rumi."
+icon: "layer-group"
+---
+
+Rumi peut créer, inspecter, attribuer, renommer, recolorer, supprimer et restaurer des rôles. Il
+peut également créer et organiser du texte, de la voix, une catégorie, une scène, un forum et
+canaux d’annonce.
+
+## La hiérarchie des rôles passe en premier
+
+Discord permet uniquement à un bot de gérer les rôles inférieurs à son propre rôle le plus élevé. La même règle
+s'applique au membre exécutant une commande de rôle. Avant de dépanner un échec
+affectation, vérifiez l'ordre dans **Paramètres du serveur → Rôles**.
+
+Le membre et Rumi besoin de **Gérer les rôles** pour le `role` gestion
+commande.
+
+## Créer et inspecter des rôles
+
+```text
+-role create Event Host --color #c8d8f2
+-role info Event Host
+-role rename Event Host Events Team
+-role color Events Team #6A8FB3
+```
+
+Utilisez une mention ou un identifiant lorsque plusieurs rôles partagent un nom.
+
+## Ajouter et supprimer des rôles
+
+```text
+-role add @member Member
+-role remove @member Member
+```
+
+Rumi vérifie le membre cible et la hiérarchie des rôles avant d'appliquer la modification.
+
+## Objectifs du rôle connecté
+
+Un rôle connecté stocke un nom de fonction réutilisable, tel que `staff`, contre un
+existant Discord rôle:
+
+```text
+-role connect staff @Staff
+-role list
+-role disconnect staff
+```
+
+Cela ne crée pas un deuxième rôle. Cela donne Rumi un objectif stable auquel faire référence
+même si le rôle est autrement utilisé par un flux de travail plus important.
+
+## Supprimer et restaurer
+
+`role delete` conserve un instantané de restauration. `role restore` restaure le plus récent
+instantané de rôle supprimé ou modifié pris en charge par la commande :
+
+```text
+-role delete Old Staff
+-role restore
+```
+
+La restauration crée ou met à jour Discord état à partir de l'instantané stocké ; il
+ne peut pas annuler les modifications sans rapport effectuées à l'extérieur Rumi après la suppression.
+
+## Rejoindre des rôles
+
+Attribuez automatiquement des rôles aux humains, aux robots ou aux deux lorsqu'ils rejoignent :
+
+```text
+-joinrole add human @Member
+-joinrole add bot @Bot
+-joinrole add both @Community
+-joinrole list
+```
+
+Supprimez les rôles sélectionnés ou effacez un groupe cible :
+
+```text
+-joinrole remove human @Member
+-joinrole clear bot
+```
+
+Rumi doit toujours se situer au-dessus de chaque rôle de jointure configuré.
+
+## Rôles de rappel personnels
+
+Les boosters de serveur actifs peuvent créer et styliser un rôle qui Rumi gère pour eux :
+
+```text
+-boosterrole view
+-boosterrole create Moonlight
+-boosterrole rename Pink Dawn
+-boosterrole color #ff88cc
+-boosterrole color #ff88cc, #ffddee
+```
+
+Le formulaire bicolore demande DiscordLa couleur du rôle dégradé. Si Discord
+montre chaque fonctionnalité d'apparence de rôle peut dépendre du rôle disponible du serveur
+caractéristiques.
+
+Définir une icône de rôle à partir d'une pièce jointe, d'une URL d'image, d'un emoji Unicode ou d'un élément personnalisé Discord
+mention d'émoticônes. Utiliser `clear` pour le supprimer :
+
+```text
+-boosterrole icon ✨
+-boosterrole icon <:sparkle:123456789012345678>
+-boosterrole icon https://example.com/icon.png
+-boosterrole icon clear
+```
+
+### Partager un rôle de rappel
+
+Le booster qui possède un rôle peut le partager avec d'autres membres :
+
+```text
+-boosterrole share @friend
+-boosterrole share remove @friend
+```
+
+Le personnel disposant de **Gérer les rôles** peut inspecter tous les propriétaires et partages, et définir leur nombre.
+membres avec lesquels chaque propriétaire peut partager :
+
+```text
+-boosterrole share list
+-boosterrole share limit 3
+-boosterrole share limit none
+```
+
+`boosterrole limit off` désactive la création à l'échelle du serveur ; c'est différent de
+la limite de partage :
+
+```text
+-boosterrole limit on
+-boosterrole limit off
+```
+
+### Positionnement et nettoyage
+
+Conservez les rôles générés dans une section prévue de la liste des rôles en nommant un
+ancrage supérieur et inférieur :
+
+```text
+-boosterrole hoist @Booster Top @Booster Bottom
+```
+
+Les deux ancrages doivent rester gérables par Rumi. Le nettoyage supprime la propriété obsolète
+et partage après avoir boosté les changements de statut :
+
+```text
+-boosterrole cleanup
+-boosterrole cleanup auto on
+-boosterrole cleanup auto off
+```
+
+### Filtres de noms et d'icônes
+
+Des filtres de mots simples bloquent le texte indésirable dans les noms de rôles de rappel :
+
+```text
+-boosterrole filter add admin
+-boosterrole filter remove admin
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+Les serveurs Premium peuvent ajouter des filtres d'expression régulière pour une correspondance plus précise :
+
+```text
+-boosterrole regex filter add ^admin
+-boosterrole regex filter list
+-boosterrole regex filter remove ^admin
+-boosterrole regex filter clear
+```
+
+Ajoutez uniquement une expression régulière que vous comprenez ; un modèle large peut rejeter les noms ordinaires.
+Le filtrage du texte des icônes et une vue combinée des paramètres sont disponibles via :
+
+```text
+-boosterrole filtericon nsfw on
+-boosterrole filters
+```
+
+## Rôles de réaction
+
+Le `reactionrole` commande, également disponible en tant que `rr`, connecte un emoji sur un
+message à un rôle :
+
+```text
+-help reactionrole
+```
+
+Utilisez l’entrée d’aide actuelle pour l’ordre des arguments des messages, des emoji et des rôles.
+Les rôles de réaction nécessitent Rumi pour lire le message cible, ajouter des réactions et
+gérer le rôle sélectionné.
+
+## Créer des chaînes
+
+```text
+-channel create text announcements
+-channel create voice Lounge
+-channel create category Events
+-channel create text event-chat --category Events
+```
+
+Les types de canaux pris en charge sont `text`, `voice`, `category`, `stage`, `forum`, et
+`announcement`.
+
+## Renommer, déplacer et supprimer des chaînes
+
+```text
+-channel rename #old-name new-name
+-channel move #event-chat Events
+-channel move #event-chat 3
+-channel delete #temporary
+```
+
+Si aucun canal n'est fourni à une action prise en charge, Rumi peut utiliser le courant
+canal. Fournir une mention de canal est plus sûr lorsqu'une action destructrice est
+impliqué.
+
+<Warning>
+La suppression des chaînes est permanente Discord. Vérifiez la mention dans votre commande
+avant de l'envoyer ; La restauration de rôle ne restaure pas les canaux supprimés.
+</Warning>

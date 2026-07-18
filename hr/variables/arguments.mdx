@@ -1,0 +1,29 @@
+---
+title: "Varijable argumenata"
+description: "16 varijabli argumenata koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;arg&#125;</code> | Sve upisano nakon prilagođene naredbe ili odgovarajućeg okidača automatskog odgovora. | <code>plavi kolač s posipom</code> | Prilagođene naredbe, automatski odgovori |
+| <code>&#123;arg.1&#125;</code> | Prvi argument nakon naredbe ili okidača. | <code>plava</code> | Prilagođene naredbe, automatski odgovori |
+| <code>&#123;arg.2+&#125;</code> | Argument 2 i sve nakon njega. | <code>kolač s posipom</code> | Prilagođene naredbe, automatski odgovori |
+| <code>&#123;arg.count&#125;</code> | Broj raščlanjenih argumenata naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;arg.raw&#125;</code> | Nemodificirani tekst argumenta naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;args&#125;</code> | Sav tekst isporučen nakon naredbe. Alias ​​of &#123;arg&#125;. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;args.count&#125;</code> | Broj raščlanjenih argumenata naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;args.raw&#125;</code> | Nemodificirani tekst argumenta naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;arg.1+&#125;</code> | Argument 1 i svaki argument nakon njega. Zamijenite 1 s početnim položajem. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;args.rest.1&#125;</code> | Argument 1 i svaki argument nakon njega. Zamijenite 1 s početnim položajem. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;variable&#124;fallback text&#125;</code> | Vrati rezervni tekst kada normalna varijabla konteksta nije dostupna. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;name&#125;</code> | Vrijednost deklarirane &lt;ime&gt; ili [ime] argument prilagođene naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;arg.name&#125;</code> | Vrijednost deklariranog imenovanog argumenta prilagođene naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;arg1&#125;</code> | Kompaktni alias za numerirani argument. Zamijenite 1 položajem. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;args.1&#125;</code> | Argument na označenom mjestu. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;1&#125;</code> | Argument na označenom mjestu. Zamijenite 1 bilo kojim pozitivnim položajem. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |

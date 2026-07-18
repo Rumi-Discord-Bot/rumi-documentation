@@ -1,0 +1,76 @@
+---
+title: "语法和分隔符"
+description: "了解名称、声明的参数、响应边界、后备和多行脚本。"
+icon: "code"
+---
+
+＃＃ 为什么 `--` 有没有
+
+分隔符告诉 Rumi 命令定义结束并保存的位置
+响应开始：
+
+```text
+-cc set greet <member> [message...] -- Hello {member}! {message|Welcome.}
+```
+
+Rumi 将该行分为三个部分：
+
+| 部分 | 价值 |
+| --- | --- |
+| 手术 | `-cc set` |
+| 定义 | `greet <member> [message...]` |
+| 已保存回复 | `Hello {member}! {message\|Welcome.}` |
+
+如果没有分隔符，响应中的单词可能看起来像参数
+声明。分隔符消除了这种歧义。它被消耗的同时
+命令被保存并且永远不会包含在回复中。
+
+`=>` 和 `->` 是公认的替代方案，但是 `--` 在整个文档中使用
+因为它在长脚本中最容易识别。
+
+<Warning>
+第一个独立的 `--`, `=>`， 或者 `->` 是边界。之后的任何事情都是
+响应文本，即使它开头为 `--`。将参数声明放在前面
+边界。
+</Warning>
+
+## 声明的参数
+
+| 形式 | 意义 |
+| --- | --- |
+| `<member>` | 必需的单字参数 |
+| `[reason]` | 可选的单字参数 |
+| `<text...>` | 必需的剩余参数；消耗掉剩下的一切 |
+| `[note...]` | 可选的剩余参数 |
+
+参数名称以字母开头，可以包含字母、数字、 `_`, `-`,
+或者 `.`。剩余参数应该放在最后，因为它会消耗所有剩余的输入。
+
+## 多行脚本
+
+Discord 消息可以包含换行符。将指令放在自己的行中，以便
+它们被从可见响应中干净地删除：
+
+```text
+-cc set daily --
+{cooldown:24h}
+{customdb:increment rewards && {user.id} && 1}
+You claimed reward number **{db.get:rewards:{user.id}}**.
+```
+
+运行时支持的其他独立指令包括 `{delete}` 到
+删除调用消息， `{silent}` 对于仅操作命令，
+`{respond:#channel}` 选择响应渠道， `{dm:user}` 发送
+DM 结果，以及 `{reaction:emoji}` 对触发器做出反应。
+
+## 值和回退
+
+使用 `{variable|fallback}` 当值可能不存在时：
+
+```text
+Nickname: {user.display_name|No server nickname}
+Target: {target.mention|No target selected}
+```
+
+Rumi 首先解析声明的参数，然后解析辅助值和条件，
+然后是上下文变量和最终的嵌入/组件脚本。

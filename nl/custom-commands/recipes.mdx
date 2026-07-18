@@ -1,0 +1,159 @@
+---
+title: "Aangepaste opdrachtrecepten"
+description: "Kopieer volledige voorbeelden voor argumenten, insluitingen, willekeurige waarden, tellers, cooldowns en personeelsworkflows."
+icon: "book-open"
+---
+
+Bouw laag voor laag op. Sla de opdracht op, bekijk een voorbeeld met realistische invoer,
+voeg vervolgens beperkingen toe vóór beschermde acties.
+
+<AccordionGroup>
+  <Accordion title="Een eenvoudig welkomstcommando">
+    ```text
+    -cc set hello -- Hello {user.mention}! Welcome to **{guild.name}**.
+    ```
+
+    Testen met `-cc preview hello`.
+  </Accordion>
+
+  <Accordion title="Herhaal een vereist bericht">
+    ```text
+    -cc set say <text...> -- {text}
+    ```
+
+    Rennen `-say The event starts soon` retourneert het hele rest-argument.
+  </Accordion>
+
+  <Accordion title="Kies een willekeurig antwoord">
+    ```text
+    -cc set snack -- {choose:Cookie|Cake|Fruit|Popcorn}
+    ```
+
+    Noem een ​​resultaat wanneer het opnieuw wordt gebruikt:
+
+    ```text
+    -cc set lucky --
+    {range:number:1-100}
+    Your lucky number is **{number}**.
+    ```
+  </Accordion>
+
+  <Accordion title="Maak een ledenprofielkaart">
+    ```text
+    -cc set profile [member] --
+    $v{embed}
+    $v{title: {target.display_name|{user.display_name}}}
+    $v{thumbnail: {target.avatar|{user.avatar}}}
+    $v{field: Account created && {target.created_at|{user.created_at}} && false}
+    $v{field: Joined server && {target.joined_at|{user.joined_at}} && false}
+    $v{color: 6A8FB3}
+    ```
+
+    Poging `-profile @member` En `-profile`.
+  </Accordion>
+
+  <Accordion title="Tel het gebruik met aangepaste gegevens">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    You have used this command **{db.get:visits:{user.id}}** times.
+    ```
+
+    Een zelfstandige mutatie werkt de waarde bij zonder de onbewerkte mutatie af te drukken
+    resultaat. Inspecteer het met `-cc data get visits <user-id>`.
+  </Accordion>
+
+  <Accordion title="Een cooldown-beloning">
+    ```text
+    -cc set treat --
+    {cooldown:24h}
+    {range:reward:50-150}
+    {econ:add user && reward && Custom daily treat}
+    You received **{reward}** coins.
+    ```
+
+    Economische acties zijn beschermd. Beperk de opdracht en test deze met een kluis
+    bedrag voordat het openbaar wordt gemaakt.
+  </Accordion>
+
+  <Accordion title="Een workflow voor personeelswaarschuwingen">
+    ```text
+    -cc set staffwarn <target> <reason...> --
+    {mod:warn target && {reason}}
+    Warned {target.mention}: **{reason}**
+    ```
+
+    ```text
+    -cc requireperm staffwarn ModerateMembers
+    -cc allow staffwarn role @Staff
+    -cc allow staffwarn channel #staff-commands
+    ```
+
+    Rumi controleert de runner, bot-machtigingen, het doel en de rollenhiërarchie wanneer deze
+    executeert.
+  </Accordion>
+
+  <Accordion title="Serverhandleiding van twee pagina's">
+    ```text
+    -cc set guide --
+    $v{embed}$v{title: Getting started}$v{description: Read #rules and choose your roles.}
+    $v{page}
+    $v{embed}$v{title: Need help?}$v{description: Ask in #support.}
+    ```
+  </Accordion>
+
+  <Accordion title="Laat een andere reactie zien aan het personeel">
+    ```text
+    -cc set panel --
+    {if:user has permission ManageMessages}
+    Staff controls are available in #staff-commands.
+    {else}
+    Ask a staff member if you need help.
+    {endif}
+    ```
+
+    Hiermee wordt het leven van het lid gecontroleerd Discord toestemming elke keer dat het commando wordt uitgevoerd
+    loopt. Zij verleent die toestemming niet.
+  </Accordion>
+
+  <Accordion title="Een bezoekmijlpaal per gebruiker">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    {if:{db.get:visits:{user.id}} >= 10}
+    Welcome back {user.mention}. You have visited at least ten times.
+    {else}
+    Welcome {user.mention}. Visit number: {db.get:visits:{user.id}}.
+    {endif}
+    ```
+
+    De naamruimte is `visits`; elk Discord gebruikers-ID is een afzonderlijke sleutel.
+  </Accordion>
+
+  <Accordion title="Reageer in een ander kanaal">
+    ```text
+    -cc set suggestion <text...> --
+    {respond:#suggestions}
+    $v{embed}
+    $v{author: {user.display_name} && {user.avatar}}
+    $v{description: {text}}
+    $v{footer: Submitted from {channel.name}}
+    ```
+
+    Beperk de opdracht tot de kanalen waar inzendingen moeten worden geaccepteerd.
+    Rumi moet insluitingen in het bestemmingskanaal kunnen bekijken en verzenden.
+  </Accordion>
+
+  <Accordion title="Reageer en verwijder het triggerbericht">
+    ```text
+    -cc set submit <text...> --
+    {react:✅}
+    {delete}
+    Submission received: {text}
+    ```
+
+    `{delete}` verwijdert het triggerbericht van het lid wanneer Rumi heeft **Beheren
+    Berichten**. De reactie wordt toegevoegd voordat de trigger verdwijnt Discord
+    staat het toe.
+  </Accordion>
+</AccordionGroup>

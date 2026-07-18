@@ -1,0 +1,111 @@
+---
+title: "Argumenten en variabelen"
+description: "Gebruik opdrachtinvoer, Discord-context, helpers, insluitingen en componenten."
+icon: "brackets-curly"
+---
+
+Loop `-variables` in Discord voor Rumi's huidige variabele referentie. Deze pagina
+omvat de meest voorkomende patronen.
+
+## Lees commando-invoer
+
+| Variabel | Waarde |
+| --- | --- |
+| `{arg}` of `{args}` | Alles getypt na de opdracht |
+| `{1}`, `{2}` | Een genummerd betoog |
+| `{arg.1}`, `{arg.2}` | Een genummerd betoog |
+| `{arg.2+}` | Argument 2 en alles erna |
+| `{args.rest.2}` | Argument 2 en alles erna |
+| `{link}` | Een benoemd argument gedeclareerd als `[link]` of `<link>` |
+
+Vereiste en optionele argumenten worden gedeclareerd wanneer de opdracht wordt gemaakt:
+
+```text
+-cc set ship <target> [reason...] -- {user.mention} chose {target.mention}. {reason|No reason given.}
+```
+
+`<target>` is vereist, terwijl `[reason...]` is optioneel. De drie stippen maken
+`reason` consumeer elk overgebleven woord in plaats van alleen het volgende woord. Een rust
+argument zou het laatste verklaarde argument moeten zijn, omdat het alles opslokt
+erna.
+
+Vergelijk deze twee definities:
+
+```text
+-cc set pair <first> <second> -- First: {first}; second: {second}
+-cc set quote <text...> -- “{text}”
+```
+
+`-pair red blue` wijst aan elke naam één woord toe. `-quote this is all one value`
+wijst de hele frase toe `text`.
+
+Als een vereist argument ontbreekt, Rumi stopt en benoemt het ontbrekende argument.
+Een optionele waarde kan leeg zijn, dus gebruik een fallback als het antwoord nog steeds nodig is
+leesbare tekst.
+
+## Gebruik Discord context
+
+Veel voorkomende variabelen zijn onder meer `{user.mention}`, `{user.name}`, `{server.name}`, En
+`{channel.mention}`. Een genoemd of eerste doelwit kan ook waarden blootleggen zoals
+`{target.mention}`, `{target.name}`, En `{target.avatar}`.
+
+Benoemde argumenten zijn tekstwaarden. Doelvariabelen worden afzonderlijk van elkaar opgelost
+het eerstgenoemde of oplosbare lid. Wanneer een actie afhankelijk is van een lid,
+gebruik een vermelding tijdens het testen, zodat het doel ondubbelzinnig is.
+
+Variabelen accepteren een terugval daarna `|`. De fallback wordt gebruikt als de waarde is
+in die context niet beschikbaar:
+
+```text
+{target.display_name|No member was selected}
+```
+
+<Note>
+Niet elk evenement heeft elke waarde. Ticketvariabelen hebben ticketcontext nodig, winnaar
+variabelen hebben een weggeefresultaat nodig, en strafvariabelen hebben management nodig
+evenement. De [volledige referentie van de variabele](../variables/overview) geeft aan waar elk
+variabele beschikbaar is.
+</Note>
+
+## Transformeer en kies waarden
+
+```text
+{random:red|green|blue}
+{range:score:1-100}
+{choose:item:cookie|cake|pie}
+{upper:text}
+{lower:text}
+{title:text}
+{urlencode:text}
+{len:text}
+```
+
+Genoemd `range` En `choose` resultaten kunnen later opnieuw worden gebruikt als `{score}` of `{item}`.
+
+Teksthelpers transformeren hun input; ze wijzigen de opgeslagen opdracht niet. Voor
+voorbeeld, `{upper:{user.display_name}}` retourneert daarin alleen een hoofdletterversie
+antwoord.
+
+## Maak een insluiting
+
+Gebruik van insluitvelden `$v{...}` blokken:
+
+```text
+-cc set rules -- $v{title: Rules} $v{description: Welcome {user.mention}}
+```
+
+## Interactieve uitvoer toevoegen
+
+Rumi ondersteunt linkknoppen, actieknoppen, vervolgkeuzelijsten en gepagineerde pagina's.
+Begin met de syntaxis die wordt weergegeven door `-variables`en bekijk een voorbeeld van de opdracht
+voordat je het deelt.
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{page}
+```
+
+<Warning>
+Knoppen die beveiligde acties uitvoeren, hebben meer controle nodig dan gewone links. Gebruik
+`-cc actions` voor hun huidige syntaxis en veiligheidsvereisten.
+</Warning>

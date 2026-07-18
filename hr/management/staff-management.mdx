@@ -1,0 +1,49 @@
+---
+title: "Upravljanje osobljem"
+description: "Pripremite uloge, dopuštenja i prilagođene tijekove rada osoblja."
+icon: "user-shield"
+---
+
+RumiProširuje se područje upravljanja osobljem. Danas je siguran temelj
+upravljanje ulogama, pregled dopuštenja i ograničene prilagođene naredbe.
+
+## Pripremite uloge osoblja
+
+Koristiti `role` upravljati Discord uloge. Rumi podržava kreiranje, dodjeljivanje,
+pregled, preimenovanje, prebojavanje, brisanje i vraćanje uloga. Također može
+poveži ulogu s višekratnom svrhom:
+
+```text
+-role connect staff @Staff
+-role list
+```
+
+Trčanje `-help role` prije promjene uloga. Osoba koja vodi naredbu i Rumi
+oboje trebaju pristup za upravljanje ulogama i Discord primjenjuje se hijerarhija.
+
+## Provjerite pristup
+
+Koristiti `permissions` (ili `perms`) vidjeti članove Discord dopuštenja i bilo koje
+Rumi- dodjeljuje posebne dozvole:
+
+```text
+-permissions @member
+```
+
+## Izgradite tijek rada samo za osoblje
+
+Prilagođene naredbe mogu se ograničiti na dopuštenu ulogu, kanal ili korisnika i mogu
+također zahtijevaju named Discord dozvole. Ovo omogućuje svakom poslužitelju definiranje vlastitog
+alat za osoblje bez Rumi slanje širokih zadanih naredbi za moderiranje.
+
+```text
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+-cc requireperm <name> ManageMessages
+```
+
+<Warning>
+Dopuštanje ulozi za pokretanje prilagođene naredbe sigurnosna je odluka. Pregledajte
+spremljena skripta sa `-cc show <name>` i testirajte ga s `-cc preview <name>` prije
+osoblje ga koristi.
+</Warning>

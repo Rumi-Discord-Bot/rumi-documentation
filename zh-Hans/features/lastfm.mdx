@@ -1,0 +1,76 @@
+---
+title: "最后调频"
+description: "链接 Last.fm 查看个人资料、涂鸦、图表、喜爱的曲目、拼贴画和品味比较。"
+icon: "lastfm"
+---
+
+Last.fm 链接让 Rumi 读取用户的 Last.fm 个人资料和收听历史记录。
+它不控制 Spotify 播放或 Rumi的 Discord 语音队列。
+
+## 关联账户
+
+```text
+-lastfm link
+```
+
+打开一次性授权链接 Rumi 提供并完成 Last.fm 流动。
+然后，确认连接：
+
+```text
+-lastfm profile
+```
+
+断开它：
+
+```text
+-lastfm unlink
+```
+
+## 当前和最近的收听
+
+```text
+-lastfm nowplaying
+-lastfm recent
+-lastfm loved
+```
+
+`nowplaying` 显示活动曲目时 Last.fm 将其标记为正在播放；
+否则它会显示最新的scroble。
+
+大多数查看命令接受另一个链接 Discord 会员或 Last.fm
+用户名：
+
+```text
+-lastfm nowplaying @member
+-lastfm recent some_lastfm_name
+```
+
+## 图表
+
+```text
+-lastfm toptracks 1month
+-lastfm topartists overall @member
+-lastfm topalbums 3month
+-lastfm collage 1month
+```
+
+句点位于可选成员或用户名之前。 `collage` 返回一个
+使用可从以下网站获取的收听数据进行图表式专辑摘要 Last.fm.
+
+## 比较听感
+
+两个都 Discord 会员需要关联账户：
+
+```text
+-lastfm compare @member
+-lastfm compare @member 1month
+```
+
+Rumi 比较所选时期的共享艺术家和曲目。结果是
+基于 Last.fm scrobbles，因此未包含的收听内容将不包括在内。
+
+<Info>
+Last.fm 和 Spotify 是单独的连接。使用 `-spotify link` 对于个人
+Spotify 控件、播放列表和喜欢的歌曲；使用 `-lastfm link` 对于涂鸦
+和 Last.fm 图表。
+</Info>

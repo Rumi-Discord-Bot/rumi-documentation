@@ -1,0 +1,77 @@
+---
+title: "Catalogue de commandes"
+description: "Trouvez des noms de commandes, des descriptions, des alias et des autorisations précis."
+icon: "list"
+---
+
+Rumic'est dans-Discord le menu d'aide est la source de vérité pour les commandes disponibles
+pour vous:
+
+```text
+-help
+```
+
+Utiliser `-help <command>` pour inspecter une commande spécifique. Par exemple:
+
+```text
+-help customcommand
+```
+
+Les entrées d'aide peuvent inclure :
+
+- Noms des commandes et sous-commandes
+- Descriptions et alias de préfixe
+- Informations d'utilisation et d'argumentation
+- Autorisations requises des utilisateurs et des robots
+- Restrictions serveur uniquement et NSFW
+- Prise en charge des commandes Slash
+
+<Info>
+Ce site explique les flux de travail en profondeur. Si un guide et Rumientrée d'aide actuelle de
+diffèrent, suivez l’entrée d’aide du bot.
+</Info>
+
+## Recherchez efficacement
+
+Parcourez le menu d'aide par catégorie ou recherchez une commande par son nom. Domaines utiles
+incluent la gestion, la musique, les utilitaires, l’économie, les rôles, les canaux et les outils serveur.
+
+<CardGroup cols={2}>
+  <Card title="Gestion" icon="sliders" href="../features/management">
+    Filtres, accès du personnel, automatisation, rôles, canaux, vérification et invitations.
+  </Card>
+  <Card title="Systèmes communautaires" icon="users" href="../features/levels">
+    Niveaux, paramètres économiques, magasins et cadeaux.
+  </Card>
+  <Card title="Commandes personnalisées" icon="wand-magic-sparkles" href="../custom-commands/overview">
+    Arguments, variables, intégrations, composants, actions, restrictions et données.
+  </Card>
+  <Card title="Musique" icon="music" href="../features/music">
+    Discord lecture vocale, Spotify commandes de l'appareil, et Last.fm données d'écoute.
+  </Card>
+  <Card title="Médias et jeux" icon="photo-film" href="../features/media-and-embeds">
+    Outils d'images et de vidéos, intégrations, jeux interactifs et recherches de jeux.
+  </Card>
+  <Card title="Outils personnels" icon="toolbox" href="../features/personal-tools">
+    Mentions, traduction, signets et listes de tâches.
+  </Card>
+</CardGroup>
+
+## Alias ​​de commande
+
+Certaines commandes ont des alias plus courts. Par exemple, `cc` ouvre `customcommand`,
+`rr` ouvre `reactionrole`, et `rank` ouvre `level`. Les alias exécutent la même commande
+et utilisez les mêmes autorisations et paramètres enregistrés.
+
+L'entrée d'aide affiche les alias pris en charge. Ne présumez pas que chaque mot abrégé est
+un pseudonyme ; s'il n'est pas répertorié, utilisez le nom complet de la commande.
+
+## Commandes avec préfixe uniquement
+
+Rumi a plus de commandes de préfixe que de commandes slash. C'est intentionnel alors que
+le catalogue slash est en cours de nettoyage. Une commande marquée **Préfixe uniquement** doit être
+s'exécute avec le préfixe du serveur même si des commandes slash portant le même nom apparaissent dans
+Discord.
+
+Voir [comment lire la syntaxe des commandes](./reading-syntax) pour les valeurs requises,
+arguments facultatifs, choix, indicateurs, guillemets et sous-commandes.

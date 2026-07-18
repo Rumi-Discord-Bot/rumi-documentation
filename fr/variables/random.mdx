@@ -1,0 +1,19 @@
+---
+title: "Variables aléatoires"
+description: "6 variables aléatoires prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;choice:name:one&#124;two&#124;three&#125;</code> | Choisissez une fois, enregistrez le résultat sous son nom et exposez-le via &#123;nom&#125;. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Choisissez une option au hasard. | <code>deux</code> | Commandes personnalisées, répondeurs automatiques |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Renvoie une option séparée par des tuyaux sans la sauvegarder. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;random:one&#124;two&#124;three&#125;</code> | Renvoie une option séparée par des tuyaux sans la sauvegarder. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;range:reward:100-500&#125;</code> | Choisissez un nombre aléatoire et enregistrez-le en tant que valeur réutilisable. | <code>348, then use &#123;reward&#125;</code> | Commandes personnalisées, répondeurs automatiques |
+| <code>&#123;range:1-100&#125;</code> | Renvoie un nombre entier aléatoire dans la plage inclusive. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |

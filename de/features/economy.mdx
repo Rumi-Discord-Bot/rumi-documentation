@@ -1,0 +1,186 @@
+---
+title: "Serverökonomie"
+description: "Richten Sie Währung, Belohnungen, Banken, Überweisungen, Geschäfte, Raubüberfälle und Casino-Limits ein."
+icon: "coins"
+---
+
+Jeder Server hat seinen eigenen Rumi Wirtschaft. Währungsnamen, Prämienbeträge, Einstellungen,
+Guthaben und Shop-Artikel werden in der Wirtschaft dieses Servers gehalten und nicht geteilt
+zwischen unabhängigen Gemeinschaften.
+
+## Was Mitglieder tun können
+
+Die alltäglichen Befehle sind einfach:
+
+```text
+-balance
+-balance @member
+-daily
+-weekly
+-work
+-deposit 500
+-deposit all
+-withdraw 250
+-give @member 100
+-economytop
+```
+
+Bargeld und Bankguthaben sind getrennt. `deposit` überweist Bargeld auf die Bank;
+`withdraw` verschiebt es zurück. Überweisungen durchgeführt mit `give` kann dadurch beeinflusst werden
+Server konfigurierte Übertragungssteuer.
+
+## Erstkonfiguration
+
+Mitglieder mit **Server verwalten** können die Einstellungen überprüfen und bearbeiten:
+
+```text
+-economy config
+-economy config currency petals
+-economy config icon 🌸
+-economy config daily 250
+-economy config weekly 2500
+-economy config work 50 350
+-economy config cooldown work 3600
+```
+
+Der Arbeitsbereich ist eine minimale und maximale Auszahlung. Abklingzeiten werden eingetragen
+Sekunden im Economy-Konfigurationsbefehl.
+
+Deaktivieren Sie einen Sparbefehl, ohne das gesamte System zu deaktivieren:
+
+```text
+-economy config disable rob
+-economy config enable rob
+```
+
+`economy config reset confirm` Setzt die Einstellungen auf ihre Standardwerte zurück, tut dies jedoch
+Salden nicht löschen. `economy reset confirm` ist anders: Es setzt die zurück
+Benutzerguthaben des Servers. Lesen RumiLesen Sie die Bestätigung sorgfältig durch, bevor Sie eines der beiden verwenden.
+
+## Raubüberfälle und Casinospiele
+
+Raubüberfälle können eingestellt oder deaktiviert werden:
+
+```text
+-economy rob
+-economy rob on
+-economy rob cooldown 3600
+-economy rob limits 25 500
+-economy rob chance 35
+-economy rob fine 20
+-economy rob protection 12
+```
+
+Mitglieder nutzen `-rob @member [amount]`. Rumi wendet die gespeicherte Chance, Grenzen,
+Bußgeld, Abklingzeit und Schutzdauer bei fehlgeschlagenem Versuch.
+
+Casino-Kontrollen funktionieren auf die gleiche Weise:
+
+```text
+-economy casino on
+-economy casino cooldown 20
+-economy casino limits 10 1000
+-casino coinflip 100 heads
+-casino slots 100
+```
+
+## Geschäfte und Lagerbestände
+
+Mitglieder können im Server-Shop stöbern, Artikel kaufen, ihr Inventar überprüfen und vieles mehr
+Unterstützte Artikel verkaufen:
+
+```text
+-shop
+-shop view <item>
+-buy <item>
+-inventory
+-sell <item>
+```
+
+### Erstellen Sie einen Shop-Artikel
+
+Mitglieder mit **Server verwalten** können Server-Shop-Artikel erstellen und verwalten. Der
+Format erstellen ist `name`, `buy price`, optional `sell price`, Dann `|` und die
+Beschreibung:
+
+```text
+-shop add coffee 150 45 | Fresh server coffee
+-shop add vip-pass 5000 0 | Unlocks the VIP role
+-shop view coffee
+```
+
+Artikelnamen sind einzelne Token, also verwenden Sie sie `vip-pass` statt `VIP pass`. Ein Verkauf
+Preis von `0` verhindert, dass der Artikel beim Verkauf Geld zurückgibt. `edit` verwendet
+das gleiche vollständige Format:
+
+```text
+-shop edit coffee 175 50 | A warm drink and a small energy boost
+```
+
+Für kleinere Änderungen verwenden Sie die fokussierten Befehle:
+
+```text
+-shop price coffee 200
+-shop sellprice coffee 60
+-shop desc coffee A limited seasonal drink
+-shop remove coffee
+```
+
+### Rollengestützte Elemente
+
+Hängen Sie ein oder mehrere an Discord Rollen zu einem Element:
+
+```text
+-shop role add vip-pass @VIP
+-shop role add vip-pass @Supporter
+-shop role remove vip-pass @Supporter
+```
+
+Rumi muss in der Lage sein, jede angehängte Rolle, also ihre höchste Rolle, zu verwalten
+muss über ihnen sitzen DiscordRollenliste.
+
+### Artikelcodes und Geschenkkarten
+
+Ein Artikelcode wird für einen Artikel gespeichert und kann vom Personal gepflegt werden:
+
+```text
+-shop code create vip-pass WELCOME1
+-shop code remove vip-pass WELCOME1
+```
+
+Geschenkkarten sind einlösbare Währungscodes, die einem Artikel zugeordnet sind. Liefern Sie die
+Währungsbetrag und Anzahl der Verwendungen nach dem Code:
+
+```text
+-shop giftcard create vip-pass LAUNCH500 500 25
+-shop giftcard remove vip-pass LAUNCH500
+```
+
+Mitglieder lösen einen gültigen Code ein mit:
+
+```text
+-shop redeem LAUNCH500
+```
+
+Bei jeder erfolgreichen Einlösung wird der konfigurierte Betrag dem Betrag dieses Mitglieds hinzugefügt
+Einnahmen und verbraucht eine Nutzung. Behandeln Sie Geschenkkartencodes wie private Links: jeder
+Wer einen gültigen Code kennt, kann versuchen, ihn einzulösen, solange die Nutzung bestehen bleibt.
+
+`rumishop` Ist Rumiist der globale Bot-Shop und ist vom serverkonfigurierten getrennt
+Geschäft.
+
+## Änderungen prüfen
+
+Rumi zeichnet Änderungen und Transaktionen der Wirtschaftseinstellungen auf:
+
+```text
+-economy audit
+-economy logs
+```
+
+Diese sind nützlich, nachdem Belohnungen, Steuern, Raubeinstellungen oder Casino-Limits geändert wurden.
+
+<Tip>
+Legen Sie zunächst konservative Belohnungen und Einsatzlimits fest. Es ist einfacher, eine zu erhöhen
+Konjunkturtempo abzuschwächen, als die Bilanzen nach einer allzu großzügigen Konstellation wiederherzustellen.
+</Tip>

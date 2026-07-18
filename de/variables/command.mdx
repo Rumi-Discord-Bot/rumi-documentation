@@ -1,0 +1,24 @@
+---
+title: "Befehlsvariablen"
+description: "11 von Rumi unterstützte Befehlsvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;command.alias&#125;</code> | Alias, der zum Auslösen des Befehls verwendet wird, sofern verfügbar. | <code>Beispiel für einen Befehlsalias</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.arg_count&#125;</code> | Anzahl der Argumente für den Befehl. | <code>128</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.category&#125;</code> | Kategorie für Befehl. | <code>Beispielbefehlskategorie</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.channel&#125;</code> | Kanalerwähnung oder Kanalwert. Quelle: Befehl. | <code>Beispiel eines Befehlskanals</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.channel_id&#125;</code> | Discord Kanal-ID. Quelle: Befehl. | <code>Beispiel-Befehlskanal-ID</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.description&#125;</code> | Beschreibungstext. Quelle: Befehl. | <code>Beispielbefehlsbeschreibung</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.name&#125;</code> | Name des Befehls, der diese Antwort derzeit ausgibt. | <code>Rumi</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.usage&#125;</code> | Verwendung für Befehl. | <code>Beispiel für die Verwendung von Befehlen</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.user&#125;</code> | Benutzer für Befehl. | <code>Beispiel-Befehlsbenutzer</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.user_id&#125;</code> | Benutzer-ID für den Befehl. | <code>Beispiel-Befehlsbenutzer-ID</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |
+| <code>&#123;command.user_mention&#125;</code> | Benutzererwähnung für Befehl. | <code>Beispiel für die Erwähnung eines Befehls durch einen Benutzer</code> | Benutzerdefinierte Befehle und befehlsbewusste Vorlagen |

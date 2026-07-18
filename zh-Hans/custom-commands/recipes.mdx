@@ -1,0 +1,159 @@
+---
+title: "自定义命令配方"
+description: "复制参数、嵌入、随机值、计数器、冷却时间和人员工作流程的完整示例。"
+icon: "book-open"
+---
+
+一次构建一层。保存命令，使用实际输入预览它，
+然后在受保护的操作之前添加限制。
+
+<AccordionGroup>
+  <Accordion title="一个简单的欢迎命令">
+    ```text
+    -cc set hello -- Hello {user.mention}! Welcome to **{guild.name}**.
+    ```
+
+    测试用 `-cc preview hello`.
+  </Accordion>
+
+  <Accordion title="重复所需的消息">
+    ```text
+    -cc set say <text...> -- {text}
+    ```
+
+    跑步 `-say The event starts soon` 返回整个剩余参数。
+  </Accordion>
+
+  <Accordion title="选择随机响应">
+    ```text
+    -cc set snack -- {choose:Cookie|Cake|Fruit|Popcorn}
+    ```
+
+    重用时命名结果：
+
+    ```text
+    -cc set lucky --
+    {range:number:1-100}
+    Your lucky number is **{number}**.
+    ```
+  </Accordion>
+
+  <Accordion title="创建会员资料卡">
+    ```text
+    -cc set profile [member] --
+    $v{embed}
+    $v{title: {target.display_name|{user.display_name}}}
+    $v{thumbnail: {target.avatar|{user.avatar}}}
+    $v{field: Account created && {target.created_at|{user.created_at}} && false}
+    $v{field: Joined server && {target.joined_at|{user.joined_at}} && false}
+    $v{color: 6A8FB3}
+    ```
+
+    尝试 `-profile @member` 和 `-profile`.
+  </Accordion>
+
+  <Accordion title="使用自定义数据计算使用情况">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    You have used this command **{db.get:visits:{user.id}}** times.
+    ```
+
+    独立突变更新值而不打印原始突变
+    结果。检查它与 `-cc data get visits <user-id>`.
+  </Accordion>
+
+  <Accordion title="冷却奖励">
+    ```text
+    -cc set treat --
+    {cooldown:24h}
+    {range:reward:50-150}
+    {econ:add user && reward && Custom daily treat}
+    You received **{reward}** coins.
+    ```
+
+    经济行为受到保护。限制命令并使用安全测试
+    公开之前的金额。
+  </Accordion>
+
+  <Accordion title="员工警告工作流程">
+    ```text
+    -cc set staffwarn <target> <reason...> --
+    {mod:warn target && {reason}}
+    Warned {target.mention}: **{reason}**
+    ```
+
+    ```text
+    -cc requireperm staffwarn ModerateMembers
+    -cc allow staffwarn role @Staff
+    -cc allow staffwarn channel #staff-commands
+    ```
+
+    Rumi 检查运行者、机器人权限、目标和角色层次结构
+    执行。
+  </Accordion>
+
+  <Accordion title="两页服务器指南">
+    ```text
+    -cc set guide --
+    $v{embed}$v{title: Getting started}$v{description: Read #rules and choose your roles.}
+    $v{page}
+    $v{embed}$v{title: Need help?}$v{description: Ask in #support.}
+    ```
+  </Accordion>
+
+  <Accordion title="对员工表现出不同的反应">
+    ```text
+    -cc set panel --
+    {if:user has permission ManageMessages}
+    Staff controls are available in #staff-commands.
+    {else}
+    Ask a staff member if you need help.
+    {endif}
+    ```
+
+    这会检查会员的实时状态 Discord 每次执行命令时都授予权限
+    运行。它不授予该许可。
+  </Accordion>
+
+  <Accordion title="每用户访问里程碑">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    {if:{db.get:visits:{user.id}} >= 10}
+    Welcome back {user.mention}. You have visited at least ten times.
+    {else}
+    Welcome {user.mention}. Visit number: {db.get:visits:{user.id}}.
+    {endif}
+    ```
+
+    命名空间是 `visits`;每个 Discord 用户 ID 是一个单独的密钥。
+  </Accordion>
+
+  <Accordion title="在另一个频道回复">
+    ```text
+    -cc set suggestion <text...> --
+    {respond:#suggestions}
+    $v{embed}
+    $v{author: {user.display_name} && {user.avatar}}
+    $v{description: {text}}
+    $v{footer: Submitted from {channel.name}}
+    ```
+
+    将命令限制在应接受提交的渠道。
+    Rumi 必须能够在目标频道中查看和发送嵌入内容。
+  </Accordion>
+
+  <Accordion title="反应并删除触发消息">
+    ```text
+    -cc set submit <text...> --
+    {react:✅}
+    {delete}
+    Submission received: {text}
+    ```
+
+    `{delete}` 删除成员的触发消息 Rumi 有**管理
+    消息**。在触发器消失之前添加反应 Discord
+    允许它。
+  </Accordion>
+</AccordionGroup>

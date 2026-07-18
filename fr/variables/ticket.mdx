@@ -1,0 +1,33 @@
+---
+title: "Variables du ticket"
+description: "20 variables de ticket prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;ticket.channel&#125;</code> | Mention de chaîne ou valeur de chaîne. Source : billet. | <code>Exemple de canal de ticket</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.channel_id&#125;</code> | Discord ID de canal. Source : billet. | <code>Exemple d'identifiant de canal de ticket</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.claimed_by&#125;</code> | Réclamé par pour un billet. | <code>Exemple de ticket réclamé par</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.claimed_by_id&#125;</code> | Réclamé par pièce d'identité pour le billet. | <code>Exemple de ticket réclamé par identifiant</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.claimed_by_mention&#125;</code> | Réclamé par mention pour le billet. | <code>Exemple de billet réclamé par mention</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.closed_at&#125;</code> | Fermé à pour billet. | <code>Exemple de ticket fermé à</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.closed_at_timestamp&#125;</code> | Horodatage Unix pour fermé à. | <code>1781460000</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.closed_by&#125;</code> | Fermé pour billet. | <code>Exemple de ticket clôturé par</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.closed_by_id&#125;</code> | Fermé par identifiant pour le billet. | <code>Exemple de ticket clôturé par identifiant</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.closed_by_mention&#125;</code> | Fermé par mention pour le billet. | <code>Exemple de ticket clôturé par mention</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.created_at&#125;</code> | Discord-heure de création formatée. Source : billet. | <code>&lt;t:1781460000:F&gt;</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.created_at_timestamp&#125;</code> | Horodatage Unix pour l’heure de création. Source : billet. | <code>&lt;t:1781460000:F&gt;</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.id&#125;</code> | Discord IDENTIFIANT. Source : billet. | <code>123456789012345678</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.number&#125;</code> | Numéro du ticket. | <code>Exemple de numéro de billet</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.reason&#125;</code> | Texte de motif. Source : billet. | <code>Aucune raison fournie.</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.status&#125;</code> | Statut actuel. Source : billet. | <code>Exemple de statut de ticket</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.type&#125;</code> | Nom du type ou de la catégorie. Source : billet. | <code>Exemple de type de billet</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.user&#125;</code> | Utilisateur pour le ticket. | <code>Exemple d'utilisateur de ticket</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.user_id&#125;</code> | ID utilisateur pour le ticket. | <code>Exemple d'identifiant d'utilisateur de ticket</code> | Panneaux de tickets, journaux de tickets, messages de tickets |
+| <code>&#123;ticket.user_mention&#125;</code> | Mention de l'utilisateur pour le ticket. | <code>Exemple de mention d'un utilisateur de ticket</code> | Panneaux de tickets, journaux de tickets, messages de tickets |

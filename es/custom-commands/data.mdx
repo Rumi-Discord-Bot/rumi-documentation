@@ -1,0 +1,63 @@
+---
+title: "Datos almacenados"
+description: "Almacene y reutilice datos del servidor para flujos de trabajo de comandos personalizados."
+icon: "database"
+---
+
+Los datos de comando personalizados están organizados por un `namespace` y `key`. Los espacios de nombres se mantienen
+los flujos de trabajo no relacionados se separan (por ejemplo, `cases:latest` y `events:count`.
+
+## Listar datos
+
+```text
+-cc data list
+-cc data list cases
+```
+
+## Leer y escribir un valor
+
+```text
+-cc data get cases latest
+-cc data set cases latest "Reviewed by staff"
+```
+
+## Incrementar un número
+
+El monto por defecto es `1` cuando se omite. Proporcionarlo explícitamente es más claro:
+
+```text
+-cc data inc cases next 1
+```
+
+`increment` es un alias para `inc`.
+
+## Eliminar un valor
+
+```text
+-cc data delete cases latest
+```
+
+`del` y `remove` son alias para los datos `delete` operación.
+
+## Leer datos en una respuesta
+
+Las plantillas de comandos personalizadas admiten lecturas como:
+
+```text
+{db.get:cases:latest}
+{db.exists:cases:latest}
+```
+
+También pueden incrementar un valor de la respuesta:
+
+```text
+{db.inc:cases:next:1}
+```
+
+Coloque una instrucción de incremento en su propia línea cuando desee la actualización sin
+mostrando su resultado crudo. Correr `-variables customdb` para la referencia de plantilla actual.
+
+<Warning>
+Eliminar un comando personalizado no implica que todos los datos utilizados por su flujo de trabajo sean
+eliminado. Elimine explícitamente las entradas que ya no sean necesarias.
+</Warning>

@@ -1,0 +1,145 @@
+---
+title: "Herramientas personales"
+description: "Encuentre menciones recientes, traduzca mensajes, guarde favoritos y administre una lista de tareas pendientes."
+icon: "toolbox"
+---
+
+Estos comandos almacenan o muestran información para el miembro que los ejecuta. Ellos
+no cree una lista de tareas de servidor compartida ni exponga los marcadores guardados de un miembro
+a otro miembro.
+
+## Menciones de las últimas 24 horas
+
+```text
+-mentions
+```
+
+Rumi muestra menciones directas y respuestas dirigidas a usted en el servidor actual.
+Cada entrada incluye el contenido del mensaje capturado y el contexto de respuesta cuando
+disponible. Si un mensaje capturado se elimina posteriormente, la instantánea guardada aún se puede
+aparecerá hasta que quede fuera de la ventana de 24 horas.
+
+Se ignoran los autopings. El comando solo muestra actividad. Rumi observado mientras
+tuvo acceso al canal; no puede recuperar mensajes más antiguos anteriores a la
+El rastreador los vio.
+
+## Traducir texto o una respuesta
+
+```text
+-translate es hello
+-translate from en to ja hello
+```
+
+Para traducir un mensaje sin copiarlo, responda a ese mensaje y proporcione
+sólo el idioma de destino:
+
+```text
+-translate fr
+```
+
+El panel de resultados permite al autor del comando cambiar el idioma de destino, intercambiar el
+dirección de traducción o cierre los controles. Ver los códigos de idioma disponibles
+con:
+
+```text
+-translate languages
+```
+
+## Herramientas monetarias
+
+Convierta una cantidad por código de moneda o nombre de moneda admitida:
+
+```text
+-currency convert 25 USD to EUR
+-currency convert 5000 JPY to KES
+```
+
+El resto del comando es útil cuando aún no conoces el código exacto:
+
+| Dominio | Objetivo |
+| --- | --- |
+| `currency rates <base> [page]` | Busque tarifas utilizando una moneda como base. |
+| `currency list [page]` | Explore las monedas admitidas. |
+| `currency search <query>` | Encuentra un código por parte de su código o nombre. |
+| `currency info <code\|name>` | Inspeccione una moneda admitida. |
+| `currency popular [base]` | Muestra las conversiones más utilizadas desde una base. |
+| `currency compare <amount> <from> <to1> <to2> ...` | Compare la misma cantidad en varios objetivos. |
+| `currency inverse <amount> <from> to <to>` | Muestre la conversión y su relación inversa. |
+| `currency history <YYYY-MM-DD> <amount> <from> to <to>` | Convierta usando la tasa de una fecha histórica. |
+| `currency symbols` | Mostrar símbolos de moneda reconocidos. |
+
+Ejemplos:
+
+```text
+-currency search shilling
+-currency info KES
+-currency rates GBP 2
+-currency compare 100 USD EUR GBP KES JPY
+-currency history 2025-01-15 100 USD to EUR
+```
+
+### Calificar suscripciones
+
+Guarde un par de divisas para seguirlo más tarde:
+
+```text
+-currency subscribe USD KES
+-currency subscriptions
+-currency unsubscribe USD KES
+```
+
+Las tarifas provienen de RumiEl proveedor de datos de moneda configurado. Son útiles para
+referencia y comparaciones, no como una cotización de liquidación garantizada de un banco o
+servicio de pago.
+
+## Marcadores
+
+Guarde un enlace con una nota opcional:
+
+```text
+-bookmark add https://example.com Useful reference
+```
+
+O responder a un Discord mensaje y ejecutar:
+
+```text
+-bookmark add Follow up later
+```
+
+Explorar, buscar, editar o eliminar elementos guardados:
+
+```text
+-bookmark list
+-bookmark list reference
+-bookmark edit bm-1234 Better note
+-bookmark remove bm-1234
+```
+
+Rumi devuelve una ID de marcador amigable cuando se guarda un elemento. Utilice esa identificación en lugar
+que su posición en la lista al editarlo o eliminarlo.
+
+## Listas de tareas pendientes
+
+```text
+-todo add Finish the event schedule
+-todo list
+-todo view todo-1234
+-todo complete todo-1234
+-todo reopen todo-1234
+-todo edit todo-1234 Finish the event schedule tonight
+-todo remove todo-1234
+```
+
+Los elementos completados están ocultos de la lista normal. Inclúyelos con:
+
+```text
+-todo list --done
+```
+
+`-todo clear` elimina toda la lista personal de tareas pendientes, así que úsala sólo cuando no
+ya no necesita elementos abiertos o completados.
+
+<Tip>
+Los ID de marcadores y tareas pendientes están diseñados para permanecer estables incluso al buscar o paginar
+cambia la posición de un elemento en la lista mostrada.
+</Tip>

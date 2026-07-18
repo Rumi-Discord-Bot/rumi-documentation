@@ -1,0 +1,24 @@
+---
+title: "Inviter des variables"
+description: "11 variables d'invitation prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;invite.channel&#125;</code> | Mention de chaîne ou valeur de chaîne. Source : inviter. | <code>Exemple de canal d'invitation</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.channel_id&#125;</code> | Discord ID de canal. Source : inviter. | <code>Exemple d'identifiant de canal d'invitation</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.code&#125;</code> | Code d'invitation. | <code>Exemple de code d'invitation</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.created_at&#125;</code> | Discord-heure de création formatée. Source : inviter. | <code>&lt;t:1781460000:F&gt;</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.created_at_timestamp&#125;</code> | Horodatage Unix pour l’heure de création. Source : inviter. | <code>&lt;t:1781460000:F&gt;</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.inviter&#125;</code> | Invitateur pour invitation. | <code>Exemple d'inviteur d'invitation</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.inviter_id&#125;</code> | Identifiant de l'invité pour l'invitation. | <code>Exemple d'identifiant d'invitation</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.inviter_mention&#125;</code> | Mention de l’invité pour l’invitation. | <code>Exemple de mention d'invitation</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.max_uses&#125;</code> | Utilisations maximales pour l'invitation. | <code>Exemple d'utilisation maximale d'invitation</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.url&#125;</code> | URL directe. Source : inviter. | <code>https://discord.com/channels/123/456/789</code> | Inviter des messages de suivi et des journaux |
+| <code>&#123;invite.uses&#125;</code> | Utilise pour inviter. | <code>Exemples d'utilisation des invitations</code> | Inviter des messages de suivi et des journaux |

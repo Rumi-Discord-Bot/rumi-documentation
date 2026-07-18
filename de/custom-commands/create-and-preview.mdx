@@ -1,0 +1,59 @@
+---
+title: "Erstellen und Vorschau anzeigen"
+description: "Erstellen, prüfen, testen, aktualisieren und entfernen Sie einen benutzerdefinierten Befehl."
+icon: "flask"
+---
+
+## Erstellen Sie einen Befehl
+
+Ort `--`, `=>`, oder `->` zwischen der Befehlsdefinition und ihrer Antwort.
+
+```text
+-cc set welcome -- Welcome {user.mention} to {guild.name}
+```
+
+Benutzerdefinierte Befehlsnamen verwenden Kleinbuchstaben, Zahlen, Unterstriche oder Bindestriche
+und sind auf 32 Zeichen begrenzt. Ein Name kann einen bestehenden nicht ersetzen Rumi
+Befehl oder Alias.
+
+## Argumente hinzufügen
+
+Geben Sie die Argumentspezifikationen nach dem Namen und vor dem Trennzeichen an:
+
+```text
+-cc set say <text...> -- {text}
+-cc set link [link] -- [Open the link]({link|https://rumi.rocks})
+```
+
+- `<name>` ist erforderlich.
+- `[name]` ist optional.
+- Hinzufügen `...` um die restlichen Wörter in einem Argument zusammenzufassen.
+
+Erforderliche Argumente stoppen den Befehl und identifizieren, was fehlt. Optional
+Argumente werden in einen leeren Wert aufgelöst. Verwenden Sie daher einen Fallback, wenn dies bei einer leeren Ausgabe der Fall wäre
+peinlich aussehen: `{link|https://rumi.rocks}`.
+
+## Vorschau vor der Verwendung
+
+Vorschau führt den gespeicherten Befehl mit Beispielargumenten aus:
+
+```text
+-cc preview say This is a test
+-cc preview link https://example.com
+```
+
+## Überprüfen, aktualisieren oder entfernen
+
+```text
+-cc show welcome
+-cc set welcome -- Hello {user.mention}
+-cc remove welcome
+```
+
+Läuft `set` erneut mit demselben Namen aktualisiert den vorhandenen benutzerdefinierten Befehl.
+
+<Note>
+Der `--` Das Token ist ein Trennzeichen und nicht Teil der gespeicherten Antwort. Sehen
+[Syntax und Trennzeichen](./syntax-and-separators) dafür, warum es so ist
+benötigt wird und wie es sich in Bezug auf Argumente und Antworttext verhält.
+</Note>

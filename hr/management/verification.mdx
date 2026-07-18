@@ -1,0 +1,86 @@
+---
+title: "Provjera člana"
+description: "Postavite tekstualnu ili captcha provjeru, ponovno pošaljite ploču i prilagodite korisničko sučelje za članove."
+icon: "user-check"
+---
+
+Rumi može postaviti nove članove iza tijeka provjere tekstualne ključne riječi ili captcha.
+Sustav pohranjuje svoju konfiguraciju na poslužitelj i može ponovno kreirati svoj panel
+kada je potrebno.
+
+## Prije postavljanja
+
+Osoba koja konfigurira provjeru treba **Upravljanje poslužiteljem** i **Upravljanje
+Uloge**. Rumi potrebe:
+
+- Upravljanje ulogama
+- Upravljanje kanalima
+- Šaljite poruke
+- Upravljanje porukama
+
+Rumiuloga mora biti iznad uloge kojom treba upravljati tok provjere.
+
+## Provjera teksta
+
+Odaberite kanal i članovi moraju unijeti ključnu riječ:
+
+```text
+-verification setup text #verify agree
+```
+
+Neka ključna riječ bude kratka i nedvosmislena. Kanal za provjeru trebao bi biti
+vidljivi neprovjerenim članovima dok normalni kanali zajednice ostaju kontrolirani
+po vašem Discord dopuštenja uloga.
+
+## Captcha provjera
+
+```text
+-verification setup captcha #verify
+```
+
+Captcha način rada traži od članova da dovrše generirani izazov umjesto da tipkaju
+zajednička ključna riječ.
+
+## Provjerite ili vratite ploču
+
+```text
+-verification status
+-verification panel
+```
+
+`status` prikazuje spremljeni način rada i konfiguraciju. `panel` šalje konfigurirano
+ponovno kontrolnu ploču, što je korisno ako je izvorna poruka izbrisana.
+
+## Prilagodite sučelje
+
+Naredba za prilagodbu prihvaća ključ i vrijednost:
+
+```text
+-verification customize panel.title Welcome
+-verification customize panel.text Type `{keyword}` to continue.
+-verification customize button.verify.style success
+-verification customize view
+```
+
+Koristiti `verification customize view` prije uređivanja kako biste mogli vidjeti tipke
+pokrenuti bot trenutno podržava. Poništite prilagodbu kada se želite vratiti
+Rumizadane postavke:
+
+```text
+-verification customize reset
+```
+
+## Onemogući provjeru
+
+```text
+-verification disable
+```
+
+Onemogućivanjem se zaustavlja sustav provjere. Ne mijenja se automatski redizajn
+tvoje Discord kanal prepisuje, pa pregledaj koje neprovjerene i provjerene uloge
+mogu vidjeti poslije.
+
+<Tip>
+Testirajte s računom koji nije administrator. Administratori zaobilaze mnoge Discord
+ograničenja kanala i ne predstavljaju ono što će novi član doživjeti.
+</Tip>

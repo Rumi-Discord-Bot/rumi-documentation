@@ -1,0 +1,63 @@
+---
+title: "存储数据"
+description: "存储和重用自定义命令工作流程的服务器数据。"
+icon: "database"
+---
+
+自定义命令数据由 `namespace` 和 `key`。命名空间保留
+不相关的工作流程分开——例如， `cases:latest` 和 `events:count`.
+
+## 列出数据
+
+```text
+-cc data list
+-cc data list cases
+```
+
+## 读取和写入一个值
+
+```text
+-cc data get cases latest
+-cc data set cases latest "Reviewed by staff"
+```
+
+## 增加一个数字
+
+金额默认为 `1` 当省略时。明确提供它会更清楚：
+
+```text
+-cc data inc cases next 1
+```
+
+`increment` 是一个别名 `inc`.
+
+## 删除一个值
+
+```text
+-cc data delete cases latest
+```
+
+`del` 和 `remove` 是数据的别名 `delete` 手术。
+
+## 读取响应中的数据
+
+自定义命令模板支持读取，例如：
+
+```text
+{db.get:cases:latest}
+{db.exists:cases:latest}
+```
+
+他们还可以从响应中增加一个值：
+
+```text
+{db.inc:cases:next:1}
+```
+
+当您希望不进行更新时，请将增量指令放在其自己的行上
+显示其原始结果。跑步 `-variables customdb` 获取当前模板参考。
+
+<Warning>
+删除自定义命令并不意味着其工作流程使用的所有数据都被删除
+已删除。明确删除不再需要的条目。
+</Warning>

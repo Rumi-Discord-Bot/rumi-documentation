@@ -1,0 +1,20 @@
+---
+title: "Nachrichtenvariablen"
+description: "7 von Rumi unterstützte Nachrichtenvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;message.author&#125;</code> | Autor der Nachricht. | <code>Beispiel für den Autor einer Nachricht</code> | Benutzerdefinierte Befehle, Autoresponder, Einbettungen |
+| <code>&#123;message.author.id&#125;</code> | Discord AUSWEIS. Quelle: Autor der Nachricht. | <code>123456789012345678</code> | Benutzerdefinierte Befehle, Autoresponder, Einbettungen |
+| <code>&#123;message.author.mention&#125;</code> | Discord Text erwähnen. Quelle: Autor der Nachricht. | <code>&lt;@123456789012345678&gt;</code> | Benutzerdefinierte Befehle, Autoresponder, Einbettungen |
+| <code>&#123;message.content&#125;</code> | Der auslösende Nachrichteninhalt. | <code>-warn @user spam</code> | Benutzerdefinierte Befehle, Autoresponder, Einbettungen |
+| <code>&#123;message.created_at&#125;</code> | Discord-formatierte Erstellungszeit. Quelle: Nachricht. | <code>&lt;t:1781460000:F&gt;</code> | Benutzerdefinierte Befehle, Autoresponder, Einbettungen |
+| <code>&#123;message.id&#125;</code> | Discord ID der auslösenden Nachricht. | <code>123456789012345678</code> | Benutzerdefinierte Befehle, Autoresponder, Einbettungen |
+| <code>&#123;message.url&#125;</code> | Ein direkter Link zur auslösenden Nachricht. | <code>https://discord.com/channels/123/456/789</code> | Benutzerdefinierte Befehle, Autoresponder, Einbettungen |

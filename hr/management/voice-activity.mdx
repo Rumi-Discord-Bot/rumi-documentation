@@ -1,0 +1,50 @@
+---
+title: "Glasovna aktivnost"
+description: "Provjerite vrijeme praćenja glasa za poslužitelj, članove, kanale i promjenjiva razdoblja."
+icon: "waveform"
+---
+
+Rumi snima glasovne sesije koje promatra i može ih sažeti za poslužitelj
+menadžeri. Izvješća koriste praćeno vrijeme, a ne Discorduvidi u poslužitelj korisnika.
+
+## Ukupno poslužitelja
+
+```text
+-voicecount server
+-voicecount daily
+-voicecount weekly
+-voicecount monthly
+```
+
+Prikaz poslužitelja uključuje ukupne vrijednosti za cijeli život, broj sesija, nedavne tekuće ukupne vrijednosti,
+i zadnja praćena glasovna aktivnost. Dnevni, tjedni i mjesečni pregledi pokrivaju
+tekući dan, 7 dana, odnosno 30 dana.
+
+## Članovi i kanali
+
+```text
+-voicecount user @member
+-voicecount channel #General
+-voicecount leaderboard
+-voicecount active
+```
+
+`active` pokazuje sesije Rumi trenutno smatra aktivnim. `leaderboard` rangira
+ukupni praćeni članovi dostupni u pohrani analitike poslužitelja.
+
+## Poništi praćene ukupne vrijednosti
+
+```text
+-voicecount reset user @member
+-voicecount reset channel #General
+-voicecount reset server
+```
+
+Resetiranje je destruktivno. Odaberite najužu metu koja rješava problem.
+Ponovno postavljanje poslužitelja briše pohranjenu glasovnu analitiku koju koriste ova izvješća.
+
+<Info>
+Glasovna aktivnost počinje kada Rumi promatra sesiju. Vrijeme prije praćenja
+bio trčanje, razdoblja kada Rumi bio nedostupan ili nedostupan glasovni kanali
+kasnije se ne može rekonstruirati.
+</Info>

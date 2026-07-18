@@ -1,0 +1,136 @@
+---
+title: "Veelvoorkomende problemen"
+description: "Los algemene commando-, toestemmings-, taal-, management- en muziekproblemen op."
+icon: "wrench"
+---
+
+## Rumi antwoordt niet
+
+1. Bevestig Rumi staat online.
+2. Bevestig dat hij het kanaal kan bekijken en berichten kan verzenden.
+3. Controleer het voorvoegsel en de spelling van de opdracht.
+4. Probeer het `/help` of `-help`.
+5. Controleer of de opdracht beperkt is tot een server of een direct bericht.
+
+## Er ontbreekt een slash-opdracht
+
+Discord Het kan enige tijd duren om globaal geregistreerde opdrachten te vernieuwen. Opnieuw opstarten Discord,
+controleer de toestemming voor de applicatieopdracht van de bot en probeer het voorvoegselformulier.
+
+## De taal is niet veranderd
+
+Loop `-language` om de effectieve taal en de bron ervan te bekijken. Stel vervolgens de
+beoogde reikwijdte expliciet:
+
+```text
+-language user de
+-language server de
+```
+
+Persoonlijke taal heeft voorrang op servertaal. Serverbrede veranderingen
+beheerderstoestemming vereist.
+
+## Rumi verliet de server
+
+Rumi laat servers 30 dagen zonder geregistreerde activiteit achter om bronnen te behouden
+en servicestabiliteit. Je kunt uitnodigen Rumi op elk moment opnieuw. Zodra leden gebruiken
+de server en Rumi activiteit registreert, begint het normale inactiviteitsvenster opnieuw.
+
+## Een beheeropdracht wordt geweigerd
+
+Loop `-help <command>` en controleer zowel de leden- als botvereisten. Voor rol
+of kanaalwijzigingen, Discord's rollenhiërarchie is nog steeds van toepassing. Rumi kan niet beheren
+een rol op of boven de hoogste rol.
+
+## Ik kan geen ban of kick vinden
+
+Rumi biedt opzettelijk geen algemeen doel `ban` of `kick` commando's door
+standaard. Hierdoor blijven de basisvereisten voor toestemming kleiner. Server
+managers kunnen zorgvuldig beperkte workflows bouwen met de
+[aangepast commandosysteem](../custom-commands/overview).
+
+## Muziek start niet
+
+Bevestig dat u zich in een spraakkanaal bevindt, Rumi kan verbinden en spreken, en de muziek
+dienst beschikbaar is.
+
+Als Rumi meedoet maar niet speelt, probeer dan een directe tracknaam of URL en inspecteer vervolgens
+de wachtrij. Een afspeellijst of platformpagina kan mislukken, zelfs als direct afspelen werkt
+omdat de externe provider niet beschikbaar is.
+
+## Spotify besturingselementen vragen mij om opnieuw te koppelen
+
+De functies van de speler, het apparaat, de afspeellijst en de nummers die ik leuk vind, gebruiken verschillende functies Spotify
+machtigingen. Loop `-spotify link` opnieuw en keur de bijgewerkte autorisatie goed.
+Bestaande links die zijn gemaakt voordat deze functies zijn toegevoegd, krijgen geen nieuwe toegang
+automatisch.
+
+SpotifyDe bediening van persoonlijke apparaten vereist een actieve Spotify apparaat en Spotify
+Premie. Open Spotify op het gewenste apparaat, start u het afspelen eenmaal en voert u vervolgens het volgende uit:
+
+```text
+-spotify devices
+-spotify player status
+```
+
+## Er is geen niveaurol toegewezen
+
+Controleer alle drie de voorwaarden:
+
+1. Rumi heeft **Rollen beheren**.
+2. Rumi's hoogste rol ligt boven de beloningsrol.
+3. De mijlpaal verschijnt in `-levels settings`.
+
+Nadat u de instellingen hebt gecorrigeerd, voert u het programma uit `-levels sync` om beloningsrollen met elkaar te verzoenen
+de huidige configuratie.
+
+## Uitgenodigde deelnames zijn onbekend
+
+Vernieuwen Rumi's huidige uitnodigingsmomentopname:
+
+```text
+-invites refresh
+```
+
+Rumi kan geen attributie garanderen wanneer een uitnodiging werd verwijderd, er was een vanity-link
+gebruikt, uitnodigingstoegang ontbreekt, of Discord heeft daar niet genoeg staat voor gegeven
+identificeren welke teller is gewijzigd. Het vernieuwen van de momentopname helpt toekomstige joins, maar
+reconstrueert geen oude.
+
+## Mediaconversie mislukt
+
+Probeer een kleinere of kortere invoer en gebruik een directe bijlage of bestands-URL. Voor
+videoconversie, verminderen `--duration`; voor GIF-uitvoer, verkort de duur, frame
+tarief of breedte. Platformdownloads zijn afhankelijk van de mediadienst en kunnen zelfs mislukken
+wanneer bijgevoegde bestanden werken.
+
+## Er wordt een aangepaste opdracht afgedrukt `N/A`
+
+De variabele bestaat, maar de bronwaarde ervan was niet aanwezig in die run. Een doelwit
+variabele heeft bijvoorbeeld een oplosbaar doel nodig. Een terugval toevoegen:
+
+```text
+{target.display_name|No member selected}
+```
+
+Gebruik `-cc show <name>` om het opgeslagen script en de `-cc preview te inspecteren <name>
+[voorbeeldargumenten]` om het veilig te reproduceren. De [testgids](../custom-commands/testing-and-debugging)
+loopt door elke laag.
+
+## Een aangepaste actie wordt geweigerd
+
+Beschermde acties controleren het configurerende lid, het lid dat de aangepaste actie uitvoert
+commando, Rumi's machtigingen, het doel, de rollenhiërarchie en die van de opdracht
+beperkingen. Beoordeling:
+
+```text
+-cc show <name>
+-cc restrictions <name>
+-permissions @member
+```
+
+Verwijder niet elke beperking alleen maar om de actie te laten slagen. Corrigeer het specifieke
+rol-, kanaal-, machtigings- of hiërarchieprobleem.
+
+Als het probleem zich blijft voordoen, sluit u zich aan bij de
+[ondersteuningsserver](https://discord.gg/NYs2jF9MCc).

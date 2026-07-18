@@ -1,0 +1,53 @@
+---
+title: "Changer la langue de Rumi"
+description: "Choisissez une langue personnelle ou définissez la langue d'un serveur Discord."
+icon: "languages"
+---
+
+Rumi prend en charge :
+
+- Anglais (`en`)
+- Allemand (`de`)
+- Français (`fr`)
+- Néerlandais (`nl`)
+- Japonais (`ja`)
+- Chinois simplifié (`zh-CN`)
+
+Le site Web de documentation propose également des pages d'entrée en anglais, néerlandais, allemand,
+Espagnol, japonais, chinois simplifié, croate et français. espagnol et
+La disponibilité de la documentation croate ne signifie pas que les réponses des robots sont
+disponible dans ces langues pour le moment.
+
+## Afficher la langue en vigueur
+
+```text
+-language
+```
+
+La réponse indique la langue actuelle et l'origine de la préférence.
+
+## Définissez votre langue personnelle
+
+```text
+-language user de
+```
+
+Les paramètres de langue personnels s'appliquent à vous. Dans les messages directs, Rumi stocke ceci
+préférence sur votre fiche utilisateur.
+
+## Définir la langue du serveur
+
+```text
+-language server de
+```
+
+La modification de la langue à l'échelle du serveur nécessite l'autorisation de l'administrateur. Le
+la préférence est enregistrée pour ce serveur.
+
+<Info>
+Votre langue personnelle est prioritaire sur la langue du serveur. Si vous ne l'avez pas
+choisi une langue personnelle, Rumi utilise le paramètre du serveur, puis Discordla région,
+puis l'anglais.
+</Info>
+
+La confirmation s'affiche immédiatement dans la langue nouvellement sélectionnée.

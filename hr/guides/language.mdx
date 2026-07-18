@@ -1,0 +1,53 @@
+---
+title: "Promijenite Rumijev jezik"
+description: "Odaberite osobni jezik ili postavite jezik za Discord poslužitelj."
+icon: "languages"
+---
+
+Rumi podržava:
+
+- engleski (`en`)
+- njemački (`de`)
+- francuski (`fr`)
+- nizozemski (`nl`)
+- japanski (`ja`)
+- Pojednostavljeni kineski (`zh-CN`)
+
+Web stranica s dokumentacijom također nudi ulazne stranice na engleskom, nizozemskom, njemačkom,
+Španjolski, japanski, pojednostavljeni kineski, hrvatski i francuski. španjolski i
+Dostupnost hrvatske dokumentacije ne znači da su i odgovori botova
+još uvijek dostupan na tim jezicima.
+
+## Pogledajte učinkovit jezik
+
+```text
+-language
+```
+
+Odgovor pokazuje trenutni jezik i odakle dolazi preferencija.
+
+## Postavite svoj osobni jezik
+
+```text
+-language user de
+```
+
+Na vas se odnose osobne jezične postavke. U izravnim porukama, Rumi pohranjuje ovo
+preferencije u vašem korisničkom zapisu.
+
+## Postavite jezik poslužitelja
+
+```text
+-language server de
+```
+
+Za promjenu jezika na cijelom poslužitelju potrebno je dopuštenje administratora. The
+postavka je spremljena za taj poslužitelj.
+
+<Info>
+Vaš osobni jezik ima prednost nad jezikom poslužitelja. Ako niste
+odabrali osobni jezik, Rumi tada koristi postavku poslužitelja Discordlokalitet,
+zatim engleski.
+</Info>
+
+Potvrda se odmah prikazuje na novoodabranom jeziku.

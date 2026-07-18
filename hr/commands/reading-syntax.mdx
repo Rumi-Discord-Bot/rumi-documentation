@@ -1,0 +1,112 @@
+---
+title: "Kako čitati sintaksu naredbe"
+description: "Razumijevanje potrebnih argumenata, izbornih vrijednosti, izbora, zastavica, ID-ova i citiranog teksta."
+icon: "code"
+---
+
+RumiUnosi pomoći koriste malu količinu notacije da pokažu što je naredba
+očekuje. Zagrade su upute; obično ih ne upisujete.
+
+## Obavezni i izborni argumenti
+
+`<angle brackets>` znači vrijednost je potrebna:
+
+```text
+role add <member> <role>
+```
+
+Ispravno izvođenje bi bilo:
+
+```text
+-role add @Moon Member
+```
+
+`[square brackets]` znači da vrijednost nije obavezna:
+
+```text
+level [user]
+```
+
+Oba `-level` i `-level @Moon` vrijede.
+
+## Izbori
+
+Okomita traka znači "odaberi jedan":
+
+```text
+deposit <amount|all>
+```
+
+Koristite bilo koji `-deposit 500` ili `-deposit all`. Nemojte upisivati ​​traku.
+
+## Tekst s razmacima
+
+Neke naredbe tretiraju ostatak poruke kao jednu vrijednost. Drugi imaju drugu
+argument nakon njega, tako da navodnici jasno razlikuju granicu:
+
+```text
+-giveaway start "Discord Nitro" 24h 1 #giveaways
+```
+
+Bez navodnika, `Discord` i `Nitro` mogli čitati kao zaseban položajni
+argumenti. Citiranje je posebno korisno za nagrade, imena, razloge i naslove.
+
+## Zastave
+
+Zastave počinju s `--` i promijeniti jedan dio naredbe bez mijenjanja njenog
+glavna radnja:
+
+```text
+-role create Event Host --color #c8d8f2
+-media caption --position=top --size=42 Welcome!
+-giveaway start "Nitro" 24h 1 --button
+```
+
+Ovisno o naredbi, zastavica se može napisati kao `--name value` ili
+`--name=value`. Slijedite primjer pomoći te naredbe kada oba oblika nisu
+navedeni.
+
+## Spominjanja, imena i ID-ovi
+
+Rumi često prihvaća a Discord spominjanje, neobrađeni ID ili ime koje se može razriješiti. Spominje se
+najmanje dvosmislen:
+
+```text
+-role info @Staff
+-channel rename #old-name new-name
+-inviter 123456789012345678
+```
+
+Kada dvije uloge ili kanala imaju isto ime, upotrijebite spominjanje ili ID.
+
+## Podnaredbe
+
+Prva riječ nakon naredbe često odabire radnju:
+
+```text
+-economy config
+-economy config currency petals
+-economy rob chance 35
+```
+
+Pročitajte ovo s lijeva na desno: `economy` otvara sustav, `rob` odabire svoje
+područje konfiguracije, i `chance` odabire postavku.
+
+## Zašto se koriste prilagođene naredbe `--`
+
+The `customcommand set` naredba mora odvojiti vlastiti argument naredbe
+definicija iz odgovora koji sprema:
+
+```text
+-cc set greet <member> -- Hello {target.mention}!
+```
+
+Sve prije samostalnog `--` definira prilagođenu naredbu. Sve
+nakon njega je odgovor ili skripta. To omogućuje da odgovor sadrži razmake,
+varijable, ugrađuje i više redaka bez Rumi zamjenjujući ih za više
+argumenti za postavljanje. Vidi [sintaksa i separatori](../custom-commands/syntax-and-separators)
+za puni format prilagođenih naredbi.
+
+<Info>
+Trčanje `-help <command>` kad god je primjer nejasan. Ako i dalje imate problema, možete pitati ugrađeni AI model pomoću `-rumi <question>`.
+</Info>

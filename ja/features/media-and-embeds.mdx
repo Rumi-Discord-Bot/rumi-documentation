@@ -1,0 +1,132 @@
+---
+title: "メディアと埋め込み"
+description: "画像やビデオを編集し、メディアをエクスポートし、再利用可能な Discord 埋め込みを構築します。"
+icon: "photo-film"
+---
+
+Rumiの media コマンドは、添付ファイル、直接 URL を受け入れます。
+アクション - 返信されたメッセージに添付されたメディア。埋め込みツールでコンパクトに
+スクリプトを Discord プレビュー、保存、再利用できる埋め込み。
+
+## メディア入力の選択
+
+最も曖昧な入力は、直接の添付ファイルまたは URL です。
+
+```text
+-media blur https://example.com/image.png 3
+-media bgremove https://example.com/photo.jpg
+```
+
+メディアを含むメッセージに返信し、コマンドを使用せずにコマンドを実行することもできます。
+URL。ソースが直接ファイルではなくプラットフォーム ページである場合、可用性
+かどうかによります Rumiのメディア サービスはそのプラットフォームをサポートしています。
+
+## 画像効果
+
+現在の画像アクションには次のものが含まれます。
+
+- `blur [amount]`
+- `brightness [amount]`
+- `contrast [amount]`
+- `deepfry`
+- `flip`
+- `glitch`
+- `grayscale`
+- `invert`
+- `jail-bars`
+- `pixelate [factor]`
+- `resize <width>x<height>`
+- `rotate [degrees]`
+- `vaporwave`
+- `wasted`
+
+例:
+
+```text
+-media pixelate 18
+-media resize 512x512
+-media rotate 180
+```
+
+## キャプション
+
+```text
+-media caption Welcome to the server
+-media caption --position=top --size=42 --color=#ffffff Welcome!
+```
+
+キャプション フラグには、位置、フォント ファミリー、テキストの色、背景色、および
+フォントサイズ。使用 `-help media caption` 現在のエイリアスと受け入れられたフォームについて。
+
+## GIF と MP4 の変換
+
+```text
+-media gif <url>
+-media mp4 <url> --start 10s --duration 30s
+-media togif <url> --start 5s --duration 6s --fps 12 --width 480
+```
+
+`media gif` サポートされているオリジナルの GIF またはメディア ファイルを取得します。 `media mp4`
+ダウンロード可能な MP4 を作成しますが、 `media togif` 短いGIFクリップを作成します。
+Rumi 入力、出力、期間、および処理制限を適用するため、大規模なソース
+より短いクリップまたはより小さい寸法が必要になる場合があります。
+
+## 背景の削除
+
+```text
+-media bgremove
+```
+
+画像を添付するか、画像の URL を含めるか、画像に返信します。 Rumi を返します
+設定された背景除去サービスが成功した場合は、透明 PNG が表示されます。
+
+## スクリプトを埋め込む
+
+プレビューから始めます。
+
+```text
+-embed preview {embed}$v{title: Rules}$v{description: Read the channels below.}$v{color: 6A8FB3}
+```
+
+`{embed}` 埋め込みスクリプトを開始します。それぞれ `$v{property: value}` プロパティを追加します。
+例えば：
+
+```text
+{embed}
+$v{title: Event night}
+$v{description: Join us at {timestamp}.}
+$v{field: Where && #events && true}
+$v{field: Host && {user.mention} && true}
+$v{thumbnail: {guild.icon}}
+$v{color: 6A8FB3}
+```
+
+3 つのフィールド部分は、名前、値、およびインラインにするかどうかです。
+
+## 埋め込みを保存して再利用する
+
+```text
+-embed save event <script>
+-embed list
+-embed load event
+-embed edit event <updated script>
+-embed delete event
+```
+
+スクリプトを現在のチャネルに直接送信するか、別のチャネルを指定します。
+
+```text
+-embed send {embed}$v{description: Hello!}
+-embed send #announcements {embed}$v{title: Update}$v{description: New event this weekend.}
+```
+
+使用 `-embed validate <script>` 構文のフィードバックのみが必要な場合。保存された埋め込み
+テンプレートとカスタム コマンドは同じ埋め込みスクリプトのアイデアを共有しているため、
+[埋め込みとコンポーネントのガイド](../custom-commands/embeds-and-components) 便利です
+両方にとって。
+
+<Warning>
+Rumi 作れない Discord を超える埋め込みを受け入れる Discordのフィールド、テキスト、または
+コンポーネントの制限。長いスクリプトを送信する前に検証してプレビューします。
+パブリックチャンネル。
+</Warning>

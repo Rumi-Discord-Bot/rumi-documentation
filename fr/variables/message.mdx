@@ -1,0 +1,20 @@
+---
+title: "Variables des messages"
+description: "7 variables de message prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;message.author&#125;</code> | Auteur du message. | <code>Exemple d'auteur de message</code> | Commandes personnalisées, répondeurs automatiques, intégrations |
+| <code>&#123;message.author.id&#125;</code> | Discord IDENTIFIANT. Source : auteur du message. | <code>123456789012345678</code> | Commandes personnalisées, répondeurs automatiques, intégrations |
+| <code>&#123;message.author.mention&#125;</code> | Discord mentionner le texte. Source : auteur du message. | <code>&lt;@123456789012345678&gt;</code> | Commandes personnalisées, répondeurs automatiques, intégrations |
+| <code>&#123;message.content&#125;</code> | Le contenu du message déclencheur. | <code>-warn @user spam</code> | Commandes personnalisées, répondeurs automatiques, intégrations |
+| <code>&#123;message.created_at&#125;</code> | Discord-heure de création formatée. Source : message. | <code>&lt;t:1781460000:F&gt;</code> | Commandes personnalisées, répondeurs automatiques, intégrations |
+| <code>&#123;message.id&#125;</code> | Discord ID du message déclencheur. | <code>123456789012345678</code> | Commandes personnalisées, répondeurs automatiques, intégrations |
+| <code>&#123;message.url&#125;</code> | Un lien direct vers le message déclencheur. | <code>https://discord.com/channels/123/456/789</code> | Commandes personnalisées, répondeurs automatiques, intégrations |

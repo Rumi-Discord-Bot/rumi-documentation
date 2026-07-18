@@ -1,0 +1,63 @@
+---
+title: "Gespeicherte Daten"
+description: "Speichern Sie Serverdaten und verwenden Sie sie für benutzerdefinierte Befehlsworkflows wieder."
+icon: "database"
+---
+
+Benutzerdefinierte Befehlsdaten werden von a organisiert `namespace` Und `key`. Namensräume bleiben erhalten
+Unabhängige Arbeitsabläufe werden getrennt, z. B. `cases:latest` Und `events:count`.
+
+## Daten auflisten
+
+```text
+-cc data list
+-cc data list cases
+```
+
+## Einen Wert lesen und schreiben
+
+```text
+-cc data get cases latest
+-cc data set cases latest "Reviewed by staff"
+```
+
+## Eine Zahl erhöhen
+
+Der Betrag ist standardmäßig auf `1` wenn weggelassen. Es ist klarer, es explizit anzugeben:
+
+```text
+-cc data inc cases next 1
+```
+
+`increment` ist ein Alias ​​für `inc`.
+
+## Einen Wert löschen
+
+```text
+-cc data delete cases latest
+```
+
+`del` Und `remove` sind Aliase für die Daten `delete` Betrieb.
+
+## Daten in einer Antwort lesen
+
+Benutzerdefinierte Befehlsvorlagen unterstützen Lesevorgänge wie:
+
+```text
+{db.get:cases:latest}
+{db.exists:cases:latest}
+```
+
+Sie können auch einen Wert aus der Antwort erhöhen:
+
+```text
+{db.inc:cases:next:1}
+```
+
+Platzieren Sie eine Inkrementanweisung in einer eigenen Zeile, wenn Sie die Aktualisierung ohne möchten
+zeigt sein rohes Ergebnis. Laufen `-variables customdb` für die aktuelle Vorlagenreferenz.
+
+<Warning>
+Das Löschen eines benutzerdefinierten Befehls bedeutet nicht, dass alle von seinem Workflow verwendeten Daten gelöscht werden
+gelöscht. Entfernen Sie explizit nicht mehr benötigte Einträge.
+</Warning>

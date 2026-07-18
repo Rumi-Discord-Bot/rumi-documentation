@@ -1,0 +1,22 @@
+---
+title: "Variables générales"
+description: "9 variables générales prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;len:value&#125;</code> | Renvoie le nombre de caractères. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;length:value&#125;</code> | Alias ​​de &#123;longueur:valeur&#125;. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;lower:value&#125;</code> | Convertissez la valeur résolue en minuscules. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;title:value&#125;</code> | Convertissez la valeur résolue en casse du titre. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;upper:value&#125;</code> | Convertissez la valeur résolue en majuscule. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;urlencode:value&#125;</code> | Encodez la valeur résolue à utiliser dans une URL. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;newline&#125;</code> | Insérez un vrai saut de ligne. | <code>\n</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;prefix&#125;</code> | Préfixe du serveur actuel. | <code>,</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;timestamp&#125;</code> | Le contexte d’horodatage. | <code>1781460000</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |

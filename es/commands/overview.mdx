@@ -1,0 +1,77 @@
+---
+title: "Catálogo de comandos"
+description: "Encuentre nombres de comandos, descripciones, alias y permisos precisos."
+icon: "list"
+---
+
+Rumiestá en-Discord El menú de ayuda es la fuente de verdad para los comandos disponibles.
+A usted:
+
+```text
+-help
+```
+
+Usar `-help <command>` para inspeccionar un comando específico. Por ejemplo:
+
+```text
+-help customcommand
+```
+
+Las entradas de ayuda pueden incluir:
+
+- Nombres de comandos y subcomandos
+- Descripciones y alias de prefijos.
+- Información de uso y argumentos.
+- Permisos de usuario y bot requeridos
+- Restricciones de solo servidor y NSFW
+- Soporte de comando de barra diagonal
+
+<Info>
+Este sitio explica los flujos de trabajo en profundidad. Si una guía y Rumientrada de ayuda actual
+difieren, siga la entrada de ayuda del bot.
+</Info>
+
+## Buscar eficazmente
+
+Explore el menú de ayuda por categoría o busque un comando por nombre. Áreas útiles
+Incluye administración, música, utilidades, economía, roles, canales y herramientas de servidor.
+
+<CardGroup cols={2}>
+  <Card title="Gestión" icon="sliders" href="../features/management">
+    Filtros, acceso del personal, automatización, roles, canales, verificación e invitaciones.
+  </Card>
+  <Card title="Sistemas comunitarios" icon="users" href="../features/levels">
+    Niveles, entornos económicos, tiendas y obsequios.
+  </Card>
+  <Card title="Comandos personalizados" icon="wand-magic-sparkles" href="../custom-commands/overview">
+    Argumentos, variables, incrustaciones, componentes, acciones, restricciones y datos.
+  </Card>
+  <Card title="Música" icon="music" href="../features/music">
+    Discord reproducción de voz, Spotify controles del dispositivo y Last.fm datos de escucha.
+  </Card>
+  <Card title="Medios y juegos" icon="photo-film" href="../features/media-and-embeds">
+    Herramientas de imagen y vídeo, incrustaciones, juegos interactivos y búsquedas de juegos.
+  </Card>
+  <Card title="Herramientas personales" icon="toolbox" href="../features/personal-tools">
+    Menciones, traducción, marcadores y listas de tareas pendientes.
+  </Card>
+</CardGroup>
+
+## Alias ​​de comando
+
+Algunos comandos tienen alias más cortos. Por ejemplo, `cc` abre `customcommand`,
+`rr` abre `reactionrole`, y `rank` abre `level`. Los alias ejecutan el mismo comando.
+y usar los mismos permisos y configuraciones guardadas.
+
+La entrada de ayuda muestra los alias admitidos. No asuma que cada palabra abreviada es
+un alias; si no aparece en la lista, utilice el nombre completo del comando.
+
+## Comandos de solo prefijo
+
+Rumi tiene más comandos de prefijo que comandos de barra diagonal. Esto es intencional mientras
+El catálogo de barras se está limpiando. Se debe utilizar un comando marcado **Sólo prefijo**.
+ejecutar con el prefijo del servidor incluso si aparecen comandos de barra con nombres similares en
+Discord.
+
+Consulte [cómo leer la sintaxis de comandos](./reading-syntax) para los valores requeridos,
+argumentos, opciones, indicadores, comillas y subcomandos opcionales.

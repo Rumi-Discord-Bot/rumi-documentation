@@ -1,0 +1,46 @@
+---
+title: "Variables gratuites"
+description: "33 variables gratuites prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;giveaway.bonus_rules&#125;</code> | Règles bonus pour les cadeaux. | <code>Exemples de règles de bonus</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.channel&#125;</code> | Mention de chaîne ou valeur de chaîne. Source : cadeau. | <code>Exemple de chaîne de cadeaux</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.channel_id&#125;</code> | Discord ID de canal. Source : cadeau. | <code>Exemple d'identifiant de chaîne cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.conditions&#125;</code> | Conditions de remise. | <code>Exemples de conditions de cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.created_at&#125;</code> | Discord-heure de création formatée. Source : cadeau. | <code>&lt;t:1781460000:F&gt;</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.created_at_timestamp&#125;</code> | Horodatage Unix pour l’heure de création. Source : cadeau. | <code>&lt;t:1781460000:F&gt;</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.description&#125;</code> | Texte descriptif. Source : cadeau. | <code>Exemple de description du cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.duration&#125;</code> | Texte de durée. Source : cadeau. | <code>Exemple de durée du cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.ends_at&#125;</code> | Se termine à pour un cadeau. | <code>L'exemple de cadeau se termine à</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.ends_at_timestamp&#125;</code> | L'horodatage Unix se termine à. | <code>1781460000</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.ends_relative&#125;</code> | Se termine par rapport à un cadeau. | <code>Exemple de cadeau se terminant par un relatif</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.entries_count&#125;</code> | Nombre d'entrées gratuites. Source : cadeau. | <code>128</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.entry_conditions&#125;</code> | Conditions d'entrée pour le cadeau. | <code>Exemples de conditions de participation au concours</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.entry_mode&#125;</code> | Mode d'entrée pour un cadeau. | <code>Exemple de mode de participation au cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.host&#125;</code> | Hôte cadeau. Source : cadeau. | <code>Exemple d'hôte de cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.host_id&#125;</code> | Identifiant d'hôte pour le cadeau. | <code>Exemple d'identifiant d'hôte de cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.host_mention&#125;</code> | Mentionnez l'hôte du cadeau. Source : cadeau. | <code>Exemple de mention d'hôte de cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.id&#125;</code> | Discord IDENTIFIANT. Source : cadeau. | <code>123456789012345678</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.message_id&#125;</code> | Discord identifiant du message. Source : cadeau. | <code>Exemple d'identifiant de message cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.message_url&#125;</code> | Direct Discord lien de message. Source : cadeau. | <code>Exemple d'URL de message cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.number&#125;</code> | Numéro à offrir. | <code>Exemple de numéro de cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.prize&#125;</code> | Prix ​​cadeau. Source : cadeau. | <code>Exemple de prix cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.public_id&#125;</code> | ID conviviale pour le public. Source : cadeau. | <code>Exemple d'identifiant public de cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.reaction_emoji&#125;</code> | Emoji de réaction pour un cadeau. | <code>Exemple d'emoji de réaction pour un cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.reroll_count&#125;</code> | Nombre de relances pour un cadeau. | <code>128</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.starts_at&#125;</code> | Commence à pour un cadeau. | <code>Un exemple de cadeau commence à</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.starts_at_timestamp&#125;</code> | Horodatage Unix pour le début à. | <code>1781460000</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.status&#125;</code> | Statut actuel. Source : cadeau. | <code>Exemple de statut de cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.title&#125;</code> | Afficher le titre. Source : cadeau. | <code>Exemple de titre de cadeau</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.winner_conditions&#125;</code> | Conditions gagnantes pour le cadeau. | <code>Exemples de conditions gagnantes du concours</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.winner_mentions&#125;</code> | Liste des mentions des gagnants. Source : cadeau. | <code>Exemples de mentions de gagnants de cadeaux</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.winners&#125;</code> | Liste des gagnants. Source : cadeau. | <code>Exemples de gagnants de cadeaux</code> | Messages cadeaux et modèles de résultats cadeaux |
+| <code>&#123;giveaway.winners_count&#125;</code> | Nombre de gagnants du concours. Source : cadeau. | <code>128</code> | Messages cadeaux et modèles de résultats cadeaux |

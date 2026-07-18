@@ -1,0 +1,29 @@
+---
+title: "Variables d'arguments"
+description: "16 variables d'arguments prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;arg&#125;</code> | Tout ce qui est tapé après la commande personnalisée ou le déclencheur du répondeur automatique correspondant. | <code>gâteau bleu avec des pépites</code> | Commandes personnalisées, répondeurs automatiques |
+| <code>&#123;arg.1&#125;</code> | Le premier argument après la commande ou le déclencheur. | <code>bleu</code> | Commandes personnalisées, répondeurs automatiques |
+| <code>&#123;arg.2+&#125;</code> | Argument 2 et tout ce qui suit. | <code>gâteau avec des pépites</code> | Commandes personnalisées, répondeurs automatiques |
+| <code>&#123;arg.count&#125;</code> | Nombre d'arguments de commande analysés. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;arg.raw&#125;</code> | Texte de l’argument de commande non modifié. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;args&#125;</code> | Tout le texte fourni après la commande. Alias ​​de &#123;argument&#125;. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;args.count&#125;</code> | Nombre d'arguments de commande analysés. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;args.raw&#125;</code> | Texte de l’argument de commande non modifié. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;arg.1+&#125;</code> | Argument 1 et tous les arguments suivants. Remplacez 1 par la position de départ. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;args.rest.1&#125;</code> | Argument 1 et tous les arguments suivants. Remplacez 1 par la position de départ. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;variable&#124;fallback text&#125;</code> | Renvoie le texte de secours lorsqu'une variable de contexte normale n'est pas disponible. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;name&#125;</code> | Valeur d'un déclaré &lt;nom&gt; ou [nom] argument de commande personnalisé. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;arg.name&#125;</code> | Valeur d'un argument de commande personnalisée nommé déclaré. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;arg1&#125;</code> | Alias ​​compact pour un argument numéroté. Remplacez 1 par la position. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;args.1&#125;</code> | Argument à une position numérotée. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;1&#125;</code> | Argument à une position numérotée. Remplacez 1 par n’importe quelle position positive. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |

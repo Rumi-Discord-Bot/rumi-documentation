@@ -1,0 +1,59 @@
+---
+title: "Créer et prévisualiser"
+description: "Créez, inspectez, testez, mettez à jour et supprimez une commande personnalisée."
+icon: "flask"
+---
+
+## Créer une commande
+
+Lieu `--`, `=>`, ou `->` entre la définition de la commande et sa réponse.
+
+```text
+-cc set welcome -- Welcome {user.mention} to {guild.name}
+```
+
+Les noms de commandes personnalisées utilisent des lettres minuscules, des chiffres, des traits de soulignement ou des traits d'union.
+et sont limités à 32 caractères. Un nom ne peut pas remplacer un nom existant Rumi
+commande ou alias.
+
+## Ajouter des arguments
+
+Mettez les spécifications de l'argument après le nom et avant le séparateur :
+
+```text
+-cc set say <text...> -- {text}
+-cc set link [link] -- [Open the link]({link|https://rumi.rocks})
+```
+
+- `<name>` est requis.
+- `[name]` est facultatif.
+- Ajouter `...` pour rassembler les mots restants en un seul argument.
+
+Les arguments requis arrêtent la commande et identifient ce qui manque. Facultatif
+les arguments se résolvent en une valeur vide, utilisez donc une solution de secours lorsqu'une sortie vide le ferait
+avoir l'air gêné : `{link|https://rumi.rocks}`.
+
+## Aperçu avant utilisation
+
+Preview exécute la commande enregistrée avec des exemples d'arguments :
+
+```text
+-cc preview say This is a test
+-cc preview link https://example.com
+```
+
+## Inspecter, mettre à jour ou supprimer
+
+```text
+-cc show welcome
+-cc set welcome -- Hello {user.mention}
+-cc remove welcome
+```
+
+En cours d'exécution `set` encore une fois avec le même nom met à jour la commande personnalisée existante.
+
+<Note>
+Le `--` le jeton est un séparateur et ne fait pas partie de la réponse enregistrée. Voir
+[Syntaxe et séparateurs](./syntax-and-separators) pourquoi c'est
+nécessaire et comment il se comporte autour des arguments et du texte de réponse.
+</Note>

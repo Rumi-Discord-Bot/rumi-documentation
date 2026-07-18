@@ -1,0 +1,55 @@
+---
+title: "Filteri"
+description: "Konfigurirajte filtre poslužitelja koji su trenutno dostupni u Rumiju."
+icon: "filter"
+---
+
+Rumi trenutno pruža filtre za izraze poslužitelja i uloge pojačivača. Trčanje
+`-help expressionsblock` ili `-help boosterrole` za najnoviju sintaksu i
+zahtjevi.
+
+## Blokiraj izraze
+
+The `expressionsblock` naredba može blokirati određene prilagođene emojije, Unicode emojije,
+naljepnice ili vanjski prilagođeni emojiji. Zahtijeva dopuštenje za upravljanje poslužiteljem,
+i Rumi treba dopuštenje za upravljanje porukama.
+
+```text
+-expressionsblock add <emoji-or-sticker>
+-expressionsblock remove <emoji-or-sticker>
+-expressionsblock list
+-expressionsblock clear
+-expressionsblock external <on-or-off>
+```
+
+<Tip>
+`emojiblock` i `blockexpressions` su aliasi za `expressionsblock`.
+</Tip>
+
+## Nazivi uloga pojačivača filtra
+
+Poslužitelji koji koriste osobne pojačivačke uloge mogu održavati popis blokiranih riječi:
+
+```text
+-boosterrole filter add <word>
+-boosterrole filter remove <word>
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+Premium poslužitelji također mogu koristiti filtre naziva regularnih izraza:
+
+```text
+-boosterrole regex filter add <pattern>
+-boosterrole regex filter remove <pattern>
+-boosterrole regex filter list
+-boosterrole regex filter clear
+```
+
+Filtar teksta NSFW za unos ikone pojačivača uloge kontrolira se zasebno:
+
+```text
+-boosterrole filtericon nsfw <on-or-off>
+```
+
+Trčanje `-boosterrole filters` za pregled trenutnih postavki filtra uloge pojačivača.

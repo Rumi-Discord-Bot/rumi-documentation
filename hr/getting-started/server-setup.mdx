@@ -1,0 +1,106 @@
+---
+title: "Postavite poslužitelj"
+description: "Praktičan prvi prolaz kroz Rumijeve postavke poslužitelja, uloge, jezik i alate za pomoć."
+icon: "list-check"
+---
+
+Ne morate konfigurirati svaki Rumi modul odjednom. Počnite s dijelovima
+vaša će zajednica zapravo koristiti, provjerite svaki i dodajte više kasnije.
+
+## 1. Potvrdite Rumi može odgovoriti
+
+Pokreni ih na kanalu gdje Rumi može čitati i slati poruke:
+
+```text
+-ping
+-help
+```
+
+Ako nijedna naredba ne vrati ništa, provjerite nadjačavanja kanala Rumi's
+uloga. Uobičajeni zahtjevi su **Prikaži kanal**, **Pošalji poruke**, **Ugradi
+Veze** i **Pročitaj povijest poruka**. Pojedinačne značajke mogu zahtijevati više; the
+relevantan `-help <command>` unos ih navodi.
+
+## 2. Provjerite prefiks
+
+Primjeri na ovoj stranici koriste `-`. Ako vaš poslužitelj ima drugačiji prefiks, koristite
+taj prefiks umjesto toga. Imena naredbi kose crte ne mijenjaju se s prefiksom.
+
+```text
+-help prefix
+```
+
+Pogledajte [naredbe s prefiksom i kosom crtom](../guides/prefix-and-slash) za razliku
+između dva stila naredbe.
+
+## 3. Odaberite ponašanje jezika
+
+Svaki član može zadržati osobni jezik. Administratori također mogu odabrati a
+zadani poslužitelj za članove koji ga nisu odabrali.
+
+```text
+-language
+-language set user de
+-language set server fr
+```
+
+Osobne postavke imaju prioritet nad zadanim postavkama poslužitelja. Imena naredbi ostaju
+na engleskom jeziku; Rumi prevodi svoje odgovore i tekst sučelja.
+
+## 4. Pripremite uloge i kanale
+
+Rumi slijedi Discordhijerarhija uloga. Potez Rumiuloga iznad svih uloga
+očekuje se dodijeliti, ukloniti, preimenovati ili vratiti.
+
+Korisne provjere:
+
+```text
+-permissions @Rumi
+-role info Staff
+-channelinfo #general
+```
+
+Ne daj Rumi Administrator samo da izbjegne rad na postavljanju. Dodijeli dopuštenja
+potrebne za module koje koristite. To čini pristup bota lakšim za razumijevanje.
+
+## 5. Omogućite jedan po jedan sustav
+
+Evo razumnih polazišta:
+
+<CardGroup cols={2}>
+  <Card title="Upravljanje" icon="sliders" href="../features/management">
+    Konfigurirajte uloge, kanale, filtre, provjeru i tijek rada osoblja.
+  </Card>
+  <Card title="Razine" icon="arrow-up-right-dots" href="../features/levels">
+    Omogućite XP, odaberite najave i dodajte uloge razine.
+  </Card>
+  <Card title="Gospodarstvo" icon="coins" href="../features/economy">
+    Postavite valutu, nagrade, ograničenja za hlađenje, kupovinu, pljačku i kasino.
+  </Card>
+  <Card title="Glazba" icon="music" href="../features/music">
+    Pridružite se glasovnom kanalu, pustite pjesmu i naučite kontrole čekanja.
+  </Card>
+</CardGroup>
+
+Nakon promjene sustava, pokrenite njegov status ili naredbu postavki. Na primjer,
+`-levels settings`, `-economy config`, ili `-verification status` pokazuje što Rumi
+trenutno je spremljeno.
+
+## 6. Testirajte se kao redovni član
+
+Administrator može slučajno sakriti probleme s dozvolama jer ih zaobilaze
+mnogi Discord ograničenja. Nakon postavljanja testirajte tijek rada s običnim članom
+ili ispitnu ulogu. Provjerite i kanal na kojem se izvodi naredba i bilo koji kanal
+gdje Rumi očekuje se da će poslati rezultat.
+
+<Tip>
+Kad nešto ne uspije, bježi `-help <command>` prije promjene dopuštenja. jeste
+obično brže od pogađanja koja dozvola ili argument nedostaje.
+</Tip>
+
+## Neaktivni poslužitelji
+
+Rumi automatski napušta poslužitelj nakon **30 dana bez snimljenog poslužitelja
+aktivnost**. Time se čuvaju zajednički resursi i stabilnost usluge. Ništa nije
+nije u redu s vašim poslužiteljem i možete pozvati Rumi opet kad god zajednica
+postaje aktivan.

@@ -1,0 +1,82 @@
+---
+title: "Ugradnje i komponente"
+description: "Izgradite strukturirane ugradnje, gumbe za veze, kontrole radnji, padajuće izbornike i ispis s stranicama."
+icon: "panels-top-left"
+---
+
+Rumi's `$v{...}` blokovi opisuju Discord sadržaj poruke. Mogu se miješati
+s običnim tekstom i varijablama.
+
+## Ugradi svojstva
+
+```text
+-cc set profile [member] --
+$v{embed}
+$v{author: {target.display_name|{user.display_name}} && {target.avatar|{user.avatar}}}
+$v{title: Member profile}
+$v{description: Requested by {user.mention}}
+$v{thumbnail: {target.avatar|{user.avatar}}}
+$v{field: Account && {target.name|{user.name}} && true}
+$v{field: Joined && {target.joined_at|Unavailable} && true}
+$v{color: 6A8FB3}
+$v{footer: Rumi custom commands && {bot.avatar}}
+$v{timestamp: {date.utc_now}}
+```
+
+Podržana svojstva ugradnje su `title`, `description`/`desc`, `url`, `color`,
+`image`/`gif`, `thumbnail`/`thumb`, `timestamp`, `footer`, `author`, i
+`field`. Koristiti `&&` unutar autora, podnožja i polja za odvajanje njihovih dijelova.
+
+<Accordion title="Ograničenja nesloge koja je nametnuo Rumi">
+  Poruka može sadržavati do 10 ugrađenih i 5 sastavnih redaka. Ugrađivanje dopušta
+  25 polja, naslov od 256 znakova, opis od 4096 znakova i 6000
+  ukupno znakova teksta. Oznake gumba ograničene su na 80 znakova i a
+  padajući izbornik može sadržavati do 25 opcija.
+</Accordion>
+
+## Gumbi veze
+
+Gumbi veze ne pokreću radnju bota:
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{button: label=Support && url=https://discord.gg/NYs2jF9MCc && emoji=💬}
+```
+
+## Akcijski gumbi
+
+Gumbi bez URL-a stvaraju sesiju interakcije. Akcija još prolazi
+iste dozvole, cilja, hijerarhije uloga i provjere ograničenja koje koristi a
+izravna akcija prilagođene naredbe.
+
+```text
+$v{button: Confirm && danger && action=mod:warn target && await=true && once=true}
+```
+
+Korisne mogućnosti upravljanja uključuju `reply=...`, `ephemeral=true`, `dm=true`,
+`await=true`, `once=true`, `expires=10m`, i `allow_role=@Role`.
+
+## Padajući izbornici
+
+Prva dva dijela su interni naziv i rezervirano mjesto. Svaki sljedeći
+opcija koristi `label|action|description|emoji`:
+
+```text
+$v{dropdown: color && Choose a color && Red|reply=You chose red|Warm|🔴 && Blue|reply=You chose blue|Cool|🔵}
+```
+
+## Više stranica i umetanja
+
+Koristiti `$v{embed}` za početak drugog ugrađivanja u istu poruku. Staviti `$v{page}` na
+vlastiti redak za početak zasebne navigacijske stranice:
+
+```text
+$v{embed}$v{title: Page one}$v{description: First section}
+$v{page}
+$v{embed}$v{title: Page two}$v{description: Second section}
+```
+
+Uvijek trči `-cc preview <name>` nakon dodavanja komponenti. Pregled ulova
+nevažeći URL-ovi, boje, veličine polja i Discord komponente ograničenja prije članova
+koristite naredbu.
+

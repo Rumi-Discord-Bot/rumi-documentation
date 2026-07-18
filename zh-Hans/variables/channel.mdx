@@ -1,0 +1,22 @@
+---
+title: "通道变量"
+description: "Rumi 支持 9 个通道变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;channel.category_id&#125;</code> | 频道的类别 ID。 | <code>频道类别 ID 示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;channel.category_name&#125;</code> | 频道的类别名称。 | <code>频道类别名称示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;channel.id&#125;</code> | Discord 当前通道的ID。 | <code>123456789012345678</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;channel.mention&#125;</code> | 提及当前频道。 | <code>&lt;@123456789012345678&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;channel.name&#125;</code> | 当前通道的名称。 | <code>一般的</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;channel.position&#125;</code> | 通道的位置。 | <code>通道位置示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;channel.slowmode_delay&#125;</code> | 通道的慢模式延迟。 | <code>通道慢模式延迟示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;channel.topic&#125;</code> | 当前频道的主题文本（如果存在）。 | <code>频道主题示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;channel.type&#125;</code> | 类型或类别名称。来源：频道。 | <code>通道类型示例</code> | 嵌入、自定义命令、自动回复、调用消息 |

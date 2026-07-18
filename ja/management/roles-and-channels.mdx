@@ -1,0 +1,226 @@
+---
+title: "役割とチャネル"
+description: "Rumi の管理コマンドを使用して、Discord のロールとチャネルを作成および整理します。"
+icon: "layer-group"
+---
+
+Rumi ロールを作成、検査、割り当て、名前変更、色の変更、削除、復元できます。それ
+テキスト、音声、カテゴリ、ステージ、フォーラムなどを作成および整理することもできます。
+アナウンスチャンネル。
+
+## 役割階層が最初にあります
+
+Discord ボットは、自身の最上位のロールより下のロールのみを管理できます。同じルール
+役割コマンドを実行しているメンバーに適用されます。障害のトラブルシューティングを行う前に
+割り当てを行う場合は、**サーバー設定 → 役割** で順序を確認してください。
+
+メンバーも、 Rumi **役割の管理**が必要 `role` 管理
+指示。
+
+## ロールの作成と検査
+
+```text
+-role create Event Host --color #c8d8f2
+-role info Event Host
+-role rename Event Host Events Team
+-role color Events Team #6A8FB3
+```
+
+複数の役割が名前を共有する場合は、メンションまたは ID を使用します。
+
+## ロールの追加と削除
+
+```text
+-role add @member Member
+-role remove @member Member
+```
+
+Rumi 変更を適用する前に、ターゲットのメンバーとロール階層をチェックします。
+
+## 接続された役割の目的
+
+接続されたロールには、次のような再利用可能な目的名が保存されます。 `staff`、に対して
+既存 Discord 役割：
+
+```text
+-role connect staff @Staff
+-role list
+-role disconnect staff
+```
+
+これにより 2 番目の役割は作成されません。それは与える Rumi 参照する安定した目的
+ロールが他の方法でより大きなワークフローで使用されている場合でも。
+
+## 削除して復元する
+
+`role delete` 復元スナップショットを保持します。 `role restore` 最新のものを復元します
+コマンドでサポートされる削除または変更された役割のスナップショット:
+
+```text
+-role delete Old Staff
+-role restore
+```
+
+復元による作成または更新 Discord 保存されたスナップショットからの状態。それ
+外部で行われた無関係な変更を元に戻すことはできません Rumi 削除後。
+
+## 役割に参加する
+
+人間、ボット、またはその両方が参加するときに、役割を自動的に割り当てます。
+
+```text
+-joinrole add human @Member
+-joinrole add bot @Bot
+-joinrole add both @Community
+-joinrole list
+```
+
+選択したロールを削除するか、ターゲット グループを 1 つクリアします。
+
+```text
+-joinrole remove human @Member
+-joinrole clear bot
+```
+
+Rumi 設定されているすべての結合ロールの上に配置する必要があります。
+
+## 個人ブースターの役割
+
+アクティブなサーバー ブースターは、次のようなロールを作成およびスタイル設定できます。 Rumi 彼らのために次のことを管理します。
+
+```text
+-boosterrole view
+-boosterrole create Moonlight
+-boosterrole rename Pink Dawn
+-boosterrole color #ff88cc
+-boosterrole color #ff88cc, #ffddee
+```
+
+2 色のフォームリクエスト Discordのグラデーションロールカラー。かどうか Discord
+すべての役割の外観機能がサーバーの利用可能な役割に依存する可能性があることを示します
+特徴。
+
+添付ファイル、画像 URL、Unicode 絵文字、またはカスタムから役割アイコンを設定します Discord
+絵文字の言及。使用 `clear` それを削除するには:
+
+```text
+-boosterrole icon ✨
+-boosterrole icon <:sparkle:123456789012345678>
+-boosterrole icon https://example.com/icon.png
+-boosterrole icon clear
+```
+
+### ブースターの役割を共有する
+
+ロールを所有するブースターは、そのロールを他のメンバーと共有できます。
+
+```text
+-boosterrole share @friend
+-boosterrole share remove @friend
+```
+
+**役割の管理**を持つスタッフは、すべての所有者と共有を検査し、その数を設定できます。
+各所有者が次のメンバーと共有できるメンバー:
+
+```text
+-boosterrole share list
+-boosterrole share limit 3
+-boosterrole share limit none
+```
+
+`boosterrole limit off` サーバー全体の作成を無効にします。それは違う
+共有制限:
+
+```text
+-boosterrole limit on
+-boosterrole limit off
+```
+
+### 位置決めとクリーンアップ
+
+生成されたロールをロール リストの目的のセクション内に保持するには、
+上部と下部のアンカー:
+
+```text
+-boosterrole hoist @Booster Top @Booster Bottom
+```
+
+両方のアンカーは、次の方法で管理できるようにする必要があります。 Rumi。クリーンアップにより古い所有権が削除されます
+ブースト後のステータス変更後のシェア:
+
+```text
+-boosterrole cleanup
+-boosterrole cleanup auto on
+-boosterrole cleanup auto off
+```
+
+### 名前とアイコンのフィルター
+
+シンプルな単語フィルターは、ブースター ロール名の不要なテキストをブロックします。
+
+```text
+-boosterrole filter add admin
+-boosterrole filter remove admin
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+プレミアム サーバーでは、より正確に一致させるために正規表現フィルターを追加できます。
+
+```text
+-boosterrole regex filter add ^admin
+-boosterrole regex filter list
+-boosterrole regex filter remove ^admin
+-boosterrole regex filter clear
+```
+
+理解できる正規表現のみを追加してください。広範なパターンでは、通常の名前が拒否される可能性があります。
+アイコン テキストのフィルタリングと組み合わせた設定ビューは、次の方法で利用できます。
+
+```text
+-boosterrole filtericon nsfw on
+-boosterrole filters
+```
+
+## リアクションの役割
+
+の `reactionrole` コマンド、としても利用可能 `rr`、絵文字を接続します。
+役割へのメッセージ:
+
+```text
+-help reactionrole
+```
+
+メッセージ、絵文字、およびロール引数の順序については、現在のヘルプ エントリを使用します。
+リアクションロールには次のことが必要です Rumi 対象のメッセージを読み、リアクションを追加し、
+選択した役割を管理します。
+
+## チャネルを作成する
+
+```text
+-channel create text announcements
+-channel create voice Lounge
+-channel create category Events
+-channel create text event-chat --category Events
+```
+
+サポートされているチャネル タイプは次のとおりです。 `text`, `voice`, `category`, `stage`, `forum`、 そして
+`announcement`.
+
+## チャネルの名前変更、移動、削除
+
+```text
+-channel rename #old-name new-name
+-channel move #event-chat Events
+-channel move #event-chat 3
+-channel delete #temporary
+```
+
+サポートされているアクションにチャネルが指定されていない場合、 Rumi 現在のものを使用してもよい
+チャネル。破壊的なアクションが発生した場合、チャンネルへのメンションを提供する方が安全です。
+関与した。
+
+<Warning>
+チャンネルの削除は永続的です Discord。コマンド内のメンションを確認してください
+送信する前に;ロールの復元では、削除されたチャネルは復元されません。
+</Warning>

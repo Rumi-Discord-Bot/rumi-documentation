@@ -1,0 +1,43 @@
+---
+title: "variables de usuario"
+description: "30 variables de usuario soportadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;user&#125;</code> | Muestra el usuario que activó la respuesta. | <code>&lt;@123456789012345678&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.avatar&#125;</code> | URL de avatar para el usuario activador. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.badges&#125;</code> | Insignias para usuario. | <code>Ejemplo de insignias de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.badges_icons&#125;</code> | Iconos de insignias para el usuario. | <code>Ejemplos de iconos de insignias de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.banner&#125;</code> | URL de la imagen del banner. Fuente: usuario. | <code>Ejemplo de banner de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.boost_count&#125;</code> | Número de impulso para el usuario. | <code>128</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.boost_since&#125;</code> | Impulsar desde para el usuario. | <code>Ejemplo de impulso de usuario desde</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.boost_since_timestamp&#125;</code> | Marca de tiempo de Unix para impulso desde. | <code>1781460000</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.color&#125;</code> | Color para el usuario. | <code>Color de usuario de ejemplo</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.created_at&#125;</code> | Discord- Hora formateada en la que se creó la cuenta de usuario. | <code>&lt;t:1781460000:F&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.created_at_timestamp&#125;</code> | Marca de tiempo Unix para el tiempo de creación. Fuente: usuario. | <code>&lt;t:1781460000:F&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.display_avatar&#125;</code> | Mostrar avatar para el usuario. | <code>Ejemplo de avatar de visualización de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.display_name&#125;</code> | Nombre para mostrar del servidor o apodo del miembro desencadenante. | <code>Luz de la luna</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.global_name&#125;</code> | Nombre para mostrar global del usuario desencadenante. | <code>Ejemplo de nombre global de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.guild_avatar&#125;</code> | Avatar del gremio para usuario. | <code>Ejemplo de avatar de gremio de usuarios</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.guild_banner&#125;</code> | Estandarte del gremio para el usuario. | <code>Ejemplo de banner de gremio de usuarios</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.id&#125;</code> | Discord ID del usuario desencadenante. | <code>123456789012345678</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.is_boost&#125;</code> | Es Boost para el usuario. | <code>El usuario de ejemplo es boost</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.is_bot&#125;</code> | Es Bot para usuario. | <code>El usuario de ejemplo es bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.join_position&#125;</code> | Unirse a la posición para el usuario. | <code>Ejemplo de posición de incorporación de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.join_position_sfx&#125;</code> | Únase a Position Sfx para el usuario. | <code>Ejemplo de posición de unión de usuario sfx</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.joined_at&#125;</code> | Discord- Hora formateada en la que el miembro se unió a este servidor. | <code>&lt;t:1781460000:F&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.joined_at_timestamp&#125;</code> | Marca de tiempo Unix para la hora de entrada al servidor. Fuente: usuario. | <code>&lt;t:1781460000:F&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.mention&#125;</code> | Mencione al usuario que activó el mensaje. | <code>&lt;@123456789012345678&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.name&#125;</code> | Nombre de usuario del usuario desencadenante. | <code>Rumi</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.role_list&#125;</code> | Mencione la lista de roles de usuario, el más alto primero. | <code>Lista de roles de usuario de ejemplo</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.role_list_text&#125;</code> | Lista de texto sin formato de los roles de usuario, el más alto primero. | <code>Ejemplo de texto de lista de roles de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.tag&#125;</code> | Discord valor de estilo de discriminador/etiqueta de nombre de usuario cuando esté disponible. | <code>nombre de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.top_role&#125;</code> | Rol principal para el usuario. | <code>Ejemplo de rol principal de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;user.username&#125;</code> | Nombre de usuario del usuario desencadenante. | <code>Ejemplo de nombre de usuario de usuario</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |

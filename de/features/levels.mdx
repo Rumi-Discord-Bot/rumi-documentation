@@ -1,0 +1,125 @@
+---
+title: "Level und XP"
+description: "Konfigurieren Sie XP, Level-Up-Nachrichten, Belohnungsrollen, Multiplikatoren und ignorierte Kanäle."
+icon: "arrow-up-right-dots"
+---
+
+RumiDas Levelsystem verfolgt Server-XP, zeigt Rangkarten an, erstellt eine Bestenliste,
+und kann bei ausgewählten Meilensteinen Rollen vergeben. Die XP eines Mitglieds gehören dem Server
+wo es verdient wurde.
+
+## Beginnen Sie mit den Einstellungen
+
+Servermanager können das System aktivieren und die gespeicherte Konfiguration überprüfen:
+
+```text
+-levels enable
+-levels settings
+```
+
+Mitglieder können dann Folgendes verwenden:
+
+```text
+-level
+-level @member
+-leaderboard
+```
+
+`level` gibt es auch als `rank`. Die Bestenliste zeigt die XP des Servers
+Rang.
+
+## Ankündigungen zum Levelaufstieg
+
+Legen Sie eine Nachricht mit fest `levels message`. Die Nachricht kann mehrere Zeilen umfassen und verwenden
+Ebenenvariablen wie z `{user.mention}` Und `{level}`:
+
+```text
+-levels message GG {user.mention}!
+You reached level {level}. --delete 15
+```
+
+Der `--delete 15` Flagge erzählt Rumi um die Ansage nach 15 Sekunden zu entfernen.
+Sehen Sie sich das gespeicherte Ergebnis in der Vorschau an, bevor Sie sich darauf verlassen:
+
+```text
+-levels preview
+```
+
+Wählen Sie aus, ob Ankündigungen normalen Text oder eine Einbettung verwenden und wo sie sich befinden
+gesendet:
+
+```text
+-levels messagemode text
+-levels messagemode embed
+-levels channel #level-ups
+```
+
+Laufen `-variables level` um die aktuellen Level-bezogenen Variablen anzuzeigen, die verfügbar sind
+Nachrichtenvorlagen.
+
+## Belohnungsrollen
+
+Weisen Sie einem Meilenstein eine Rolle zu:
+
+```text
+-levels role 10 @Veteran
+-levels role 25 @Regular
+```
+
+Verwenden `stackroles` um zu wählen, ob Mitglieder frühere Meilensteinrollen behalten oder
+Behalten Sie nur die Rolle bei, die ihrem höchsten erreichten Meilenstein zugeordnet ist:
+
+```text
+-levels stackroles on
+-levels stackroles off
+```
+
+Entfernen Sie einen Meilenstein und wenden Sie die aktuelle Rollenkonfiguration erneut an mit:
+
+```text
+-levels roleclear 10
+-levels sync
+```
+
+Rumi benötigt **Rollen verwalten** und seine höchste Rolle muss über jeder Belohnung stehen
+welche Rolle es voraussichtlich zuweisen soll.
+
+## Multiplikatoren und ignorierte Kanäle
+
+Legen Sie einen serverweiten XP-Multiplikator oder einen Multiplikator fest, der einer Rolle zugeordnet ist:
+
+```text
+-levels multiplier 1.5
+-levels rolemultiplier @Booster 2
+```
+
+Kanäle, bei denen normales Chatten keine XP bringen sollte, können ausgeschlossen werden:
+
+```text
+-levels ignore #spam
+-levels unignore #spam
+```
+
+## XP und Ruf anpassen
+
+Der Verwaltungsbefehl für direkte XP-Änderungen lautet:
+
+```text
+-xp add @member 100
+-xp remove @member 50
+-xp set @member 1000
+```
+
+Rumi verfügt außerdem über ein separates Reputationssystem:
+
+```text
+-rep give @member
+-rep remove @member
+-rep leaderboard
+```
+
+<Warning>
+Das Ändern von Multiplikatoren oder XP kann die Bedeutung bestehender Ranglisten ändern. Überprüfen
+`-levels settings` vor und nach einer großen Änderung, dann verwenden `-levels sync` Wenn
+Belohnungsrollen müssen in Einklang gebracht werden.
+</Warning>

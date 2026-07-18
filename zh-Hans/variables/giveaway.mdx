@@ -1,0 +1,46 @@
+---
+title: "赠品变量"
+description: "Rumi 支持 33 个赠品变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;giveaway.bonus_rules&#125;</code> | 赠品的奖金规则。 | <code>赠品奖金规则示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.channel&#125;</code> | 频道提及或频道价值。来源：赠品。 | <code>赠品频道示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.channel_id&#125;</code> | Discord 频道ID。来源：赠品。 | <code>赠品频道 ID 示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.conditions&#125;</code> | 赠送条件。 | <code>赠品条件示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.created_at&#125;</code> | Discord-格式化的创建时间。来源：赠品。 | <code>&lt;t:1781460000:F&gt;</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.created_at_timestamp&#125;</code> | 创建时间的 Unix 时间戳。来源：赠品。 | <code>&lt;t:1781460000:F&gt;</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.description&#125;</code> | 描述文字。来源：赠品。 | <code>赠品说明示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.duration&#125;</code> | 持续时间文本。来源：赠品。 | <code>赠品持续时间示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.ends_at&#125;</code> | 结束于赠品。 | <code>赠品示例结束于</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.ends_at_timestamp&#125;</code> | Unix 时间戳结束于。 | <code>1781460000</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.ends_relative&#125;</code> | 结束相对赠品。 | <code>示例赠品结束相对</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.entries_count&#125;</code> | 赠品条目数量。来源：赠品。 | <code>128</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.entry_conditions&#125;</code> | 赠品的进入条件。 | <code>赠品进入条件示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.entry_mode&#125;</code> | 赠品进入模式。 | <code>赠品输入模式示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.host&#125;</code> | 赠品主持人。来源：赠品。 | <code>赠品主机示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.host_id&#125;</code> | 赠品的主机 ID。 | <code>赠品主机 ID 示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.host_mention&#125;</code> | 提及赠品主持人。来源：赠品。 | <code>赠品主持人提及示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.id&#125;</code> | Discord ID。来源：赠品。 | <code>123456789012345678</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.message_id&#125;</code> | Discord 消息ID。来源：赠品。 | <code>赠品消息 ID 示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.message_url&#125;</code> | 直接的 Discord 留言链接。来源：赠品。 | <code>赠品消息 URL 示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.number&#125;</code> | 赠品号码。 | <code>赠品号码示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.prize&#125;</code> | 赠品奖品。来源：赠品。 | <code>赠品奖品示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.public_id&#125;</code> | 公众友好的 ID。来源：赠品。 | <code>赠品公共 ID 示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.reaction_emoji&#125;</code> | 反应表情符号作为赠品。 | <code>赠品反应表情符号示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.reroll_count&#125;</code> | 重掷次数即可获得赠品。 | <code>128</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.starts_at&#125;</code> | 开始于赠品。 | <code>示例赠品开始于</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.starts_at_timestamp&#125;</code> | 开始于的 Unix 时间戳。 | <code>1781460000</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.status&#125;</code> | 当前状态。来源：赠品。 | <code>赠品状态示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.title&#125;</code> | 显示标题。来源：赠品。 | <code>赠品标题示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.winner_conditions&#125;</code> | 获奖者赠品条件。 | <code>赠品获胜者条件示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.winner_mentions&#125;</code> | 获奖者提及名单。来源：赠品。 | <code>赠品获奖者提及示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.winners&#125;</code> | 获奖者名单。来源：赠品。 | <code>赠品获奖者示例</code> | 赠品消息和赠品结果模板 |
+| <code>&#123;giveaway.winners_count&#125;</code> | 赠品获奖者数量。来源：赠品。 | <code>128</code> | 赠品消息和赠品结果模板 |

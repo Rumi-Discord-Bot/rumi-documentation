@@ -1,0 +1,24 @@
+---
+title: "Invitar variables"
+description: "11 variables de invitación compatibles con Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;invite.channel&#125;</code> | Mención del canal o valor del canal. Fuente: invitación. | <code>Ejemplo de canal de invitación</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.channel_id&#125;</code> | Discord identificación del canal. Fuente: invitación. | <code>Ejemplo de ID de canal de invitación</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.code&#125;</code> | Código para invitación. | <code>Ejemplo de código de invitación</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.created_at&#125;</code> | Discord-hora de creación formateada. Fuente: invitación. | <code>&lt;t:1781460000:F&gt;</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.created_at_timestamp&#125;</code> | Marca de tiempo Unix para el tiempo de creación. Fuente: invitación. | <code>&lt;t:1781460000:F&gt;</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.inviter&#125;</code> | Invitador para invitación. | <code>Ejemplo de invitador</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.inviter_id&#125;</code> | ID del invitado para la invitación. | <code>Ejemplo de ID de persona que invita a invitar</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.inviter_mention&#125;</code> | Mención de invitación por invitación. | <code>Ejemplo de mención de invitador</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.max_uses&#125;</code> | Usos máximos para invitación. | <code>Ejemplo de usos máximos de invitación</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.url&#125;</code> | URL directa. Fuente: invitación. | <code>https://discord.com/channels/123/456/789</code> | Invitar mensajes y registros de seguimiento |
+| <code>&#123;invite.uses&#125;</code> | Usos para invitar. | <code>Ejemplos de usos de invitaciones</code> | Invitar mensajes y registros de seguimiento |

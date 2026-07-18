@@ -1,0 +1,139 @@
+---
+title: "Testen en debuggen"
+description: "Bouw aangepaste opdrachten in kleine stappen en diagnosticeer argumenten, variabelen, acties en Discord-limieten."
+icon: "bug"
+---
+
+Een aangepaste opdracht is het gemakkelijkst te debuggen als u weet welke laag mislukt is. Test de
+eerst de argumenten, dan de variabelen, dan de insluiting, en voeg als laatste beschermde acties toe.
+
+## Inspecteer wat Rumi opgeslagen
+
+```text
+-cc show <name>
+```
+
+Het resultaat toont de opgeslagen argumentspecificatie, het antwoordscript en de huidige
+beperkingen. Als het antwoord op de verkeerde plaats begint, controleer dan de standalone
+`--` gebruikt in het origineel `cc set` commando.
+
+Maak een lijst van alle opgeslagen opdrachten als u niet zeker weet welke naam is gebruikt:
+
+```text
+-cc list
+```
+
+## Preview met realistische argumenten
+
+```text
+-cc preview greet @member
+-cc preview announce Saturday 8pm
+```
+
+Preview voert de opgeslagen sjabloon uit met de voorbeeldargumenten die u opgeeft. Gebruik de
+hetzelfde aantal en type argumenten dat een lid in de echte opdracht zou gebruiken.
+
+Voor een argumentprobleem verkleint u tijdelijk de reactie op platte tekst:
+
+```text
+-cc set announce <day> <time> -- Day: {day}
+Time: {time}
+```
+
+Zodra deze waarden correct zijn, herstelt u de insluiting of acties.
+
+## Diagnose van ontbrekende variabelen
+
+Een variabele kan alleen informatie retourneren die beschikbaar is in de huidige context. Voor
+Een doelvariabele heeft bijvoorbeeld een doelargument of een opgelost lid nodig. Voeg een toe
+terugval waarbij de waarde optioneel is:
+
+```text
+{target.display_name|No member selected}
+```
+
+Gebruik de gegenereerde [Variabelenreferentie](../variables/overview) of rennen:
+
+```text
+-variables target
+-variables message
+-variables customdb
+```
+
+Als een variabele als letterlijke tekst verschijnt, controleer dan de spelling en accolades. Als het
+retourneert `N/A`, was de bronwaarde niet aanwezig in die opdrachtcontext.
+
+## Test conditionele bepalingen afzonderlijk
+
+Rumi ondersteunt bestaanscontroles, vergelijkingen, tekstinsluiting, rollen en
+Discord rechten:
+
+```text
+{if:{user.id} == 123456789012345678}
+This is the configured user.
+{else}
+This is somebody else.
+{endif}
+```
+
+Andere voorwaardevormen zijn onder meer:
+
+```text
+{if:{message.content} contains hello}
+{if:user has role 123456789012345678}
+{if:user has permission ManageMessages}
+{if:{db.get:visits:{user.id}} >= 10}
+```
+
+Bewaar de opening `{if:...}`, optioneel `{else}`, en sluiten `{endif}` op hun
+eigen regels tijdens het debuggen. Voorwaarden kunnen worden genest, maar een vlakke voorwaarde is dat wel
+meestal gemakkelijker te onderhouden.
+
+## Aparte weergave van acties
+
+Bewaar eerst een onschuldig antwoord:
+
+```text
+-cc set staffwarn <target> <reason...> --
+Would warn {target.mention} for: {reason}
+```
+
+Bekijk het met een veilig doelwit. Voeg dan pas de actie toe:
+
+```text
+{mod:warn target && {reason}}
+Warned {target.mention} for: {reason}
+```
+
+Voeg ten slotte de rol-, kanaal- of machtigingsbeperking toe. Rumi valideert
+beschermde acties bij het opslaan en herhaalt de controles wanneer de opdracht wordt uitgevoerd.
+
+## Componentproblemen
+
+Wanneer een knop of vervolgkeuzelijst niet verschijnt:
+
+1. Bekijk een voorbeeld van de opdracht en lees deze Rumi's validatiereactie.
+2. Controleer de URL-opmaak voor linkknoppen.
+3. Tel de componenten in elke rij en het totaal aantal rijen.
+4. Kort labels en optiebeschrijvingen in of sluit inhoud in.
+5. Controleer of een actieknop een doel of toestemming nodig heeft die ontbreekt.
+
+Discord berichten ondersteunen maximaal 5 componentrijen. Rumi dwingt ook insluiting af,
+veld-, knop- en vervolgkeuzelijstlimieten voordat de payload wordt verzonden.
+
+## Problemen met opgeslagen gegevens
+
+Inspecteer de naamruimte en sleutel rechtstreeks:
+
+```text
+-cc data list visits
+-cc data get visits 123456789012345678
+```
+
+Naamruimte- en sleutelnamen zijn gescheiden. `visits:user-id` is niet dezelfde zoekopdracht
+als `user-id:visits`.
+
+<Tip>
+Bewaar een werkkopie voordat u een grote bewerking uitvoert. `-cc show <name>` geeft je de exacte
+opgeslagen antwoord dat naar uw notities kan worden gekopieerd voordat u het vervangt.
+</Tip>

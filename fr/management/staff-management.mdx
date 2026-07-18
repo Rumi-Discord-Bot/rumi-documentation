@@ -1,0 +1,49 @@
+---
+title: "Gestion du personnel"
+description: "Préparez les rôles, les autorisations et les flux de travail personnalisés du personnel."
+icon: "user-shield"
+---
+
+RumiLe domaine de gestion du personnel est en cours d'extension. Aujourd'hui, la base sûre est
+gestion des rôles, inspection des autorisations et commandes personnalisées restreintes.
+
+## Préparer les rôles du personnel
+
+Utiliser `role` gérer Discord rôles. Rumi prend en charge la création, l'attribution,
+inspecter, renommer, recolorer, supprimer et restaurer des rôles. Cela peut aussi
+connecter un rôle à un objectif réutilisable :
+
+```text
+-role connect staff @Staff
+-role list
+```
+
+Courir `-help role` avant de changer de rôle. La personne qui exécute la commande et Rumi
+les deux ont besoin d'un accès de gestion des rôles, et Discord la hiérarchie s’applique.
+
+## Inspecter l'accès
+
+Utiliser `permissions` (ou `perms`) pour voir celui d'un membre Discord autorisations et tout
+Rumi-octrois d'autorisations spécifiques :
+
+```text
+-permissions @member
+```
+
+## Créez un workflow réservé au personnel
+
+Les commandes personnalisées peuvent être limitées à un rôle, un canal ou un utilisateur autorisé et peuvent
+nécessitent également un nom Discord autorisations. Cela permet à chaque serveur de définir son propre
+outils du personnel sans Rumi envoi de commandes de modération par défaut étendues.
+
+```text
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+-cc requireperm <name> ManageMessages
+```
+
+<Warning>
+Autoriser un rôle à exécuter une commande personnalisée est une décision de sécurité. Passez en revue le
+script enregistré avec `-cc show <name>` et teste-le avec `-cc preview <name>` avant
+le personnel l'utilise.
+</Warning>

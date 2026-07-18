@@ -1,0 +1,22 @@
+---
+title: "Allgemeine Variablen"
+description: "9 allgemeine Variablen, die von Rumi unterstützt werden."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;len:value&#125;</code> | Gibt die Zeichenanzahl zurück. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;length:value&#125;</code> | Alias ​​von &#123;len:value&#125;. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;lower:value&#125;</code> | Wandeln Sie den aufgelösten Wert in Kleinbuchstaben um. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;title:value&#125;</code> | Konvertieren Sie den aufgelösten Wert in die Groß-/Kleinschreibung des Titels. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;upper:value&#125;</code> | Wandeln Sie den aufgelösten Wert in Großbuchstaben um. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;urlencode:value&#125;</code> | Kodieren Sie den aufgelösten Wert zur Verwendung in einer URL. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;newline&#125;</code> | Fügen Sie einen echten Zeilenumbruch ein. | <code>\n</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;prefix&#125;</code> | Aktuelles Serverpräfix. | <code>,</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;timestamp&#125;</code> | Der Zeitstempelkontext. | <code>1781460000</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |

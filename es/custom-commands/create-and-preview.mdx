@@ -1,0 +1,59 @@
+---
+title: "Crear y obtener una vista previa"
+description: "Cree, inspeccione, pruebe, actualice y elimine un comando personalizado."
+icon: "flask"
+---
+
+## Crear un comando
+
+Lugar `--`, `=>`, o `->` entre la definición del comando y su respuesta.
+
+```text
+-cc set welcome -- Welcome {user.mention} to {guild.name}
+```
+
+Los nombres de comandos personalizados utilizan letras minúsculas, números, guiones bajos o guiones
+y están limitados a 32 caracteres. Un nombre no puede sustituir a uno existente. Rumi
+comando o alias.
+
+## Agregar argumentos
+
+Coloque las especificaciones de los argumentos después del nombre y antes del separador:
+
+```text
+-cc set say <text...> -- {text}
+-cc set link [link] -- [Open the link]({link|https://rumi.rocks})
+```
+
+- `<name>` se requiere.
+- `[name]` es opcional.
+- Agregar `...` para reunir las palabras restantes en un solo argumento.
+
+Los argumentos obligatorios detienen el comando e identifican lo que falta. Opcional
+Los argumentos se resuelven en un valor vacío, así que use un respaldo cuando la salida vacía
+parece incómodo: `{link|https://rumi.rocks}`.
+
+## Vista previa antes de usar
+
+La vista previa ejecuta el comando guardado con argumentos de muestra:
+
+```text
+-cc preview say This is a test
+-cc preview link https://example.com
+```
+
+## Inspeccionar, actualizar o eliminar
+
+```text
+-cc show welcome
+-cc set welcome -- Hello {user.mention}
+-cc remove welcome
+```
+
+Correr `set` nuevamente con el mismo nombre actualiza el comando personalizado existente.
+
+<Note>
+El `--` El token es un separador, no parte de la respuesta guardada. Ver
+[Sintaxis y separadores](./syntax-and-separators) por qué es
+necesario y cómo se comporta en torno a los argumentos y el texto de respuesta.
+</Note>

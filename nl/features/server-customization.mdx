@@ -1,0 +1,96 @@
+---
+title: "Serveraanpassing"
+description: "Pas het serverprofiel en het standaardantwoorduiterlijk van Rumi aan."
+icon: "palette"
+---
+
+Rumi kan voor elke server een ander serverprofiel en antwoordthema behouden.
+Deze instellingen hernoemen of kleuren de opdrachtnamen niet, en ze veranderen de
+bot's mondiale profiel in andere gemeenschappen.
+
+## Bekijk de opgeslagen aanpassing
+
+```text
+-custom view
+-custom response list
+```
+
+`custom view` toont de serverprofielvelden. `custom response list` toont de
+reactietypen, modi, kleuren en aangepaste emoji's die momenteel zijn opgeslagen door Rumi.
+
+Voor het wijzigen van deze instellingen is **Server beheren** vereist.
+
+## Serverprofiel
+
+```text
+-custom nick Rumi Support
+-custom bio Community tools and music
+-custom avatar <image URL>
+-custom banner <image URL>
+```
+
+Voor avatar- en bannerwijzigingen voegt u een afbeelding toe of geeft u een afbeeldings-URL op. Discord
+moet dat profielveld voor de bot op de server ondersteunen.
+
+Wis één veld zonder de andere te beïnvloeden:
+
+```text
+-custom clear nick
+-custom clear avatar
+-custom clear banner
+-custom clear bio
+```
+
+Als Discord status en het opgeslagen profiel niet meer synchroon lopen, pas het dan opnieuw toe:
+
+```text
+-custom apply
+```
+
+## Reactiemodi
+
+Elk antwoordtype kan een normale insluiting of platte tekst gebruiken:
+
+```text
+-custom response mode good embed
+-custom response mode bad text
+```
+
+Loop `-custom response list` om de namen van het antwoordtype te zien die door de
+lopende bot. Een antwoordtype vertegenwoordigt het doel van een antwoord, zoals a
+succes, fout, informatief resultaat of lijst.
+
+## Reactiekleuren
+
+```text
+-custom response color good #7fc8a9
+-custom response color bad #d97b7b
+```
+
+Kleuren zijn van invloed op antwoorden in de insluitmodus van dat type. Antwoorden in platte tekst zijn niet ingesloten
+rand kleur.
+
+## Reactie-emoji's
+
+Rumi maakt gebruik van een geconfigureerde aangepaste Discord emoji, of geen emoji als dat type geen emoji heeft
+emoji. Het vervangt geen standaard Unicode-emoji.
+
+```text
+-custom response emoji good <:approved:123456789012345678>
+-custom response emoji good off
+-custom response emoji good reset
+```
+
+De aangepaste emoji moet bruikbaar zijn door Rumi. Gebruik `off` voor geen pictogram en `reset` voor
+Rumi's standaard geconfigureerd.
+
+Reset één volledig antwoordtype met:
+
+```text
+-custom response reset good
+```
+
+<Tip>
+Verander één antwoordtype, voer een opdracht uit die dat soort antwoord produceert, en
+controleer het resultaat voordat u de rest gaat stylen.
+</Tip>

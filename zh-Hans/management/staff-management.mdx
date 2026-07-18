@@ -1,0 +1,49 @@
+---
+title: "员工管理"
+description: "准备角色、权限和自定义员工工作流程。"
+icon: "user-shield"
+---
+
+Rumi的员工管理领域正在扩大。今天，安全的基础是
+角色管理、权限检查和受限的自定义命令。
+
+## 准备员工角色
+
+使用 `role` 管理 Discord 角色。 Rumi 支持创建、分配、
+检查、重命名、重新着色、删除和恢复角色。还可以
+将角色连接到可重用的目的：
+
+```text
+-role connect staff @Staff
+-role list
+```
+
+跑步 `-help role` 在转换角色之前。运行命令的人以及 Rumi
+两者都需要角色管理访问权限，并且 Discord 等级制度适用。
+
+## 检查访问权限
+
+使用 `permissions` （或者 `perms`) 查看会员的 Discord 权限和任何
+Rumi-特定权限授予：
+
+```text
+-permissions @member
+```
+
+## 构建仅限员工的工作流程
+
+自定义命令可以限制为允许的角色、通道或用户，并且可以
+还要求命名 Discord 权限。这让每个服务器定义自己的
+员工工具无 Rumi 提供广泛的默认审核命令。
+
+```text
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+-cc requireperm <name> ManageMessages
+```
+
+<Warning>
+允许角色运行自定义命令是一项安全决策。回顾
+保存的脚本 `-cc show <name>` 并测试它 `-cc preview <name>` 前
+工作人员使用它。
+</Warning>

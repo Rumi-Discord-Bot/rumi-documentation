@@ -1,0 +1,28 @@
+---
+title: "Level-Variablen"
+description: "15 von Rumi unterstützte Levelvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;level&#125;</code> | Level- und XP-Daten für das Mitglied, das aufgestiegen ist. | <code>Beispielebene</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.new_rank&#125;</code> | Neues Level, das das Mitglied erreicht hat. | <code>12</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.next_rank&#125;</code> | Nächstes Level nach dem aktuellen. | <code>Beispiellevel nächster Rang</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.old_rank&#125;</code> | Vorheriges Level vor dem Levelaufstieg. | <code>11</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.progress&#125;</code> | Fortschritt in Richtung des nächsten Levels. | <code>74%</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.rank_position&#125;</code> | Bestenlisten-Rangposition für das Mitglied. | <code>Beispiel für eine Level-Rangposition</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.server_xp&#125;</code> | Server XP für Level. | <code>Beispiel-Level-Server XP</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.server_xp_total&#125;</code> | Server-Xp-Gesamtwert für Level. | <code>Beispiel-Server-XP-Gesamtlevel</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.total_messages&#125;</code> | Gesamtnachrichten für Level. | <code>Gesamtnachrichten auf Beispielebene</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.user_xp&#125;</code> | Aktueller XP-Wert für das Mitglied. | <code>8,420</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.user_xp_total&#125;</code> | Benutzer-Xp-Summe für Level. | <code>Beispiel-Level-Benutzer-XP-Gesamtzahl</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.voice_seconds&#125;</code> | Sprachsekunden für den Pegel. | <code>Beispiel für Sprachsekunden auf Pegelebene</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.voice_time&#125;</code> | Sprachzeit für Pegel. | <code>Beispiel-Level-Sprechzeit</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;level.xp_needed&#125;</code> | Für das nächste Level werden XP benötigt. | <code>9,000</code> | Levelmeldungen, Levelvorschauen |
+| <code>&#123;xp&#125;</code> | Level- und XP-Daten für das Mitglied, das aufgestiegen ist. | <code>Beispiel xp</code> | Levelmeldungen, Levelvorschauen |

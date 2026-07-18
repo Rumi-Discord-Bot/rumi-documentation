@@ -1,0 +1,58 @@
+---
+title: "Beperkingen"
+description: "Bepaal wie een aangepaste opdracht kan uitvoeren en waar deze kan worden uitgevoerd."
+icon: "lock-keyhole"
+---
+
+Beperkingen kunnen gebruikers, rollen en kanalen toestaan ​​of weigeren. Een aangepast commando kan
+vereisen ook een of meer genoemde namen Discord machtigingen.
+
+## Sta een doelwit toe
+
+```text
+-cc allow <name> user @member
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+```
+
+## Weiger een doelwit
+
+```text
+-cc deny <name> user @member
+-cc deny <name> role @Muted
+-cc deny <name> channel #off-topic
+```
+
+Verwijder een toegestane of geweigerde invoer met het bijbehorende inverse commando:
+
+```text
+-cc unallow <name> role @Staff
+-cc undeny <name> channel #off-topic
+```
+
+## Vereisen Discord machtigingen
+
+Gebruik Discord toestemmingsnamen zoals `ManageMessages`:
+
+```text
+-cc requireperm cleanup ManageMessages
+```
+
+Er kunnen meerdere machtigingsnamen worden opgegeven. Gebruik `clear` om alles wat nodig is te verwijderen
+rechten:
+
+```text
+-cc requireperm cleanup clear
+```
+
+## Beperkingen bekijken of opnieuw instellen
+
+```text
+-cc restrictions <name>
+-cc restrictions <name> clear
+```
+
+<Warning>
+Als u de beperkingen opheft, worden alle regels voor toestaan, weigeren en vereiste toestemming verwijderd
+van dat aangepaste commando. Bekijk het resultaat met `-cc show <name>`.
+</Warning>

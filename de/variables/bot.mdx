@@ -1,0 +1,44 @@
+---
+title: "Bot-Variablen"
+description: "31 von Rumi unterstützte Bot-Variablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;bot.avatar&#125;</code> | Avatar-Bild-URL. Quelle: bot. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.command_count&#125;</code> | Nummer des Befehls für Bot. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.custom.avatar&#125;</code> | Avatar-Bild-URL. Quelle: Bot-Benutzerdefiniert. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.custom.banner&#125;</code> | Bannerbild-URL. Quelle: Bot-Benutzerdefiniert. | <code>Beispiel für ein benutzerdefiniertes Bot-Banner</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.custom.bio&#125;</code> | Bio für Bot-Benutzerdefiniert. | <code>Beispiel für eine benutzerdefinierte Bot-Biografie</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.custom.name&#125;</code> | Namenswert. Quelle: Bot-Benutzerdefiniert. | <code>Rumi</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.dashboard&#125;</code> | Dashboard für Bot. | <code>Beispiel eines Bot-Dashboards</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.guild_count&#125;</code> | Anzahl der Gilden für Bot. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.id&#125;</code> | Discord AUSWEIS. Quelle: bot. | <code>123456789012345678</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.invite&#125;</code> | Für Bot einladen. | <code>Beispiel für eine Bot-Einladung</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.mention&#125;</code> | Erwähnen Rumi. | <code>&lt;@123456789012345678&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.name&#125;</code> | Rumi Bot-Benutzername. | <code>Rumi</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.prefix&#125;</code> | Aktuelles Befehlspräfix. | <code>,</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.color.alert&#125;</code> | Warnung für Bot-Antwortfarbe. | <code>Beispiel für eine Bot-Antwort-Farbwarnung</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.color.bad&#125;</code> | Schlecht für die Farbe der Bot-Antwort. | <code>Beispiel: Farbe der Bot-Antwort ist schlecht</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.color.good&#125;</code> | Gut für die Farbe der Bot-Antworten. | <code>Beispiel-Bot-Antwortfarbe gut</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.color.info&#125;</code> | Informationen zur Bot-Antwortfarbe. | <code>Beispiel für Farbinformationen einer Bot-Antwort</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.color.list&#125;</code> | Liste für Bot-Antwortfarben. | <code>Beispiel einer Bot-Antwort-Farbliste</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.emoji.alert&#125;</code> | Warnung für Bot-Antwort-Emoji. | <code>Beispiel für eine Bot-Antwort-Emoji-Benachrichtigung</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.emoji.bad&#125;</code> | Schlecht für Bot-Antwort-Emoji. | <code>Beispiel: Bot-Antwort-Emoji schlecht</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.emoji.good&#125;</code> | Gut für Bot-Antwort-Emojis. | <code>Beispiel für ein Bot-Antwort-Emoji: gut</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.emoji.info&#125;</code> | Informationen zum Bot-Antwort-Emoji. | <code>Beispiel-Bot-Antwort-Emoji-Informationen</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.emoji.list&#125;</code> | Liste für Bot-Antwort-Emojis. | <code>Beispiel einer Bot-Antwort-Emoji-Liste</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.reply.mode&#125;</code> | Konfigurierter Modus. Quelle: Bot-Antwort. | <code>Beispiel für einen Bot-Antwortmodus</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.shard_count&#125;</code> | Anzahl der Shards für den Bot. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.shard_id&#125;</code> | Shard-ID für Bot. | <code>Beispiel für eine Bot-Shard-ID</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.support_server&#125;</code> | Support-Server für Bot. | <code>Beispiel für einen Bot-Supportserver</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.uptime&#125;</code> | Wie lange läuft dieser Bot-Prozess schon? | <code>Beispiel für die Verfügbarkeit eines Bots</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.user_count&#125;</code> | Anzahl der Benutzer für Bot. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.version&#125;</code> | Version für Bot. | <code>Beispiel-Bot-Version</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;bot.website&#125;</code> | Website für Bot. | <code>Beispiel einer Bot-Website</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |

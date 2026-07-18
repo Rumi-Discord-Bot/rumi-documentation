@@ -1,0 +1,106 @@
+---
+title: "Configurar un servidor"
+description: "Un primer vistazo práctico a la configuración del servidor, las funciones, el idioma y las herramientas de ayuda de Rumi."
+icon: "list-check"
+---
+
+No es necesario configurar cada Rumi módulo a la vez. Comience con las partes
+su comunidad realmente usará, verifique cada uno y agregue más más adelante.
+
+## 1. Confirmar Rumi puede responder
+
+Ejecútelos en un canal donde Rumi Puede leer y enviar mensajes:
+
+```text
+-ping
+-help
+```
+
+Si ninguno de los comandos devuelve nada, verifique las anulaciones de canales para Rumi's
+role. Los requisitos habituales son **Ver canal**, **Enviar mensajes**, **Incrustar
+Enlaces** y **Leer historial de mensajes**. Las funciones individuales pueden necesitar más; el
+importante `-help <command>` La entrada los enumera.
+
+## 2. Verifique el prefijo
+
+Los ejemplos en este sitio utilizan `-`. Si su servidor tiene un prefijo diferente, use
+ese prefijo en su lugar. Los nombres de los comandos de barra diagonal no cambian con el prefijo.
+
+```text
+-help prefix
+```
+
+Ver [comandos de prefijo y barra diagonal](../guides/prefix-and-slash) por la diferencia
+entre los dos estilos de comando.
+
+## 3. Elige el comportamiento del idioma.
+
+Cada miembro puede mantener un lenguaje personal. Los administradores también pueden elegir un
+servidor predeterminado para los miembros que no han seleccionado uno.
+
+```text
+-language
+-language set user de
+-language set server fr
+```
+
+Las preferencias personales tienen prioridad sobre las predeterminadas del servidor. Los nombres de los comandos permanecen
+en Inglés; Rumi traduce sus respuestas y el texto de la interfaz.
+
+## 4. Preparar roles y canales
+
+Rumi sigue DiscordLa jerarquía de roles. Mover RumiEl rol de por encima de cualquier rol que sea.
+se espera asignar, eliminar, cambiar el nombre o restaurar.
+
+Comprobaciones útiles:
+
+```text
+-permissions @Rumi
+-role info Staff
+-channelinfo #general
+```
+
+no dar Rumi Administrador sólo para evitar el trabajo de configuración. Conceder los permisos
+necesarios para los módulos que utiliza. Esto hace que el acceso del bot sea más fácil de entender.
+
+## 5. Habilite un sistema a la vez
+
+Aquí hay puntos de partida sensatos:
+
+<CardGroup cols={2}>
+  <Card title="Gestión" icon="sliders" href="../features/management">
+    Configure roles, canales, filtros, verificación y flujos de trabajo del personal.
+  </Card>
+  <Card title="Niveles" icon="arrow-up-right-dots" href="../features/levels">
+    Habilite XP, elija anuncios y agregue roles de nivel.
+  </Card>
+  <Card title="Economía" icon="coins" href="../features/economy">
+    Establezca los límites de moneda, recompensas, tiempos de reutilización, tiendas, robos y casinos.
+  </Card>
+  <Card title="Música" icon="music" href="../features/music">
+    Únase a un canal de voz, reproduzca una pista y aprenda los controles de la cola.
+  </Card>
+</CardGroup>
+
+Después de cambiar un sistema, ejecute su comando de estado o configuración. Por ejemplo,
+`-levels settings`, `-economy config`, o `-verification status` muestra lo que Rumi
+actualmente tiene guardado.
+
+## 6. Prueba como miembro habitual
+
+Un administrador puede ocultar accidentalmente problemas de permisos porque omite
+muchos Discord restricciones. Después de la configuración, pruebe el flujo de trabajo con un miembro habitual
+o un papel de prueba. Verifique tanto el canal donde se ejecuta el comando como cualquier canal
+dónde Rumi se espera que envíe un resultado.
+
+<Tip>
+Cuando algo falla, corre `-help <command>` antes de cambiar los permisos. Es
+normalmente es más rápido que adivinar qué permiso o argumento falta.
+</Tip>
+
+## Servidores inactivos
+
+Rumi abandona automáticamente un servidor después de **30 días sin servidor registrado
+actividad**. Esto preserva los recursos compartidos y la estabilidad del servicio. Nada es
+mal con tu servidor, y puedes invitar Rumi nuevamente cada vez que la comunidad
+se vuelve activo.

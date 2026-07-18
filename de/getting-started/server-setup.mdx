@@ -1,0 +1,106 @@
+---
+title: "Richten Sie einen Server ein"
+description: "Ein praktischer erster Durchgang durch Rumis Servereinstellungen, Rollen, Sprache und Hilfetools."
+icon: "list-check"
+---
+
+Sie müssen nicht jedes konfigurieren Rumi Modul auf einmal. Beginnen Sie mit den Teilen
+Ihre Community tatsächlich verwenden wird, überprüfen Sie jedes einzelne und fügen Sie später weitere hinzu.
+
+## 1. Bestätigen Rumi antworten kann
+
+Führen Sie diese in einem Kanal aus, in dem Rumi kann Nachrichten lesen und senden:
+
+```text
+-ping
+-help
+```
+
+Wenn keiner der Befehle etwas zurückgibt, überprüfen Sie die Kanalüberschreibungen Rumi'S
+Rolle. Die üblichen Anforderungen sind **Kanal anzeigen**, **Nachrichten senden**, **Einbetten
+Links** und **Nachrichtenverlauf lesen**. Einzelne Funktionen können mehr erfordern; Die
+relevant `-help <command>` Der Eintrag listet sie auf.
+
+## 2. Überprüfen Sie das Präfix
+
+Die Beispiele auf dieser Website verwenden `-`. Wenn Ihr Server ein anderes Präfix hat, verwenden Sie
+stattdessen dieses Präfix. Slash-Befehlsnamen ändern sich mit dem Präfix nicht.
+
+```text
+-help prefix
+```
+
+Siehe [Präfix- und Schrägstrichbefehle](../guides/prefix-and-slash) für den Unterschied
+zwischen den beiden Befehlsstilen.
+
+## 3. Wählen Sie das Sprachverhalten
+
+Jedes Mitglied kann eine persönliche Sprache beibehalten. Administratoren können auch eine auswählen
+Server-Standard für Mitglieder, die keinen ausgewählt haben.
+
+```text
+-language
+-language set user de
+-language set server fr
+```
+
+Persönliche Präferenzen haben Vorrang vor den Serverstandards. Befehlsnamen bleiben erhalten
+auf Englisch; Rumi übersetzt seine Antworten und den Schnittstellentext.
+
+## 4. Rollen und Kanäle vorbereiten
+
+Rumi folgt DiscordRollenhierarchie. Bewegen Rumiist seine Rolle wichtiger als alle anderen Rollen
+von denen erwartet wird, dass sie zugewiesen, entfernt, umbenannt oder wiederhergestellt werden.
+
+Nützliche Kontrollen:
+
+```text
+-permissions @Rumi
+-role info Staff
+-channelinfo #general
+```
+
+Gib nicht Rumi Administrator, nur um Einrichtungsarbeiten zu vermeiden. Erteilen Sie die Berechtigungen
+die von Ihnen verwendeten Module benötigt werden. Dadurch bleibt der Zugriff des Bots leichter verständlich.
+
+## 5. Aktivieren Sie jeweils ein System
+
+Hier sind sinnvolle Ansatzpunkte:
+
+<CardGroup cols={2}>
+  <Card title="Management" icon="sliders" href="../features/management">
+    Konfigurieren Sie Rollen, Kanäle, Filter, Überprüfung und Mitarbeiter-Workflows.
+  </Card>
+  <Card title="Ebenen" icon="arrow-up-right-dots" href="../features/levels">
+    Aktivieren Sie XP, wählen Sie Ankündigungen aus und fügen Sie Level-Rollen hinzu.
+  </Card>
+  <Card title="Wirtschaft" icon="coins" href="../features/economy">
+    Legen Sie die Währung, Belohnungen, Abklingzeiten, Shop-, Raub- und Casino-Limits fest.
+  </Card>
+  <Card title="Musik" icon="music" href="../features/music">
+    Treten Sie einem Sprachkanal bei, spielen Sie einen Titel ab und lernen Sie die Warteschlangensteuerung kennen.
+  </Card>
+</CardGroup>
+
+Nachdem Sie ein System geändert haben, führen Sie dessen Status- oder Einstellungsbefehl aus. Zum Beispiel,
+`-levels settings`, `-economy config`, oder `-verification status` zeigt was Rumi
+hat aktuell gespeichert.
+
+## 6. Testen Sie als reguläres Mitglied
+
+Ein Administrator kann versehentlich Berechtigungsprobleme verbergen, weil diese umgangen werden
+viele Discord Einschränkungen. Testen Sie den Workflow nach der Einrichtung mit einem regulären Mitglied
+oder eine Testrolle. Überprüfen Sie sowohl den Kanal, auf dem der Befehl ausgeführt wird, als auch alle Kanäle
+Wo Rumi wird voraussichtlich ein Ergebnis senden.
+
+<Tip>
+Wenn etwas fehlschlägt, laufen Sie `-help <command>` bevor Sie die Berechtigungen ändern. Es ist
+normalerweise schneller, als zu erraten, welche Berechtigung oder welches Argument fehlt.
+</Tip>
+
+## Inaktive Server
+
+Rumi Verlässt automatisch einen Server nach **30 Tagen ohne aufgezeichneten Server
+Aktivität**. Dadurch bleiben gemeinsam genutzte Ressourcen und die Servicestabilität erhalten. Nichts ist
+stimmt nicht mit Ihrem Server, und Sie können einladen Rumi wieder wann immer die Community
+wird aktiv.

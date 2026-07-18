@@ -1,0 +1,48 @@
+---
+title: "Gildenvariablen"
+description: "35 von Rumi unterstützte Gildenvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;guild.afk_channel&#125;</code> | Afk-Kanal für Gilde. | <code>Beispiel eines Gilden-AFK-Kanals</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.afk_timeout&#125;</code> | Afk Timeout für Gilde. | <code>Beispiel für ein Gilden-AFK-Timeout</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.banner&#125;</code> | Bannerbild-URL. Quelle: Gilde. | <code>Beispiel für ein Gildenbanner</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.boost_count&#125;</code> | Aktuelle Server-Boost-Anzahl. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.boost_tier&#125;</code> | Aktuelle Server-Boost-Stufe. | <code>Stufe 2</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.category_channels&#125;</code> | Kategoriekanäle für Gilde. | <code>Beispielkanäle für Gildenkategorien</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.category_channels_count&#125;</code> | Anzahl der Kategoriekanäle für die Gilde. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.channels&#125;</code> | Kanäle für Gilde. | <code>Beispiel-Gildenkanäle</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.channels_count&#125;</code> | Anzahl der Kanäle für die Gilde. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.count&#125;</code> | Aktuelle Mitgliederzahl. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.created_at&#125;</code> | Discord-formatierte Erstellungszeit. Quelle: Gilde. | <code>&lt;t:1781460000:F&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.created_at_timestamp&#125;</code> | Unix-Zeitstempel für die Erstellungszeit. Quelle: Gilde. | <code>&lt;t:1781460000:F&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.discovery&#125;</code> | Entdeckung für Gilde. | <code>Beispiel für eine Gildenentdeckung</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.emoji_count&#125;</code> | Anzahl der benutzerdefinierten Emojis auf dem Server. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.icon&#125;</code> | Symbolbild-URL. Quelle: Gilde. | <code>Beispiel für ein Gildensymbol</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.id&#125;</code> | Discord ID des aktuellen Servers. | <code>123456789012345678</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.key_features&#125;</code> | Hauptfunktionen für die Gilde. | <code>Beispiele für wichtige Gildenfunktionen</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.max_members&#125;</code> | Maximale Anzahl an Mitgliedern für die Gilde. | <code>Beispiel für die maximale Mitgliederzahl einer Gilde</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.max_presences&#125;</code> | Maximale Präsenz für die Gilde. | <code>Beispiele für maximale Gildenpräsenz</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.max_video_channel_users&#125;</code> | Maximale Anzahl an Videokanalbenutzern für die Gilde. | <code>Beispiel für maximale Gilden-Videokanalbenutzer</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.member_count&#125;</code> | Aktuelle Mitgliederzahl. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.name&#125;</code> | Aktueller Servername. | <code>Rumi-Entwicklung</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.owner_id&#125;</code> | Besitzer-ID für die Gilde. | <code>Beispiel-ID des Gildenbesitzers</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.preferred_locale&#125;</code> | Bevorzugter Ort für die Gilde. | <code>Beispiel für das bevorzugte Gebietsschema der Gilde</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.region&#125;</code> | Region für Gilde. | <code>Beispiel einer Gildenregion</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.role_count&#125;</code> | Anzahl der Rollen im Server. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.shard&#125;</code> | Splitter für Gilde. | <code>Beispiel für einen Gildensplitter</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.splash&#125;</code> | Splash für die Gilde. | <code>Beispiel für einen Gilden-Splash</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.text_channels&#125;</code> | Textkanäle für Gilde. | <code>Beispiele für Gildentextkanäle</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.text_channels_count&#125;</code> | Anzahl der Textkanäle für die Gilde. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.vanity&#125;</code> | Eitelkeit für Zunft. | <code>Beispiel für einen Zunftwaschtisch</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.voice_channels&#125;</code> | Sprachkanäle für Gilde. | <code>Beispiele für Gilden-Sprachkanäle</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;guild.voice_channels_count&#125;</code> | Anzahl der Sprachkanäle für die Gilde. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;server.id&#125;</code> | Discord AUSWEIS. Quelle: Server. | <code>123456789012345678</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;server.name&#125;</code> | Aktueller Servername. | <code>Rumi-Entwicklung</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |

@@ -1,0 +1,50 @@
+---
+title: "Stemactiviteit"
+description: "Inspecteer de bijgehouden spraaktijd voor de server, leden, kanalen en doorlopende perioden."
+icon: "waveform"
+---
+
+Rumi neemt spraaksessies op die het observeert en kan deze samenvatten voor de server
+beheerders. De rapporten gebruiken bijgehouden tijd, niet Discord's serverinzichten.
+
+## Servertotalen
+
+```text
+-voicecount server
+-voicecount daily
+-voicecount weekly
+-voicecount monthly
+```
+
+De serverweergave bevat levensduurtotalen, aantal sessies, recente voortschrijdende totalen,
+en de laatst bijgehouden stemactiviteit. Dagelijkse, wekelijkse en maandelijkse weergaven bestrijken de
+respectievelijk de huidige dag, 7 dagen en 30 dagen.
+
+## Leden en kanalen
+
+```text
+-voicecount user @member
+-voicecount channel #General
+-voicecount leaderboard
+-voicecount active
+```
+
+`active` toont sessies Rumi momenteel als actief beschouwt. `leaderboard` rangschikt de
+bijgehouden ledentotalen beschikbaar in de serveranalysewinkel.
+
+## Bijgehouden totalen opnieuw instellen
+
+```text
+-voicecount reset user @member
+-voicecount reset channel #General
+-voicecount reset server
+```
+
+Resetten is destructief. Kies het smalste doel dat het probleem oplost.
+Door de server opnieuw in te stellen, worden de opgeslagen stemanalyses gewist die door deze rapporten worden gebruikt.
+
+<Info>
+Spraakactiviteit begint wanneer Rumi observeert een sessie. Tijd van vóór de tracker
+liep, periodes waarin Rumi waren niet beschikbaar of ontoegankelijk voor spraakkanalen
+kan later niet meer worden gereconstrueerd.
+</Info>

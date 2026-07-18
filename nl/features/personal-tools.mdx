@@ -1,0 +1,145 @@
+---
+title: "Persoonlijk gereedschap"
+description: "Vind recente vermeldingen, vertaal berichten, sla bladwijzers op en beheer een takenlijst."
+icon: "toolbox"
+---
+
+Met deze opdrachten wordt informatie opgeslagen of weergegeven voor het lid dat ze uitvoert. Zij
+maak geen gedeelde servertakenlijst en stel de opgeslagen bladwijzers van één lid niet beschikbaar
+naar een ander lid.
+
+## Vermeldingen van de afgelopen 24 uur
+
+```text
+-mentions
+```
+
+Rumi toont directe vermeldingen en antwoorden die aan u zijn gericht op de huidige server.
+Elk item bevat de vastgelegde berichtinhoud en de antwoordcontext wanneer
+beschikbaar. Als een vastgelegd bericht later wordt verwijderd, kan de opgeslagen momentopname nog steeds worden verwijderd
+verschijnen totdat het buiten het 24-uursvenster valt.
+
+Zelfpings worden genegeerd. De opdracht toont alleen activiteit Rumi waargenomen terwijl het
+had toegang tot het kanaal; het kan geen oudere berichten herstellen van vóór de
+tracker zag ze.
+
+## Vertaal tekst of een antwoord
+
+```text
+-translate es hello
+-translate from en to ja hello
+```
+
+Als u een bericht wilt vertalen zonder het te kopiëren, beantwoordt u dat bericht en verstrekt u het
+alleen de doeltaal:
+
+```text
+-translate fr
+```
+
+In het resultatenpaneel kan de auteur van de opdracht de doeltaal wijzigen, de
+vertaalrichting, of sluit de bedieningselementen. Bekijk de beschikbare taalcodes
+met:
+
+```text
+-translate languages
+```
+
+## Valutahulpmiddelen
+
+Converteer een bedrag op valutacode of ondersteunde valutanaam:
+
+```text
+-currency convert 25 USD to EUR
+-currency convert 5000 JPY to KES
+```
+
+De rest van de opdracht is handig als u de exacte code nog niet kent:
+
+| Commando | Doel |
+| --- | --- |
+| `currency rates <base> [page]` | Blader door tarieven met één valuta als basis. |
+| `currency list [page]` | Blader door ondersteunde valuta's. |
+| `currency search <query>` | Zoek een code op basis van een deel van de code of naam. |
+| `currency info <code\|name>` | Inspecteer één ondersteunde valuta. |
+| `currency popular [base]` | Toon veelgebruikte conversies vanuit een basis. |
+| `currency compare <amount> <from> <to1> <to2> ...` | Vergelijk hetzelfde bedrag voor verschillende doelen. |
+| `currency inverse <amount> <from> to <to>` | Toon de conversie en de omgekeerde relatie ervan. |
+| `currency history <YYYY-MM-DD> <amount> <from> to <to>` | Converteer met behulp van de koers voor een historische datum. |
+| `currency symbols` | Toon erkende valutasymbolen. |
+
+Voorbeelden:
+
+```text
+-currency search shilling
+-currency info KES
+-currency rates GBP 2
+-currency compare 100 USD EUR GBP KES JPY
+-currency history 2025-01-15 100 USD to EUR
+```
+
+### Beoordeel abonnementen
+
+Bewaar een valutapaar om het later te volgen:
+
+```text
+-currency subscribe USD KES
+-currency subscriptions
+-currency unsubscribe USD KES
+```
+
+Tarieven komen van Rumi's geconfigureerde valutagegevensprovider. Ze zijn nuttig voor
+referenties en vergelijkingen, niet als gegarandeerde schikkingsofferte van een bank of
+betalingsdienst.
+
+## Bladwijzers
+
+Sla een link op met een optionele opmerking:
+
+```text
+-bookmark add https://example.com Useful reference
+```
+
+Of reageer op a Discord bericht en uitvoeren:
+
+```text
+-bookmark add Follow up later
+```
+
+Blader, zoek, bewerk of verwijder opgeslagen items:
+
+```text
+-bookmark list
+-bookmark list reference
+-bookmark edit bm-1234 Better note
+-bookmark remove bm-1234
+```
+
+Rumi retourneert een vriendelijke bladwijzer-ID wanneer een item wordt opgeslagen. Gebruik liever die ID
+dan de lijstpositie bij het bewerken of verwijderen ervan.
+
+## Todo-lijsten
+
+```text
+-todo add Finish the event schedule
+-todo list
+-todo view todo-1234
+-todo complete todo-1234
+-todo reopen todo-1234
+-todo edit todo-1234 Finish the event schedule tonight
+-todo remove todo-1234
+```
+
+Voltooide items zijn verborgen in de normale lijst. Voeg ze toe met:
+
+```text
+-todo list --done
+```
+
+`-todo clear` verwijdert de volledige persoonlijke takenlijst, dus gebruik deze alleen als u dat niet doet
+openstaande of voltooide items niet meer nodig hebben.
+
+<Tip>
+Bookmark- en todo-ID's zijn ontworpen om stabiel te blijven, zelfs tijdens paging of zoeken
+verandert de positie van een item in de weergegeven lijst.
+</Tip>

@@ -1,0 +1,49 @@
+---
+title: "Personeelsbeheer"
+description: "Bereid rollen, machtigingen en aangepaste personeelsworkflows voor."
+icon: "user-shield"
+---
+
+Rumi's stafmanagementgebied wordt uitgebreid. Vandaag is de veilige basis
+rolbeheer, toestemmingsinspectie en beperkte aangepaste opdrachten.
+
+## Stafrollen voorbereiden
+
+Gebruik `role` beheren Discord rollen. Rumi ondersteunt het creëren, toewijzen,
+rollen inspecteren, hernoemen, opnieuw kleuren, verwijderen en herstellen. Het kan ook
+koppel een rol aan een herbruikbaar doel:
+
+```text
+-role connect staff @Staff
+-role list
+```
+
+Loop `-help role` voordat u van rol verandert. De persoon die het commando uitvoert en Rumi
+beide hebben toegang tot rolbeheer nodig, en Discord hiërarchie is van toepassing.
+
+## Inspecteer de toegang
+
+Gebruik `permissions` (of `perms`) om die van een lid te zien Discord machtigingen en eventuele
+Rumi-specifieke toestemmingsverleningen:
+
+```text
+-permissions @member
+```
+
+## Bouw een workflow voor alleen het personeel
+
+Aangepaste opdrachten kunnen worden beperkt tot een toegestane rol, kanaal of gebruiker
+vereisen ook een naam Discord machtigingen. Hierdoor kan elke server zijn eigen server definiëren
+personeel gereedschap zonder Rumi verzending van brede standaardmoderatieopdrachten.
+
+```text
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+-cc requireperm <name> ManageMessages
+```
+
+<Warning>
+Toestaan ​​dat een rol een aangepaste opdracht uitvoert, is een veiligheidsbeslissing. Bekijk de
+opgeslagen script met `-cc show <name>` en test het mee `-cc preview <name>` voor
+personeel maakt er gebruik van.
+</Warning>

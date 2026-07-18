@@ -1,0 +1,24 @@
+---
+title: "Ciljne varijable"
+description: "11 ciljnih varijabli koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;target&#125;</code> | Prikaz razriješenog ciljanog korisnika. | <code>&lt;@987654321098765432&gt;</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.avatar&#125;</code> | URL slike avatara. Izvor: meta. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.created_at&#125;</code> | Discord- formatirano vrijeme izrade. Izvor: meta. | <code>&lt;t:1781460000:F&gt;</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.display_name&#125;</code> | Ime poslužitelja za prikaz ili nadimak ciljanog člana. | <code>Mjesečina</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.id&#125;</code> | Discord ID ciljanog korisnika. | <code>123456789012345678</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.is_bot&#125;</code> | Je li bot za metu. | <code>Primjer cilja je bot</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.joined_at&#125;</code> | Discord- formatirano vrijeme pridruživanja poslužitelju. Izvor: meta. | <code>&lt;t:1781460000:F&gt;</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.mention&#125;</code> | Navedite ciljnog korisnika, obično prvog spomenutog člana. | <code>&lt;@123456789012345678&gt;</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.name&#125;</code> | Korisničko ime ciljanog korisnika. | <code>Rumi</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.tag&#125;</code> | Discord vrijednost stila oznake korisničkog imena/diskriminatora za cilj. | <code>korisničko ime</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |
+| <code>&#123;target.username&#125;</code> | Discord korisničko ime. Izvor: meta. | <code>Primjer ciljnog korisničkog imena</code> | Prilagođene naredbe, automatski odgovori, igranje uloga, moderiranje/pozivanje konteksta |

@@ -1,0 +1,145 @@
+---
+title: "個人用ツール"
+description: "最近のメンションを検索し、メッセージを翻訳し、ブックマークを保存し、ToDo リストを管理します。"
+icon: "toolbox"
+---
+
+これらのコマンドは、それを実行するメンバーの情報を保存または表示します。彼らは
+共有サーバー タスク リストを作成したり、メンバーの保存済みブックマークを公開したりしないでください。
+他のメンバーに。
+
+## 過去 24 時間のメンション
+
+```text
+-mentions
+```
+
+Rumi 現在のサーバーであなたに宛てられた直接のメンションと返信を示します。
+各エントリには、キャプチャされたメッセージの内容と応答コンテキストが含まれます。
+利用可能。キャプチャされたメッセージが後で削除された場合でも、保存されたスナップショットはそのまま残ります。
+24 時間の枠を外れるまで表示されます。
+
+自己 ping は無視されます。このコマンドはアクティビティのみを表示します Rumi それをしながら観察した
+チャンネルにアクセスできた。以前の古いメッセージを復元することはできません。
+トラッカーが彼らを目撃した。
+
+## テキストまたは返信を翻訳する
+
+```text
+-translate es hello
+-translate from en to ja hello
+```
+
+メッセージをコピーせずに翻訳するには、そのメッセージに返信して次の情報を提供します
+ターゲット言語のみ:
+
+```text
+-translate fr
+```
+
+結果パネルを使用すると、コマンド作成者はターゲット言語を変更したり、ターゲット言語を交換したりできます。
+移動方向を変更するか、コントロールを閉じます。利用可能な言語コードを確認する
+と：
+
+```text
+-translate languages
+```
+
+## 通貨ツール
+
+通貨コードまたはサポートされている通貨名で金額を変換します。
+
+```text
+-currency convert 25 USD to EUR
+-currency convert 5000 JPY to KES
+```
+
+コマンドの残りの部分は、正確なコードがまだわからない場合に役立ちます。
+
+| 指示 | 目的 |
+| --- | --- |
+| `currency rates <base> [page]` | 1 つの通貨を基準としてレートを参照します。 |
+| `currency list [page]` | サポートされている通貨を参照します。 |
+| `currency search <query>` | コードまたは名前の一部でコードを検索します。 |
+| `currency info <code\|name>` | サポートされている 1 つの通貨を検査します。 |
+| `currency popular [base]` | よく使用されるベースからの変換を表示します。 |
+| `currency compare <amount> <from> <to1> <to2> ...` | 複数のターゲット間で同じ量を比較します。 |
+| `currency inverse <amount> <from> to <to>` | 変換とその逆関係を示します。 |
+| `currency history <YYYY-MM-DD> <amount> <from> to <to>` | 過去の日付のレートを使用して変換します。 |
+| `currency symbols` | 認識された通貨記号を表示します。 |
+
+例:
+
+```text
+-currency search shilling
+-currency info KES
+-currency rates GBP 2
+-currency compare 100 USD EUR GBP KES JPY
+-currency history 2025-01-15 100 USD to EUR
+```
+
+### サブスクリプションの料金を設定する
+
+後でフォローできるように通貨ペアを保存します。
+
+```text
+-currency subscribe USD KES
+-currency subscriptions
+-currency unsubscribe USD KES
+```
+
+料金の由来 Rumiの設定された通貨データプロバイダー。それらは次のような用途に役立ちます。
+参照と比較であり、銀行や銀行からの保証された決済見積としてではありません。
+決済サービス。
+
+## ブックマーク
+
+オプションのメモを付けてリンクを保存します。
+
+```text
+-bookmark add https://example.com Useful reference
+```
+
+または、に返信してください Discord メッセージを送って実行します:
+
+```text
+-bookmark add Follow up later
+```
+
+保存されたアイテムを参照、検索、編集、または削除します。
+
+```text
+-bookmark list
+-bookmark list reference
+-bookmark edit bm-1234 Better note
+-bookmark remove bm-1234
+```
+
+Rumi アイテムが保存されるときにフレンドリーなブックマーク ID を返します。むしろそのIDを使用してください
+編集または削除するときは、リストの位置よりも大きくなります。
+
+## Todo リスト
+
+```text
+-todo add Finish the event schedule
+-todo list
+-todo view todo-1234
+-todo complete todo-1234
+-todo reopen todo-1234
+-todo edit todo-1234 Finish the event schedule tonight
+-todo remove todo-1234
+```
+
+完了したアイテムは通常のリストには表示されません。それらを次のように含めます。
+
+```text
+-todo list --done
+```
+
+`-todo clear` 個人の ToDo リスト全体が削除されるため、不要な場合にのみ使用してください。
+未完了のアイテムや完了したアイテムはもう必要ありません。
+
+<Tip>
+ブックマークと Todo ID は、ページングや検索を行っても安定したままになるように設計されています。
+表示されたリスト内の項目の位置を変更します。
+</Tip>

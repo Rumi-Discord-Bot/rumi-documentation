@@ -1,0 +1,111 @@
+---
+title: "Argumente und Variablen"
+description: "Verwenden Sie Befehlseingabe, Discord-Kontext, Helfer, Einbettungen und Komponenten."
+icon: "brackets-curly"
+---
+
+Laufen `-variables` In Discord für Rumiist die aktuelle Variablenreferenz. Diese Seite
+deckt die gängigsten Muster ab.
+
+## Befehlseingabe lesen
+
+| Variable | Wert |
+| --- | --- |
+| `{arg}` oder `{args}` | Alles nach dem Befehl eingegeben |
+| `{1}`, `{2}` | Ein nummeriertes Argument |
+| `{arg.1}`, `{arg.2}` | Ein nummeriertes Argument |
+| `{arg.2+}` | Argument 2 und alles danach |
+| `{args.rest.2}` | Argument 2 und alles danach |
+| `{link}` | Ein benanntes Argument, das als deklariert wurde `[link]` oder `<link>` |
+
+Erforderliche und optionale Argumente werden beim Erstellen des Befehls deklariert:
+
+```text
+-cc set ship <target> [reason...] -- {user.mention} chose {target.mention}. {reason|No reason given.}
+```
+
+`<target>` ist erforderlich, während `[reason...]` ist optional. Die drei Punkte ergeben
+`reason` Verbrauchen Sie jedes verbleibende Wort und nicht nur das nächste Wort. Eine Pause
+Argument sollte das letzte deklarierte Argument sein, da es alles verbraucht
+danach.
+
+Vergleichen Sie diese beiden Definitionen:
+
+```text
+-cc set pair <first> <second> -- First: {first}; second: {second}
+-cc set quote <text...> -- “{text}”
+```
+
+`-pair red blue` ordnet jedem Namen ein Wort zu. `-quote this is all one value`
+weist die gesamte Phrase zu `text`.
+
+Wenn ein erforderliches Argument fehlt, Rumi stoppt und benennt das fehlende Argument.
+Ein optionaler Wert kann leer sein. Verwenden Sie daher einen Fallback, wenn die Antwort noch benötigt wird
+lesbarer Text.
+
+## Verwenden Discord Kontext
+
+Zu den allgemeinen Variablen gehören: `{user.mention}`, `{user.name}`, `{server.name}`, Und
+`{channel.mention}`. Ein erwähntes oder erstes Ziel kann auch Werte wie z
+`{target.mention}`, `{target.name}`, Und `{target.avatar}`.
+
+Benannte Argumente sind Textwerte. Zielvariablen werden separat von aufgelöst
+das zuerst genannte bzw. beschlussfähige Mitglied. Wenn eine Aktion von einem Mitglied abhängt,
+Verwenden Sie beim Testen eine Erwähnung, damit das Ziel eindeutig ist.
+
+Variablen akzeptieren danach einen Fallback `|`. Der Fallback wird verwendet, wenn der Wert ist
+in diesem Zusammenhang nicht verfügbar:
+
+```text
+{target.display_name|No member was selected}
+```
+
+<Note>
+Nicht jedes Ereignis hat jeden Wert. Ticketvariablen benötigen Ticketkontext, Gewinner
+Variablen brauchen ein verräterisches Ergebnis, und Bestrafungsvariablen brauchen ein Management
+Ereignis. Die [vollständige Variablenreferenz](../variables/overview) gibt an, wo jeweils
+Variable ist verfügbar.
+</Note>
+
+## Werte transformieren und auswählen
+
+```text
+{random:red|green|blue}
+{range:score:1-100}
+{choose:item:cookie|cake|pie}
+{upper:text}
+{lower:text}
+{title:text}
+{urlencode:text}
+{len:text}
+```
+
+Namens `range` Und `choose` Ergebnisse können später wiederverwendet werden `{score}` oder `{item}`.
+
+Texthelfer wandeln ihre Eingaben um; Sie ändern den gespeicherten Befehl nicht. Für
+Beispiel, `{upper:{user.display_name}}` gibt dabei nur eine Version in Großbuchstaben zurück
+Antwort.
+
+## Erstellen Sie eine Einbettung
+
+Verwendung von Einbettungsfeldern `$v{...}` Blöcke:
+
+```text
+-cc set rules -- $v{title: Rules} $v{description: Welcome {user.mention}}
+```
+
+## Interaktive Ausgabe hinzufügen
+
+Rumi unterstützt Linkschaltflächen, Aktionsschaltflächen, Dropdowns und paginierte Seiten.
+Beginnen Sie mit der von angezeigten Syntax `-variables`, und zeigen Sie dann eine Vorschau des Befehls an
+bevor Sie es teilen.
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{page}
+```
+
+<Warning>
+Schaltflächen, die geschützte Aktionen ausführen, müssen genauer überprüft werden als gewöhnliche Links. Verwenden
+`-cc actions` für ihre aktuellen Syntax- und Sicherheitsanforderungen.
+</Warning>

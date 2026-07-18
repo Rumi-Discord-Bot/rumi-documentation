@@ -1,0 +1,139 @@
+---
+title: "Testen und Debuggen"
+description: "Erstellen Sie in kleinen Schritten benutzerdefinierte Befehle und diagnostizieren Sie Argumente, Variablen, Aktionen und Discord-Grenzwerte."
+icon: "bug"
+---
+
+Ein benutzerdefinierter Befehl lässt sich am einfachsten debuggen, wenn Sie wissen, welche Ebene fehlgeschlagen ist. Testen Sie das
+Zuerst Argumente, dann Variablen, dann die Einbettung und zuletzt geschützte Aktionen hinzufügen.
+
+## Untersuchen Sie was Rumi gespeichert
+
+```text
+-cc show <name>
+```
+
+Das Ergebnis zeigt die gespeicherte Argumentspezifikation, das Antwortskript und das aktuelle
+Einschränkungen. Wenn die Antwort an der falschen Stelle beginnt, überprüfen Sie die eigenständige Antwort
+`--` im Original verwendet `cc set` Befehl.
+
+Listen Sie jeden gespeicherten Befehl auf, wenn Sie nicht sicher sind, welcher Name verwendet wurde:
+
+```text
+-cc list
+```
+
+## Vorschau mit realistischen Argumenten
+
+```text
+-cc preview greet @member
+-cc preview announce Saturday 8pm
+```
+
+Die Vorschau führt die gespeicherte Vorlage mit den von Ihnen bereitgestellten Beispielargumenten aus. Benutzen Sie die
+dieselbe Anzahl und Art von Argumenten, die ein Mitglied im echten Befehl verwenden würde.
+
+Reduzieren Sie bei einem Argumentproblem die Antwort vorübergehend auf Klartext:
+
+```text
+-cc set announce <day> <time> -- Day: {day}
+Time: {time}
+```
+
+Sobald diese Werte korrekt sind, stellen Sie die Einbettung oder Aktionen wieder her.
+
+## Fehlende Variablen diagnostizieren
+
+Eine Variable kann nur Informationen zurückgeben, die in ihrem aktuellen Kontext verfügbar sind. Für
+Beispielsweise benötigt eine Zielvariable ein Zielargument oder einen aufgelösten Member. Fügen Sie ein hinzu
+Fallback, wobei der Wert optional ist:
+
+```text
+{target.display_name|No member selected}
+```
+
+Verwenden Sie die generierte [Variablenreferenz](../variables/overview) oder ausführen:
+
+```text
+-variables target
+-variables message
+-variables customdb
+```
+
+Wenn eine Variable als Literaltext erscheint, überprüfen Sie die Rechtschreibung und die Klammern. Wenn ja
+kehrt zurück `N/A`, war sein Quellwert in diesem Befehlskontext nicht vorhanden.
+
+## Testen Sie Bedingungen separat
+
+Rumi unterstützt Existenzprüfungen, Vergleiche, Texteinschluss, Rollen usw
+Discord Berechtigungen:
+
+```text
+{if:{user.id} == 123456789012345678}
+This is the configured user.
+{else}
+This is somebody else.
+{endif}
+```
+
+Weitere Bedingungsformen sind:
+
+```text
+{if:{message.content} contains hello}
+{if:user has role 123456789012345678}
+{if:user has permission ManageMessages}
+{if:{db.get:visits:{user.id}} >= 10}
+```
+
+Behalte die Öffnung `{if:...}`, optional `{else}`, und schließen `{endif}` auf ihrem
+eigene Zeilen beim Debuggen. Bedingungen können verschachtelt sein, eine flache Bedingung jedoch schon
+normalerweise einfacher zu pflegen.
+
+## Anzeige von Aktionen trennen
+
+Speichern Sie zunächst eine harmlose Antwort:
+
+```text
+-cc set staffwarn <target> <reason...> --
+Would warn {target.mention} for: {reason}
+```
+
+Sehen Sie sich eine Vorschau mit einem sicheren Ziel an. Fügen Sie dann erst die Aktion hinzu:
+
+```text
+{mod:warn target && {reason}}
+Warned {target.mention} for: {reason}
+```
+
+Fügen Sie abschließend die Rolle, den Kanal oder die Berechtigungseinschränkung hinzu. Rumi validiert
+Beim Speichern werden geschützte Aktionen ausgeführt und die Prüfungen werden wiederholt, wenn der Befehl ausgeführt wird.
+
+## Komponentenprobleme
+
+Wenn eine Schaltfläche oder ein Dropdown-Menü nicht angezeigt wird:
+
+1. Sehen Sie sich den Befehl in der Vorschau an und lesen Sie ihn Rumi's Validierungsantwort.
+2. Überprüfen Sie die URL-Formatierung für Link-Schaltflächen.
+3. Zählen Sie die Komponenten in jeder Zeile und die Gesamtzahl der Zeilen.
+4. Kürzen Sie Beschriftungen, Optionsbeschreibungen oder betten Sie Inhalte ein.
+5. Prüfen Sie, ob eine Aktionsschaltfläche ein fehlendes Ziel oder eine fehlende Berechtigung benötigt.
+
+Discord Nachrichten unterstützen bis zu 5 Komponentenzeilen. Rumi erzwingt auch die Einbettung,
+Legen Sie die Feld-, Schaltflächen- und Dropdown-Grenzwerte fest, bevor Sie die Nutzlast senden.
+
+## Probleme mit gespeicherten Daten
+
+Überprüfen Sie den Namespace und den Schlüssel direkt:
+
+```text
+-cc data list visits
+-cc data get visits 123456789012345678
+```
+
+Namespace- und Schlüsselnamen sind getrennt. `visits:user-id` ist nicht die gleiche Suche
+als `user-id:visits`.
+
+<Tip>
+Bewahren Sie vor einer großen Bearbeitung eine Arbeitskopie auf. `-cc show <name>` gibt dir das genaue
+gespeicherte Antwort, die Sie in Ihre Notizen kopieren können, bevor Sie sie ersetzen.
+</Tip>

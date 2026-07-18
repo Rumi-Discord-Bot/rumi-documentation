@@ -1,0 +1,63 @@
+---
+title: "Einladungsverfolgung"
+description: "Verfolgen Sie eingeladene Beitritte, aktive Eingeladene, Vanity-Beitritte, Bestenlisten und Beitrittsprotokolle."
+icon: "user-plus"
+---
+
+RumiDer Einladungs-Tracker vergleicht Discord Laden Sie die Nutzung ein, wenn Mitglieder beitreten. Es zeichnet auf
+der Einladende wann Discord Bietet genügend Informationen und trennt normal
+Einladung, Eitelkeit und unbekannte Verbindungen.
+
+## Tracking aktivieren und überprüfen
+
+```text
+-invites enable
+-invites settings
+```
+
+Zum Ändern der Einstellungen ist **Server verwalten** erforderlich. Verwenden `settings` um zu bestätigen, ob
+Tracking aktiviert ist und ob ein Join-Log-Kanal konfiguriert ist.
+
+## Fügen Sie ein Beitrittsprotokoll hinzu
+
+```text
+-invites log #join-logs
+-invites log off
+```
+
+Der Protokollkanal empfängt die Tracking-Informationen Rumi Könnte mich für Neues entscheiden
+schließt sich an.
+
+## Mitglieder- und Serverstatistiken anzeigen
+
+```text
+-invites
+-invites @member
+-invites top weekly
+-inviter @member
+-joins monthly
+-vanityjoins alltime
+```
+
+Der Tracker unterscheidet die Gesamtzahl der Beitritte, die aktiven Eingeladenen, die ausgeschiedenen Mitglieder und
+normale Invite-Joins, Vanity-Joins und Joins, deren Einladender nicht sein konnte
+bestimmt.
+
+Zu den unterstützten Berichtszeiträumen gehören: `daily`, `weekly`, `monthly`, Und `alltime`.
+
+## Aktualisieren Sie den Snapshot
+
+```text
+-invites refresh
+```
+
+Das fragt Rumi um die aktuelle Einladungsliste erneut abzurufen. Es erfrischt die
+Vergleichsschnappschuss; Es kann die Informationen des Einladenden nicht rekonstruieren Discord tat
+einen früheren Beitritt nicht vorsehen.
+
+<Info>
+Die Namensnennung der Einladung kann nicht für jeden Beitritt garantiert werden. Einladungslinks gelöscht,
+Vanity-Links, fehlende Berechtigungen, nicht verfügbarer Cache-Status und gleichzeitig
+Einladungsänderungen können dazu führen, dass ein Beitritt als unbekannt markiert wird. `-invites refresh` Aktualisierungen
+der Schnappschuss Rumi Verwendungsmöglichkeiten für zukünftige Vergleiche.
+</Info>

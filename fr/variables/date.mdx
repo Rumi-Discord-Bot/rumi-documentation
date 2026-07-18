@@ -1,0 +1,30 @@
+---
+title: "Variables de dates"
+description: "17 variables de date prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;date&#125;</code> | Date actuelle ou Discord sortie d'horodatage. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.discord_relative&#125;</code> | Relatif Discord horodatage de l'heure actuelle. | <code>&lt;t:1781460000:R&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.discord_timestamp&#125;</code> | Actuel Discord horodatage. | <code>&lt;t:1781460000:F&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.now&#125;</code> | Maintenant pour la date. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.now_proper&#125;</code> | Maintenant approprié pour la date. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.now_short&#125;</code> | Maintenant abréviation de date. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.now_shorter&#125;</code> | Maintenant plus court pour la date. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.utc_now&#125;</code> | Utc Maintenant pour la date. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.utc_now_proper&#125;</code> | Utc maintenant approprié pour la date. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.utc_now_short&#125;</code> | Utc Now Abréviation de date. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.utc_now_shorter&#125;</code> | Utc maintenant plus court pour la date. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;date.utc_timestamp&#125;</code> | Horodatage Unix pour utc. | <code>1781460000</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;time&#125;</code> | Date actuelle ou Discord sortie d'horodatage. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;time.now&#125;</code> | Maintenant, le temps. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;time.now_military&#125;</code> | Maintenant militaire pour le temps. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;time.utc_now&#125;</code> | Utc Passons maintenant au temps. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;time.utc_now_military&#125;</code> | Utc Maintenant militaire pour le temps. | <code>15 juin 2026, 8h52</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |

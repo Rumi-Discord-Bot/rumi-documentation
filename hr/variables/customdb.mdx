@@ -1,0 +1,23 @@
+---
+title: "Customdb varijable"
+description: "10 customdb varijabli koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;customdb.&lt;operation&gt;:namespace:key[:value]&#125;</code> | Pseudonim dugog oblika za svaku db operaciju: get, exists, set, inc, increment, dec, decrement, delete i del. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;db.dec:namespace:key:amount&#125;</code> | Smanjite broj prilagođenih podataka. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;db.decrement:namespace:key:amount&#125;</code> | Dugi alias za db.dec. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;db.del:namespace:key&#125;</code> | Alias ​​od db.delete. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;db.delete:namespace:key&#125;</code> | Izbrišite ključ prilagođenih podataka. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;db.exists:namespace:key&#125;</code> | Vrati true kada ključ prilagođenih podataka postoji, inače false. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;db.get:namespace:key&#125;</code> | Pročitajte spremljenu prilagođenu vrijednost podataka. | <code>42</code> | Prilagođene naredbe; automatski odgovori s --db |
+| <code>&#123;db.inc:namespace:key:1&#125;</code> | Povećajte spremljeni broj. Stavite ga na vlastiti red kako biste sakrili neobrađeni rezultat. | <code>43</code> | Prilagođene naredbe; automatski odgovori s --db |
+| <code>&#123;db.increment:namespace:key:amount&#125;</code> | Povećajte broj prilagođenih podataka. Alias ​​db.inc. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;db.set:namespace:key:value&#125;</code> | Spremite vrijednost prilagođenih podataka. Na vlastitoj liniji, mutacija ne proizvodi vidljiv rezultat. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |

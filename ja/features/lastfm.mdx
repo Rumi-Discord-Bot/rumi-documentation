@@ -1,0 +1,76 @@
+---
+title: "Last.fm"
+description: "Last.fm にリンクすると、プロフィール、スクロブル、チャート、お気に入りのトラック、コラージュ、味の比較が表示されます。"
+icon: "lastfm"
+---
+
+Last.fm リンクさせてみましょう Rumi ユーザーのメッセージを読む Last.fm プロフィールや聴取履歴など。
+それは制御しません Spotify 再生または Rumiさんの Discord 音声キュー。
+
+## アカウントをリンクする
+
+```text
+-lastfm link
+```
+
+ワンタイム認証リンクを開きます Rumi を提供して終了します Last.fm 流れ。
+その後、接続を確認します。
+
+```text
+-lastfm profile
+```
+
+次のようにして切断します。
+
+```text
+-lastfm unlink
+```
+
+## 現在および最近のリスニング
+
+```text
+-lastfm nowplaying
+-lastfm recent
+-lastfm loved
+```
+
+`nowplaying` アクティブなトラックが表示されるとき Last.fm 1 つをプレイ中としてマークします。
+それ以外の場合は、最新のスクロブルが表示される可能性があります。
+
+ほとんどの表示コマンドは、リンクされた別のコマンドを受け入れます Discord メンバーか Last.fm
+ユーザー名:
+
+```text
+-lastfm nowplaying @member
+-lastfm recent some_lastfm_name
+```
+
+## チャート
+
+```text
+-lastfm toptracks 1month
+-lastfm topartists overall @member
+-lastfm topalbums 3month
+-lastfm collage 1month
+```
+
+ピリオドは、オプションのメンバーまたはユーザー名の前に置きます。 `collage` を返します
+から入手できるリスニングデータを使用したチャート形式のアルバム概要 Last.fm.
+
+## 聴き比べてみよう
+
+両方 Discord メンバーにはリンクされたアカウントが必要です:
+
+```text
+-lastfm compare @member
+-lastfm compare @member 1month
+```
+
+Rumi 選択した期間の共有アーティストとトラックを比較します。結果は
+に基づく Last.fm スクロブルがあるため、スクロブルされていないリスニングは含まれません。
+
+<Info>
+Last.fm そして Spotify は別個の接続です。使用 `-spotify link` 個人用
+Spotify コントロール、プレイリスト、お気に入りの曲。使用 `-lastfm link` 落書き用
+そして Last.fm チャート。
+</Info>

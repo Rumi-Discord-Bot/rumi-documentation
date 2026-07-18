@@ -1,0 +1,163 @@
+---
+title: "Actes"
+description: "Ajoutez des actions de membre, de rôle, de message, d’économie, de réaction et de données protégées."
+icon: "bolt"
+---
+
+Les actions permettent à une commande personnalisée de faire plus que renvoyer du texte. Courir:
+
+```text
+-cc actions
+```
+
+Rumi affichera la syntaxe actuelle pour les boutons d'action, la gestion des membres
+actions, rôles, messages, changements économiques, réactions, actions nommées et personnalisés
+données. Utilisez cette réponse comme source de vérité lors de la création d’un script.
+
+## Modèle de sécurité
+
+Les actions protégées sont vérifiées lorsqu'une commande personnalisée est enregistrée et lors de son exécution.
+Selon l'action, les contrôles peuvent inclure :
+
+- Le membre configurateur Discord autorisation
+- L'autorisation du membre actif ou la liste d'autorisation explicite
+- Rumic'est Discord autorisation
+- Hiérarchie des membres et des rôles
+- Si l'objectif est valide et gérable
+
+Rumi reconnaît actuellement les familles d'actions protégées pour l'interdiction, le softbanning,
+coups de pied, délais d'attente, avertissements, changements de rôle, suppression de messages, changements économiques,
+actions nommées et données personnalisées. Ce sont <mark>blocs de construction à l'intérieur de la coutume
+commandes</mark>, pas les commandes de modération publique par défaut.
+
+## Construisez avec soin
+
+1. Créez et prévisualisez la réponse en texte uniquement.
+2. Ajoutez la plus petite action nécessaire.
+3. Limitez la commande à un rôle, un canal ou une autorisation approuvé.
+4. Courez `-cc show <name>` et examinez le script enregistré.
+5. Testez avec une cible sûre avant utilisation par le personnel.
+
+<Warning>
+Ne rendez jamais une action destructrice accessible à tous. RumiLes chèques diminuent
+risque, mais les gestionnaires de serveur sont responsables du flux de travail et de ses listes autorisées.
+</Warning>
+
+## Format d'action directe
+
+Mettez les actions sur leurs propres lignes. Utiliser `&&` entre les arguments donc les noms et les raisons
+peut contenir des espaces sans changer l'endroit où commence l'argument suivant.
+
+```text
+{mod:warn target && Repeated rule violation}
+{mod:timeout target && 10m && Cool down period}
+{econ:add user && 100 && Daily custom reward}
+{customdb:increment activity && {user.id} && 1}
+```
+
+La réponse visible peut suivre ces lignes d'action. Une ligne d'action en elle-même n'est pas
+montré à l’utilisateur. Rumi valide les autorisations protégées lorsque la commande est
+enregistré et répète les vérifications d'autorisation, de cible et de hiérarchie des rôles lors de son exécution.
+
+## Grammaire exacte de l'action directe
+
+Les champs entre équerres ci-dessous sont obligatoires. Les champs entre crochets sont
+facultatif. Ne tapez pas les crochets eux-mêmes.
+
+| Action | Disposition exacte |
+| --- | --- |
+| Interdire | `{mod:ban <target> && [reason]}` |
+| Interdiction douce | `{mod:softban <target> && [reason]}` |
+| Coup | `{mod:kick <target> && [reason]}` |
+| Temps mort | `{mod:timeout <target> && <duration> && [reason]}` |
+| Effacer le délai d'attente | `{mod:untimeout <target> && [reason]}` |
+| Avertir | `{mod:warn <target> && [reason]}` |
+| Ajouter un rôle | `{mod:role.add <target> && <role> && [reason]}` |
+| Supprimer le rôle | `{mod:role.remove <target> && <role> && [reason]}` |
+| Changer de rôle | `{mod:role.toggle <target> && <role> && [reason]}` |
+| Ajouter une devise | `{econ:add <target> && <amount> && [reason]}` |
+| Supprimer la devise | `{econ:remove <target> && <amount> && [reason]}` |
+| Définir le portefeuille | `{econ:set <target> && <amount> && [reason]}` |
+| Devise de transfert | `{econ:transfer <source> && <destination> && <amount>}` |
+| Définir des données personnalisées | `{customdb:set <namespace> && <key> && <value>}` |
+| Incrémenter les données personnalisées | `{customdb:increment <namespace> && <key> && [amount]}` |
+| Supprimer les données personnalisées | `{customdb:delete <namespace> && <key>}` |
+
+`mute` est accepté comme alias pour `timeout`; `unmute` est un pseudonyme pour
+`untimeout`. Les cibles peuvent être un argument déclaré tel que `{target}`, un membre
+mention, une pièce d'identité ou `user`/`self` où cette action prend en charge le membre de commande.
+
+`&&` sépare les arguments d’action directe. Cela signifie qu'un motif peut contenir des espaces
+sans être confondu avec l'objectif ou la durée. Réorganiser uniquement les arguments
+lorsque le tableau montre un ordre différent, l'exécuteur de l'action les lit en
+position.
+
+## Boutons d'action
+
+Un bouton est un `$v{button: ...}` bloc. Les champs des boutons sont séparés par `&&`.
+Les champs saisis peuvent être réorganisés car leurs noms les identifient :
+
+```text
+$v{button: label=Confirm && style=danger && action=mod:kick {target} Rule violation && reply=Member removed.}
+```
+
+La forme exacte est :
+
+```text
+$v{button: label=<text> && style=<style> && [emoji=<emoji>] && action=<action-spec> && [reply=<text>]}
+```
+
+Champs des boutons :
+
+| Champ | Valeur acceptée |
+| --- | --- |
+| `label` | Texte du bouton, jusqu'à Discordla limite de 80 caractères. |
+| `style` | `primary`, `secondary`, `success`, ou `danger`. Alias ​​de couleur tels que `blue`, `grey`, `green`, et `red` fonctionnent également. |
+| `emoji` | Emoji Unicode ou personnalisé Discord mention d'émoticônes. |
+| `action` | Spécification d’action à un composant. Répéter `action=` pour former une chaîne. |
+| `reply` | Réponse éphémère affichée uniquement au clicker. |
+| `public` | Réponse publique dans la chaîne au lieu d'une réponse éphémère. |
+| `dm` | Texte envoyé au clicker par DM. |
+| `role` et `mode` | Rôle à changer sur le clicker et `add`, `remove`, ou `toggle`. |
+| `page` | `next`, `previous`, ou un numéro de page créé avec `$v{page}`. |
+| `await`, `once`, `defer` | Contrôles d'exécution booléens tels que `true` ou `false`. |
+| `expires` | Combien de temps le contrôle reste utilisable, par exemple `10m` ou `1h`. |
+| `allow_user`, `allow_role`, `allow_channel` | Un identifiant ou une liste d'identifiants séparés par des virgules est autorisé à utiliser le contrôle. |
+
+Contrairement aux lignes d'action directe, une action composante est écrite sans le texte externe.
+accolades et utilise des espaces entre ses arguments internes :
+
+```text
+action=mod:timeout {target} 10m Cool down
+action=econ:add user 100 Button reward
+```
+
+Répétez le champ saisi pour exécuter plusieurs actions dans l'ordre :
+
+```text
+$v{button: label=Approve && style=success && action=mod:role.add {target} @Member Approved && action=reply:Approved {target.mention} && once=true}
+```
+
+## Boutons de liens et listes déroulantes
+
+Les boutons de lien n'exécutent pas d'actions protégées :
+
+```text
+$v{button: label=Website && url=https://rumi.rocks && emoji=🔗}
+```
+
+Les listes déroulantes utilisent cet arrangement :
+
+```text
+$v{select: <id> && <placeholder> && <label>|<action-fields>|[description]|[emoji]}
+```
+
+Séparez plusieurs champs d'action à clé dans une option déroulante avec un
+point-virgule :
+
+```text
+$v{select: staff_menu && Choose an action && Warn|action=mod:warn {target} Menu warning;reply=Warning saved.|Create a warning|⚠️}
+```
+
+Chaque option est séparée par `&&`. Dans une option, l'ordre de séparation des colonnes est
+étiquette, champs d'action, description facultative et emoji facultatif.

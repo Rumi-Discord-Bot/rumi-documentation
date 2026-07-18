@@ -1,0 +1,22 @@
+---
+title: "Variables generales"
+description: "9 variables generales apoyadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;len:value&#125;</code> | Devuelve el recuento de caracteres. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;length:value&#125;</code> | Alias ​​de &#123;longitud: valor&#125;. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;lower:value&#125;</code> | Convierta el valor resuelto a minúsculas. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;title:value&#125;</code> | Convierta el valor resuelto a mayúsculas y minúsculas. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;upper:value&#125;</code> | Convierta el valor resuelto a mayúsculas. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;urlencode:value&#125;</code> | Codifique el valor resuelto para usarlo en una URL. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;newline&#125;</code> | Inserta un salto de línea real. | <code>\n</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;prefix&#125;</code> | Prefijo del servidor actual. | <code>,</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;timestamp&#125;</code> | El contexto de la marca de tiempo. | <code>1781460000</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |

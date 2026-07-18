@@ -1,0 +1,58 @@
+---
+title: "Restricciones"
+description: "Controle quién puede ejecutar un comando personalizado y dónde se puede ejecutar."
+icon: "lock-keyhole"
+---
+
+Las restricciones pueden permitir o denegar usuarios, roles y canales. Un comando personalizado puede
+también requiere uno o más nombres Discord permisos.
+
+## Permitir un objetivo
+
+```text
+-cc allow <name> user @member
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+```
+
+## Denegar un objetivo
+
+```text
+-cc deny <name> user @member
+-cc deny <name> role @Muted
+-cc deny <name> channel #off-topic
+```
+
+Elimine una entrada permitida o denegada con el comando inverso correspondiente:
+
+```text
+-cc unallow <name> role @Staff
+-cc undeny <name> channel #off-topic
+```
+
+## Requerir Discord permisos
+
+Usar Discord nombres de permiso como `ManageMessages`:
+
+```text
+-cc requireperm cleanup ManageMessages
+```
+
+Se pueden proporcionar varios nombres de permisos. Usar `clear` para eliminar todo lo necesario
+permisos:
+
+```text
+-cc requireperm cleanup clear
+```
+
+## Revisar o restablecer restricciones
+
+```text
+-cc restrictions <name>
+-cc restrictions <name> clear
+```
+
+<Warning>
+Al eliminar las restricciones se eliminan todas las reglas de permiso, denegación y permiso requerido.
+de ese comando personalizado. Revisa el resultado con `-cc show <name>`.
+</Warning>

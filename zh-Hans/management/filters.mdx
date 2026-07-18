@@ -1,0 +1,55 @@
+---
+title: "过滤器"
+description: "配置 Rumi 当前可用的服务器过滤器。"
+icon: "filter"
+---
+
+Rumi 目前提供服务器表达式和助推器角色的过滤器。跑步
+`-help expressionsblock` 或者 `-help boosterrole` 最新的语法和
+要求。
+
+## 块表达式
+
+这 `expressionsblock` 命令可以阻止特定的自定义表情符号、Unicode 表情符号、
+贴纸或外部自定义表情符号。它需要服务器管理权限，
+和 Rumi 需要管理消息的权限。
+
+```text
+-expressionsblock add <emoji-or-sticker>
+-expressionsblock remove <emoji-or-sticker>
+-expressionsblock list
+-expressionsblock clear
+-expressionsblock external <on-or-off>
+```
+
+<Tip>
+`emojiblock` 和 `blockexpressions` 是别名 `expressionsblock`.
+</Tip>
+
+## 过滤辅助角色名称
+
+使用个人助推器角色的服务器可以维护一个阻止的单词列表：
+
+```text
+-boosterrole filter add <word>
+-boosterrole filter remove <word>
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+高级服务器还可以使用正则表达式名称过滤器：
+
+```text
+-boosterrole regex filter add <pattern>
+-boosterrole regex filter remove <pattern>
+-boosterrole regex filter list
+-boosterrole regex filter clear
+```
+
+用于辅助角色图标输入的 NSFW 文本过滤器是单独控制的：
+
+```text
+-boosterrole filtericon nsfw <on-or-off>
+```
+
+跑步 `-boosterrole filters` 查看当前辅助角色过滤器设置。

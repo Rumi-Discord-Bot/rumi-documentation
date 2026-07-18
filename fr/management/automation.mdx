@@ -1,0 +1,113 @@
+---
+title: "Automatisation des messages"
+description: "Créez des répondeurs automatiques et des réactions automatiques avec des modes de correspondance, des temps de recharge, des autorisations, des canaux, des intégrations et des données personnalisées."
+icon: "gears"
+---
+
+Les répondeurs automatiques réagissent aux messages ordinaires sans ajouter un autre public
+commande. Les réactions automatiques correspondent à un message et ajoutent des réactions configurées.
+
+## Pourquoi `--` apparaît ici
+
+Les répondeurs automatiques ont à la fois des indicateurs correspondants et une réponse. Le dernier autonome
+`--` termine les drapeaux et commence la réponse :
+
+```text
+-autoresponder set "hello there" --exact -- General Kenobi.
+```
+
+Le premier `--exact` est un drapeau. Le dernier autonome `--` est la frontière. Ce
+empêche le texte de réponse d’être confondu avec des options.
+
+## Modes de correspondance
+
+| Drapeau | Comportement |
+| --- | --- |
+| `--exact` | L'ensemble du message doit correspondre |
+| `--startswith` | Le message doit commencer par le déclencheur |
+| `--endswith` | Le message doit se terminer par le déclencheur |
+| `--contains` | Le déclencheur peut apparaître n’importe où |
+| `--match` | Traitez le déclencheur comme une expression régulière |
+| `--within 30s` | Appliquer une fenêtre de temps de recharge par utilisateur |
+
+Choisissez un seul mode de correspondance. `exact` est le plus sûr pour les déclencheurs de type commande ;
+`contains` est utile pour les phrases ; `startswith` et `endswith` conserver un supplément
+texte de l’autre côté. `match` interprète le déclencheur comme une expression régulière
+et est destiné aux personnes déjà à l'aise avec les tests de modèles d'expressions régulières.
+
+## Indicateurs de réponse et de sécurité
+
+```text
+-autoresponder set "rules" --exact --embed -- $v{title: Rules}$v{description: Be kind.}
+-autoresponder set "counter" --exact --db -- {db.inc:uses:{user.id}:1}Count: {db.get:uses:{user.id}}
+-autoresponder set "staff" --exact --require-permission ManageMessages -- Staff response
+-autoresponder set "hello" --contains --ignore-channel #bots -- Hi {user.mention}
+```
+
+`--embed` analyse `$v{...}` sortie, tandis que `--text` force le texte normal. `--db`
+active les lectures et écritures de données personnalisées pour ce répondeur. Autorisation et ignoré
+les indicateurs de canal maintiennent la portée des automatisations sensibles.
+
+`--require-permission` vérifie le membre qui a envoyé le message correspondant. Utilisez un
+Discord nom d'autorisation tel que `ManageMessages`. `--ignore-channel` peut être
+répété lorsque la même réponse doit rester en dehors de plusieurs canaux.
+
+`--languagedetect` est une option premium. Il traduit le texte entrant en anglais
+avant la correspondance, ce qui permet à un déclencheur anglais de reconnaître les messages équivalents
+dans d'autres langues. Il ne traduit pas la réponse enregistrée.
+
+## Répertorier, tester et supprimer les répondeurs
+
+Rumi numéros de répondeurs automatiques dans la liste :
+
+```text
+-autoresponder list
+-autoresponder test 1
+-autoresponder remove 1
+```
+
+`test` exécute le déclencheur enregistré via le même chemin d’automatisation des messages. Utilisez-le
+après avoir ajouté des variables, des données personnalisées ou des actions afin que vous puissiez détecter un message mal formé
+réponse avant que les membres ne la rencontrent. Un serveur peut stocker jusqu'à 500 répondeurs.
+
+## Cibles exclusives
+
+Les exclusivités limitent un répondant à un canal, un rôle ou un membre particulier. Le
+le premier numéro est l'emplacement du répondeur indiqué par `autoresponder list`:
+
+```text
+-autoresponder exclusive set 1 #general
+-autoresponder exclusive set 1 @Event Team
+-autoresponder exclusive set 1 @member
+-autoresponder exclusive list 1
+```
+
+Ajoutez plus d'une cible lorsque l'intervenant doit travailler dans plusieurs cibles approuvées.
+places ou pour plusieurs groupes agréés. Supprimez uniquement la cible que vous n'avez plus
+besoin:
+
+```text
+-autoresponder exclusive remove 1 #general
+```
+
+Un canal ignoré et un canal exclusif résolvent des problèmes opposés :
+`--ignore-channel` bloque les canaux sélectionnés, tandis qu'une cible exclusive limite
+le répondeur aux cibles sélectionnées.
+
+<Warning>
+Expressions régulières et large `--contains` les déclencheurs peuvent correspondre à plus de messages
+que prévu. Commencez dans un canal de test, ajoutez `--within`, et examinez le déclencheur
+avant d'activer une action protégée.
+</Warning>
+
+## Réactions automatiques
+
+Les autoréactions partagent les mêmes modes de correspondance principaux :
+
+```text
+-autoreaction add "good morning" ☀️ ❤️ --startswith
+```
+
+Utilisez une correspondance étroite pour les mots courants. UN `contains` autoréaction attachée à un
+un déclencheur court peut ajouter des réactions beaucoup plus souvent que prévu.
+

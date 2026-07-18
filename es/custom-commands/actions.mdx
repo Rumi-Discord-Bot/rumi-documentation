@@ -1,0 +1,163 @@
+---
+title: "Comportamiento"
+description: "Agregue acciones de miembro protegido, rol, mensaje, economía, reacción y datos."
+icon: "bolt"
+---
+
+Las acciones permiten que un comando personalizado haga más que devolver texto. Correr:
+
+```text
+-cc actions
+```
+
+Rumi mostrará la sintaxis actual para los botones de acción, gestión de miembros
+acciones, roles, mensajes, cambios económicos, reacciones, acciones nombradas y costumbres.
+datos. Utilice esa respuesta como fuente de verdad mientras elabora un guión.
+
+## Modelo de seguridad
+
+Las acciones protegidas se verifican cuando se guarda un comando personalizado y cuando se ejecuta.
+Dependiendo de la acción, los controles pueden incluir:
+
+- El miembro configurador Discord permiso
+- El permiso del miembro en ejecución o la lista de permitidos explícita
+- Rumi's Discord permiso
+- Jerarquía de miembros y roles.
+- Si el objetivo es válido y manejable.
+
+Rumi actualmente reconoce familias de acciones protegidas por baneo, softbanning,
+patadas, tiempos de espera, advertencias, cambios de rol, eliminación de mensajes, cambios económicos,
+acciones con nombre y datos personalizados. Estos son <mark>bloques de construcción dentro de personalizado
+comandos</mark>, no comandos de moderación pública predeterminados.
+
+## Construye con cuidado
+
+1. Cree y obtenga una vista previa de la respuesta de solo texto.
+2. Agregue la acción más pequeña necesaria.
+3. Restrinja el comando a una función, canal o permiso confiable.
+4. correr `-cc show <name>` y revise el script guardado.
+5. Pruebe con un objetivo seguro antes de utilizarlo con el personal.
+
+<Warning>
+Nunca pongas una acción destructiva al alcance de todos. RumiLos cheques reducen
+riesgo, pero los administradores de servidores son responsables del flujo de trabajo y sus listas permitidas.
+</Warning>
+
+## Formato de acción directa
+
+Poner las acciones en sus propias líneas. Usar `&&` entre argumentos así nombres y razones
+puede contener espacios sin cambiar dónde comienza el siguiente argumento.
+
+```text
+{mod:warn target && Repeated rule violation}
+{mod:timeout target && 10m && Cool down period}
+{econ:add user && 100 && Daily custom reward}
+{customdb:increment activity && {user.id} && 1}
+```
+
+La respuesta visible puede seguir esas líneas de acción. Una línea de acción en sí misma no es
+mostrado al usuario. Rumi valida los permisos protegidos cuando se ejecuta el comando
+guarda y repite las comprobaciones de permisos, objetivos y jerarquía de roles cuando se ejecuta.
+
+## Gramática exacta de acción directa
+
+Los campos entre corchetes angulares que aparecen a continuación son obligatorios. Los campos entre corchetes son
+opcional. No escriba los propios corchetes.
+
+| Acción | disposición exacta |
+| --- | --- |
+| Prohibición | `{mod:ban <target> && [reason]}` |
+| Softban | `{mod:softban <target> && [reason]}` |
+| Patada | `{mod:kick <target> && [reason]}` |
+| Se acabó el tiempo | `{mod:timeout <target> && <duration> && [reason]}` |
+| Borrar tiempo de espera | `{mod:untimeout <target> && [reason]}` |
+| Advertir | `{mod:warn <target> && [reason]}` |
+| Agregar rol | `{mod:role.add <target> && <role> && [reason]}` |
+| Quitar rol | `{mod:role.remove <target> && <role> && [reason]}` |
+| Alternar rol | `{mod:role.toggle <target> && <role> && [reason]}` |
+| Agregar moneda | `{econ:add <target> && <amount> && [reason]}` |
+| Quitar moneda | `{econ:remove <target> && <amount> && [reason]}` |
+| Establecer billetera | `{econ:set <target> && <amount> && [reason]}` |
+| Transferir moneda | `{econ:transfer <source> && <destination> && <amount>}` |
+| Establecer datos personalizados | `{customdb:set <namespace> && <key> && <value>}` |
+| Incrementar datos personalizados | `{customdb:increment <namespace> && <key> && [amount]}` |
+| Eliminar datos personalizados | `{customdb:delete <namespace> && <key>}` |
+
+`mute` se acepta como alias para `timeout`; `unmute` es un alias para
+`untimeout`. Los objetivos pueden ser un argumento declarado como `{target}`, un miembro
+mencionar, una identificación, o `user`/`self` donde esa acción apoya al miembro del comando.
+
+`&&` separa los argumentos de acción directa. Esto significa que un motivo puede contener espacios.
+sin confundirse con el objetivo o la duración. Sólo reordenar argumentos
+cuando la tabla muestra un orden diferente: el ejecutor de la acción los lee por
+posición.
+
+## Botones de acción
+
+Un botón es un `$v{button: ...}` bloquear. Los campos de los botones están separados por `&&`.
+Los campos con clave se pueden reorganizar porque sus nombres los identifican:
+
+```text
+$v{button: label=Confirm && style=danger && action=mod:kick {target} Rule violation && reply=Member removed.}
+```
+
+La forma exacta es:
+
+```text
+$v{button: label=<text> && style=<style> && [emoji=<emoji>] && action=<action-spec> && [reply=<text>]}
+```
+
+Campos de botones:
+
+| Campo | Valor aceptado |
+| --- | --- |
+| `label` | Texto del botón, hasta DiscordEl límite de 80 caracteres. |
+| `style` | `primary`, `secondary`, `success`, o `danger`. Alias ​​de color como `blue`, `grey`, `green`, y `red` también funciona. |
+| `emoji` | Emoji Unicode o personalizado Discord mención emoji. |
+| `action` | Especificación de acción de un componente. Repetir `action=` para formar una cadena. |
+| `reply` | Respuesta efímera que se muestra solo al clicker. |
+| `public` | Respuesta pública en el canal en lugar de una respuesta efímera. |
+| `dm` | Texto enviado al clicker por DM. |
+| `role` y `mode` | Rol a cambiar en el clicker y `add`, `remove`, o `toggle`. |
+| `page` | `next`, `previous`, o un número de página creado con `$v{page}`. |
+| `await`, `once`, `defer` | Controles de ejecución booleanos como `true` o `false`. |
+| `expires` | ¿Cuánto tiempo permanece utilizable el control, como por ejemplo? `10m` o `1h`. |
+| `allow_user`, `allow_role`, `allow_channel` | Un ID o una lista de ID separados por comas permite utilizar el control. |
+
+A diferencia de las líneas de acción directa, una acción componente se escribe sin el exterior.
+llaves y utiliza espacios entre sus argumentos internos:
+
+```text
+action=mod:timeout {target} 10m Cool down
+action=econ:add user 100 Button reward
+```
+
+Repita el campo clave para ejecutar varias acciones en orden:
+
+```text
+$v{button: label=Approve && style=success && action=mod:role.add {target} @Member Approved && action=reply:Approved {target.mention} && once=true}
+```
+
+## Botones de enlace y menús desplegables
+
+Los botones de enlace no ejecutan acciones protegidas:
+
+```text
+$v{button: label=Website && url=https://rumi.rocks && emoji=🔗}
+```
+
+Los menús desplegables utilizan esta disposición:
+
+```text
+$v{select: <id> && <placeholder> && <label>|<action-fields>|[description]|[emoji]}
+```
+
+Separe varios campos de acción con clave dentro de una opción desplegable con un
+punto y coma:
+
+```text
+$v{select: staff_menu && Choose an action && Warn|action=mod:warn {target} Menu warning;reply=Warning saved.|Create a warning|⚠️}
+```
+
+Cada opción está separada por `&&`. Dentro de una opción, el orden de separación de tuberías es
+etiqueta, campos de acción, descripción opcional y emoji opcional.

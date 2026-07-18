@@ -1,0 +1,99 @@
+---
+title: "Juegos"
+description: "Juega juegos interactivos de Discord y busca perfiles y servidores de juegos compatibles."
+icon: "gamepad"
+---
+
+RumiEl módulo Juegos contiene dos tipos de comandos: juegos que se juegan dentro Discord
+y búsquedas que obtienen información pública de un proveedor de juegos o plataformas.
+Actualmente, los comandos de juegos son solo de prefijo.
+
+## Juegos interactivos
+
+### Piedra, Papel o Tijera
+
+```text
+-rps play bo3
+-rps challenge @member bo5
+-rps stats
+-rps leaderboard
+```
+
+Las coincidencias utilizan opciones de botones privados cuando es necesario. Los mejores valores respaldados por
+el comando son `bo1`, `bo3`, `bo5`, `bo7`, y `bo9`.
+
+### Tres en raya y minas
+
+```text
+-tictactoe @member
+-mines
+```
+
+Ambos utilizan componentes interactivos. Sólo los jugadores vinculados al juego pueden
+controlar sus botones.
+
+### Juegos de chat rápido
+
+```text
+-fasttype
+-fasttype Type this exact custom phrase
+-mathrace hard
+-unscramble 5 20
+```
+
+`fasttype` espera la primera frase exacta, `mathrace` espera el primero
+respuesta correcta y `unscramble` corre una carrera de palabras. Sus números opcionales cambian.
+la puntuación objetivo o el tiempo en el que el comando los apoya.
+
+### Té y juegos de supervivencia.
+
+```text
+-blacktea 3 20
+-greentea 5 15
+-redtea 3 20
+-whitetea 3 20
+-wordchain 3 20
+-forbiddenword 30
+```
+
+Las variantes de té utilizan diferentes reglas de eliminación. Leer `-help <game>` ante un
+sesión más grande para que todos sepan si la ronda premia la velocidad, las palabras válidas,
+o evitando un fragmento.
+
+### Pequeños juegos
+
+```text
+-coinflip
+-roll 2d20
+-slots
+-coinrace
+```
+
+Estos no utilizan la economía de servidores. Los juegos de casino económicos están bajo
+`-casino`, no el módulo Juegos.
+
+## Búsquedas de juegos y plataformas
+
+Actualmente, el módulo incluye comandos para Roblox, Minecraft, Fortnite, Steam,
+Valorant, Apex Legends, Overwatch, League of Legends, osu!, Choque de clanes,
+Grupos de Clash Royale, Brawl Stars y Roblox.
+
+Ejemplos de los comandos actuales:
+
+```text
+-roblox user Builderman
+-roblox avatar Builderman
+-minecraft status play.example.net
+-minecraft player Notch
+-fortnite <account>
+```
+
+Correr `-help roblox`, `-help minecraft`, o el comando de juego relevante antes de un
+buscar. Cada proveedor espera un nombre de usuario, etiqueta, región, ID de cuenta o
+dirección del servidor.
+
+<Info>
+Los datos de búsqueda provienen de servicios de juegos externos. Un perfil privado, inválido
+identificador, interrupción del proveedor o falta de integración API opcional pueden evitar una
+resultado incluso mientras Rumi en sí está en línea.
+</Info>

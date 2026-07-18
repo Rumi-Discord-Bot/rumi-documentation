@@ -1,0 +1,145 @@
+---
+title: "Persönliche Werkzeuge"
+description: "Finden Sie aktuelle Erwähnungen, übersetzen Sie Nachrichten, speichern Sie Lesezeichen und verwalten Sie eine Aufgabenliste."
+icon: "toolbox"
+---
+
+Diese Befehle speichern oder zeigen Informationen für das Mitglied an, das sie ausführt. Sie
+Erstellen Sie keine gemeinsame Server-Aufgabenliste und legen Sie die gespeicherten Lesezeichen eines Mitglieds nicht offen
+an ein anderes Mitglied.
+
+## Erwähnungen der letzten 24 Stunden
+
+```text
+-mentions
+```
+
+Rumi Zeigt direkte Erwähnungen und Antworten an, die auf dem aktuellen Server an Sie gerichtet sind.
+Jeder Eintrag enthält den erfassten Nachrichteninhalt und den Antwortkontext
+verfügbar. Wenn eine erfasste Nachricht später gelöscht wird, kann der gespeicherte Snapshot weiterhin verwendet werden
+erscheinen, bis es außerhalb des 24-Stunden-Fensters liegt.
+
+Selbstpings werden ignoriert. Der Befehl zeigt nur Aktivität an Rumi dabei beobachtet
+hatte Zugriff auf den Kanal; Ältere Nachrichten von vor dem können nicht wiederhergestellt werden
+Der Tracker hat sie gesehen.
+
+## Text oder Antwort übersetzen
+
+```text
+-translate es hello
+-translate from en to ja hello
+```
+
+Um eine Nachricht zu übersetzen, ohne sie zu kopieren, antworten Sie auf diese Nachricht und geben Sie sie an
+nur die Zielsprache:
+
+```text
+-translate fr
+```
+
+Im Ergebnisfenster kann der Befehlsautor die Zielsprache ändern und austauschen
+Ändern Sie die Übersetzungsrichtung oder schließen Sie die Steuerelemente. Sehen Sie sich die verfügbaren Sprachcodes an
+mit:
+
+```text
+-translate languages
+```
+
+## Währungstools
+
+Konvertieren Sie einen Betrag nach Währungscode oder unterstütztem Währungsnamen:
+
+```text
+-currency convert 25 USD to EUR
+-currency convert 5000 JPY to KES
+```
+
+Der Rest des Befehls ist nützlich, wenn Sie den genauen Code noch nicht kennen:
+
+| Befehl | Zweck |
+| --- | --- |
+| `currency rates <base> [page]` | Durchsuchen Sie Tarife mit einer Währung als Basis. |
+| `currency list [page]` | Durchsuchen Sie unterstützte Währungen. |
+| `currency search <query>` | Finden Sie einen Code anhand eines Teils seines Codes oder Namens. |
+| `currency info <code\|name>` | Überprüfen Sie eine unterstützte Währung. |
+| `currency popular [base]` | Zeigen Sie häufig verwendete Konvertierungen aus einer Basis an. |
+| `currency compare <amount> <from> <to1> <to2> ...` | Vergleichen Sie den gleichen Betrag über mehrere Ziele hinweg. |
+| `currency inverse <amount> <from> to <to>` | Zeigen Sie die Konvertierung und ihre umgekehrte Beziehung. |
+| `currency history <YYYY-MM-DD> <amount> <from> to <to>` | Konvertieren Sie mit dem Kurs für ein historisches Datum. |
+| `currency symbols` | Erkannte Währungssymbole anzeigen. |
+
+Beispiele:
+
+```text
+-currency search shilling
+-currency info KES
+-currency rates GBP 2
+-currency compare 100 USD EUR GBP KES JPY
+-currency history 2025-01-15 100 USD to EUR
+```
+
+### Abonnements bewerten
+
+Speichern Sie ein Währungspaar, um es später zu verfolgen:
+
+```text
+-currency subscribe USD KES
+-currency subscriptions
+-currency unsubscribe USD KES
+```
+
+Die Preise stammen aus Rumiist der konfigurierte Währungsdatenanbieter. Sie sind nützlich für
+Referenz und Vergleiche, nicht als garantiertes Abwicklungsangebot einer Bank oder
+Zahlungsdienst.
+
+## Lesezeichen
+
+Speichern Sie einen Link mit einer optionalen Notiz:
+
+```text
+-bookmark add https://example.com Useful reference
+```
+
+Oder antworten Sie auf a Discord Nachricht senden und ausführen:
+
+```text
+-bookmark add Follow up later
+```
+
+Durchsuchen, suchen, bearbeiten oder entfernen Sie gespeicherte Elemente:
+
+```text
+-bookmark list
+-bookmark list reference
+-bookmark edit bm-1234 Better note
+-bookmark remove bm-1234
+```
+
+Rumi Gibt eine benutzerfreundliche Lesezeichen-ID zurück, wenn ein Element gespeichert wird. Verwenden Sie lieber diese ID
+als seine Listenposition, wenn Sie es bearbeiten oder entfernen.
+
+## Todo-Listen
+
+```text
+-todo add Finish the event schedule
+-todo list
+-todo view todo-1234
+-todo complete todo-1234
+-todo reopen todo-1234
+-todo edit todo-1234 Finish the event schedule tonight
+-todo remove todo-1234
+```
+
+Abgeschlossene Elemente werden in der normalen Liste ausgeblendet. Fügen Sie sie hinzu mit:
+
+```text
+-todo list --done
+```
+
+`-todo clear` Entfernt die gesamte persönliche Aufgabenliste. Verwenden Sie sie daher nur, wenn Sie dies nicht tun
+Sie benötigen keine offenen oder erledigten Artikel mehr.
+
+<Tip>
+Lesezeichen- und Aufgaben-IDs sind so konzipiert, dass sie auch beim Blättern oder Suchen stabil bleiben
+Ändert die Position eines Elements in der angezeigten Liste.
+</Tip>

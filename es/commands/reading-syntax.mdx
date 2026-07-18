@@ -1,0 +1,112 @@
+---
+title: "Cómo leer la sintaxis de comandos"
+description: "Comprenda los argumentos obligatorios, los valores opcionales, las opciones, las banderas, los ID y el texto entre comillas."
+icon: "code"
+---
+
+RumiLas entradas de ayuda utilizan una pequeña cantidad de notación para mostrar qué es un comando.
+espera. Los corchetes son instrucciones; normalmente no los escribes.
+
+## Argumentos obligatorios y opcionales
+
+`<angle brackets>` significa que el valor es requerido:
+
+```text
+role add <member> <role>
+```
+
+Una ejecución válida sería:
+
+```text
+-role add @Moon Member
+```
+
+`[square brackets]` significa que el valor es opcional:
+
+```text
+level [user]
+```
+
+Ambos `-level` y `-level @Moon` son válidos.
+
+## Opciones
+
+Una barra vertical significa "elige uno":
+
+```text
+deposit <amount|all>
+```
+
+Utilice cualquiera de los dos `-deposit 500` o `-deposit all`. No escribas la barra.
+
+## Texto con espacios
+
+Algunos comandos tratan el resto del mensaje como un valor. Otros tienen otro
+argumento después, por lo que las comillas aclaran el límite:
+
+```text
+-giveaway start "Discord Nitro" 24h 1 #giveaways
+```
+
+Sin comillas, `Discord` y `Nitro` podría leerse como posicional separado
+argumentos. Las citas son especialmente útiles para premios, nombres, motivos y títulos.
+
+## Banderas
+
+Las banderas comienzan con `--` y cambiar una parte de un comando sin cambiar su
+acción principal:
+
+```text
+-role create Event Host --color #c8d8f2
+-media caption --position=top --size=42 Welcome!
+-giveaway start "Nitro" 24h 1 --button
+```
+
+Dependiendo del comando, una bandera se puede escribir como `--name value` o
+`--name=value`. Siga el ejemplo de ayuda de ese comando cuando ambos formularios no estén
+listado.
+
+## Menciones, nombres e identificaciones
+
+Rumi A menudo acepta un Discord mención, ID sin formato o nombre resoluble. Las menciones son
+el menos ambiguo:
+
+```text
+-role info @Staff
+-channel rename #old-name new-name
+-inviter 123456789012345678
+```
+
+Cuando dos roles o canales tengan el mismo nombre, utilice una mención o ID.
+
+## Subcomandos
+
+La primera palabra después de un comando suele seleccionar una acción:
+
+```text
+-economy config
+-economy config currency petals
+-economy rob chance 35
+```
+
+Léalos de izquierda a derecha: `economy` abre el sistema, `rob` selecciona su
+área de configuración, y `chance` selecciona la configuración.
+
+## Por qué se utilizan los comandos personalizados `--`
+
+El `customcommand set` El comando tiene que separar el propio argumento del comando.
+definición de la respuesta que guarda:
+
+```text
+-cc set greet <member> -- Hello {target.mention}!
+```
+
+Todo antes del standalone `--` define el comando personalizado. Todo
+después está la respuesta o guión. Esto permite que la respuesta contenga espacios,
+variables, incrustaciones y líneas múltiples sin Rumi confundiéndolos con más
+argumentos de configuración. Ver [sintaxis y separadores](../custom-commands/syntax-and-separators)
+para ver el formato de comando personalizado completo.
+
+<Info>
+Correr `-help <command>` siempre que un ejemplo no esté claro. Si aún tiene problemas, puede preguntarle al modelo de IA incorporado usando `-rumi <question>`.
+</Info>

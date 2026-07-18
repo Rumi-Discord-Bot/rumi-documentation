@@ -1,0 +1,41 @@
+---
+title: "惩罚变量"
+description: "Rumi 支持的 28 个惩罚变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;punishment.audit_reason&#125;</code> | 原因文字来自 Discord 审核日志（如果可用）。 | <code>没有提供理由。</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.case_id&#125;</code> | 用于惩罚的友好案例 ID。 | <code>警告-A1B2</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.channel&#125;</code> | 频道提及或频道价值。来源：惩罚。 | <code>惩罚通道示例</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.channel.mention&#125;</code> | 提及与审核事件相关的频道。 | <code>&lt;@123456789012345678&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.created_at&#125;</code> | Discord-格式化的创建时间。来源：惩罚。 | <code>&lt;t:1781460000:F&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.created_at_timestamp&#125;</code> | 创建时间的 Unix 时间戳。来源：惩罚。 | <code>&lt;t:1781460000:F&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.duration&#125;</code> | 临时惩罚的持续时间，例如超时长度。 | <code>10m</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.executor.id&#125;</code> | Discord 审计日志执行者的ID Discord 暴露它。 | <code>123456789012345678</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.executor.mention&#125;</code> | 在以下情况下提及审核日志执行器 Discord 暴露它。 | <code>&lt;@123456789012345678&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.executor.tag&#125;</code> | 审核日志执行器的用户名标签 Discord 暴露它。 | <code>用户名</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.expires_at&#125;</code> | Discord- 临时惩罚的格式化到期时间。 | <code>&lt;t:1781460000:F&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.expires_at_timestamp&#125;</code> | 过期时间的 Unix 时间戳。来源：惩罚。 | <code>&lt;t:1781460000:F&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.guild&#125;</code> | 行会惩罚。 | <code>惩罚公会示例</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.invite_url&#125;</code> | 邀请网址。来源：惩罚。 | <code>惩罚邀请 url 示例</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.public_id&#125;</code> | 公众友好的案件 ID（如有）。 | <code>案例-42</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.reason&#125;</code> | 处罚或案件附带的原因。 | <code>重复发送垃圾邮件</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.role&#125;</code> | 角色名称或角色值。来源：惩罚。 | <code>惩罚角色示例</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.role_id&#125;</code> | Discord 角色ID。来源：惩罚。 | <code>惩罚角色 ID 示例</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.role_mention&#125;</code> | 提及受影响的角色。来源：惩罚。 | <code>惩罚角色提及示例</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.type&#125;</code> | 惩罚类型，例如 warn、ban、kick、timeout、role_add 或 role_remove。 | <code>警告</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.user&#125;</code> | 显示受审核操作影响的用户。 | <code>惩罚用户示例</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.user.avatar&#125;</code> | 头像图片网址。来源：惩罚用户。 | <code>https://cdn.discordapp.com/.../avatar.png</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.user.created_at&#125;</code> | Discord-格式化的创建时间。来源：惩罚用户。 | <code>&lt;t:1781460000:F&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.user.id&#125;</code> | Discord 被惩罚用户的ID。 | <code>123456789012345678</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.user.joined_at&#125;</code> | Discord-格式化的服务器加入时间。来源：惩罚用户。 | <code>&lt;t:1781460000:F&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.user.mention&#125;</code> | 提及受到惩罚的用户。 | <code>&lt;@123456789012345678&gt;</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.user.name&#125;</code> | 受惩罚用户的用户名。 | <code>鲁米</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |
+| <code>&#123;punishment.user.tag&#125;</code> | Discord 受惩罚用户的用户名标签/鉴别器样式值。 | <code>用户名</code> | 审核日志、调用消息、警告/禁止/踢/超时响应 |

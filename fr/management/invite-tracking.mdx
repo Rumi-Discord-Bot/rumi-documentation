@@ -1,0 +1,63 @@
+---
+title: "Suivi des invitations"
+description: "Suivez les invitations, les invités actifs, les jointures personnalisées, les classements et les journaux de participation."
+icon: "user-plus"
+---
+
+RumiLe suivi des invitations de compare Discord inviter l'utilisation lorsque les membres rejoignent. Il enregistre
+l'invitant quand Discord fournit suffisamment d'informations et sépare les normales
+invitation, vanité et jointures inconnues.
+
+## Activer et inspecter le suivi
+
+```text
+-invites enable
+-invites settings
+```
+
+La modification des paramètres nécessite **Gérer le serveur**. Utiliser `settings` pour confirmer si
+le suivi est activé et si un canal de journalisation de jointure est configuré.
+
+## Ajouter un journal de jointure
+
+```text
+-invites log #join-logs
+-invites log off
+```
+
+Le canal de journal reçoit les informations de suivi Rumi pourrait résoudre pour de nouveaux
+rejoint.
+
+## Afficher les statistiques des membres et du serveur
+
+```text
+-invites
+-invites @member
+-invites top weekly
+-inviter @member
+-joins monthly
+-vanityjoins alltime
+```
+
+Le tracker distingue le nombre total de jointures, les invités actifs, les membres partis,
+les jointures sur invitation normales, les jointures personnalisées et les jointures dont l'invitant n'a pas pu être
+déterminé.
+
+Les périodes de rapport prises en charge incluent `daily`, `weekly`, `monthly`, et `alltime`.
+
+## Actualiser l'instantané
+
+```text
+-invites refresh
+```
+
+Cela demande Rumi pour récupérer à nouveau la liste d'invitations actuelle. Il rafraîchit le
+instantané de comparaison ; il ne peut pas reconstruire les informations sur l'invitant qui Discord a fait
+ne prévoit pas une jointure antérieure.
+
+<Info>
+L’attribution des invitations n’est pas garantie pour chaque inscription. Liens d'invitation supprimés,
+liens personnalisés, autorisations manquantes, état du cache indisponible et simultanéité
+les modifications d’invitation peuvent laisser une jointure marquée comme inconnue. `-invites refresh` mises à jour
+l'instantané Rumi utilisations pour des comparaisons futures.
+</Info>

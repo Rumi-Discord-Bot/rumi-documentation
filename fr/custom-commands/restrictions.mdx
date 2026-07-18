@@ -1,0 +1,58 @@
+---
+title: "Restrictions"
+description: "Contrôlez qui peut exécuter une commande personnalisée et où elle peut être exécutée."
+icon: "lock-keyhole"
+---
+
+Les restrictions peuvent autoriser ou refuser des utilisateurs, des rôles et des canaux. Une commande personnalisée peut
+nécessitent également un ou plusieurs noms Discord autorisations.
+
+## Autoriser une cible
+
+```text
+-cc allow <name> user @member
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+```
+
+## Refuser une cible
+
+```text
+-cc deny <name> user @member
+-cc deny <name> role @Muted
+-cc deny <name> channel #off-topic
+```
+
+Supprimez une entrée d'autorisation ou de refus avec la commande inverse correspondante :
+
+```text
+-cc unallow <name> role @Staff
+-cc undeny <name> channel #off-topic
+```
+
+## Exiger Discord autorisations
+
+Utiliser Discord noms d'autorisation tels que `ManageMessages`:
+
+```text
+-cc requireperm cleanup ManageMessages
+```
+
+Plusieurs noms d'autorisation peuvent être fournis. Utiliser `clear` pour supprimer tous les éléments requis
+autorisations :
+
+```text
+-cc requireperm cleanup clear
+```
+
+## Vérifier ou réinitialiser les restrictions
+
+```text
+-cc restrictions <name>
+-cc restrictions <name> clear
+```
+
+<Warning>
+La suppression des restrictions supprime toutes les règles d'autorisation, de refus et d'autorisation requise
+à partir de cette commande personnalisée. Examinez le résultat avec `-cc show <name>`.
+</Warning>

@@ -1,0 +1,79 @@
+---
+title: "Benutzerdefinierte Befehle"
+description: "Erstellen Sie serverspezifische Befehle mit dem benutzerdefinierten Befehlsmodul von Rumi."
+icon: "wand-magic-sparkles"
+---
+
+Mit benutzerdefinierten Befehlen können Servermanager detaillierte Arbeitsabläufe erstellen, ohne einen hinzuzufügen
+großer Satz einheitlicher Moderationsbefehle. Sie können Text produzieren oder
+Einbettungen, Argumente akzeptieren, Variablen auflösen, Schaltflächen anzeigen, geschützt ausführen
+Aktionen ausführen, Einschränkungen anwenden und Serverdaten speichern.
+
+Der Hauptbefehl ist `customcommand`. Seine Aliase sind `cc` Und
+`customcommands`.
+
+<Info>
+Für das Erstellen und Ändern benutzerdefinierter Befehle ist eine Serververwaltungsberechtigung erforderlich.
+Das aktuelle kostenlose Limit beträgt 30 Befehle pro Server; berechtigte Premium-Server können
+bis zu 200 lagern.
+</Info>
+
+## Befehlskarte
+
+| Aufgabe | Befehl |
+| --- | --- |
+| Erstellen oder bearbeiten | `-cc set <name> [arguments] -- <response>` |
+| Prüfen | `-cc preview <name> [sample arguments]` |
+| Überprüfen | `-cc show <name>` |
+| Liste | `-cc list` |
+| Löschen | `-cc remove <name>` |
+| Variablen anzeigen | `-cc variables` oder `-variables` |
+| Aktionssyntax anzeigen | `-cc actions` |
+| Einschränkungen verwalten | `-cc restrictions <name>` |
+| Gespeicherte Daten verwalten | `-cc data <operation> ...` |
+
+## Empfohlener Workflow
+
+<Steps>
+  <Step title="Erstellen Sie die kleinste nützliche Antwort">
+    Beginnen Sie mit einfachem Text und ein oder zwei Argumenten.
+  </Step>
+  <Step title="Sehen Sie sich eine Vorschau an">
+    Laufen `-cc preview <name>` mit realistischer Beispieleingabe.
+  </Step>
+  <Step title="Zugriff einschränken">
+    Fügen Sie vor der geschützten Nutzung Rollen-, Kanal-, Benutzer- oder Berechtigungseinschränkungen hinzu.
+  </Step>
+  <Step title="Überprüfen Sie den gespeicherten Befehl">
+    Laufen `-cc show <name>` und bestätigen Sie seine Reaktion und Einschränkungen.
+  </Step>
+</Steps>
+
+<Warning>
+Behandeln Sie Befehle mit Rollen-, Nachrichten-, Wirtschafts- oder Mitgliederverwaltungsaktionen wie
+Personalwerkzeuge. Nur vertrauenswürdige Manager sollten sie bearbeiten können.
+</Warning>
+
+## Was wird gespeichert
+
+Jeder Befehl speichert seine Antwortvorlage, deklarierte Argumente und seinen Zugriff
+Einschränkungen. Läuft `set` aktualisiert erneut denselben Befehl. Gespeicherter Workflow
+Die Daten sind getrennt, sodass das Ersetzen oder Löschen eines Befehls nicht automatisch gelöscht wird
+seine Zähler oder Aufzeichnungen.
+
+## Lernen durch Bauen
+
+<CardGroup cols={2}>
+  <Card title="Warum das Trennzeichen existiert" icon="code" href="./syntax-and-separators">
+    Sehen Sie genau, wo die Definition endet und die Antwort beginnt.
+  </Card>
+  <Card title="Arbeitsrezepte" icon="book-open" href="./recipes">
+    Kopieren Sie kleine Befehle, zeigen Sie eine Vorschau an und erweitern Sie sie sicher.
+  </Card>
+  <Card title="Einbettungen und Steuerelemente" icon="panels-top-left" href="./embeds-and-components">
+    Erstellen Sie Felder, Bilder, Schaltflächen, Dropdowns und mehrseitige Antworten.
+  </Card>
+  <Card title="Vollständige Variablenreferenz" icon="brackets-curly" href="../variables/overview">
+    Durchsuchen Sie jede generierte Variable Rumi's Laufzeitregistrierung.
+  </Card>
+</CardGroup>

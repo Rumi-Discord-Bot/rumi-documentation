@@ -1,0 +1,106 @@
+---
+title: "Kontrole izlaza"
+description: "Usmjeravajte odgovore, šaljite DM-ove, dodajte reakcije, primijenite hlađenje i kontrolirajte poruku okidača."
+icon: "route"
+---
+
+Izlazne kontrole su samostalne linije direktiva u prilagođenom odgovoru na naredbu.
+Mijenjaju kako Rumi šalje rezultat i ne prikazuju se kao tekst odgovora.
+
+## Izbriši okidač
+
+```text
+{delete}
+```
+
+Rumi uklanja poruku koja je pokrenula prilagođenu naredbu. Ovo zahtijeva **Upravljanje
+Poruke** u izvornom kanalu. Ako brisanje ne uspije, ostatak naredbe može
+i dalje rukovati u skladu s drugim postavkama.
+
+## Tihi izlaz
+
+```text
+{silent}
+```
+
+Koristite tihi način rada za naredbu koja izvodi samo konfigurirane radnje ili podatke
+ažurira i ne bi trebao slati svoj uobičajeni vidljivi odgovor. Tijekom razvoja,
+ostavite vidljivu potvrdu dok se radnja ne testira.
+
+## Usmjerite odgovor
+
+```text
+{respond:#suggestions}
+```
+
+Rumi šalje renderirani izlaz na odabrani kanal poslužitelja. Mora se moći
+za pregled tog kanala i slanje vrste nosivosti koju koristi naredba.
+
+Primjer:
+
+```text
+-cc set report <text...> --
+{respond:#reports}
+$v{embed}
+$v{author: {user.display_name} && {user.avatar}}
+$v{description: {text}}
+$v{footer: Sent from {channel.name}}
+```
+
+Ograničite izvorne kanale naredbe ako se izvješća trebaju slati samo s
+određena mjesta.
+
+## Pošalji izravnu poruku
+
+```text
+{dm:user}
+```
+
+Izlaz se šalje odabranom ciljnom korisniku, a ne javnom kanalu.
+Isporuka DM-a može biti neuspješna kada primatelj blokira DM-ove članova poslužitelja ili ih je blokirao
+blokiran Rumi.
+
+## Dodajte reakcije
+
+```text
+{react:✅}
+{react:✅ && ❌}
+```
+
+Rumi dodaje navedene reakcije okidačkoj poruci kada može pročitati
+poruku i dodajte te reakcije. Prilagođeni emotikon poslužitelja također mora moći koristiti
+Rumi.
+
+## Hlađenja po korisniku
+
+```text
+{cooldown:10m}
+```
+
+Hlađenje se odnosi na opetovanu upotrebu te prilagođene naredbe od strane člana. Koristiti
+čitljiva trajanja kao što su `30s`, `10m`, ili `24h`.
+
+```text
+-cc set daily-note --
+{cooldown:24h}
+You can use this response again tomorrow.
+```
+
+## Pažljivo kombinirajte kontrole
+
+```text
+-cc set confidential <text...> --
+{cooldown:5m}
+{delete}
+{dm:user}
+Your saved note: {text}
+```
+
+Testirajte usmjeravanje i DM prije dodavanja `{delete}`. Inače, promašena destinacija
+ne može vam ostaviti niti poruku okidača niti očekivani odgovor.
+
+<Warning>
+Izlazne kontrole mijenjaju isporuku, a ne dozvole. Zaštićene radnje unutar
+i dalje se izvodi ista naredba Rumidopuštenje, ograničenje, cilj i uloga
+hijerarhijske provjere.
+</Warning>

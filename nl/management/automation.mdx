@@ -1,0 +1,113 @@
+---
+title: "Automatisering van berichten"
+description: "Bouw autoresponders en autoreacties met bijpassende modi, cooldowns, machtigingen, kanalen, insluitingen en aangepaste gegevens."
+icon: "gears"
+---
+
+Autoresponders reageren op gewone berichten zonder nog een publiek toe te voegen
+commando. Autoreacties matchen een bericht en voegen geconfigureerde reacties toe.
+
+## Waarom `--` verschijnt hier
+
+Autoresponders hebben zowel overeenkomende vlaggen als een antwoord. De laatste zelfstandige
+`--` beëindigt de vlaggen en begint het antwoord:
+
+```text
+-autoresponder set "hello there" --exact -- General Kenobi.
+```
+
+De eerste `--exact` is een vlag. De latere zelfstandige `--` is de grens. Dit
+zorgt ervoor dat de antwoordtekst niet wordt aangezien voor opties.
+
+## Overeenkomende modi
+
+| Vlag | Gedrag |
+| --- | --- |
+| `--exact` | Het hele bericht moet overeenkomen |
+| `--startswith` | Het bericht moet beginnen met de trigger |
+| `--endswith` | Het bericht moet eindigen met de trigger |
+| `--contains` | De trigger kan overal verschijnen |
+| `--match` | Behandel de trigger als een reguliere expressie |
+| `--within 30s` | Pas een afkoelperiode per gebruiker toe |
+
+Kies slechts één matching-modus. `exact` is het veiligst voor commando-achtige triggers;
+`contains` is handig voor zinnen; `startswith` En `endswith` extra bewaren
+tekst aan de andere kant. `match` interpreteert de trigger als een reguliere expressie
+en is bedoeld voor mensen die al vertrouwd zijn met het testen van regex-patronen.
+
+## Reactie- en veiligheidsvlaggen
+
+```text
+-autoresponder set "rules" --exact --embed -- $v{title: Rules}$v{description: Be kind.}
+-autoresponder set "counter" --exact --db -- {db.inc:uses:{user.id}:1}Count: {db.get:uses:{user.id}}
+-autoresponder set "staff" --exact --require-permission ManageMessages -- Staff response
+-autoresponder set "hello" --contains --ignore-channel #bots -- Hi {user.mention}
+```
+
+`--embed` ontleedt `$v{...}` uitgang, terwijl `--text` dwingt normale tekst af. `--db`
+maakt het lezen en schrijven van aangepaste gegevens voor die responder mogelijk. Toestemming en genegeerd
+kanaalvlaggen houden gevoelige automatiseringen binnen het bereik.
+
+`--require-permission` controleert het lid dat het overeenkomende bericht heeft verzonden. Gebruik een
+Discord toestemmingsnaam zoals `ManageMessages`. `--ignore-channel` kan zijn
+herhaald wanneer hetzelfde antwoord uit verschillende kanalen moet blijven.
+
+`--languagedetect` is een premiumoptie. Het vertaalt binnenkomende tekst naar het Engels
+voordat er wordt gematcht, waardoor één Engelse trigger gelijkwaardige berichten kan herkennen
+in andere talen. Het vertaalt het opgeslagen antwoord niet.
+
+## Geef respondenten weer, test en verwijder ze
+
+Rumi nummers autoresponders in de lijst:
+
+```text
+-autoresponder list
+-autoresponder test 1
+-autoresponder remove 1
+```
+
+`test` voert de opgeslagen trigger uit via hetzelfde berichtautomatiseringspad. Gebruik het
+na het toevoegen van variabelen, aangepaste gegevens of acties, zodat u een misvormd bestand kunt ontdekken
+reactie voordat leden ermee in aanraking komen. Een server kan maximaal 500 responders opslaan.
+
+## Exclusieve doelen
+
+Exclusives beperken één responder tot een bepaald kanaal, rol of lid. De
+het eerste nummer is het responderslot dat wordt weergegeven door `autoresponder list`:
+
+```text
+-autoresponder exclusive set 1 #general
+-autoresponder exclusive set 1 @Event Team
+-autoresponder exclusive set 1 @member
+-autoresponder exclusive list 1
+```
+
+Voeg meer dan één doel toe als de hulpverlener in meerdere goedgekeurde doelen moet werken
+plaatsen of voor meerdere goedgekeurde groepen. Verwijder alleen het doelwit dat je niet meer hebt
+behoefte:
+
+```text
+-autoresponder exclusive remove 1 #general
+```
+
+Een genegeerd kanaal en een exclusief kanaal lossen tegenovergestelde problemen op:
+`--ignore-channel` blokkeert geselecteerde kanalen, terwijl een exclusief doel beperkt wordt
+de responder op geselecteerde doelen.
+
+<Warning>
+Reguliere expressies en breed `--contains` triggers kunnen meer berichten matchen
+dan verwacht. Begin in een testkanaal, voeg toe `--within`en bekijk de trigger
+voordat u een beveiligde actie inschakelt.
+</Warning>
+
+## Autoreacties
+
+Autoreacties delen dezelfde kernmatchingsmodi:
+
+```text
+-autoreaction add "good morning" ☀️ ❤️ --startswith
+```
+
+Gebruik een nauwe overeenkomst voor veelvoorkomende woorden. A `contains` autoreactie gekoppeld aan a
+een korte trigger kan veel vaker reacties veroorzaken dan de bedoeling was.
+

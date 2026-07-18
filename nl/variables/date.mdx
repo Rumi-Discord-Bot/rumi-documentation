@@ -1,0 +1,30 @@
+---
+title: "Datumvariabelen"
+description: "17 datumvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;date&#125;</code> | Huidige datum of Discord tijdstempeluitvoer. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.discord_relative&#125;</code> | Relatief Discord tijdstempel voor de huidige tijd. | <code>&lt;t:1781460000:R&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.discord_timestamp&#125;</code> | Huidig Discord tijdstempel. | <code>&lt;t:1781460000:F&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.now&#125;</code> | Nu voor de datum. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.now_proper&#125;</code> | Nu geschikt voor datum. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.now_short&#125;</code> | Nu een afkorting voor datum. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.now_shorter&#125;</code> | Nu korter voor datum. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.utc_now&#125;</code> | Utc Nu voor de datum. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.utc_now_proper&#125;</code> | Utc Nu geschikt voor datum. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.utc_now_short&#125;</code> | Utc Now Afkorting voor datum. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.utc_now_shorter&#125;</code> | Utc Nu korter voor datum. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;date.utc_timestamp&#125;</code> | Unix-tijdstempel voor utc. | <code>1781460000</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;time&#125;</code> | Huidige datum of Discord tijdstempeluitvoer. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;time.now&#125;</code> | Nu tijd. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;time.now_military&#125;</code> | Nu militair voor tijd. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;time.utc_now&#125;</code> | Utc Nu even tijd. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;time.utc_now_military&#125;</code> | Utc Nu Militair voor tijd. | <code>15 juni 2026, 08:52 uur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |

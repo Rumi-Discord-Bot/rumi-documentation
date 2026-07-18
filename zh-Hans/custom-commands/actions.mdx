@@ -1,0 +1,163 @@
+---
+title: "行动"
+description: "添加受保护的成员、角色、消息、经济、反应和数据操作。"
+icon: "bolt"
+---
+
+操作让自定义命令不仅仅可以返回文本。跑步：
+
+```text
+-cc actions
+```
+
+Rumi 将显示操作按钮、成员管理的当前语法
+动作、角色、消息、经济变化、反应、命名动作和自定义
+数据。在构建脚本时使用该响应作为事实来源。
+
+## 安全模型
+
+保存自定义命令以及运行该命令时，将检查受保护的操作。
+根据操作的不同，检查可以包括：
+
+- 配置成员的 Discord 允许
+- 运行成员的许可或明确的白名单
+- Rumi的 Discord 允许
+- 成员和角色层次结构
+- 目标是否有效且可管理
+
+Rumi 目前承认受保护的行动系列禁止、软禁止、
+踢、超时、警告、角色变更、消息删除、经济变化、
+命名操作和自定义数据。这些都是 <mark>自定义内的构建块
+命令</mark>，不是默认的公共审核命令。
+
+## 精心构建
+
+1. 创建并预览纯文本响应。
+2. 添加所需的最小操作。
+3. 将命令限制为受信任的角色、通道或权限。
+4. 跑步 `-cc show <name>` 并查看保存的脚本。
+5. 工作人员使用前先用安全目标进行测试。
+
+<Warning>
+切勿向所有人提供破坏性行动。 Rumi的支票减少
+风险，但服务器管理员对工作流程及其允许列表负责。
+</Warning>
+
+## 直接动作格式
+
+把行动放在自己的路线上。使用 `&&` 在参数之间，所以名称和原因
+可以包含空格而不更改下一个参数的开始位置。
+
+```text
+{mod:warn target && Repeated rule violation}
+{mod:timeout target && 10m && Cool down period}
+{econ:add user && 100 && Daily custom reward}
+{customdb:increment activity && {user.id} && 1}
+```
+
+可见的回复可以遵循这些操作线。行动线本身并不是
+显示给用户。 Rumi 当命令是时验证受保护的权限
+保存并在运行时重复权限、目标和角色层次结构检查。
+
+## 精确的直接动作语法
+
+下面的尖括号字段是必需的。方括号字段是
+选修的。不要自行键入括号。
+
+| 行动 | 精确排列 |
+| --- | --- |
+| 禁止 | `{mod:ban <target> && [reason]}` |
+| 软坂 | `{mod:softban <target> && [reason]}` |
+| 踢 | `{mod:kick <target> && [reason]}` |
+| 暂停 | `{mod:timeout <target> && <duration> && [reason]}` |
+| 清除超时 | `{mod:untimeout <target> && [reason]}` |
+| 警告 | `{mod:warn <target> && [reason]}` |
+| 添加角色 | `{mod:role.add <target> && <role> && [reason]}` |
+| 删除角色 | `{mod:role.remove <target> && <role> && [reason]}` |
+| 切换角色 | `{mod:role.toggle <target> && <role> && [reason]}` |
+| 添加货币 | `{econ:add <target> && <amount> && [reason]}` |
+| 删除货币 | `{econ:remove <target> && <amount> && [reason]}` |
+| 设置钱包 | `{econ:set <target> && <amount> && [reason]}` |
+| 转账货币 | `{econ:transfer <source> && <destination> && <amount>}` |
+| 设置自定义数据 | `{customdb:set <namespace> && <key> && <value>}` |
+| 增加自定义数据 | `{customdb:increment <namespace> && <key> && [amount]}` |
+| 删除自定义数据 | `{customdb:delete <namespace> && <key>}` |
+
+`mute` 被接受作为别名 `timeout`; `unmute` 是一个别名
+`untimeout`。目标可以是声明的参数，例如 `{target}`, 会员
+提及、ID 或 `user`/`self` 其中该操作支持命令成员。
+
+`&&` 分隔直接行动论点。这意味着原因可能包含空格
+不要与目标或持续时间混淆。仅重新排列参数
+当表显示不同的顺序时 - 操作执行器通过以下方式读取它们
+位置。
+
+## 操作按钮
+
+一个按钮是一个 `$v{button: ...}` 堵塞。按钮字段由 `&&`.
+键控字段可以重新排列，因为它们的名称可以识别它们：
+
+```text
+$v{button: label=Confirm && style=danger && action=mod:kick {target} Rule violation && reply=Member removed.}
+```
+
+确切的形状是：
+
+```text
+$v{button: label=<text> && style=<style> && [emoji=<emoji>] && action=<action-spec> && [reply=<text>]}
+```
+
+按钮字段：
+
+| 场地 | 接受值 |
+| --- | --- |
+| `label` | 按钮文本，最多 Discord的 80 个字符限制。 |
+| `style` | `primary`, `secondary`, `success`， 或者 `danger`。颜色别名，例如 `blue`, `grey`, `green`， 和 `red` 也工作。 |
+| `emoji` | Unicode 表情符号或自定义表情符号 Discord 表情符号提及。 |
+| `action` | 单组件动作规范。重复 `action=` 形成一条链。 |
+| `reply` | 仅向答题者显示短暂的响应。 |
+| `public` | 频道中的公众响应而不是短暂的响应。 |
+| `dm` | 由 DM 发送至答题器的文本。 |
+| `role` 和 `mode` | 在答题器上更改的角色和 `add`, `remove`， 或者 `toggle`. |
+| `page` | `next`, `previous`，或使用创建的页码 `$v{page}`. |
+| `await`, `once`, `defer` | 布尔执行控制，例如 `true` 或者 `false`. |
+| `expires` | 控件保持可用的时间有多长，例如 `10m` 或者 `1h`. |
+| `allow_user`, `allow_role`, `allow_channel` | 允许使用该控件的一个 ID 或一个以逗号分隔的 ID 列表。 |
+
+与直接动作线不同，组件动作是在没有外部动作的情况下编写的
+大括号并在其内部参数之间使用空格：
+
+```text
+action=mod:timeout {target} 10m Cool down
+action=econ:add user 100 Button reward
+```
+
+重复键控字段以按顺序运行多个操作：
+
+```text
+$v{button: label=Approve && style=success && action=mod:role.add {target} @Member Approved && action=reply:Approved {target.mention} && once=true}
+```
+
+## 链接按钮和下拉菜单
+
+链接按钮不执行受保护的操作：
+
+```text
+$v{button: label=Website && url=https://rumi.rocks && emoji=🔗}
+```
+
+下拉菜单使用这种排列：
+
+```text
+$v{select: <id> && <placeholder> && <label>|<action-fields>|[description]|[emoji]}
+```
+
+使用一个下拉选项分隔多个键控操作字段
+分号：
+
+```text
+$v{select: staff_menu && Choose an action && Warn|action=mod:warn {target} Menu warning;reply=Warning saved.|Create a warning|⚠️}
+```
+
+每个选项由分隔 `&&`。在选项内，管道分隔的顺序是
+标签、操作字段、可选描述和可选表情符号。

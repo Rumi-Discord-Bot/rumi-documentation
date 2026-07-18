@@ -1,0 +1,28 @@
+---
+title: "水平变量"
+description: "Rumi 支持 15 个级别变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;level&#125;</code> | 升级后的会员的等级和 XP 数据。 | <code>示例级别</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.new_rank&#125;</code> | 会员达到新级别。 | <code>12</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.next_rank&#125;</code> | 当前级别之后的下一个级别。 | <code>示例级别下一个排名</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.old_rank&#125;</code> | 升级前的上一级。 | <code>11</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.progress&#125;</code> | 迈向新的水平。 | <code>74%</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.rank_position&#125;</code> | 会员的排行榜排名位置。 | <code>级别排名位置示例</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.server_xp&#125;</code> | 服务器Xp级别。 | <code>示例级别服务器 xp</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.server_xp_total&#125;</code> | Server Xp 级别总计。 | <code>示例级别服务器 XP 总计</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.total_messages&#125;</code> | 级别的消息总数。 | <code>示例级别消息总数</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.user_xp&#125;</code> | 会员当前的 XP 值。 | <code>8,420</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.user_xp_total&#125;</code> | 用户 Xp 级别总计。 | <code>示例级别用户 XP 总计</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.voice_seconds&#125;</code> | 语音级别的秒数。 | <code>示例级语音秒数</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.voice_time&#125;</code> | 语音级别时间。 | <code>示例级别语音时间</code> | 关卡消息、关卡预览 |
+| <code>&#123;level.xp_needed&#125;</code> | 下一级别需要 XP。 | <code>9,000</code> | 关卡消息、关卡预览 |
+| <code>&#123;xp&#125;</code> | 升级后的会员的等级和 XP 数据。 | <code>示例 xp</code> | 关卡消息、关卡预览 |

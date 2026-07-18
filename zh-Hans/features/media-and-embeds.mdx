@@ -1,0 +1,132 @@
+---
+title: "媒体和嵌入"
+description: "编辑图像和视频、导出媒体以及构建可重复使用的 Discord 嵌入。"
+icon: "photo-film"
+---
+
+Rumi的媒体命令接受附件、直接 URL，并且支持
+操作——附加到回复消息的媒体。嵌入工具变得紧凑
+脚本到一个 Discord 可以预览、保存和重复使用的嵌入。
+
+## 选择媒体输入
+
+最不明确的输入是直接附件或 URL：
+
+```text
+-media blur https://example.com/image.png 3
+-media bgremove https://example.com/photo.jpg
+```
+
+您还可以回复包含媒体的消息并运行命令而无需
+网址。如果源是平台页面而不是直接文件，可用性
+取决于是否 Rumi的媒体服务支持该平台。
+
+## 图像效果
+
+当前的图像操作包括：
+
+- `blur [amount]`
+- `brightness [amount]`
+- `contrast [amount]`
+- `deepfry`
+- `flip`
+- `glitch`
+- `grayscale`
+- `invert`
+- `jail-bars`
+- `pixelate [factor]`
+- `resize <width>x<height>`
+- `rotate [degrees]`
+- `vaporwave`
+- `wasted`
+
+示例：
+
+```text
+-media pixelate 18
+-media resize 512x512
+-media rotate 180
+```
+
+## 字幕
+
+```text
+-media caption Welcome to the server
+-media caption --position=top --size=42 --color=#ffffff Welcome!
+```
+
+标题标志包括位置、字体系列、文本颜色、背景颜色和
+字体大小。使用 `-help media caption` 对于当前的别名和接受的形式。
+
+## GIF 和 MP4 转换
+
+```text
+-media gif <url>
+-media mp4 <url> --start 10s --duration 30s
+-media togif <url> --start 5s --duration 6s --fps 12 --width 480
+```
+
+`media gif` 检索原始受支持的 GIF 或媒体文件。 `media mp4`
+创建可下载的 MP4，同时 `media togif` 创建一个简短的 GIF 剪辑。
+Rumi 应用输入、输出、持续时间和处理限制，因此来源很大
+可能需要更短的夹子或更小的尺寸。
+
+## 背景去除
+
+```text
+-media bgremove
+```
+
+附加图像、包含图像 URL 或回复图像。 Rumi 返回一个
+当配置的背景删除服务成功时，透明 PNG。
+
+## 嵌入脚本
+
+从预览开始：
+
+```text
+-embed preview {embed}$v{title: Rules}$v{description: Read the channels below.}$v{color: 6A8FB3}
+```
+
+`{embed}` 启动嵌入脚本。每个 `$v{property: value}` 添加一个属性。
+例如：
+
+```text
+{embed}
+$v{title: Event night}
+$v{description: Join us at {timestamp}.}
+$v{field: Where && #events && true}
+$v{field: Host && {user.mention} && true}
+$v{thumbnail: {guild.icon}}
+$v{color: 6A8FB3}
+```
+
+三个字段部分是名称、值以及是否应内联。
+
+## 保存并重复使用嵌入
+
+```text
+-embed save event <script>
+-embed list
+-embed load event
+-embed edit event <updated script>
+-embed delete event
+```
+
+直接发送脚本到当前通道，或指定另一个通道：
+
+```text
+-embed send {embed}$v{description: Hello!}
+-embed send #announcements {embed}$v{title: Update}$v{description: New event this weekend.}
+```
+
+使用 `-embed validate <script>` 当您只需要语法反馈时。已保存的嵌入
+模板和自定义命令共享相同的嵌入脚本思想，因此
+[嵌入和组件指南](../custom-commands/embeds-and-components) 很有用
+对于两者。
+
+<Warning>
+Rumi 不能使 Discord 接受超过的嵌入 Discord的字段、文本或
+成分限制。在将长脚本发送到之前验证并预览它们
+公共频道。
+</Warning>

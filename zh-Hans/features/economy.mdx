@@ -1,0 +1,186 @@
+---
+title: "服务器经济"
+description: "设置货币、奖励、银行、转账、商店、抢劫和赌场限制。"
+icon: "coins"
+---
+
+每个服务器都有自己的 Rumi 经济。货币名称、奖励金额、设置、
+余额和商店物品保存在该服务器的经济中而不是共享
+不相关的社区之间。
+
+## 会员可以做什么
+
+日常命令很简单：
+
+```text
+-balance
+-balance @member
+-daily
+-weekly
+-work
+-deposit 500
+-deposit all
+-withdraw 250
+-give @member 100
+-economytop
+```
+
+现金和银行余额是分开的。 `deposit` 将现金存入银行；
+`withdraw` 将其移回。通过以下方式进行的转账 `give` 可能会受到影响
+服务器配置的转让税。
+
+## 初始配置
+
+具有**管理服务器**的成员可以检查和编辑设置：
+
+```text
+-economy config
+-economy config currency petals
+-economy config icon 🌸
+-economy config daily 250
+-economy config weekly 2500
+-economy config work 50 350
+-economy config cooldown work 3600
+```
+
+工作范围是最低和最高报酬。冷却时间输入
+经济配置命令中的秒数。
+
+禁用经济命令而不禁用整个系统：
+
+```text
+-economy config disable rob
+-economy config enable rob
+```
+
+`economy config reset confirm` 将设置重置为默认值，但
+不删除余额。 `economy reset confirm` 不同的是：它重置
+服务器的用户余额。读 Rumi使用前请仔细确认。
+
+## 抢劫和赌场游戏
+
+可以调整或禁用抢劫：
+
+```text
+-economy rob
+-economy rob on
+-economy rob cooldown 3600
+-economy rob limits 25 500
+-economy rob chance 35
+-economy rob fine 20
+-economy rob protection 12
+```
+
+会员使用 `-rob @member [amount]`. Rumi 应用保存的机会、限制、
+尝试失败罚款、冷却时间和保护期。
+
+赌场控制的工作方式相同：
+
+```text
+-economy casino on
+-economy casino cooldown 20
+-economy casino limits 10 1000
+-casino coinflip 100 heads
+-casino slots 100
+```
+
+## 商店和库存
+
+会员可以浏览服务器商店、购买物品、检查库存，以及
+出售支持的物品：
+
+```text
+-shop
+-shop view <item>
+-buy <item>
+-inventory
+-sell <item>
+```
+
+### 建立一个商店物品
+
+拥有**管理服务器**的成员可以创建和维护服务器商店物品。这
+创建格式是 `name`, `buy price`， 选修的 `sell price`， 然后 `|` 和
+描述：
+
+```text
+-shop add coffee 150 45 | Fresh server coffee
+-shop add vip-pass 5000 0 | Unlocks the VIP role
+-shop view coffee
+```
+
+项目名称是单个标记，因此使用 `vip-pass` 而不是 `VIP pass`。一个卖
+的价格 `0` 防止物品在出售时返还货币。 `edit` 用途
+相同的完整格式：
+
+```text
+-shop edit coffee 175 50 | A warm drink and a small energy boost
+```
+
+对于较小的更改，请使用重点命令：
+
+```text
+-shop price coffee 200
+-shop sellprice coffee 60
+-shop desc coffee A limited seasonal drink
+-shop remove coffee
+```
+
+### 角色支持的项目
+
+附加一个或多个 Discord 项目的角色：
+
+```text
+-shop role add vip-pass @VIP
+-shop role add vip-pass @Supporter
+-shop role remove vip-pass @Supporter
+```
+
+Rumi 必须能够管理每个附加角色，这意味着其最高角色
+必须坐在他们上面 Discord的角色列表。
+
+### 商品代码和礼品卡
+
+项目代码针对项目存储，可由工作人员维护：
+
+```text
+-shop code create vip-pass WELCOME1
+-shop code remove vip-pass WELCOME1
+```
+
+礼品卡是与商品关联的可兑换货币代码。供应
+代码后的货币金额和使用次数：
+
+```text
+-shop giftcard create vip-pass LAUNCH500 500 25
+-shop giftcard remove vip-pass LAUNCH500
+```
+
+会员可通过以下方式兑换有效代码：
+
+```text
+-shop redeem LAUNCH500
+```
+
+每次成功兑换都会将配置的金额添加到该会员的金额中
+收入和消耗一次使用。将礼品卡代码视为私人链接：任何人
+谁知道有效的代码可以在剩余使用期间尝试兑换它。
+
+`rumishop` 是 Rumi的全球机器人商店，与服务器配置是分开的
+店铺。
+
+## 审计变更
+
+Rumi 记录经济设置变化和交易：
+
+```text
+-economy audit
+-economy logs
+```
+
+这些在更改奖励、税收、抢劫设置或赌场限制后非常有用。
+
+<Tip>
+首先设置保守的奖励和投注限额。增加一个更容易
+经济的步伐，而不是在过于慷慨的安排后修复平衡。
+</Tip>

@@ -1,0 +1,19 @@
+---
+title: "Bedingte Variablen"
+description: "6 von Rumi unterstützte bedingte Variablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;if:&lt;left&gt;&lt;operator&gt;&lt;right&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Werte vergleichen mit ==, !=, &gt;, &lt;, &gt;=, oder &lt;=. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;if:&lt;value&gt; contains &lt;text&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Überprüfen Sie, ob der Text einen anderen Wert enthält, und ignorieren Sie dabei die Groß- und Kleinschreibung. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;if:exists &lt;value&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Prüfen Sie, ob ein aufgelöster Wert existiert und nicht falsch ist. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;if user has permission &lt;permission&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Überprüfen Sie a Discord Berechtigung für Benutzer oder Ziel. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;if user has role @Role&#125;Allowed&#123;else&#125;Denied&#123;endif&#125;</code> | Prüfen Sie, ob ein Mitglied eine Rolle hat. | <code>Erlaubt</code> | Benutzerdefinierte Befehle, Autoresponder |
+| <code>&#123;if:&#123;user.id&#125;==&#123;target.id&#125;&#125;No self target.&#123;else&#125;OK&#123;endif&#125;</code> | Zeigen Sie anderen Text an, wenn eine sichere Bedingung erfüllt ist oder nicht. | <code>OK</code> | Benutzerdefinierte Befehle, Autoresponder |

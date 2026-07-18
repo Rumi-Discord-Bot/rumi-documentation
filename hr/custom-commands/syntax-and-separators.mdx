@@ -1,0 +1,76 @@
+---
+title: "Sintaksa i separatori"
+description: "Razumijevanje imena, deklariranih argumenata, granica odgovora, zamjenskih rješenja i skripti s više redaka."
+icon: "code"
+---
+
+## Zašto `--` je tamo
+
+Razdjelnik govori Rumi gdje završava definicija naredbe i spremljeno
+odgovor počinje:
+
+```text
+-cc set greet <member> [message...] -- Hello {member}! {message|Welcome.}
+```
+
+Rumi čita red u tri dijela:
+
+| Odjeljak | Vrijednost |
+| --- | --- |
+| Operacija | `-cc set` |
+| Definicija | `greet <member> [message...]` |
+| Spremljen odgovor | `Hello {member}! {message\|Welcome.}` |
+
+Bez separatora, riječi u odgovoru mogle bi izgledati kao argument
+deklaracije. Razdjelnik uklanja tu dvosmislenost. Konzumira se dok se
+naredba se sprema i nikad se ne uključuje u odgovor.
+
+`=>` i `->` su prihvaćene alternative, ali `--` koristi se u svim dokumentima
+jer ga je najlakše prepoznati u dugim skriptama.
+
+<Warning>
+Prvi samostalan `--`, `=>`, ili `->` je granica. Sve nakon toga jest
+tekst odgovora, čak i kada počinje s `--`. Stavite deklaracije argumenata ispred
+granica.
+</Warning>
+
+## Deklarirani argumenti
+
+| Oblik | Značenje |
+| --- | --- |
+| `<member>` | Potreban argument od jedne riječi |
+| `[reason]` | Neobavezni argument od jedne riječi |
+| `<text...>` | Potreban argument mirovanja; troši sve što je ostalo |
+| `[note...]` | Neobavezni argument odmora |
+
+Nazivi argumenata počinju slovom i mogu sadržavati slova, brojeve, `_`, `-`,
+ili `.`. Argument rest bi trebao biti posljednji jer troši sav preostali unos.
+
+## Višelinijske skripte
+
+Discord poruke mogu sadržavati prijelome redaka. Stavite direktive na svoje redove tako
+čisto su uklonjeni iz vidljivog odgovora:
+
+```text
+-cc set daily --
+{cooldown:24h}
+{customdb:increment rewards && {user.id} && 1}
+You claimed reward number **{db.get:rewards:{user.id}}**.
+```
+
+Ostale samostalne direktive koje podržava runtime uključuju `{delete}` do
+ukloniti pozivnu poruku, `{silent}` za naredbe samo za akciju,
+`{respond:#channel}` za odabir kanala odgovora, `{dm:user}` poslati
+rezultat u DM, i `{reaction:emoji}` reagirati na okidač.
+
+## Vrijednosti i rezerve
+
+Koristiti `{variable|fallback}` kada vrijednost može biti odsutna:
+
+```text
+Nickname: {user.display_name|No server nickname}
+Target: {target.mention|No target selected}
+```
+
+Rumi prvo rješava deklarirane argumente, zatim pomoćne vrijednosti i uvjete,
+zatim varijable konteksta i konačnu skriptu za ugradnju/komponentu.

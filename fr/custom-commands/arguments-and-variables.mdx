@@ -1,0 +1,111 @@
+---
+title: "Arguments et variables"
+description: "Utilisez la saisie de commande, le contexte Discord, les aides, les intégrations et les composants."
+icon: "brackets-curly"
+---
+
+Courir `-variables` dans Discord pour Rumiréférence de variable actuelle. Cette page
+couvre les modèles les plus courants.
+
+## Lire l'entrée de la commande
+
+| Variable | Valeur |
+| --- | --- |
+| `{arg}` ou `{args}` | Tout ce qui est tapé après la commande |
+| `{1}`, `{2}` | Un argument numéroté |
+| `{arg.1}`, `{arg.2}` | Un argument numéroté |
+| `{arg.2+}` | Argument 2 et tout ce qui suit |
+| `{args.rest.2}` | Argument 2 et tout ce qui suit |
+| `{link}` | Un argument nommé déclaré comme `[link]` ou `<link>` |
+
+Les arguments obligatoires et facultatifs sont déclarés lors de la création de la commande :
+
+```text
+-cc set ship <target> [reason...] -- {user.mention} chose {target.mention}. {reason|No reason given.}
+```
+
+`<target>` est nécessaire, tandis que `[reason...]` est facultatif. Les trois points font
+`reason` consommez chaque mot restant au lieu de seulement le mot suivant. Un repos
+l'argument devrait être l'argument final déclaré car il consomme tout
+après cela.
+
+Comparez ces deux définitions :
+
+```text
+-cc set pair <first> <second> -- First: {first}; second: {second}
+-cc set quote <text...> -- “{text}”
+```
+
+`-pair red blue` attribue un mot à chaque nom. `-quote this is all one value`
+attribue la phrase entière à `text`.
+
+S'il manque un argument obligatoire, Rumi s'arrête et nomme l'argument manquant.
+Une valeur facultative peut être vide, utilisez donc une solution de secours lorsque la réponse est encore nécessaire
+texte lisible.
+
+## Utiliser Discord contexte
+
+Les variables courantes incluent `{user.mention}`, `{user.name}`, `{server.name}`, et
+`{channel.mention}`. Une cible mentionnée ou première peut également exposer des valeurs telles que
+`{target.mention}`, `{target.name}`, et `{target.avatar}`.
+
+Les arguments nommés sont des valeurs de texte. Les variables cibles sont résolues séparément de
+le premier membre mentionné ou résoluble. Lorsqu'une action dépend d'un membre,
+utilisez une mention lors des tests afin que la cible soit sans ambiguïté.
+
+Les variables acceptent un repli après `|`. Le repli est utilisé lorsque la valeur est
+indisponible dans ce contexte :
+
+```text
+{target.display_name|No member was selected}
+```
+
+<Note>
+Tous les événements n’ont pas toutes les valeurs. Les variables du ticket nécessitent le contexte du ticket, le gagnant
+les variables ont besoin d'un résultat révélateur, et les variables de punition ont besoin d'une gestion
+événement. La [référence complète de la variable](../variables/overview) indique où chacun
+variable est disponible.
+</Note>
+
+## Transformer et choisir des valeurs
+
+```text
+{random:red|green|blue}
+{range:score:1-100}
+{choose:item:cookie|cake|pie}
+{upper:text}
+{lower:text}
+{title:text}
+{urlencode:text}
+{len:text}
+```
+
+Nommé `range` et `choose` les résultats peuvent être réutilisés plus tard comme `{score}` ou `{item}`.
+
+Les assistants de texte transforment leur saisie ; ils ne modifient pas la commande enregistrée. Pour
+exemple, `{upper:{user.display_name}}` renvoie une version majuscule uniquement dans ce cas
+réponse.
+
+## Créer une intégration
+
+Utilisation des champs intégrés `$v{...}` blocs :
+
+```text
+-cc set rules -- $v{title: Rules} $v{description: Welcome {user.mention}}
+```
+
+## Ajouter une sortie interactive
+
+Rumi prend en charge les boutons de lien, les boutons d'action, les listes déroulantes et les pages paginées.
+Commencez par la syntaxe affichée par `-variables`, puis prévisualisez la commande
+avant de le partager.
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{page}
+```
+
+<Warning>
+Les boutons qui exécutent des actions protégées nécessitent plus de révision que les liens ordinaires. Utiliser
+`-cc actions` pour leur syntaxe actuelle et leurs exigences de sécurité.
+</Warning>

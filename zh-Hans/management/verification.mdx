@@ -1,0 +1,86 @@
+---
+title: "会员验证"
+description: "设置文本或验证码验证、重新发送面板以及自定义面向会员的 UI。"
+icon: "user-check"
+---
+
+Rumi 可以将新成员置于文本关键字或验证码验证流程后面。
+系统将其配置存储在服务器中并可以重新创建其面板
+当需要时。
+
+## 设置之前
+
+配置验证的人需要**管理服务器**和**管理
+角色**。 Rumi 需求：
+
+- 管理角色
+- 管理渠道
+- 发送消息
+- 管理消息
+
+Rumi的角色必须位于验证流程需要管理的角色之上。
+
+## 文本验证
+
+选择频道，会员必须输入的关键字：
+
+```text
+-verification setup text #verify agree
+```
+
+保持关键字简短且明确。验证通道应该是
+未经验证的成员可见，而正常的社区渠道仍受控制
+由你的 Discord 角色权限。
+
+## 验证码验证
+
+```text
+-verification setup captcha #verify
+```
+
+验证码模式要求会员完成生成的挑战而不是打字
+共享关键字。
+
+## 检查或恢复面板
+
+```text
+-verification status
+-verification panel
+```
+
+`status` 显示保存的模式和配置。 `panel` 发送配置的
+再次验证面板，如果原始消息被删除，这很有用。
+
+## 自定义界面
+
+自定义命令接受键和值：
+
+```text
+-verification customize panel.title Welcome
+-verification customize panel.text Type `{keyword}` to continue.
+-verification customize button.verify.style success
+-verification customize view
+```
+
+使用 `verification customize view` 在编辑之前，您可以看到按键
+运行机器人目前支持。当您想返回时重置自定义
+Rumi的默认值：
+
+```text
+-verification customize reset
+```
+
+## 禁用验证
+
+```text
+-verification disable
+```
+
+禁用会停止验证系统。它不会自动重新设计
+你的 Discord 通道会覆盖，因此请检查哪些未验证和已验证的角色
+以后可以看到。
+
+<Tip>
+使用非管理员帐户进行测试。管理员绕过许多 Discord
+渠道限制并不代表新会员将体验什么。
+</Tip>

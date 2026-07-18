@@ -1,0 +1,226 @@
+---
+title: "角色和渠道"
+description: "使用 Rumi 的管理命令创建和组织 Discord 角色和频道。"
+icon: "layer-group"
+---
+
+Rumi 可以创建、检查、分配、重命名、重新着色、删除和恢复角色。它
+还可以创建和组织文本、语音、类别、舞台、论坛等
+公告渠道。
+
+## 角色层次结构优先
+
+Discord 只允许机器人管理低于其自身最高角色的角色。相同的规则
+适用于运行角色命令的成员。在排除故障之前
+分配，检查 **服务器设置 → 角色** 中的顺序。
+
+会员和 Rumi 需要**管理角色** `role` 管理
+命令。
+
+## 创建并检查角色
+
+```text
+-role create Event Host --color #c8d8f2
+-role info Event Host
+-role rename Event Host Events Team
+-role color Events Team #6A8FB3
+```
+
+当多个角色共用一个名称时，请使用提及或 ID。
+
+## 添加和删除角色
+
+```text
+-role add @member Member
+-role remove @member Member
+```
+
+Rumi 在应用更改之前检查目标成员和角色层次结构。
+
+## 连接角色的目的
+
+连接的角色存储可重用的用途名称，例如 `staff`，反对
+现存的 Discord 角色：
+
+```text
+-role connect staff @Staff
+-role list
+-role disconnect staff
+```
+
+这不会创建第二个角色。它给出了 Rumi 有稳定的参考目的
+即使该角色由更大的工作流程使用。
+
+## 删除和恢复
+
+`role delete` 保留恢复快照。 `role restore` 恢复最新的
+命令支持的已删除或更改的角色快照：
+
+```text
+-role delete Old Staff
+-role restore
+```
+
+恢复创建或更新 Discord 存储快照的状态；它
+无法撤消外部所做的无关更改 Rumi 删除后。
+
+## 加入角色
+
+当人类、机器人或两者加入时自动分配角色：
+
+```text
+-joinrole add human @Member
+-joinrole add bot @Bot
+-joinrole add both @Community
+-joinrole list
+```
+
+删除选定的角色或清除一个目标组：
+
+```text
+-joinrole remove human @Member
+-joinrole clear bot
+```
+
+Rumi 仍然需要位于每个配置的加入角色之上。
+
+## 个人助推器角色
+
+活跃的服务器助推器可以创建和设计一个角色 Rumi 为他们管理：
+
+```text
+-boosterrole view
+-boosterrole create Moonlight
+-boosterrole rename Pink Dawn
+-boosterrole color #ff88cc
+-boosterrole color #ff88cc, #ffddee
+```
+
+双色表格要求 Discord的渐变作用颜色。无论 Discord
+显示每个角色外观功能可以取决于服务器的可用角色
+特征。
+
+从附件、图像 URL、Unicode 表情符号或自定义设置角色图标 Discord
+表情符号提及。使用 `clear` 删除它：
+
+```text
+-boosterrole icon ✨
+-boosterrole icon <:sparkle:123456789012345678>
+-boosterrole icon https://example.com/icon.png
+-boosterrole icon clear
+```
+
+### 分享一个助推器角色
+
+拥有角色的助推器可以与其他成员分享：
+
+```text
+-boosterrole share @friend
+-boosterrole share remove @friend
+```
+
+具有**管理角色**的员工可以检查所有所有者和共享，并设置多少
+每个所有者可以共享的成员：
+
+```text
+-boosterrole share list
+-boosterrole share limit 3
+-boosterrole share limit none
+```
+
+`boosterrole limit off` 禁用服务器范围内的创建；它不同于
+分享限制：
+
+```text
+-boosterrole limit on
+-boosterrole limit off
+```
+
+### 定位和清理
+
+通过命名将生成的角色保留在角色列表的预期部分中
+顶部和底部锚点：
+
+```text
+-boosterrole hoist @Booster Top @Booster Bottom
+```
+
+两个锚点必须保持可管理性 Rumi。清理删除陈旧的所有权
+以及提升状态变化后的分享：
+
+```text
+-boosterrole cleanup
+-boosterrole cleanup auto on
+-boosterrole cleanup auto off
+```
+
+### 名称和图标过滤器
+
+简单的单词过滤器会阻止助推器角色名称中不需要的文本：
+
+```text
+-boosterrole filter add admin
+-boosterrole filter remove admin
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+高级服务器可以添加正则表达式过滤器以实现更精确的匹配：
+
+```text
+-boosterrole regex filter add ^admin
+-boosterrole regex filter list
+-boosterrole regex filter remove ^admin
+-boosterrole regex filter clear
+```
+
+仅添加您理解的正则表达式；广泛的模式可以拒绝普通的名称。
+图标文本过滤和组合设置视图可通过以下方式获得：
+
+```text
+-boosterrole filtericon nsfw on
+-boosterrole filters
+```
+
+## 反应角色
+
+这 `reactionrole` 命令，也可用作 `rr`，将表情符号连接到
+给角色的消息：
+
+```text
+-help reactionrole
+```
+
+使用消息、表情符号和角色参数顺序的当前帮助条目。
+反应角色需要 Rumi 阅读目标消息，添加反应，以及
+管理选定的角色。
+
+## 创建频道
+
+```text
+-channel create text announcements
+-channel create voice Lounge
+-channel create category Events
+-channel create text event-chat --category Events
+```
+
+支持的通道类型有 `text`, `voice`, `category`, `stage`, `forum`， 和
+`announcement`.
+
+## 重命名、移动和删除频道
+
+```text
+-channel rename #old-name new-name
+-channel move #event-chat Events
+-channel move #event-chat 3
+-channel delete #temporary
+```
+
+如果没有为支持的操作提供通道， Rumi 可以使用当前的
+渠道。当破坏性行为发生时，提供频道提及会更安全
+涉及。
+
+<Warning>
+频道删除是永久的 Discord。检查命令中的提及
+发送之前；角色恢复不会恢复已删除的频道。
+</Warning>

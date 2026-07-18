@@ -1,0 +1,24 @@
+---
+title: "目标变量"
+description: "Rumi 支持 11 个目标变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;target&#125;</code> | 显示解析的目标用户。 | <code>&lt;@987654321098765432&gt;</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.avatar&#125;</code> | 头像图片网址。来源：目标。 | <code>https://cdn.discordapp.com/.../avatar.png</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.created_at&#125;</code> | Discord-格式化的创建时间。来源：目标。 | <code>&lt;t:1781460000:F&gt;</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.display_name&#125;</code> | 目标成员的服务器显示名称或昵称。 | <code>月光</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.id&#125;</code> | Discord 目标用户的ID。 | <code>123456789012345678</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.is_bot&#125;</code> | 目标是 Bot。 | <code>示例目标是机器人</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.joined_at&#125;</code> | Discord-格式化的服务器加入时间。来源：目标。 | <code>&lt;t:1781460000:F&gt;</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.mention&#125;</code> | 提及目标用户，通常是第一个提到的成员。 | <code>&lt;@123456789012345678&gt;</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.name&#125;</code> | 目标用户的用户名。 | <code>鲁米</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.tag&#125;</code> | Discord 目标的用户名标记/鉴别器样式值。 | <code>用户名</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |
+| <code>&#123;target.username&#125;</code> | Discord 用户名。来源：目标。 | <code>目标用户名示例</code> | 自定义命令、自动回复、角色扮演、审核/调用上下文 |

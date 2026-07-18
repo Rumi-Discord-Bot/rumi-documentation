@@ -1,0 +1,131 @@
+---
+title: "Spotify povezivanje i kontrole"
+description: "Povežite Spotify, pregledajte uređaje, kontrolirajte osobnu reprodukciju, pretražujte svoju biblioteku i stavite pjesme u red čekanja glasom Discorda."
+icon: "spotify"
+---
+
+Spotify povezivanje daje Rumi dopuštenje za čitanje podataka knjižnice koje tražite i
+slanje kontrola vlastitom aktivnom Spotify uređaj. Ne izlaže vaš token
+do Discord ili dijeliti privatne popise pjesama s drugim članovima.
+
+## Dopuštenja za povezivanje ili osvježavanje
+
+```text
+-spotify link
+-spotify status
+-spotify unlink
+```
+
+Otvorite jednokratnu vezu i odobrite tražena dopuštenja. Korisnici povezani
+prije dodavanja kontrola uređaja i pjesama koje su vam se svidjele potrebno je pokrenuti `-spotify link`
+opet tako Spotify može dodijeliti nove opsege reprodukcije i knjižnice.
+
+<Warning>
+Spotify Potrebne su kontrole za povezivanje reprodukcije Spotify Premija. Otvoriti Spotify na
+ciljajte telefon, računalo, preglednik ili zvučnik barem jednom tako Spotify izvještava an
+dostupan uređaj.
+</Warning>
+
+## Pregledavanje uređaja i reprodukcija
+
+```text
+-spotify devices
+-spotify player status
+-spotify pause
+-spotify resume
+-spotify next
+-spotify previous
+-spotify volume 45
+-spotify seek 1:30
+-spotify shuffle on
+-spotify repeat track
+```
+
+`seek` prihvaća sekunde (`90`), vrijeme na satu (`1:30`), ili trajanje (`2m`). Ponoviti
+prihvaća `off`, `track`, ili `context`.
+
+## Prijenos reprodukcije
+
+Trčanje `-spotify devices` prvi. Prijenos prema prikazanom broju, točan uređaj
+naziv, dio naziva ili ID uređaja:
+
+```text
+-spotify transfer 2
+-spotify transfer Kitchen speaker
+```
+
+Ograničeni uređaji mogu se pojaviti na popisu, ali ne mogu prihvatiti kontrole Web API-ja.
+ID-ovi uređaja mogu se promijeniti, pa je odabir prema trenutnom popisu ili nazivu uređaja važniji
+prikladnije od spremanja ID-a.
+
+## Pokrenite ili stavite zapis u red čekanja Spotify
+
+```text
+-spotify play pink pony club
+-spotify play https://open.spotify.com/track/...
+-spotify queue deftones change
+```
+
+`spotify play` zamjenjuje reprodukciju na osobnoj Spotify uređaj. `spotify
+queue` dodaje jednu stavku tom uređaju Spotify red. Nijedna naredba se ne mijenja
+Rumi's Discord glasovni red.
+
+## Pogledajte popise za reprodukciju
+
+```text
+-spotify playlists
+-spotify playlists @member
+```
+
+Možete pregledavati **javne** popise za reprodukciju drugog člana samo kada to Discord
+član se povezao Spotify. Privatni popisi za reprodukciju ostaju vidljivi samo njihovom vlasniku.
+
+Za dodavanje jednog od vlastitih povezanih popisa za reprodukciju Rumi's Discord glasovni red, pridružite se a
+glasovni kanal i odaberite ga prema broju popisa, imenu, ID-u ili Spotify URL:
+
+```text
+-spotify playlists queue 2
+-spotify playlists queue "Night drive" 30
+-spotify playlists queue https://open.spotify.com/playlist/... 50
+```
+
+Neobavezni konačni broj ograničava uvoz na 1–75 zapisa.
+
+## Svidjele su mi se pjesme
+
+```text
+-spotify liked
+-spotify liked list 30
+-spotify liked queue 25
+```
+
+Pjesme koje su vam se svidjele privatne su za povezanog korisnika. Njihovo postavljanje u red čekanja zahtijeva korisnika koji
+posjeduje tu vezu da bude u a Discord glasovni kanal.
+
+<Note>
+Rumi koristi Spotify URL-ovi i metapodaci kao unosi pretraživanja za konfiguriranu glazbu
+servis. Ne preuzima, reemitira niti izdvaja audio iz Spotify.
+</Note>
+
+## Rješavanje problema
+
+<AccordionGroup>
+  <Accordion title="Rumi me traži da se ponovno povežemo">
+    Vaša spremljena autorizacija prethodi jednom ili više potrebnih opsega. Trčanje
+    `-spotify link` i odobrite ažurirani zaslon s dopuštenjima.
+  </Accordion>
+  <Accordion title="Nijedan uređaj nije dostupan">
+    Otvoriti Spotify na željenom uređaju i jednom pokrenite reprodukciju. Zatim ponovite
+    `-spotify devices`. Uređaji s privatnom sesijom ili ograničeni uređaji mogu odbiti
+    kontrole.
+  </Accordion>
+  <Accordion title="Spotify vraća Premium potreban">
+    Krajnje točke kontrole reprodukcije ograničene su Spotify Premium korisnicima. Knjižnica
+    pregledavanje može i dalje raditi ako postoje potrebne dozvole za čitanje.
+  </Accordion>
+  <Accordion title="Popis za reprodukciju ne može se staviti u red čekanja">
+    Spotify trenutno izlaže stavke popisa za reprodukciju samo kada povezani korisnik posjeduje ili
+    surađuje na toj playlisti. Također potvrdite da ste u glasu i to
+    Rumiglazbena usluga je spremna.
+  </Accordion>
+</AccordionGroup>

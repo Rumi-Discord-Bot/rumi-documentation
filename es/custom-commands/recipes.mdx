@@ -1,0 +1,159 @@
+---
+title: "Recetas de comandos personalizadas"
+description: "Copie ejemplos completos de argumentos, incrustaciones, valores aleatorios, contadores, tiempos de reutilización y flujos de trabajo del personal."
+icon: "book-open"
+---
+
+Construya una capa a la vez. Guarde el comando, obtenga una vista previa con entradas realistas,
+luego agregue restricciones antes de las acciones protegidas.
+
+<AccordionGroup>
+  <Accordion title="Un simple comando de bienvenida">
+    ```text
+    -cc set hello -- Hello {user.mention}! Welcome to **{guild.name}**.
+    ```
+
+    Prueba con `-cc preview hello`.
+  </Accordion>
+
+  <Accordion title="Repetir un mensaje requerido">
+    ```text
+    -cc set say <text...> -- {text}
+    ```
+
+    Correr `-say The event starts soon` devuelve el resto del argumento completo.
+  </Accordion>
+
+  <Accordion title="Elige una respuesta aleatoria">
+    ```text
+    -cc set snack -- {choose:Cookie|Cake|Fruit|Popcorn}
+    ```
+
+    Nombra un resultado cuando se reutiliza:
+
+    ```text
+    -cc set lucky --
+    {range:number:1-100}
+    Your lucky number is **{number}**.
+    ```
+  </Accordion>
+
+  <Accordion title="Crear una tarjeta de perfil de miembro">
+    ```text
+    -cc set profile [member] --
+    $v{embed}
+    $v{title: {target.display_name|{user.display_name}}}
+    $v{thumbnail: {target.avatar|{user.avatar}}}
+    $v{field: Account created && {target.created_at|{user.created_at}} && false}
+    $v{field: Joined server && {target.joined_at|{user.joined_at}} && false}
+    $v{color: 6A8FB3}
+    ```
+
+    Intentar `-profile @member` y `-profile`.
+  </Accordion>
+
+  <Accordion title="Contar usos con datos personalizados">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    You have used this command **{db.get:visits:{user.id}}** times.
+    ```
+
+    Una mutación independiente actualiza el valor sin imprimir la mutación sin formato
+    resultado. inspeccionarlo con `-cc data get visits <user-id>`.
+  </Accordion>
+
+  <Accordion title="Una recompensa de enfriamiento">
+    ```text
+    -cc set treat --
+    {cooldown:24h}
+    {range:reward:50-150}
+    {econ:add user && reward && Custom daily treat}
+    You received **{reward}** coins.
+    ```
+
+    Las acciones económicas están protegidas. Restrinja el comando y pruébelo con una caja fuerte.
+    cantidad antes de hacerlo público.
+  </Accordion>
+
+  <Accordion title="Un flujo de trabajo de advertencia al personal">
+    ```text
+    -cc set staffwarn <target> <reason...> --
+    {mod:warn target && {reason}}
+    Warned {target.mention}: **{reason}**
+    ```
+
+    ```text
+    -cc requireperm staffwarn ModerateMembers
+    -cc allow staffwarn role @Staff
+    -cc allow staffwarn channel #staff-commands
+    ```
+
+    Rumi Comprueba el ejecutor, los permisos del bot, el objetivo y la jerarquía de roles cuando
+    ejecuta.
+  </Accordion>
+
+  <Accordion title="Guía del servidor de dos páginas">
+    ```text
+    -cc set guide --
+    $v{embed}$v{title: Getting started}$v{description: Read #rules and choose your roles.}
+    $v{page}
+    $v{embed}$v{title: Need help?}$v{description: Ask in #support.}
+    ```
+  </Accordion>
+
+  <Accordion title="Mostrar una respuesta diferente al personal">
+    ```text
+    -cc set panel --
+    {if:user has permission ManageMessages}
+    Staff controls are available in #staff-commands.
+    {else}
+    Ask a staff member if you need help.
+    {endif}
+    ```
+
+    Esto verifica la vida del miembro. Discord permiso cada vez que el comando
+    corre. No concede ese permiso.
+  </Accordion>
+
+  <Accordion title="Un hito de visita por usuario">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    {if:{db.get:visits:{user.id}} >= 10}
+    Welcome back {user.mention}. You have visited at least ten times.
+    {else}
+    Welcome {user.mention}. Visit number: {db.get:visits:{user.id}}.
+    {endif}
+    ```
+
+    El espacio de nombres es `visits`; cada Discord La identificación de usuario es una clave separada.
+  </Accordion>
+
+  <Accordion title="Responder en otro canal">
+    ```text
+    -cc set suggestion <text...> --
+    {respond:#suggestions}
+    $v{embed}
+    $v{author: {user.display_name} && {user.avatar}}
+    $v{description: {text}}
+    $v{footer: Submitted from {channel.name}}
+    ```
+
+    Restrinja el comando a los canales donde se deben aceptar los envíos.
+    Rumi debe poder ver y enviar incrustaciones en el canal de destino.
+  </Accordion>
+
+  <Accordion title="Reaccionar y eliminar el mensaje desencadenante">
+    ```text
+    -cc set submit <text...> --
+    {react:✅}
+    {delete}
+    Submission received: {text}
+    ```
+
+    `{delete}` elimina el mensaje desencadenante del miembro cuando Rumi tiene **Administrar
+    Mensajes**. La reacción se agrega antes de que el desencadenante desaparezca cuando Discord
+    lo permite.
+  </Accordion>
+</AccordionGroup>

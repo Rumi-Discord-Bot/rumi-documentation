@@ -1,0 +1,113 @@
+---
+title: "Nachrichtenautomatisierung"
+description: "Erstellen Sie Autoresponder und Autoreaktionen mit passenden Modi, Cooldowns, Berechtigungen, Kanälen, Einbettungen und benutzerdefinierten Daten."
+icon: "gears"
+---
+
+Autoresponder reagieren auf gewöhnliche Nachrichten, ohne eine weitere Öffentlichkeit hinzuzufügen
+Befehl. Autoreaktionen gleichen eine Nachricht ab und fügen konfigurierte Reaktionen hinzu.
+
+## Warum `--` erscheint hier
+
+Autoresponder verfügen sowohl über passende Flags als auch über eine Antwort. Der letzte Standalone
+`--` beendet die Flags und beginnt mit der Antwort:
+
+```text
+-autoresponder set "hello there" --exact -- General Kenobi.
+```
+
+Der erste `--exact` ist eine Flagge. Der spätere Standalone `--` ist die Grenze. Das
+verhindert, dass der Antworttext mit Optionen verwechselt wird.
+
+## Matching-Modi
+
+| Flagge | Verhalten |
+| --- | --- |
+| `--exact` | Die gesamte Nachricht muss übereinstimmen |
+| `--startswith` | Die Nachricht muss mit dem Trigger beginnen |
+| `--endswith` | Die Nachricht muss mit dem Trigger enden |
+| `--contains` | Der Auslöser kann überall erscheinen |
+| `--match` | Behandeln Sie den Auslöser als regulären Ausdruck |
+| `--within 30s` | Wenden Sie ein Abklingzeitfenster pro Benutzer an |
+
+Wählen Sie nur einen passenden Modus. `exact` ist am sichersten für befehlsähnliche Auslöser;
+`contains` ist nützlich für Phrasen; `startswith` Und `endswith` extra konservieren
+Text auf der anderen Seite. `match` interpretiert den Trigger als regulären Ausdruck
+und ist für Leute gedacht, die sich bereits mit dem Testen von Regex-Mustern auskennen.
+
+## Reaktions- und Sicherheitsflags
+
+```text
+-autoresponder set "rules" --exact --embed -- $v{title: Rules}$v{description: Be kind.}
+-autoresponder set "counter" --exact --db -- {db.inc:uses:{user.id}:1}Count: {db.get:uses:{user.id}}
+-autoresponder set "staff" --exact --require-permission ManageMessages -- Staff response
+-autoresponder set "hello" --contains --ignore-channel #bots -- Hi {user.mention}
+```
+
+`--embed` analysiert `$v{...}` Ausgabe, während `--text` erzwingt normalen Text. `--db`
+Ermöglicht das Lesen und Schreiben benutzerdefinierter Daten für diesen Responder. Erlaubnis und ignoriert
+Kanal-Flags behalten den Gültigkeitsbereich sensibler Automatisierungen bei.
+
+`--require-permission` prüft das Mitglied, das die passende Nachricht gesendet hat. Verwenden Sie a
+Discord Berechtigungsname wie z `ManageMessages`. `--ignore-channel` kann sein
+wiederholt, wenn die gleiche Antwort aus mehreren Kanälen fernbleiben soll.
+
+`--languagedetect` ist eine Premium-Option. Es übersetzt eingehenden Text ins Englische
+vor dem Abgleich, wodurch ein englischer Trigger äquivalente Nachrichten erkennen kann
+in anderen Sprachen. Die gespeicherte Antwort wird nicht übersetzt.
+
+## Antwortende auflisten, testen und entfernen
+
+Rumi Nummern der Autoresponder in der Liste:
+
+```text
+-autoresponder list
+-autoresponder test 1
+-autoresponder remove 1
+```
+
+`test` führt den gespeicherten Trigger über denselben Nachrichtenautomatisierungspfad aus. Benutze es
+nach dem Hinzufügen von Variablen, benutzerdefinierten Daten oder Aktionen, damit Sie eine fehlerhafte Datei erkennen können
+Antwort, bevor Mitglieder darauf stoßen. Ein Server kann bis zu 500 Responder speichern.
+
+## Exklusive Ziele
+
+Exklusive Aktionen beschränken einen Antwortenden auf einen bestimmten Kanal, eine bestimmte Rolle oder ein bestimmtes Mitglied. Der
+Die erste Zahl ist der Responder-Slot, der angezeigt wird `autoresponder list`:
+
+```text
+-autoresponder exclusive set 1 #general
+-autoresponder exclusive set 1 @Event Team
+-autoresponder exclusive set 1 @member
+-autoresponder exclusive list 1
+```
+
+Fügen Sie mehr als ein Ziel hinzu, wenn der Responder in mehreren genehmigten Zielen arbeiten soll
+Plätze oder für mehrere zugelassene Gruppen. Entfernen Sie nur das Ziel, das Sie nicht mehr haben
+brauchen:
+
+```text
+-autoresponder exclusive remove 1 #general
+```
+
+Ein ignorierter Kanal und ein exklusiver Kanal lösen gegensätzliche Probleme:
+`--ignore-channel` blockiert ausgewählte Kanäle, während ein exklusives Ziel begrenzt
+der Responder auf ausgewählte Ziele.
+
+<Warning>
+Reguläre Ausdrücke und breit `--contains` Trigger können mehr Nachrichten zuordnen
+als erwartet. Beginnen Sie in einem Testkanal und fügen Sie hinzu `--within`, und überprüfen Sie den Auslöser
+bevor Sie eine geschützte Aktion aktivieren.
+</Warning>
+
+## Autoreaktionen
+
+Autoreaktionen nutzen dieselben zentralen Matching-Modi:
+
+```text
+-autoreaction add "good morning" ☀️ ❤️ --startswith
+```
+
+Verwenden Sie eine enge Übereinstimmung für gebräuchliche Wörter. A `contains` Autoreaktion angehängt an a
+Ein kurzer Auslöser kann weitaus häufiger Reaktionen hervorrufen als beabsichtigt.
+

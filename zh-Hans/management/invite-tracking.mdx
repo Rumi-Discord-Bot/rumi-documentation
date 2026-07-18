@@ -1,0 +1,63 @@
+---
+title: "邀请追踪"
+description: "跟踪邀请加入、活跃受邀者、虚荣加入、排行榜和加入日志。"
+icon: "user-plus"
+---
+
+Rumi的邀请跟踪器比较 Discord 邀请会员加入时使用。它记录了
+邀请者当 Discord 提供足够的信息并区分正常
+邀请、虚荣心和未知的加入。
+
+## 启用并检查跟踪
+
+```text
+-invites enable
+-invites settings
+```
+
+更改设置需要**管理服务器**。使用 `settings` 确认是否
+是否启用跟踪以及是否配置加入日志通道。
+
+## 添加连接日志
+
+```text
+-invites log #join-logs
+-invites log off
+```
+
+日志通道接收跟踪信息 Rumi 可以解决新的
+加入。
+
+## 查看成员和服务器统计信息
+
+```text
+-invites
+-invites @member
+-invites top weekly
+-inviter @member
+-joins monthly
+-vanityjoins alltime
+```
+
+跟踪器区分总加入人数、活跃受邀者、离开的成员、
+普通邀请加入、虚荣加入以及邀请人不能加入的加入
+决定。
+
+支持的报告周期包括 `daily`, `weekly`, `monthly`， 和 `alltime`.
+
+## 刷新快照
+
+```text
+-invites refresh
+```
+
+这问 Rumi 再次获取当前邀请列表。它刷新了
+比较快照；它无法重建邀请者信息 Discord 做过
+不提供提前加入。
+
+<Info>
+不保证每次加入都有邀请归属。删除了邀请链接，
+虚荣链接、缺少权限、不可用的缓存状态和并发
+邀请更改可能会将加入标记为未知。 `-invites refresh` 更新
+快照 Rumi 用于将来的比较。
+</Info>

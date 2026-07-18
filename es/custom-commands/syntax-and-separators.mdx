@@ -1,0 +1,76 @@
+---
+title: "Sintaxis y separadores"
+description: "Comprenda nombres, argumentos declarados, límites de respuesta, alternativas y guiones de varias líneas."
+icon: "code"
+---
+
+## Por qué `--` está ahí
+
+El separador dice Rumi donde termina la definición del comando y el guardado
+La respuesta comienza:
+
+```text
+-cc set greet <member> [message...] -- Hello {member}! {message|Welcome.}
+```
+
+Rumi lee la línea en tres secciones:
+
+| Sección | Valor |
+| --- | --- |
+| Operación | `-cc set` |
+| Definición | `greet <member> [message...]` |
+| Respuesta guardada | `Hello {member}! {message\|Welcome.}` |
+
+Sin un separador, las palabras de la respuesta podrían parecer un argumento.
+declaraciones. El separador elimina esa ambigüedad. Se consume mientras el
+El comando se guarda y nunca se incluye en la respuesta.
+
+`=>` y `->` son alternativas aceptadas, pero `--` se utiliza en todos los documentos
+porque es más fácil de reconocer en guiones largos.
+
+<Warning>
+El primer independiente `--`, `=>`, o `->` es el límite. Cualquier cosa después de eso
+texto de respuesta, incluso cuando comienza con `--`. Poner declaraciones de argumentos antes.
+el límite.
+</Warning>
+
+## Argumentos declarados
+
+| Forma | Significado |
+| --- | --- |
+| `<member>` | Argumento requerido de una palabra |
+| `[reason]` | Argumento opcional de una palabra |
+| `<text...>` | Argumento de descanso requerido; consume todo lo que queda |
+| `[note...]` | Argumento de descanso opcional |
+
+Los nombres de los argumentos comienzan con una letra y pueden contener letras, números, `_`, `-`,
+o `.`. Un argumento de descanso debe ser el último porque consume toda la entrada restante.
+
+## Scripts de varias líneas
+
+Discord los mensajes pueden contener saltos de línea. Ponga las directivas en sus propias líneas para que
+se eliminan limpiamente de la respuesta visible:
+
+```text
+-cc set daily --
+{cooldown:24h}
+{customdb:increment rewards && {user.id} && 1}
+You claimed reward number **{db.get:rewards:{user.id}}**.
+```
+
+Otras directivas independientes admitidas por el tiempo de ejecución incluyen `{delete}` a
+eliminar el mensaje de invocación, `{silent}` para comandos de solo acción,
+`{respond:#channel}` para seleccionar un canal de respuesta, `{dm:user}` para enviar el
+resultado por DM, y `{reaction:emoji}` reaccionar ante el gatillo.
+
+## Valores y alternativas
+
+Usar `{variable|fallback}` cuando un valor puede estar ausente:
+
+```text
+Nickname: {user.display_name|No server nickname}
+Target: {target.mention|No target selected}
+```
+
+Rumi resuelve primero los argumentos declarados, luego los valores auxiliares y los condicionales,
+luego las variables de contexto y el script final de inserción/componente.

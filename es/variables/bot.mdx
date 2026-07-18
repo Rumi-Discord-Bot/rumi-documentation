@@ -1,0 +1,44 @@
+---
+title: "variables de robot"
+description: "31 variables de bot compatibles con Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;bot.avatar&#125;</code> | URL de la imagen de avatar. Fuente: robot. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.command_count&#125;</code> | Número de comando para bot. | <code>128</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.custom.avatar&#125;</code> | URL de la imagen de avatar. Fuente: bot personalizado. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.custom.banner&#125;</code> | URL de la imagen del banner. Fuente: bot personalizado. | <code>Ejemplo de banner personalizado de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.custom.bio&#125;</code> | Biografía para bot personalizada. | <code>Ejemplo de biografía personalizada de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.custom.name&#125;</code> | Valor del nombre. Fuente: bot personalizado. | <code>Rumi</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.dashboard&#125;</code> | Panel de control para bot. | <code>Ejemplo de panel de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.guild_count&#125;</code> | Número de gremio para bot. | <code>128</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.id&#125;</code> | Discord IDENTIFICACIÓN. Fuente: robot. | <code>123456789012345678</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.invite&#125;</code> | Invitación para bot. | <code>Ejemplo de invitación a un bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.mention&#125;</code> | Mencionar Rumi. | <code>&lt;@123456789012345678&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.name&#125;</code> | Rumi nombre de usuario del robot. | <code>Rumi</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.prefix&#125;</code> | Prefijo de comando actual. | <code>,</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.color.alert&#125;</code> | Alerta por color de respuesta del bot. | <code>Ejemplo de alerta de color de respuesta de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.color.bad&#125;</code> | Malo para el color de respuesta del bot. | <code>Ejemplo de color de respuesta de bot incorrecto</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.color.good&#125;</code> | Bueno para el color de respuesta del bot. | <code>Ejemplo de color de respuesta de bot bueno</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.color.info&#125;</code> | Información para el color de respuesta del bot. | <code>Ejemplo de información de color de respuesta de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.color.list&#125;</code> | Lista para el color de respuesta del bot. | <code>Ejemplo de lista de colores de respuesta de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.emoji.alert&#125;</code> | Alerta por emoji de respuesta de bot. | <code>Ejemplo de alerta de emoji de respuesta de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.emoji.bad&#125;</code> | Malo para los emoji de respuesta de bot. | <code>Ejemplo de emoji de respuesta de bot incorrecto</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.emoji.good&#125;</code> | Bueno para emoji de respuesta de bot. | <code>Ejemplo de emoji de respuesta de bot bueno</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.emoji.info&#125;</code> | Información para emoji de respuesta de bot. | <code>Ejemplo de información de emoji de respuesta de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.emoji.list&#125;</code> | Lista de emojis de respuesta de bot. | <code>Ejemplo de lista de emojis de respuesta de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.reply.mode&#125;</code> | Modo configurado. Fuente: respuesta del bot. | <code>Ejemplo de modo de respuesta de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.shard_count&#125;</code> | Número de fragmentos para el bot. | <code>128</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.shard_id&#125;</code> | ID de fragmento para bot. | <code>Ejemplo de identificación de fragmento de bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.support_server&#125;</code> | Servidor de soporte para bot. | <code>Ejemplo de servidor de soporte de bots</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.uptime&#125;</code> | Cuánto tiempo lleva ejecutándose este proceso de bot. | <code>Ejemplo de tiempo de actividad del bot</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.user_count&#125;</code> | Número de usuario para bot. | <code>128</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.version&#125;</code> | Versión para bot. | <code>Versión de bot de ejemplo</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;bot.website&#125;</code> | Sitio web para bot. | <code>Sitio web de bot de ejemplo</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |

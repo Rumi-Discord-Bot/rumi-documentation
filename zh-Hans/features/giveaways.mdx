@@ -1,0 +1,374 @@
+---
+title: "赠品"
+description: "创建、安排、重复、限制、衡量和管理赠品。"
+icon: "gift"
+---
+
+Rumi 可以运行按钮或反应赠品，选择最多 25 个获胜者，保存可重复使用
+预设、应用资格条件、奖励奖金条目、安排稍后
+开始，并以固定的时间间隔重复赠品。
+
+本指南使用默认值 `-` 前缀。如果您的服务器使用自定义的，请替换它
+前缀。
+
+## 开始赠品
+
+最快的形式按以下顺序使用四个值：
+
+```text
+-giveaway start "Discord Nitro" 24h 2 #giveaways
+```
+
+1. `"Discord Nitro"` 是奖品。将包含空格的奖品放在引号内。
+2. `24h` 是条目保持开放的时间。
+3. `2` 是获胜者的数量，从 1 到 25。
+4. `#giveaways` 是可选的。没有它， Rumi 使用配置的赠品频道，然后使用当前频道。
+
+持续时间支持秒、分钟、小时、天和周： `30s`, `45m`, `12h`,
+`3d`， 或者 `2w`。赠品必须运行至少 10 秒且不超过
+365 天。
+
+### 按钮或反应输入
+
+按钮条目是默认值，除非服务器配置另有说明：
+
+```text
+-giveaway start "Profile colour" 2h 1 --button
+```
+
+使用 `--reaction` 用于反应输入。在其后提供表情符号，或将其省略
+使用🎉：
+
+```text
+-giveaway start "Nitro" 24h 1 --reaction 🎟️
+-giveaway start "Mystery prize" 30m 1 --reaction
+```
+
+Rumi 需要 **添加反应** 和 **阅读消息历史记录** 进行反应
+赠品。两种输入模式都需要**发送消息**和**嵌入链接**
+赠品频道。
+
+## 外观和交付标志
+
+标志可以放置在所需的起始值之后。引用任何多字值。
+
+| 旗帜 | 它改变了什么 |
+| --- | --- |
+| `--winners <count>` | 覆盖位置获胜者计数。 |
+| `--host <user\|me>` | 显示另一位成员作为主持人。 |
+| `--title <text>` | 替换嵌入标题。 |
+| `--description <text>` | 添加自定义正文文本。 |
+| `--footer <text>` | 添加嵌入页脚。 |
+| `--image <url>` | 添加大嵌入图像。该值必须是 HTTP(S) URL。 |
+| `--thumbnail <url>` | 添加一个小的嵌入缩略图。 |
+| `--color <hex>` | 例如，更改嵌入颜色 `#c8d8f2`. |
+| `--content <text>` | 将纯文本放置在嵌入内容上方。 `--message` 也被接受。 |
+| `--button-label <text>` | 更改输入按钮文本。 |
+| `--button-emoji <emoji>` | 在输入按钮上放置表情符号。 |
+| `--button-style <style>` | 用途 `primary`, `secondary`, `success`， 或者 `danger`. |
+| `--winner-message <text>` | 更改选择获胜者时发送的消息。 |
+| `--end-message <text>` | 更改赠品结束时使用的消息。 |
+| `--dm-winner <true\|false>` | 覆盖此赠品的服务器获胜者 DM 设置。 |
+| `--preset <name>` | 在应用其他标志之前加载已保存的预设。 |
+
+例如：
+
+```text
+-giveaway start "Two months of Nitro" 3d 2 #giveaways --button --title "Weekend draw" --description "Press the button below to enter." --color #b7a7ff --dm-winner true
+```
+
+## ID和日常管理
+
+Rumi 为每个赠品提供一个简短的服务器 ID，例如 `#1`。要求的命令
+ID 也接受 Discord 消息ID。
+
+```text
+-giveaway list
+-giveaway list active
+-giveaway list scheduled
+-giveaway info #1
+-giveaway entries #1
+-giveaway stats
+-giveaway stats user @moon
+```
+
+`list` 接受 `active`, `ended`, `cancelled`， 或者 `scheduled`. `entries` 出现
+最多 25 个有效条目。 `stats user` 报告会员的参赛记录和获胜情况
+跨服务器赠品 Rumi 检查。
+
+### 编辑、结束、取消和重新滚动
+
+```text
+-giveaway edit #1 --prize "Nitro Basic" --winners 2
+-giveaway edit #1 --duration 6h --title "Extended draw"
+-giveaway end #1
+-giveaway cancel #1
+-giveaway cancel #1 --delete-message
+-giveaway reroll #1 --winners 2
+```
+
+- `edit` 仅更改提供的字段。 `--duration 6h` 将结束时间设置为编辑后的六个小时。
+- `end` 立即结束活动赠品并选出获奖者。
+- `cancel` 关闭它而不选择获胜者。该消息将保留，除非 `--delete-message` 被使用。
+- `reroll` 从已结束的赠品中符合资格的参赛作品中选择替代获奖者。
+
+## 资格条件
+
+条件控制谁可以进入或获胜。条件用 **AND** 组合：
+会员必须通过所有适用的条件。
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 100
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition list #1
+```
+
+### 条件范围
+
+| 范围 | 什么时候 Rumi 检查它 | 适合 |
+| --- | --- | --- |
+| `entry` | 当成员按下按钮或添加反应时。 | 应阻止进入的直接要求。 |
+| `winner` | 什么时候 Rumi 选择或重新滚动获胜者。 | 抽奖结束前要求可能会发生变化。 |
+| `both` | 在参赛时和获奖者选择期间再次进行。 | 整个赠品活动中必须遵守的规则。 |
+
+如果按钮输入者未通过输入检查， Rumi 告诉他们原因。如果有反应
+参赛者失败， Rumi 消除他们的反应。未通过获奖者检查的会员是
+跳过并且 Rumi 继续寻找符合资格的获胜者。
+
+### 每个条件类型
+
+| 类型 | 必需的标志 | 意义 |
+| --- | --- | --- |
+| `messages` | `--min <count>` | 至少需要记录给定数量的消息 Rumi 在这个服务器中。 |
+| `vc_time` | `--min <duration>` | 至少需要给定的跟踪语音时间，例如 `10h`. `vc-time` 也被接受。 |
+| `server_age` | `--min <duration>` | 要求成员在当前服务器中呆了足够长的时间。 |
+| `account_age` | `--min <duration>` | 需要 Discord 帐户至少有那么旧。 |
+| `role` | `--role <role>` | 需要一个角色。 |
+| `not_role` | `--role <role>` | 拒绝具有该角色的成员。 |
+| `boosting` | 没有任何 | 需要对当前服务器进行主动提升。 |
+| `verified` | 没有任何 | 需要完成 Discord的会员筛选。这不是 Rumi的验证码验证系统。 |
+| `warnings` | `--max <count>` | 该服务器中允许的警告记录数量不得超过给定数量。 |
+| `bans` | `--max <count>` | 在此服务器中允许记录的禁止操作数量不超过给定数量。 |
+| `mutual_server` | `--server <server-id>` | 需要另一台服务器的成员资格，该服务器也有 Rumi. |
+| `invited_to_server` | `--server <server-id>`，可选地 `--inviter <user\|me>` | 需要通过所需的邀请者在目标服务器中跟踪成员资格。 |
+| `inviter` | 与 `invited_to_server` | 邀请历史记录条件的别名。 |
+| `joined_via_invite` | 与 `invited_to_server` | 邀请历史记录条件的别名。 |
+
+`warnings` 和 `bans` 是最大值，所以 `--max 0` 表示没有记录警告或
+禁止行动。较旧的设置可能会使用 `--min` 对于这两种类型； Rumi 仍然接受
+它，但是 `--max` 更清楚了。
+
+### 实际情况示例
+
+进入前需要 250 条跟踪消息：
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 250
+```
+
+需要 30 天的帐户和服务器中的 7 天：
+
+```text
+-giveaway condition add #1 --type account_age --scope both --min 30d
+-giveaway condition add #1 --type server_age --scope both --min 7d
+```
+
+允许成员但排除静音角色：
+
+```text
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition add #1 --type not_role --scope both --role @Muted
+```
+
+抽签获胜者时需要五个小时的跟踪语音活动：
+
+```text
+-giveaway condition add #1 --type vc_time --scope winner --min 5h
+```
+
+需要另一个社区的成员资格：
+
+```text
+-giveaway condition add #1 --type mutual_server --scope entry --server 123456789012345678
+```
+
+要求成员通过您的邀请加入合作伙伴服务器：
+
+```text
+-giveaway condition add #1 --type invited_to_server --scope both --server 123456789012345678 --inviter me
+```
+
+对于邀请条件， Rumi 必须在目标服务器中，参赛者必须仍然
+成为那里的会员，并且 Rumi 需要 **管理服务器** 来维持邀请
+追踪。对于从未参与过的加入，无法重建邀请历史记录
+记录了。
+
+使用以下所示的条件 ID 删除一条规则 `condition list`，或删除所有
+规则：
+
+```text
+-giveaway condition remove #1 cond-1234
+-giveaway condition clear #1
+```
+
+## 奖金条目
+
+每个有效会员都从一个条目开始。奖金规则增加了该条目的权重；
+他们不会绕过条件。匹配奖金可叠加，但一名会员无法获胜
+同一次抽奖中有多个中奖者名额。
+
+```text
+-giveaway bonus add #1 --role @VIP --entries 2
+-giveaway bonus add #1 --messages 500 --entries 1
+-giveaway bonus add #1 --vc-time 10h --entries 3
+-giveaway bonus add #1 --booster --entries 2
+```
+
+可用的奖金类型有：
+
+| 旗帜 | 谁获得额外的重量 |
+| --- | --- |
+| `--role <role>` | 具有所选角色的成员。 |
+| `--messages <count>` | 达到或超过跟踪消息数的成员。 |
+| `--vc-time <duration>` | 成员在跟踪的语音时间或以上。 |
+| `--booster` | 当前服务器助推器。 |
+
+`--entries` 接受1到100。例如，普通会员有一次机会；
+会员匹配 `--entries 2` 共有三个加权条目。
+
+```text
+-giveaway bonus list #1
+-giveaway bonus remove #1 bonus-1234
+```
+
+## 预设
+
+预设可保存完整的赠品布局，因此工作人员无需重复长时间的操作
+一组标志。
+
+```text
+-giveaway preset create nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --color #b7a7ff
+-giveaway preset list
+-giveaway preset view nitro
+-giveaway start --preset nitro
+```
+
+仅编辑需要更改的内容；其他保存的字段保持不变：
+
+```text
+-giveaway preset edit nitro --duration 48h --winners 2
+```
+
+旁边提供的旗帜 `--preset` 覆盖该值的保存值
+送：
+
+```text
+-giveaway start --preset nitro --winners 3 --title "Three winners today"
+```
+
+不再需要时删除预设：
+
+```text
+-giveaway preset delete nitro
+```
+
+删除预设不会取消已经存在的赠品或重复规则
+由它创建。
+
+## 预定赠品
+
+安排现在存储赠品并稍后发布：
+
+```text
+-giveaway schedule --starts-in 2h --prize "Discord Nitro" --duration 24h --winners 1 --channel #giveaways --button
+```
+
+`--starts-in` 是发布前的延迟。 `--duration` 是多长时间进入
+**之后保持开放 Rumi 发布它**。后台运行程序粗略检查
+每 30 秒一次，因此发布可能会在确切的目标时间之后不久发生。
+
+启动命令中的所有外观标志也适用于 `schedule`。你可以
+还可以根据预设进行安排：
+
+```text
+-giveaway schedule --starts-in 1d --preset nitro --channel #events
+```
+
+在开始之前，赠品出现在：
+
+```text
+-giveaway list scheduled
+-giveaway info #1
+```
+
+使用 `giveaway cancel #1` 如果预定的赠品永远不应该被发布。
+如果满足以下条件，则计划的行仍然到期： Discord 或者目标频道暂时
+不可用，允许 Rumi 稍后再尝试跑步者通行证。
+
+## 定期赠品
+
+重复规则会以固定的时间间隔创建新的赠品。最可靠的
+设置是首先构建并检查预设：
+
+```text
+-giveaway preset create weekly-nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --channel #giveaways
+-giveaway recurring create weekly --every 7d --preset weekly-nitro
+```
+
+您还可以将赠品有效负载直接放在规则上：
+
+```text
+-giveaway recurring create daily-coins --every 1d --prize "10,000 coins" --duration 2h --winners 1 --channel #giveaways --button
+```
+
+重要的重复行为：
+
+- 第一个赠品开始于完整的 `--every` 规则创建后的间隔。
+- 每次运行都会创建自己的赠品 ID、消息、条目和获奖者。
+- 日程安排比预期的节奏提前，因此跑步者不会在以后的每次跑步中出现小的延迟。
+- 失败的发布会在大约五分钟后重试，而不是跳过整个时间间隔。
+- 该规则存储其赠品设置的快照。稍后编辑原始预设不会更改现有的重复规则；删除并重新创建规则以应用新预设。
+- 删除规则会阻止将来运行，但不会取消已创建的赠品。
+
+```text
+-giveaway recurring list
+-giveaway recurring delete weekly
+```
+
+## 服务器赠品设置
+
+具有**管理服务器**的成员、管理员和配置的赠品
+经理角色可以管理赠品。赠品主持人也可以结束或取消他们的
+自己的赠品。仍然可以查看列表、信息、条目和统计数据
+没有管理访问权限。
+
+```text
+-giveaway config view
+-giveaway config channel #giveaways
+-giveaway config channel off
+-giveaway config manager-role @Giveaway Manager
+-giveaway config manager-role off
+-giveaway config default-entry button
+-giveaway config default-entry reaction
+-giveaway config default-color #c8d8f2
+-giveaway config dm-winners on
+-giveaway config remove-entry-on-leave on
+-giveaway config log-channel #giveaway-logs
+-giveaway config log-channel off
+```
+
+| 环境 | 影响 |
+| --- | --- |
+| `channel` | 当开始、计划、预设或循环负载未命名频道时的默认目标。 |
+| `manager-role` | 允许该角色管理赠品，而无需授予广泛的服务器管理权限。 |
+| `default-entry` | 当未提供任何标志时选择按钮或反应条目。 |
+| `default-color` | 设置默认嵌入颜色。 |
+| `dm-winners` | 尝试向获奖者发送直接消息。封闭的 DM 可能会阻止交付。 |
+| `remove-entry-on-leave` | 当条目的成员离开服务器时使条目无效。 |
+| `log-channel` | 将赠品管理记录发送到选定的渠道。 |
+
+<Tip>
+首先构建一个简短的测试赠品，然后添加条件和奖励规则
+广泛分享。 `-giveaway info #1` 是确认当前状态的最快方法
+参赛次数、条件、奖励规则、主持人、状态和消息链接。
+</Tip>

@@ -1,0 +1,23 @@
+---
+title: "Variables de base de données personnalisées"
+description: "10 variables customdb prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;customdb.&lt;operation&gt;:namespace:key[:value]&#125;</code> | Alias ​​long pour chaque opération de base de données : obtenir, existe, définir, inc, incrémenter, diminuer, décrémenter, supprimer et supprimer. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;db.dec:namespace:key:amount&#125;</code> | Diminuez un numéro de données personnalisées. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;db.decrement:namespace:key:amount&#125;</code> | Alias ​​long de db.dec. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;db.del:namespace:key&#125;</code> | Alias ​​de db.delete. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;db.delete:namespace:key&#125;</code> | Supprimez une clé de données personnalisée. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;db.exists:namespace:key&#125;</code> | Renvoie true lorsque la clé de données personnalisée existe, sinon false. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;db.get:namespace:key&#125;</code> | Lire une valeur de données personnalisée enregistrée. | <code>42</code> | Commandes personnalisées ; répondeurs automatiques avec --db |
+| <code>&#123;db.inc:namespace:key:1&#125;</code> | Incrémentez un numéro enregistré. Mettez-le sur sa propre ligne pour masquer le résultat brut. | <code>43</code> | Commandes personnalisées ; répondeurs automatiques avec --db |
+| <code>&#123;db.increment:namespace:key:amount&#125;</code> | Augmentez un numéro de données personnalisées. Alias ​​de db.inc. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;db.set:namespace:key:value&#125;</code> | Enregistrez une valeur de données personnalisées. Sur sa propre ligne, la mutation ne produit aucune sortie visible. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |

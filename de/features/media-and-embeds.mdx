@@ -1,0 +1,132 @@
+---
+title: "Medien und Einbettungen"
+description: "Bearbeiten Sie Bilder und Videos, exportieren Sie Medien und erstellen Sie wiederverwendbare Discord-Einbettungen."
+icon: "photo-film"
+---
+
+RumiDer Medienbefehl von akzeptiert Anhänge, direkte URLs und – sofern unterstützt
+Aktionen – die Medien, die an eine beantwortete Nachricht angehängt sind. Die Einbettungswerkzeuge machen einen Kompakten
+Skript in ein Discord Einbetten, das in der Vorschau angezeigt, gespeichert und wiederverwendet werden kann.
+
+## Medieneingabe auswählen
+
+Die am wenigsten mehrdeutige Eingabe ist ein direkter Anhang oder eine URL:
+
+```text
+-media blur https://example.com/image.png 3
+-media bgremove https://example.com/photo.jpg
+```
+
+Sie können auch auf eine Nachricht antworten, die Medien enthält, und den Befehl ohne ausführen
+URL. Wenn die Quelle eine Plattformseite und keine direkte Datei ist, Verfügbarkeit
+kommt darauf an, ob RumiDer Mediendienst von unterstützt diese Plattform.
+
+## Bildeffekte
+
+Zu den aktuellen Bildaktionen gehören:
+
+- `blur [amount]`
+- `brightness [amount]`
+- `contrast [amount]`
+- `deepfry`
+- `flip`
+- `glitch`
+- `grayscale`
+- `invert`
+- `jail-bars`
+- `pixelate [factor]`
+- `resize <width>x<height>`
+- `rotate [degrees]`
+- `vaporwave`
+- `wasted`
+
+Beispiele:
+
+```text
+-media pixelate 18
+-media resize 512x512
+-media rotate 180
+```
+
+## Bildunterschriften
+
+```text
+-media caption Welcome to the server
+-media caption --position=top --size=42 --color=#ffffff Welcome!
+```
+
+Zu den Beschriftungsflaggen gehören Position, Schriftfamilie, Textfarbe, Hintergrundfarbe usw
+Schriftgröße. Verwenden `-help media caption` für die aktuellen Aliase und die akzeptierte Form.
+
+## GIF- und MP4-Konvertierung
+
+```text
+-media gif <url>
+-media mp4 <url> --start 10s --duration 30s
+-media togif <url> --start 5s --duration 6s --fps 12 --width 480
+```
+
+`media gif` Ruft die ursprünglich unterstützte GIF- oder Mediendatei ab. `media mp4`
+erstellt eine herunterladbare MP4, während `media togif` erstellt einen kurzen GIF-Clip.
+Rumi wendet Eingabe-, Ausgabe-, Dauer- und Verarbeitungsgrenzen an, also eine große Quelle
+Möglicherweise ist ein kürzerer Clip oder kleinere Abmessungen erforderlich.
+
+## Hintergrundentfernung
+
+```text
+-media bgremove
+```
+
+Hängen Sie ein Bild an, geben Sie eine Bild-URL an oder antworten Sie auf ein Bild. Rumi gibt a zurück
+transparentes PNG, wenn der konfigurierte Dienst zum Entfernen im Hintergrund erfolgreich ist.
+
+## Skripte einbetten
+
+Beginnen Sie mit einer Vorschau:
+
+```text
+-embed preview {embed}$v{title: Rules}$v{description: Read the channels below.}$v{color: 6A8FB3}
+```
+
+`{embed}` startet das Einbettungsskript. Jede `$v{property: value}` fügt eine Eigenschaft hinzu.
+Zum Beispiel:
+
+```text
+{embed}
+$v{title: Event night}
+$v{description: Join us at {timestamp}.}
+$v{field: Where && #events && true}
+$v{field: Host && {user.mention} && true}
+$v{thumbnail: {guild.icon}}
+$v{color: 6A8FB3}
+```
+
+Die drei Feldteile sind Name, Wert und ob es inline sein soll.
+
+## Einbettungen speichern und wiederverwenden
+
+```text
+-embed save event <script>
+-embed list
+-embed load event
+-embed edit event <updated script>
+-embed delete event
+```
+
+Senden Sie ein Skript direkt an den aktuellen Kanal oder geben Sie einen anderen Kanal an:
+
+```text
+-embed send {embed}$v{description: Hello!}
+-embed send #announcements {embed}$v{title: Update}$v{description: New event this weekend.}
+```
+
+Verwenden `-embed validate <script>` wenn Sie nur Syntax-Feedback wünschen. Einbettung gespeichert
+Vorlagen und benutzerdefinierte Befehle haben die gleichen Einbettungsskript-Ideen
+[Einbettungs- und Komponentenhandbuch](../custom-commands/embeds-and-components) ist nützlich
+für beide.
+
+<Warning>
+Rumi kann nicht machen Discord Akzeptieren Sie eine Einbettung, die darüber hinausgeht Discord's Feld, Text oder
+Komponentengrenzen. Überprüfen Sie lange Skripte und zeigen Sie eine Vorschau an, bevor Sie sie an a senden
+öffentlicher Kanal.
+</Warning>

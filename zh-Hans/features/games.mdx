@@ -1,0 +1,99 @@
+---
+title: "游戏"
+description: "玩互动式 Discord 游戏并查找支持的游戏配置文件和服务器。"
+icon: "gamepad"
+---
+
+Rumi的Games模块包含两种命令：里面玩的游戏 Discord
+以及从游戏或平台提供商获取公共信息的查找。
+游戏命令目前仅限前缀。
+
+## 互动游戏
+
+### 剪刀石头布
+
+```text
+-rps play bo3
+-rps challenge @member bo5
+-rps stats
+-rps leaderboard
+```
+
+比赛在需要时使用私人按钮选择。最佳值支持
+命令是 `bo1`, `bo3`, `bo5`, `bo7`， 和 `bo9`.
+
+### 井字游戏和地雷
+
+```text
+-tictactoe @member
+-mines
+```
+
+两者都使用交互式组件。只有加入游戏的玩家才能
+控制其按钮。
+
+### 快速聊天游戏
+
+```text
+-fasttype
+-fasttype Type this exact custom phrase
+-mathrace hard
+-unscramble 5 20
+```
+
+`fasttype` 等待第一个确切的短语， `mathrace` 等待第一个
+正确答案，以及 `unscramble` 进行一场文字竞赛。他们的可选号码发生变化
+命令支持的目标分数或时间。
+
+### 茶和生存游戏
+
+```text
+-blacktea 3 20
+-greentea 5 15
+-redtea 3 20
+-whitetea 3 20
+-wordchain 3 20
+-forbiddenword 30
+```
+
+茶的变体使用不同的消除规则。读 `-help <game>` 之前
+更大的会议，这样每个人都知道该轮是否奖励速度，有效的单词，
+或避免片段。
+
+###小游戏
+
+```text
+-coinflip
+-roll 2d20
+-slots
+-coinrace
+```
+
+这些不使用服务器经济。经济赌场游戏正在下
+`-casino`，而不是游戏模块。
+
+## 游戏和平台查找
+
+该模块当前包括 Roblox、Minecraft、Fortnite、Steam、
+《Valorant》、《Apex Legends》、《守望先锋》、《英雄联盟》、《osu!》、《部落冲突》、
+《皇室战争》、《荒野乱斗》和《Roblox》团体。
+
+当前命令的示例：
+
+```text
+-roblox user Builderman
+-roblox avatar Builderman
+-minecraft status play.example.net
+-minecraft player Notch
+-fortnite <account>
+```
+
+跑步 `-help roblox`, `-help minecraft`，或之前的相关游戏命令
+抬头。每个提供商都需要不同的用户名、标签、区域、帐户 ID 或
+服务器地址。
+
+<Info>
+查找数据来自外部游戏服务。私人档案，无效
+标识符、提供商中断或缺少可选的 API 集成可能会阻止
+结果即使 Rumi 本身是在线的。
+</Info>

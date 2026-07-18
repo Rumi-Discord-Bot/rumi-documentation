@@ -1,0 +1,112 @@
+---
+title: "So lesen Sie die Befehlssyntax"
+description: "Erforderliche Argumente, optionale Werte, Auswahlmöglichkeiten, Flags, IDs und zitierten Text verstehen."
+icon: "code"
+---
+
+RumiIn den Hilfeeinträgen von wird ein kleiner Teil der Notation verwendet, um zu zeigen, was ein Befehl ist
+erwartet. Die Klammern sind Anweisungen; Normalerweise tippt man sie nicht ein.
+
+## Erforderliche und optionale Argumente
+
+`<angle brackets>` bedeutet, dass der Wert erforderlich ist:
+
+```text
+role add <member> <role>
+```
+
+Ein gültiger Lauf wäre:
+
+```text
+-role add @Moon Member
+```
+
+`[square brackets]` bedeutet, dass der Wert optional ist:
+
+```text
+level [user]
+```
+
+Beide `-level` Und `-level @Moon` sind gültig.
+
+## Auswahlmöglichkeiten
+
+Ein vertikaler Balken bedeutet „wähle eins“:
+
+```text
+deposit <amount|all>
+```
+
+Benutzen Sie beides `-deposit 500` oder `-deposit all`. Geben Sie die Leiste nicht ein.
+
+## Text mit Leerzeichen
+
+Einige Befehle behandeln den Rest der Nachricht als einen Wert. Andere haben ein anderes
+Argument dahinter, daher verdeutlichen Anführungszeichen die Grenze:
+
+```text
+-giveaway start "Discord Nitro" 24h 1 #giveaways
+```
+
+Ohne Anführungszeichen, `Discord` Und `Nitro` könnte als separate Position gelesen werden
+Argumente. Zitieren ist besonders nützlich für Preise, Namen, Gründe und Titel.
+
+## Flaggen
+
+Flaggen beginnen mit `--` und einen Teil eines Befehls ändern, ohne seinen zu ändern
+Hauptaktion:
+
+```text
+-role create Event Host --color #c8d8f2
+-media caption --position=top --size=42 Welcome!
+-giveaway start "Nitro" 24h 1 --button
+```
+
+Abhängig vom Befehl kann ein Flag geschrieben werden als `--name value` oder
+`--name=value`. Befolgen Sie das Hilfebeispiel dieses Befehls, wenn dies bei beiden Formen nicht der Fall ist
+aufgeführt.
+
+## Erwähnungen, Namen und IDs
+
+Rumi akzeptiert oft a Discord Erwähnung, Roh-ID oder auflösbarer Name. Erwähnungen sind
+am wenigsten zweideutig:
+
+```text
+-role info @Staff
+-channel rename #old-name new-name
+-inviter 123456789012345678
+```
+
+Wenn zwei Rollen oder Kanäle denselben Namen haben, verwenden Sie eine Erwähnung oder ID.
+
+## Unterbefehle
+
+Das erste Wort nach einem Befehl wählt oft eine Aktion aus:
+
+```text
+-economy config
+-economy config currency petals
+-economy rob chance 35
+```
+
+Lesen Sie diese von links nach rechts: `economy` öffnet das System, `rob` wählt es aus
+Konfigurationsbereich und `chance` wählt die Einstellung aus.
+
+## Warum benutzerdefinierte Befehle verwendet werden `--`
+
+Der `customcommand set` Der Befehl muss das eigene Argument des Befehls trennen
+Definition aus der gespeicherten Antwort:
+
+```text
+-cc set greet <member> -- Hello {target.mention}!
+```
+
+Alles vor dem Standalone `--` Definiert den benutzerdefinierten Befehl. Alles
+Danach folgt die Antwort oder das Skript. Dadurch kann die Antwort Leerzeichen enthalten.
+Variablen, Einbettungen und mehrere Zeilen ohne Rumi verwechsele sie mit mehr
+Setup-Argumente. Siehe [Syntax und Trennzeichen](../custom-commands/syntax-and-separators)
+für das vollständige benutzerdefinierte Befehlsformat.
+
+<Info>
+Laufen `-help <command>` immer dann, wenn ein Beispiel unklar ist. Wenn weiterhin Probleme auftreten, können Sie mithilfe des integrierten KI-Modells nachfragen `-rumi <question>`.
+</Info>

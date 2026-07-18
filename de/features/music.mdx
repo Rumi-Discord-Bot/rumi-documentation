@@ -1,0 +1,46 @@
+---
+title: "Musik"
+description: "Verbinden Sie Rumi mit der Stimme und nutzen Sie seine Musikbefehle."
+icon: "music"
+---
+
+Laufen `-help music` um die aktuell verfügbaren Musikbefehle und deren zu finden
+Syntax.
+
+## Grundlegender Ablauf
+
+1. Treten Sie einem bei Discord Sprachkanal.
+2. Führen Sie den Wiedergabebefehl mit einem unterstützten Suchbegriff oder einer unterstützten URL aus.
+3. Verwenden Sie Warteschlangensteuerungen, um die Wiedergabe zu verwalten.
+4. Trennen Sie die Verbindung Rumi wenn die Wiedergabe beendet ist.
+
+<Note>
+Die Musikverfügbarkeit hängt vom separaten Lightweight-Musikdienst ab. Wenn Musik
+Befehle reagieren, aber die Wiedergabe kann nicht gestartet werden. Überprüfen Sie den Dienststatus oder wenden Sie sich an
+Unterstützung.
+</Note>
+
+Verwenden `-help <command>` bevor Sie einen Musikbefehl ausführen, um seine aktuellen Optionen anzuzeigen
+und Anforderungen.
+
+## Gemeinsame Steuerelemente
+
+```text
+-play <song, playlist, or supported URL>
+-queue
+-nowplaying
+-pause
+-resume
+-skip
+-volume 65
+-seek 1:30
+-loop track
+-shuffle
+```
+
+Rumi's Sprachwarteschlange und die persönliche eines Benutzers Spotify Geräte sind separate Wiedergabegeräte
+Ziele. Befehle wie `-pause` Kontrolle Rumi In Discord Stimme. Befehle wie z
+als `-spotify pause` Steuern Sie die Aktivität des verknüpften Benutzers Spotify Gerät anschließen.
+
+Sehen [Spotify Verknüpfung und Steuerung](./spotify) für Playlists, gefällt mir
+Lieder, Geräte und Bewegung Spotify Bibliothekstitel in die Discord Sprachwarteschlange.

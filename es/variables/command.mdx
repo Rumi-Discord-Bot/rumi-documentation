@@ -1,0 +1,24 @@
+---
+title: "Variables de comando"
+description: "11 variables de comando soportadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;command.alias&#125;</code> | Alias ​​utilizado para activar el comando cuando está disponible. | <code>Alias ​​de comando de ejemplo</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.arg_count&#125;</code> | Número de argumentos para el comando. | <code>128</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.category&#125;</code> | Categoría para mando. | <code>Ejemplo de categoría de comando</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.channel&#125;</code> | Mención del canal o valor del canal. Fuente: comando. | <code>Canal de comando de ejemplo</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.channel_id&#125;</code> | Discord identificación del canal. Fuente: comando. | <code>ID de canal de comando de ejemplo</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.description&#125;</code> | Texto de descripción. Fuente: comando. | <code>Descripción del comando de ejemplo</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.name&#125;</code> | Nombre del comando que actualmente genera esta respuesta. | <code>Rumi</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.usage&#125;</code> | Uso para comando. | <code>Ejemplo de uso de comando</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.user&#125;</code> | Usuario para comando. | <code>Usuario de comando de ejemplo</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.user_id&#125;</code> | ID de usuario para el comando. | <code>ID de usuario de comando de ejemplo</code> | Comandos personalizados y plantillas compatibles con comandos |
+| <code>&#123;command.user_mention&#125;</code> | Mención de usuario para mando. | <code>Ejemplo de mención de usuario de comando</code> | Comandos personalizados y plantillas compatibles con comandos |

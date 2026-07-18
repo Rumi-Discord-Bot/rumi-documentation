@@ -1,0 +1,106 @@
+---
+title: "Controles de salida"
+description: "Enrute respuestas, envíe mensajes directos, agregue reacciones, aplique tiempos de reutilización y controle el mensaje desencadenante."
+icon: "route"
+---
+
+Los controles de salida son líneas directivas independientes en una respuesta de comando personalizado.
+ellos cambian como Rumi envía el resultado y no se muestran como texto de respuesta.
+
+## Eliminar el disparador
+
+```text
+{delete}
+```
+
+Rumi elimina el mensaje que ejecutó el comando personalizado. Esto necesita **Administrar
+Mensajes** en el canal de origen. Si la eliminación falla, el resto del comando puede
+aún será manejado de acuerdo con sus otras configuraciones.
+
+## Salida silenciosa
+
+```text
+{silent}
+```
+
+Utilice el modo silencioso para un comando que solo realiza acciones o datos configurados
+se actualiza y no debe enviar su respuesta visible normal. Durante el desarrollo,
+Deje una confirmación visible hasta que la acción haya sido probada.
+
+## Enrutar la respuesta
+
+```text
+{respond:#suggestions}
+```
+
+Rumi envía la salida renderizada al canal del servidor seleccionado. debe ser capaz
+para ver ese canal y enviar el tipo de carga útil utilizado por el comando.
+
+Ejemplo:
+
+```text
+-cc set report <text...> --
+{respond:#reports}
+$v{embed}
+$v{author: {user.display_name} && {user.avatar}}
+$v{description: {text}}
+$v{footer: Sent from {channel.name}}
+```
+
+Restrinja los canales de origen del comando si los informes solo deben enviarse desde
+lugares específicos.
+
+## Enviar un mensaje directo
+
+```text
+{dm:user}
+```
+
+La salida se envía al usuario objetivo seleccionado en lugar del canal público.
+La entrega de DM puede fallar cuando el destinatario bloquea los DM de los miembros del servidor o tiene
+obstruido Rumi.
+
+## Agregar reacciones
+
+```text
+{react:✅}
+{react:✅ && ❌}
+```
+
+Rumi agrega las reacciones enumeradas al mensaje desencadenante cuando puede leer el
+mensaje y agregue esas reacciones. El emoji del servidor personalizado también debe ser utilizable por
+Rumi.
+
+## Tiempos de reutilización por usuario
+
+```text
+{cooldown:10m}
+```
+
+El tiempo de reutilización se aplica al uso repetido de ese comando personalizado por parte de un miembro. Usar
+duraciones legibles como `30s`, `10m`, o `24h`.
+
+```text
+-cc set daily-note --
+{cooldown:24h}
+You can use this response again tomorrow.
+```
+
+## Combine los controles con cuidado
+
+```text
+-cc set confidential <text...> --
+{cooldown:5m}
+{delete}
+{dm:user}
+Your saved note: {text}
+```
+
+Pruebe el enrutamiento y los DM antes de agregar `{delete}`. De lo contrario, un destino fallido
+puede dejarte sin el mensaje desencadenante ni con la respuesta esperada.
+
+<Warning>
+Los controles de salida cambian la entrega, no los permisos. Acciones protegidas dentro del
+El mismo comando todavía se ejecuta. RumiPermiso, restricción, objetivo y rol de
+controles de jerarquía.
+</Warning>

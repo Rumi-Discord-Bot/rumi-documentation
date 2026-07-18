@@ -1,0 +1,19 @@
+---
+title: "Variables conditionnelles"
+description: "6 variables conditionnelles prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;if:&lt;left&gt;&lt;operator&gt;&lt;right&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Comparez les valeurs avec ==, !=, &gt;, &lt;, &gt;=, ou &lt;=. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;if:&lt;value&gt; contains &lt;text&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Vérifiez si le texte contient une autre valeur, en ignorant la casse. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;if:exists &lt;value&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Vérifiez si une valeur résolue existe et n'est pas fausse. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;if user has permission &lt;permission&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Vérifiez un Discord autorisation sur l'utilisateur ou la cible. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;if user has role @Role&#125;Allowed&#123;else&#125;Denied&#123;endif&#125;</code> | Vérifiez si un membre a un rôle. | <code>Autorisé</code> | Commandes personnalisées, répondeurs automatiques |
+| <code>&#123;if:&#123;user.id&#125;==&#123;target.id&#125;&#125;No self target.&#123;else&#125;OK&#123;endif&#125;</code> | Afficher un texte différent lorsqu'une condition de sécurité réussit ou échoue. | <code>D'ACCORD</code> | Commandes personnalisées, répondeurs automatiques |

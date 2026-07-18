@@ -1,0 +1,29 @@
+---
+title: "Argumentvariablen"
+description: "16 von Rumi unterstützte Argumentvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;arg&#125;</code> | Alles, was nach dem benutzerdefinierten Befehl oder dem passenden Autoresponder-Trigger eingegeben wurde. | <code>Blauer Kuchen mit Streuseln</code> | Benutzerdefinierte Befehle, Autoresponder |
+| <code>&#123;arg.1&#125;</code> | Das erste Argument nach dem Befehl oder Trigger. | <code>Blau</code> | Benutzerdefinierte Befehle, Autoresponder |
+| <code>&#123;arg.2+&#125;</code> | Argument 2 und alles danach. | <code>Kuchen mit Streuseln</code> | Benutzerdefinierte Befehle, Autoresponder |
+| <code>&#123;arg.count&#125;</code> | Anzahl der analysierten Befehlsargumente. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;arg.raw&#125;</code> | Unveränderter Befehlsargumenttext. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;args&#125;</code> | Der gesamte nach dem Befehl bereitgestellte Text. Alias ​​von &#123;arg&#125;. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;args.count&#125;</code> | Anzahl der analysierten Befehlsargumente. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;args.raw&#125;</code> | Unveränderter Befehlsargumenttext. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;arg.1+&#125;</code> | Argument 1 und jedes Argument danach. Ersetzen Sie 1 durch die Startposition. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;args.rest.1&#125;</code> | Argument 1 und jedes Argument danach. Ersetzen Sie 1 durch die Startposition. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;variable&#124;fallback text&#125;</code> | Gibt Fallback-Text zurück, wenn eine normale Kontextvariable nicht verfügbar ist. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;name&#125;</code> | Wert einer deklarierten &lt;Name&gt; oder [Name] benutzerdefiniertes Befehlsargument. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;arg.name&#125;</code> | Wert eines deklarierten benannten benutzerdefinierten Befehlsarguments. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;arg1&#125;</code> | Kompakter Alias ​​für ein nummeriertes Argument. Ersetzen Sie 1 durch die Position. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;args.1&#125;</code> | Argument an einer nummerierten Position. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;1&#125;</code> | Argument an einer nummerierten Position. Ersetzen Sie 1 durch eine beliebige positive Position. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |

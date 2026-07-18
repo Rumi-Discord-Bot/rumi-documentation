@@ -1,0 +1,106 @@
+---
+title: "Uitgangsbedieningen"
+description: "Stuur antwoorden door, stuur DM's, voeg reacties toe, pas cooldowns toe en beheer het triggerbericht."
+icon: "route"
+---
+
+Uitvoerbesturingselementen zijn zelfstandige instructieregels in een aangepast opdrachtantwoord.
+Ze veranderen hoe Rumi verzendt het resultaat en wordt niet weergegeven als antwoordtekst.
+
+## Verwijder de trigger
+
+```text
+{delete}
+```
+
+Rumi verwijdert het bericht waarin de aangepaste opdracht werd uitgevoerd. Dit heeft **Beheren nodig
+Berichten** in het bronkanaal. Als het verwijderen mislukt, kan de rest van de opdracht dat wel doen
+nog steeds worden afgehandeld volgens de andere instellingen.
+
+## Stille uitvoer
+
+```text
+{silent}
+```
+
+Gebruik de stille modus voor een opdracht die alleen geconfigureerde acties of gegevens uitvoert
+updates en mag geen normaal zichtbaar antwoord sturen. Tijdens de ontwikkeling,
+laat een zichtbare bevestiging staan ​​totdat de actie is getest.
+
+## Routeer het antwoord
+
+```text
+{respond:#suggestions}
+```
+
+Rumi verzendt de weergegeven uitvoer naar het geselecteerde serverkanaal. Het moet kunnen
+om dat kanaal te bekijken en het payloadtype te verzenden dat door de opdracht wordt gebruikt.
+
+Voorbeeld:
+
+```text
+-cc set report <text...> --
+{respond:#reports}
+$v{embed}
+$v{author: {user.display_name} && {user.avatar}}
+$v{description: {text}}
+$v{footer: Sent from {channel.name}}
+```
+
+Beperk de bronkanalen van de opdracht als rapporten alleen mogen worden ingediend vanaf
+specifieke plaatsen.
+
+## Stuur een direct bericht
+
+```text
+{dm:user}
+```
+
+De uitvoer wordt naar het geselecteerde gebruikersdoel verzonden in plaats van naar het openbare kanaal.
+DM-bezorging kan mislukken wanneer de ontvanger DM's van serverleden blokkeert of heeft
+geblokkeerd Rumi.
+
+## Reacties toevoegen
+
+```text
+{react:✅}
+{react:✅ && ❌}
+```
+
+Rumi voegt de vermelde reacties toe aan het triggerbericht wanneer het de
+bericht en voeg die reacties toe. Aangepaste server-emoji moet ook bruikbaar zijn door
+Rumi.
+
+## Afkoelperiodes per gebruiker
+
+```text
+{cooldown:10m}
+```
+
+De cooldown is van toepassing op herhaald gebruik van dat aangepaste commando door een lid. Gebruik
+leesbare duur zoals `30s`, `10m`, of `24h`.
+
+```text
+-cc set daily-note --
+{cooldown:24h}
+You can use this response again tomorrow.
+```
+
+## Combineer de bedieningselementen zorgvuldig
+
+```text
+-cc set confidential <text...> --
+{cooldown:5m}
+{delete}
+{dm:user}
+Your saved note: {text}
+```
+
+Test routing en DM's voordat u ze toevoegt `{delete}`. Anders een mislukte bestemming
+kan u noch het triggerbericht, noch het verwachte antwoord achterlaten.
+
+<Warning>
+Uitvoerbesturingselementen wijzigen de levering, niet de machtigingen. Beschermde acties binnen de
+dezelfde opdracht wordt nog steeds uitgevoerd Rumi's toestemming, beperking, doel en rol
+hiërarchiecontroles.
+</Warning>

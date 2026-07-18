@@ -1,0 +1,86 @@
+---
+title: "Verificatie van leden"
+description: "Stel tekst- of captcha-verificatie in, verzend het paneel opnieuw en pas de gebruikersinterface aan."
+icon: "user-check"
+---
+
+Rumi kan nieuwe leden achter een tekst-trefwoord- of captcha-verificatiestroom plaatsen.
+Het systeem slaat zijn configuratie op de server op en kan zijn paneel opnieuw creëren
+wanneer nodig.
+
+## Vóór het instellen
+
+De persoon die de verificatie configureert, heeft **Server beheren** en **Beheren nodig
+Rollen**. Rumi behoeften:
+
+- Beheer rollen
+- Beheer kanalen
+- Stuur berichten
+- Beheer berichten
+
+RumiDe rol van de organisatie moet boven de rol komen die de verificatiestroom moet beheren.
+
+## Tekstverificatie
+
+Kies een kanaal en het trefwoord dat leden moeten invoeren:
+
+```text
+-verification setup text #verify agree
+```
+
+Houd het trefwoord kort en ondubbelzinnig. Het verificatiekanaal zou moeten zijn
+zichtbaar voor niet-geverifieerde leden, terwijl normale communitykanalen gecontroleerd blijven
+door jouw Discord rolmachtigingen.
+
+## Captcha-verificatie
+
+```text
+-verification setup captcha #verify
+```
+
+De Captcha-modus vraagt ​​leden om de gegenereerde uitdaging te voltooien in plaats van te typen
+een gedeeld trefwoord.
+
+## Controleer of herstel het paneel
+
+```text
+-verification status
+-verification panel
+```
+
+`status` toont de opgeslagen modus en configuratie. `panel` verzendt de geconfigureerde
+verificatiepaneel opnieuw, wat handig is als het oorspronkelijke bericht is verwijderd.
+
+## Pas de interface aan
+
+De aanpassingsopdracht accepteert een sleutel en waarde:
+
+```text
+-verification customize panel.title Welcome
+-verification customize panel.text Type `{keyword}` to continue.
+-verification customize button.verify.style success
+-verification customize view
+```
+
+Gebruik `verification customize view` voordat u gaat bewerken, zodat u de toetsen kunt zien
+lopende bot ondersteunt momenteel. Reset maatwerk wanneer u wilt terugkeren naar
+Rumistandaardinstellingen:
+
+```text
+-verification customize reset
+```
+
+## Verificatie uitschakelen
+
+```text
+-verification disable
+```
+
+Uitschakelen stopt het verificatiesysteem. Het ontwerp wordt niet automatisch opnieuw ontworpen
+jouw Discord kanaal overschrijft, dus bekijk welke niet-geverifieerde en geverifieerde rollen
+kan achteraf zien.
+
+<Tip>
+Test met een niet-beheerdersaccount. Beheerders omzeilen er veel Discord
+kanaalbeperkingen en vertegenwoordigen niet wat een nieuw lid zal ervaren.
+</Tip>

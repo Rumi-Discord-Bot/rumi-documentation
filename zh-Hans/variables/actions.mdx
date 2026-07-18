@@ -1,0 +1,45 @@
+---
+title: "动作变量"
+description: "Rumi 支持 30 个动作变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+这些行是语法模板，不是可供复制的示例。更换每个 `<required>` 字段、省略或替换 `[optional]` 字段，并按显示顺序保留直接操作参数。键控按钮字段，例如 `label=`, `style=`， 和 `action=` 可能会被重新安排。
+</Info>
+
+有关完整的参数规则、组件链接、下拉布局和权限检查，请阅读 [自定义命令操作](../custom-commands/actions).
+
+
+| 精确的语法 | 它的作用 | 如何阅读 | 可用于 |
+| --- | --- | --- | --- |
+| <code>$v&#123;button: label=&lt;text&gt; &amp;&amp; style=&lt;style&gt; &amp;&amp; action=&lt;action-spec&gt; &amp;&amp; [reply=&lt;text&gt;]&#125;</code> | 创建一个运行操作的按钮。键控字段可以重新排列。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>$v&#123;button: label=&lt;text&gt; &amp;&amp; url=&lt;https-url&gt; &amp;&amp; [emoji=&lt;emoji&gt;]&#125;</code> | 创建一个链接按钮。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>allow_user=&lt;id&gt; &amp;&amp; allow_role=&lt;id&gt; &amp;&amp; allow_channel=&lt;id&gt;</code> | 限制组件可以运行的人员或位置。每个字段还接受以逗号分隔的 ID。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>action=&lt;action-spec&gt; &amp;&amp; action=&lt;action-spec&gt;</code> | 从左到右运行组件操作。对每个步骤重复操作=。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>await=true &amp;&amp; once=true &amp;&amp; defer=true &amp;&amp; expires=&lt;duration&gt;</code> | 控制重复执行、延迟和到期。这些键控字段可以重新排列。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>page=&lt;next&#124;previous&#124;number&gt;</code> | 将交互式响应移至另一个 $v&#123;页&#125;. | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>reply=&lt;text&gt;</code> | 发送临时组件响应。使用公共=&lt;文本&gt; 以获得公众回应。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>role=&lt;role&gt; &amp;&amp; mode=&lt;add&#124;remove&#124;toggle&gt;</code> | 更改点击成员角色。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;customdb:delete &lt;namespace&gt; &amp;&amp; &lt;key&gt;&#125;</code> | 作为直接操作删除自定义数据。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;customdb:increment &lt;namespace&gt; &amp;&amp; &lt;key&gt; &amp;&amp; [amount]&#125;</code> | 作为直接操作增加自定义数据。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;customdb:set &lt;namespace&gt; &amp;&amp; &lt;key&gt; &amp;&amp; &lt;value&gt;&#125;</code> | 将自定义数据保存为直接操作。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;delete_message&#125;</code> | 删除触发自定义命令的消息。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;econ:add &lt;target&gt; &amp;&amp; &lt;amount&gt; &amp;&amp; [reason]&#125;</code> | 添加钱包货币。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;econ:remove &lt;target&gt; &amp;&amp; &lt;amount&gt; &amp;&amp; [reason]&#125;</code> | 删除钱包货币而不使余额低于零。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;econ:set &lt;target&gt; &amp;&amp; &lt;amount&gt; &amp;&amp; [reason]&#125;</code> | 设置钱包余额。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;econ:transfer &lt;source&gt; &amp;&amp; &lt;destination&gt; &amp;&amp; &lt;amount&gt;&#125;</code> | 转移钱包货币无需缴税。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:ban &lt;target&gt; &amp;&amp; [reason]&#125;</code> | 禁止会员。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:kick &lt;target&gt; &amp;&amp; [reason]&#125;</code> | 踢掉一个会员。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:mute &lt;target&gt; &amp;&amp; &lt;duration&gt; &amp;&amp; [reason]&#125;</code> | 超时操作的别名。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:role.add &lt;target&gt; &amp;&amp; &lt;role&gt; &amp;&amp; [reason]&#125;</code> | 为成员添加可管理的角色。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:role.remove &lt;target&gt; &amp;&amp; &lt;role&gt; &amp;&amp; [reason]&#125;</code> | 从成员中删除可管理的角色。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:role.toggle &lt;target&gt; &amp;&amp; &lt;role&gt; &amp;&amp; [reason]&#125;</code> | 根据成员是否拥有角​​色来添加或删除角色。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:softban &lt;target&gt; &amp;&amp; [reason]&#125;</code> | 封禁、删除一天的消息，然后取消对该成员的封禁。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:timeout &lt;target&gt; &amp;&amp; &lt;duration&gt; &amp;&amp; [reason]&#125;</code> | 使会员超时最多 28 天。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:unmute &lt;target&gt; &amp;&amp; [reason]&#125;</code> | 取消超时操作的别名。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:untimeout &lt;target&gt; &amp;&amp; [reason]&#125;</code> | 清除会员超时。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;mod:warn &lt;target&gt; &amp;&amp; [reason]&#125;</code> | 创建警告记录。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;run_invoke:&lt;event&gt;&#125;</code> | 运行配置的调用事件。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>&#123;run_named_action:&lt;name&gt;&#125;</code> | 运行配置的命名操作。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |
+| <code>$v&#123;select: &lt;id&gt; &amp;&amp; &lt;placeholder&gt; &amp;&amp; &lt;label&gt;&#124;action=&lt;action-spec&gt;&#124;[description]&#124;[emoji]&#125;</code> | 创建一个运行操作的下拉选项。 | <code>替换尖括号字段；方括号字段是可选的。</code> | 自定义命令；受保护的操作需要匹配的权限和限制 |

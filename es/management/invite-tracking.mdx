@@ -1,0 +1,63 @@
+---
+title: "Seguimiento de invitaciones"
+description: "Realice un seguimiento de las uniones por invitación, los invitados activos, las uniones personalizadas, las tablas de clasificación y los registros de uniones."
+icon: "user-plus"
+---
+
+RumiEl rastreador de invitaciones compara Discord Uso de invitaciones a medida que los miembros se unen. Se graba
+el que invita cuando Discord proporciona suficiente información y separa lo normal
+invitaciones, vanidad y uniones desconocidas.
+
+## Habilitar e inspeccionar el seguimiento
+
+```text
+-invites enable
+-invites settings
+```
+
+Para cambiar la configuración es necesario **Administrar servidor**. Usar `settings` para confirmar si
+el seguimiento está habilitado y si está configurado un canal de registro de unión.
+
+## Agregar un registro de unión
+
+```text
+-invites log #join-logs
+-invites log off
+```
+
+El canal de registro recibe la información de seguimiento. Rumi podría resolver por nuevo
+se une.
+
+## Ver estadísticas de miembros y servidores
+
+```text
+-invites
+-invites @member
+-invites top weekly
+-inviter @member
+-joins monthly
+-vanityjoins alltime
+```
+
+El rastreador distingue el total de uniones, invitados activos, miembros que se fueron,
+uniones por invitación normales, uniones personalizadas y uniones cuyo invitador no pudo ser
+determinado.
+
+Los períodos de informes admitidos incluyen `daily`, `weekly`, `monthly`, y `alltime`.
+
+## Actualizar la instantánea
+
+```text
+-invites refresh
+```
+
+esto pregunta Rumi para recuperar la lista de invitados actual nuevamente. Refresca el
+instantánea de comparación; no puede reconstruir la información del invitado que Discord hizo
+no prevé una incorporación más temprana.
+
+<Info>
+La atribución de invitaciones no está garantizada para todas las uniones. Enlaces de invitación eliminados,
+enlaces personalizados, permisos faltantes, estado de caché no disponible y simultáneo
+Los cambios de invitación pueden dejar una unión marcada como desconocida. `-invites refresh` actualizaciones
+la instantánea Rumi usos para futuras comparaciones.
+</Info>

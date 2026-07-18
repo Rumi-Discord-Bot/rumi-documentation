@@ -1,0 +1,112 @@
+---
+title: "Comment lire la syntaxe des commandes"
+description: "Comprenez les arguments obligatoires, les valeurs facultatives, les choix, les indicateurs, les identifiants et le texte cité."
+icon: "code"
+---
+
+RumiLes entrées d'aide de utilisent une petite quantité de notation pour montrer ce qu'est une commande
+attend. Les parenthèses sont des instructions ; normalement, vous ne les tapez pas.
+
+## Arguments obligatoires et facultatifs
+
+`<angle brackets>` signifie que la valeur est requise :
+
+```text
+role add <member> <role>
+```
+
+Une exécution valide serait :
+
+```text
+-role add @Moon Member
+```
+
+`[square brackets]` signifie que la valeur est facultative :
+
+```text
+level [user]
+```
+
+Les deux `-level` et `-level @Moon` sont valables.
+
+## Choix
+
+Une barre verticale signifie « choisissez-en un » :
+
+```text
+deposit <amount|all>
+```
+
+Utilisez soit `-deposit 500` ou `-deposit all`. Ne tapez pas la barre.
+
+## Texte avec des espaces
+
+Certaines commandes traitent le reste du message comme une seule valeur. D'autres en ont un autre
+argument après, donc les guillemets indiquent clairement la limite :
+
+```text
+-giveaway start "Discord Nitro" 24h 1 #giveaways
+```
+
+Sans guillemets, `Discord` et `Nitro` pourrait être lu comme une position distincte
+arguments. Les citations sont particulièrement utiles pour les prix, les noms, les raisons et les titres.
+
+## Drapeaux
+
+Les drapeaux commencent par `--` et modifier une partie d'une commande sans en changer
+action principale :
+
+```text
+-role create Event Host --color #c8d8f2
+-media caption --position=top --size=42 Welcome!
+-giveaway start "Nitro" 24h 1 --button
+```
+
+Selon la commande, un indicateur peut s'écrire sous la forme `--name value` ou
+`--name=value`. Suivez l'exemple d'aide de cette commande lorsque les deux formulaires ne le sont pas
+répertorié.
+
+## Mentions, noms et identifiants
+
+Rumi accepte souvent un Discord mention, identifiant brut ou nom résolvable. Les mentions sont
+le moins ambigu :
+
+```text
+-role info @Staff
+-channel rename #old-name new-name
+-inviter 123456789012345678
+```
+
+Lorsque deux rôles ou canaux portent le même nom, utilisez une mention ou un identifiant.
+
+## Sous-commandes
+
+Le premier mot après une commande sélectionne souvent une action :
+
+```text
+-economy config
+-economy config currency petals
+-economy rob chance 35
+```
+
+Lisez-les de gauche à droite : `economy` ouvre le système, `rob` sélectionne son
+zone de configuration, et `chance` sélectionne le réglage.
+
+## Pourquoi les commandes personnalisées sont utilisées `--`
+
+Le `customcommand set` la commande doit séparer le propre argument de la commande
+définition à partir de la réponse qu'il enregistre :
+
+```text
+-cc set greet <member> -- Hello {target.mention}!
+```
+
+Tout avant le standalone `--` définit la commande personnalisée. Tout
+après c'est la réponse ou le script. Cela permet à la réponse de contenir des espaces,
+variables, intégrations et plusieurs lignes sans Rumi les confondant avec plus
+arguments de configuration. Voir [syntaxe et séparateurs](../custom-commands/syntax-and-separators)
+pour le format complet de commande personnalisée.
+
+<Info>
+Courir `-help <command>` chaque fois qu'un exemple n'est pas clair. Si vous rencontrez toujours des problèmes, vous pouvez demander au modèle d'IA intégré en utilisant `-rumi <question>`.
+</Info>

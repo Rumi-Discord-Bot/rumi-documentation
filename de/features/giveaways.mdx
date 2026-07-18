@@ -1,0 +1,374 @@
+---
+title: "Werbegeschenke"
+description: "Erstellen, planen, wiederholen, beschränken, gewichten und verwalten Sie Werbegeschenke."
+icon: "gift"
+---
+
+Rumi Sie können Button- oder Reaktions-Werbegeschenke veranstalten, bis zu 25 Gewinner auswählen und wiederverwendbar speichern
+Voreinstellungen vornehmen, Teilnahmebedingungen anwenden, Bonuseinträge vergeben und einen späteren Termin vereinbaren
+Starten und wiederholen Sie ein Giveaway in einem festgelegten Intervall.
+
+In diesem Handbuch wird die Standardeinstellung verwendet `-` Präfix. Ersetzen Sie es, wenn Ihr Server eine benutzerdefinierte verwendet
+Präfix.
+
+## Starten Sie ein Gewinnspiel
+
+Die schnellste Form verwendet vier Werte in dieser Reihenfolge:
+
+```text
+-giveaway start "Discord Nitro" 24h 2 #giveaways
+```
+
+1. `"Discord Nitro"` ist der Preis. Setzen Sie Preise, die Leerzeichen enthalten, in Anführungszeichen.
+2. `24h` ist, wie lange der Eintrag offen bleibt.
+3. `2` ist die Anzahl der Gewinner, von 1 bis 25.
+4. `#giveaways` ist optional. Ohne es, Rumi Verwendet den konfigurierten Giveaway-Kanal, dann den aktuellen Kanal.
+
+Dauern unterstützen Sekunden, Minuten, Stunden, Tage und Wochen: `30s`, `45m`, `12h`,
+`3d`, oder `2w`. Ein Giveaway muss mindestens 10 Sekunden und darf nicht länger dauern
+365 Tage.
+
+### Schaltflächen- oder Reaktionseintrag
+
+Die Schaltflächeneingabe ist die Standardeinstellung, sofern in der Serverkonfiguration nichts anderes angegeben ist:
+
+```text
+-giveaway start "Profile colour" 2h 1 --button
+```
+
+Verwenden `--reaction` für die Reaktionseingabe. Geben Sie danach ein Emoji ein oder lassen Sie es weg
+zu verwenden 🎉:
+
+```text
+-giveaway start "Nitro" 24h 1 --reaction 🎟️
+-giveaway start "Mystery prize" 30m 1 --reaction
+```
+
+Rumi benötigt **Reaktionen hinzufügen** und **Nachrichtenverlauf lesen** für eine Reaktion
+Werbegeschenke. Beide Eingabemodi erfordern **Nachrichten senden** und **Links einbetten** im
+Giveaway-Kanal.
+
+## Aussehen und Lieferflaggen
+
+Flags können nach den erforderlichen Startwerten platziert werden. Zitieren Sie einen beliebigen aus mehreren Wörtern bestehenden Wert.
+
+| Flagge | Was es verändert |
+| --- | --- |
+| `--winners <count>` | Überschreibt die Anzahl der Positionssieger. |
+| `--host <user\|me>` | Zeigt ein anderes Mitglied als Gastgeber an. |
+| `--title <text>` | Ersetzt den Einbettungstitel. |
+| `--description <text>` | Fügt benutzerdefinierten Textkörper hinzu. |
+| `--footer <text>` | Fügt eine eingebettete Fußzeile hinzu. |
+| `--image <url>` | Fügt ein großes Einbettungsbild hinzu. Der Wert muss eine HTTP(S)-URL sein. |
+| `--thumbnail <url>` | Fügt ein kleines eingebettetes Miniaturbild hinzu. |
+| `--color <hex>` | Ändert beispielsweise die Einbettungsfarbe `#c8d8f2`. |
+| `--content <text>` | Platziert einfachen Text über der Einbettung. `--message` wird auch akzeptiert. |
+| `--button-label <text>` | Ändert den Text der Eingabeschaltfläche. |
+| `--button-emoji <emoji>` | Platziert ein Emoji auf der Eingabeschaltfläche. |
+| `--button-style <style>` | Verwendungsmöglichkeiten `primary`, `secondary`, `success`, oder `danger`. |
+| `--winner-message <text>` | Ändert die Nachricht, die gesendet wird, wenn Gewinner ausgewählt werden. |
+| `--end-message <text>` | Ändert die Nachricht, die am Ende des Gewinnspiels verwendet wird. |
+| `--dm-winner <true\|false>` | Überschreibt die Gewinner-DM-Einstellung des Servers für dieses Gewinnspiel. |
+| `--preset <name>` | Lädt eine gespeicherte Voreinstellung, bevor die anderen Flags angewendet werden. |
+
+Zum Beispiel:
+
+```text
+-giveaway start "Two months of Nitro" 3d 2 #giveaways --button --title "Weekend draw" --description "Press the button below to enter." --color #b7a7ff --dm-winner true
+```
+
+## Ausweise und alltägliche Verwaltung
+
+Rumi Gibt jedem Giveaway eine kurze Server-ID, z `#1`. Befehle, die verlangen
+Ein Ausweis akzeptiert auch die Discord Nachrichten-ID.
+
+```text
+-giveaway list
+-giveaway list active
+-giveaway list scheduled
+-giveaway info #1
+-giveaway entries #1
+-giveaway stats
+-giveaway stats user @moon
+```
+
+`list` akzeptiert `active`, `ended`, `cancelled`, oder `scheduled`. `entries` taucht auf
+bis zu 25 gültige Einträge. `stats user` meldet die aufgezeichneten Teilnahmen und Gewinne des Mitglieds
+über die Server-Werbegeschenke, die Rumi Schecks.
+
+### Bearbeiten, beenden, abbrechen und erneut rollen
+
+```text
+-giveaway edit #1 --prize "Nitro Basic" --winners 2
+-giveaway edit #1 --duration 6h --title "Extended draw"
+-giveaway end #1
+-giveaway cancel #1
+-giveaway cancel #1 --delete-message
+-giveaway reroll #1 --winners 2
+```
+
+- `edit` ändert nur die angegebenen Felder. `--duration 6h` legt das Ende auf sechs Stunden nach der Bearbeitung fest.
+- `end` schließt ein aktives Gewinnspiel sofort ab und wählt seine Gewinner aus.
+- `cancel` schließt es, ohne Gewinner auszuwählen. Die Nachricht bleibt bestehen, es sei denn `--delete-message` verwendet wird.
+- `reroll` wählt Ersatzgewinner aus teilnahmeberechtigten Einsendungen in einem beendeten Gewinnspiel aus.
+
+## Teilnahmebedingungen
+
+Eine Bedingung steuert, wer teilnehmen oder gewinnen kann. Bedingungen werden mit **UND** verknüpft:
+Ein Mitglied muss alle anwendbaren Bedingungen erfüllen.
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 100
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition list #1
+```
+
+### Bedingungsbereiche
+
+| Umfang | Wann Rumi prüft es | Gut für |
+| --- | --- | --- |
+| `entry` | Wenn das Mitglied den Knopf drückt oder die Reaktion hinzufügt. | Unmittelbare Anforderungen, die die Einreise blockieren sollten. |
+| `winner` | Wann Rumi wählt die Gewinner aus oder würfelt sie erneut. | Anforderungen, die sich bis zum Ende der Verlosung ändern können. |
+| `both` | Bei der Teilnahme und erneut bei der Gewinnerauswahl. | Regeln, die während der gesamten Verlosung gültig bleiben müssen. |
+
+Wenn ein Button-Teilnehmer eine Teilnahmeprüfung nicht besteht, Rumi sagt ihnen warum. Wenn eine Reaktion
+Bewerber scheitert, Rumi entfernt ihre Reaktion. Ein Mitglied, das eine Gewinnerprüfung nicht besteht, ist
+übersprungen und Rumi sucht weiterhin nach einem berechtigten Gewinner.
+
+### Jeder Bedingungstyp
+
+| Typ | Erforderliche Flags | Bedeutung |
+| --- | --- | --- |
+| `messages` | `--min <count>` | Erfordert mindestens die angegebene Anzahl von aufgezeichneten Nachrichten Rumi auf diesem Server. |
+| `vc_time` | `--min <duration>` | Erfordert mindestens die angegebene getrackte Sprachzeit, z `10h`. `vc-time` wird auch akzeptiert. |
+| `server_age` | `--min <duration>` | Erfordert, dass das Mitglied so lange auf dem aktuellen Server war. |
+| `account_age` | `--min <duration>` | Erfordert die Discord Konto mindestens so alt sein. |
+| `role` | `--role <role>` | Erfordert eine Rolle. |
+| `not_role` | `--role <role>` | Lehnt Mitglieder ab, die die Rolle haben. |
+| `boosting` | keiner | Erfordert einen aktiven Boost für den aktuellen Server. |
+| `verified` | keiner | Erfordert den Abschluss von DiscordMitgliederüberprüfung. Das ist nicht der Fall Rumis Captcha-Verifizierungssystem. |
+| `warnings` | `--max <count>` | Erlaubt nicht mehr als die angegebene Anzahl von Warnungseinträgen auf diesem Server. |
+| `bans` | `--max <count>` | Erlaubt nicht mehr als die angegebene Anzahl aufgezeichneter Sperraktionen auf diesem Server. |
+| `mutual_server` | `--server <server-id>` | Erfordert eine Mitgliedschaft auf einem anderen Server, der ebenfalls über eine Mitgliedschaft verfügt Rumi. |
+| `invited_to_server` | `--server <server-id>`, optional `--inviter <user\|me>` | Erfordert eine nachverfolgte Mitgliedschaft auf dem Zielserver durch den erforderlichen Einladenden. |
+| `inviter` | gleich wie `invited_to_server` | Alias ​​für die Bedingung „Einladungsverlauf“. |
+| `joined_via_invite` | gleich wie `invited_to_server` | Alias ​​für die Bedingung „Einladungsverlauf“. |
+
+`warnings` Und `bans` sind Maxima, also `--max 0` bedeutet keine aufgezeichneten Warnungen oder
+Aktionen verbieten. Ältere Setups können verwendet werden `--min` für diese beiden Typen; Rumi akzeptiert immer noch
+es, aber `--max` ist klarer.
+
+### Praktische Zustandsbeispiele
+
+Vor dem Eintritt sind 250 nachverfolgte Nachrichten erforderlich:
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 250
+```
+
+Erfordern ein 30 Tage altes Konto und sieben Tage auf dem Server:
+
+```text
+-giveaway condition add #1 --type account_age --scope both --min 30d
+-giveaway condition add #1 --type server_age --scope both --min 7d
+```
+
+Mitglieder zulassen, aber eine stummgeschaltete Rolle ausschließen:
+
+```text
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition add #1 --type not_role --scope both --role @Muted
+```
+
+Bei der Auslosung der Gewinner sind fünf Stunden aufgezeichneter Sprachaktivität erforderlich:
+
+```text
+-giveaway condition add #1 --type vc_time --scope winner --min 5h
+```
+
+Mitgliedschaft in einer anderen Community erforderlich:
+
+```text
+-giveaway condition add #1 --type mutual_server --scope entry --server 123456789012345678
+```
+
+Von einem Mitglied verlangen, dass es über Ihre Einladung einem Partnerserver beigetreten ist:
+
+```text
+-giveaway condition add #1 --type invited_to_server --scope both --server 123456789012345678 --inviter me
+```
+
+Für Einladungsbedingungen: Rumi muss sich im Zielserver befinden, der Einsteiger muss noch
+dort Mitglied sein, und Rumi benötigt dort **Server verwalten**, um die Einladung aufrechtzuerhalten
+Verfolgung. Der Einladungsverlauf kann für nie erfolgte Beitritte nicht rekonstruiert werden
+aufgezeichnet.
+
+Entfernen Sie eine Regel mithilfe der von angezeigten Bedingungs-ID `condition list`, oder alle entfernen
+Regeln:
+
+```text
+-giveaway condition remove #1 cond-1234
+-giveaway condition clear #1
+```
+
+## Bonuseinträge
+
+Jedes gültige Mitglied beginnt mit einem Eintrag. Bonusregeln verleihen diesem Eintrag mehr Gewicht;
+Sie umgehen keine Bedingungen. Passende Boni stapeln sich, aber ein Mitglied kann nicht gewinnen
+mehr als ein Gewinnerplatz in derselben Ziehung.
+
+```text
+-giveaway bonus add #1 --role @VIP --entries 2
+-giveaway bonus add #1 --messages 500 --entries 1
+-giveaway bonus add #1 --vc-time 10h --entries 3
+-giveaway bonus add #1 --booster --entries 2
+```
+
+Die verfügbaren Bonusarten sind:
+
+| Flagge | Wer erhält das zusätzliche Gewicht? |
+| --- | --- |
+| `--role <role>` | Mitglieder mit der ausgewählten Rolle. |
+| `--messages <count>` | Mitglieder bei oder über der verfolgten Nachrichtenanzahl. |
+| `--vc-time <duration>` | Mitglieder mit oder über der erfassten Sprachzeit. |
+| `--booster` | Aktuelle Server-Booster. |
+
+`--entries` akzeptiert 1 bis 100. Ein normales Mitglied hat beispielsweise eine Chance;
+ein passendes Mitglied `--entries 2` hat insgesamt drei gewichtete Einträge.
+
+```text
+-giveaway bonus list #1
+-giveaway bonus remove #1 bonus-1234
+```
+
+## Voreinstellungen
+
+Voreinstellungen speichern ein komplettes Giveaway-Layout, sodass das Personal nicht lange wiederholen muss
+Reihe von Flaggen.
+
+```text
+-giveaway preset create nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --color #b7a7ff
+-giveaway preset list
+-giveaway preset view nitro
+-giveaway start --preset nitro
+```
+
+Bearbeiten Sie nur das, was geändert werden muss. Die anderen gespeicherten Felder bleiben erhalten:
+
+```text
+-giveaway preset edit nitro --duration 48h --winners 2
+```
+
+Flaggen werden mitgeliefert `--preset` Überschreiben Sie die gespeicherten Werte für diesen
+verschenken:
+
+```text
+-giveaway start --preset nitro --winners 3 --title "Three winners today"
+```
+
+Löschen Sie eine Voreinstellung, wenn sie nicht mehr benötigt wird:
+
+```text
+-giveaway preset delete nitro
+```
+
+Durch das Löschen einer Voreinstellung werden bereits bestehende Giveaways oder wiederkehrende Regeln nicht gelöscht
+daraus entstanden.
+
+## Geplante Werbegeschenke
+
+Scheduling speichert das Giveaway jetzt und veröffentlicht es später:
+
+```text
+-giveaway schedule --starts-in 2h --prize "Discord Nitro" --duration 24h --winners 1 --channel #giveaways --button
+```
+
+`--starts-in` ist die Verzögerung bis zur Veröffentlichung. `--duration` ist wie lange der Eintrag
+bleibt **danach geöffnet Rumi veröffentlicht es**. Der Hintergrundläufer prüft grob
+alle 30 Sekunden, daher kann die Veröffentlichung kurz nach der genauen Zielzeit erfolgen.
+
+Alle Erscheinungsflags aus dem Startbefehl funktionieren ebenfalls `schedule`. Du kannst
+auch aus einer Voreinstellung planen:
+
+```text
+-giveaway schedule --starts-in 1d --preset nitro --channel #events
+```
+
+Bevor es losgeht, erscheint das Gewinnspiel unter:
+
+```text
+-giveaway list scheduled
+-giveaway info #1
+```
+
+Verwenden `giveaway cancel #1` wenn die geplante Verlosung nie veröffentlicht werden soll.
+Geplante Zeilen bleiben fällig, wenn Discord oder der Zielkanal ist vorübergehend
+nicht verfügbar, erlaubt Rumi um es bei einem späteren Läuferpass noch einmal zu versuchen.
+
+## Wiederkehrende Werbegeschenke
+
+Eine wiederkehrende Regel erstellt in einem festgelegten Intervall ein neues Giveaway. Das Zuverlässigste
+Das Setup besteht darin, zuerst eine Voreinstellung zu erstellen und zu überprüfen:
+
+```text
+-giveaway preset create weekly-nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --channel #giveaways
+-giveaway recurring create weekly --every 7d --preset weekly-nitro
+```
+
+Sie können die Giveaway-Payload auch direkt auf die Regel setzen:
+
+```text
+-giveaway recurring create daily-coins --every 1d --prize "10,000 coins" --duration 2h --winners 1 --channel #giveaways --button
+```
+
+Wichtiges wiederkehrendes Verhalten:
+
+- Die erste Verlosung beginnt mit einem vollen Betrag `--every` Intervall nach Regelerstellung.
+- Jeder Lauf erstellt seine eigene Giveaway-ID, Nachricht, Einträge und Gewinner.
+- Der Zeitplan schreitet von der vorgesehenen Trittfrequenz fort, sodass sich kleine Läuferverzögerungen nicht bei jedem späteren Lauf verschieben.
+– Eine fehlgeschlagene Veröffentlichung wird nach etwa fünf Minuten erneut versucht, anstatt das gesamte Intervall zu überspringen.
+– Die Regel speichert eine Momentaufnahme ihrer Giveaway-Einstellungen. Das spätere Bearbeiten der ursprünglichen Voreinstellung ändert keine bestehende wiederkehrende Regel; Löschen Sie die Regel und erstellen Sie sie neu, um die neue Voreinstellung anzuwenden.
+- Das Löschen einer Regel verhindert zukünftige Ausführungen, storniert jedoch nicht ein bereits erstelltes Giveaway.
+
+```text
+-giveaway recurring list
+-giveaway recurring delete weekly
+```
+
+## Server-Giveaway-Einstellungen
+
+Mitglieder mit **Server verwalten**, Administratoren und dem konfigurierten Giveaway
+Die Managerrolle kann Werbegeschenke verwalten. Ein Giveaway-Host kann sein Angebot auch beenden oder absagen
+eigenes Giveaway. Die Anzeige von Listen, Informationen, Einträgen und Statistiken bleibt weiterhin möglich
+ohne Verwaltungszugriff.
+
+```text
+-giveaway config view
+-giveaway config channel #giveaways
+-giveaway config channel off
+-giveaway config manager-role @Giveaway Manager
+-giveaway config manager-role off
+-giveaway config default-entry button
+-giveaway config default-entry reaction
+-giveaway config default-color #c8d8f2
+-giveaway config dm-winners on
+-giveaway config remove-entry-on-leave on
+-giveaway config log-channel #giveaway-logs
+-giveaway config log-channel off
+```
+
+| Einstellung | Wirkung |
+| --- | --- |
+| `channel` | Standardziel, wenn ein Start, ein Zeitplan, eine Voreinstellung oder eine wiederkehrende Nutzlast keinen Kanal benennt. |
+| `manager-role` | Ermöglicht dieser Rolle die Verwaltung von Werbegeschenken, ohne umfassende Serververwaltungsberechtigungen zu erteilen. |
+| `default-entry` | Wählt eine Schaltfläche oder einen Reaktionseintrag aus, wenn keines der Flags angegeben ist. |
+| `default-color` | Legt die Standardeinbettungsfarbe fest. |
+| `dm-winners` | Versucht, den Gewinnern eine Direktnachricht zu senden. Geschlossene DMs können die Lieferung verhindern. |
+| `remove-entry-on-leave` | Macht einen Eintrag ungültig, wenn sein Mitglied den Server verlässt. |
+| `log-channel` | Sendet Giveaway-Verwaltungsdatensätze an den ausgewählten Kanal. |
+
+<Tip>
+Erstellen Sie zunächst ein kurzes Test-Gewinnspiel und fügen Sie dann vorher Bedingungen und Bonusregeln hinzu
+es weithin teilen. `-giveaway info #1` ist der schnellste Weg, den Strom zu bestätigen
+Teilnahmeanzahl, Bedingungen, Bonusregeln, Gastgeber, Status und Nachrichtenlink.
+</Tip>

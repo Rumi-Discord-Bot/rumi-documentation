@@ -1,0 +1,50 @@
+---
+title: "Activité vocale"
+description: "Inspectez le temps vocal suivi pour le serveur, les membres, les canaux et les périodes glissantes."
+icon: "waveform"
+---
+
+Rumi enregistre les sessions vocales qu'il observe et peut les résumer pour le serveur
+gestionnaires. Les rapports utilisent le temps suivi, et non Discordles informations sur le serveur.
+
+## Totaux du serveur
+
+```text
+-voicecount server
+-voicecount daily
+-voicecount weekly
+-voicecount monthly
+```
+
+La vue du serveur comprend les totaux à vie, le nombre de sessions, les totaux glissants récents,
+et la dernière activité vocale suivie. Les vues quotidiennes, hebdomadaires et mensuelles couvrent
+jour actuel, 7 jours et 30 jours respectivement.
+
+## Membres et chaînes
+
+```text
+-voicecount user @member
+-voicecount channel #General
+-voicecount leaderboard
+-voicecount active
+```
+
+`active` séances de spectacles Rumi considère actuellement comme actif. `leaderboard` classe le
+totaux de membres suivis disponibles dans le magasin d'analyse du serveur.
+
+## Réinitialiser les totaux suivis
+
+```text
+-voicecount reset user @member
+-voicecount reset channel #General
+-voicecount reset server
+```
+
+La réinitialisation est destructrice. Choisissez la cible la plus étroite qui résout le problème.
+La réinitialisation du serveur efface les analyses vocales stockées utilisées par ces rapports.
+
+<Info>
+L'activité vocale commence lorsque Rumi observe une séance. Temps écoulé avant le tracker
+fonctionnait, les périodes où Rumi n'était pas disponible ou les canaux vocaux étaient inaccessibles
+ne peut pas être reconstruit ultérieurement.
+</Info>

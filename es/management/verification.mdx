@@ -1,0 +1,86 @@
+---
+title: "Verificación de miembro"
+description: "Configure la verificación de texto o captcha, reenvíe el panel y personalice la interfaz de usuario orientada a los miembros."
+icon: "user-check"
+---
+
+Rumi puede colocar a nuevos miembros detrás de un flujo de verificación de palabras clave de texto o captcha.
+El sistema almacena su configuración en el servidor y puede recrear su panel.
+cuando sea necesario.
+
+## Antes de la configuración
+
+La persona que configura la verificación necesita **Administrar servidor** y **Administrar
+Roles**. Rumi necesidades:
+
+- Administrar roles
+- Administrar canales
+- Enviar mensajes
+- Administrar mensajes
+
+RumiLa función de debe estar por encima de la función que debe gestionar el flujo de verificación.
+
+## Verificación de texto
+
+Elija un canal y la palabra clave que los miembros deben ingresar:
+
+```text
+-verification setup text #verify agree
+```
+
+Mantenga la palabra clave breve e inequívoca. El canal de verificación debe ser
+visible para miembros no verificados mientras los canales comunitarios normales permanecen controlados
+por tu Discord permisos de rol.
+
+## Verificación de captcha
+
+```text
+-verification setup captcha #verify
+```
+
+El modo Captcha pide a los miembros que completen el desafío generado en lugar de escribir
+una palabra clave compartida.
+
+## Verificar o restaurar el panel
+
+```text
+-verification status
+-verification panel
+```
+
+`status` muestra el modo guardado y la configuración. `panel` envía el configurado
+panel de verificación nuevamente, lo cual es útil si se eliminó su mensaje original.
+
+## Personaliza la interfaz
+
+El comando de personalización acepta una clave y un valor:
+
+```text
+-verification customize panel.title Welcome
+-verification customize panel.text Type `{keyword}` to continue.
+-verification customize button.verify.style success
+-verification customize view
+```
+
+Usar `verification customize view` antes de editar para que puedas ver las claves
+Actualmente se admite ejecutar bot. Restablecer la personalización cuando quieras volver a
+Rumivalores predeterminados:
+
+```text
+-verification customize reset
+```
+
+## Deshabilitar la verificación
+
+```text
+-verification disable
+```
+
+La desactivación detiene el sistema de verificación. No se rediseña automáticamente
+su Discord El canal se sobrescribe, así que revise qué roles verificados y no verificados
+puede ver después.
+
+<Tip>
+Pruebe con una cuenta que no sea de administrador. Los administradores pasan por alto muchos Discord
+restricciones de canal y no representan lo que experimentará un nuevo miembro.
+</Tip>

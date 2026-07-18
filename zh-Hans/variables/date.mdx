@@ -1,0 +1,30 @@
+---
+title: "日期变量"
+description: "Rumi 支持 17 个日期变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;date&#125;</code> | 当前日期或 Discord 时间戳输出。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.discord_relative&#125;</code> | 相对的 Discord 当前时间的时间戳。 | <code>&lt;t:1781460000:R&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.discord_timestamp&#125;</code> | 当前的 Discord 时间戳。 | <code>&lt;t:1781460000:F&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.now&#125;</code> | 现在约会。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.now_proper&#125;</code> | 现在适合约会。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.now_short&#125;</code> | 现在缩写为日期。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.now_shorter&#125;</code> | 现在日期更短了。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.utc_now&#125;</code> | UTC Now 日期。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.utc_now_proper&#125;</code> | 现在 Utc 适合日期。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.utc_now_short&#125;</code> | Utc Now 日期的缩写。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.utc_now_shorter&#125;</code> | Utc 现在日期更短。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;date.utc_timestamp&#125;</code> | UTC 的 Unix 时间戳。 | <code>1781460000</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;time&#125;</code> | 当前日期或 Discord 时间戳输出。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;time.now&#125;</code> | 现在是时候了。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;time.now_military&#125;</code> | 现在暂时参军。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;time.utc_now&#125;</code> | UTC 现在是时间。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;time.utc_now_military&#125;</code> | UTC 现在是军事时间。 | <code>2026 年 6 月 15 日上午 8:52</code> | 嵌入、自定义命令、自动回复、调用消息 |

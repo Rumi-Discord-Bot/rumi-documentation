@@ -1,0 +1,163 @@
+---
+title: "Radnje"
+description: "Dodajte radnje zaštićenog člana, ulogu, poruku, ekonomiju, reakciju i podatke."
+icon: "bolt"
+---
+
+Akcije omogućuju prilagođenoj naredbi više od vraćanja teksta. Trčanje:
+
+```text
+-cc actions
+```
+
+Rumi pokazat će trenutnu sintaksu za akcijske gumbe, upravljanje članovima
+akcije, uloge, poruke, ekonomske promjene, reakcije, imenovane akcije i običaji
+podaci. Koristite taj odgovor kao izvor istine dok gradite scenarij.
+
+## Sigurnosni model
+
+Zaštićene radnje provjeravaju se kada se prilagođena naredba spremi i kada se pokrene.
+Ovisno o radnji, provjere mogu uključivati:
+
+- Članovi koji konfiguriraju Discord dopuštenje
+- Dozvola ili eksplicitni popis dopuštenih članova koji se izvode
+- Rumi's Discord dopuštenje
+- Hijerarhija članova i uloga
+- Je li cilj valjan i upravljiv
+
+Rumi trenutno prepoznaje zaštićene radnje obitelji za zabranu, softbanning,
+izbacivanje, timeouts, upozorenja, promjene uloga, brisanje poruka, ekonomske promjene,
+imenovane radnje i prilagođeni podaci. Ovo su <mark>građevni blokovi unutar običaja
+naredbe</mark>, a ne zadane javne naredbe za moderiranje.
+
+## Gradite pažljivo
+
+1. Stvorite i pregledajte samo tekstualni odgovor.
+2. Dodajte najmanju potrebnu akciju.
+3. Ograničite naredbu na pouzdanu ulogu, kanal ili dozvolu.
+4. Trčite `-cc show <name>` i pregledajte spremljenu skriptu.
+5. Testirajte sa sigurnom metom prije uporabe za osoblje.
+
+<Warning>
+Nikada ne učinite destruktivnu akciju dostupnom svima. Rumi's čekovi smanjiti
+rizik, ali upravitelji poslužitelja odgovorni su za tijek rada i njegove liste dopuštenih.
+</Warning>
+
+## Format izravne akcije
+
+Postavite radnje na vlastitu liniju. Koristiti `&&` između argumenata pa imena i razloga
+može sadržavati razmake bez promjene gdje počinje sljedeći argument.
+
+```text
+{mod:warn target && Repeated rule violation}
+{mod:timeout target && 10m && Cool down period}
+{econ:add user && 100 && Daily custom reward}
+{customdb:increment activity && {user.id} && 1}
+```
+
+Vidljivi odgovor može pratiti te radnje. Sama radnja nije
+prikazan korisniku. Rumi potvrđuje zaštićena dopuštenja kada je naredba
+spremljeno i ponavlja provjere dopuštenja, cilja i hijerarhije uloga kada se pokrene.
+
+## Točna gramatika izravne akcije
+
+Polja u kutnim zagradama u nastavku su obavezna. Polja uglatih zagrada su
+neobavezan. Nemojte upisivati ​​same zagrade.
+
+| Akcijski | Točan raspored |
+| --- | --- |
+| Zabrana | `{mod:ban <target> && [reason]}` |
+| Softban | `{mod:softban <target> && [reason]}` |
+| Udarac | `{mod:kick <target> && [reason]}` |
+| Istek vremena | `{mod:timeout <target> && <duration> && [reason]}` |
+| Brisanje vremenskog ograničenja | `{mod:untimeout <target> && [reason]}` |
+| Upozoriti | `{mod:warn <target> && [reason]}` |
+| Dodajte ulogu | `{mod:role.add <target> && <role> && [reason]}` |
+| Ukloni ulogu | `{mod:role.remove <target> && <role> && [reason]}` |
+| Promjena uloge | `{mod:role.toggle <target> && <role> && [reason]}` |
+| Dodajte valutu | `{econ:add <target> && <amount> && [reason]}` |
+| Ukloni valutu | `{econ:remove <target> && <amount> && [reason]}` |
+| Postavi novčanik | `{econ:set <target> && <amount> && [reason]}` |
+| Prijenos valute | `{econ:transfer <source> && <destination> && <amount>}` |
+| Postavite prilagođene podatke | `{customdb:set <namespace> && <key> && <value>}` |
+| Povećajte prilagođene podatke | `{customdb:increment <namespace> && <key> && [amount]}` |
+| Brisanje prilagođenih podataka | `{customdb:delete <namespace> && <key>}` |
+
+`mute` prihvaća se kao alias za `timeout`; `unmute` je alias za
+`untimeout`. Ciljevi mogu biti deklarirani argument kao što je `{target}`, član
+spomenuti, ID ili `user`/`self` gdje ta akcija podržava član naredbe.
+
+`&&` odvaja argumente izravne akcije. To znači da razlog može sadržavati razmake
+bez brkanja s ciljem ili trajanjem. Samo presložite argumente
+kada tablica pokazuje drugačiji redoslijed—izvršitelj akcije ih čita
+položaj.
+
+## Akcijski gumbi
+
+Gumb je a `$v{button: ...}` blokirati. Polja gumba odvojena su znakom `&&`.
+Polja s ključevima mogu se preuređivati ​​jer ih identificiraju njihova imena:
+
+```text
+$v{button: label=Confirm && style=danger && action=mod:kick {target} Rule violation && reply=Member removed.}
+```
+
+Točan oblik je:
+
+```text
+$v{button: label=<text> && style=<style> && [emoji=<emoji>] && action=<action-spec> && [reply=<text>]}
+```
+
+Polja gumba:
+
+| Polje | Prihvaćena vrijednost |
+| --- | --- |
+| `label` | Tekst gumba, do Discordograničenje od 80 znakova. |
+| `style` | `primary`, `secondary`, `success`, ili `danger`. Aliasi boja kao što su `blue`, `grey`, `green`, i `red` također raditi. |
+| `emoji` | Unicode emoji ili običaj Discord spominjanje emotikona. |
+| `action` | Specifikacija radnje jedne komponente. Ponoviti `action=` formirati lanac. |
+| `reply` | Efemerni odgovor prikazan samo klikeru. |
+| `public` | Javni odgovor na kanalu umjesto efemernog odgovora. |
+| `dm` | Poruka na kliker poslana DM-om. |
+| `role` i `mode` | Uloga za promjenu na klikeru i `add`, `remove`, ili `toggle`. |
+| `page` | `next`, `previous`, ili broj stranice stvoren pomoću `$v{page}`. |
+| `await`, `once`, `defer` | Booleove kontrole izvršenja kao što su `true` ili `false`. |
+| `expires` | Koliko dugo kontrola ostaje upotrebljiva, npr `10m` ili `1h`. |
+| `allow_user`, `allow_role`, `allow_channel` | Jedan ID ili popis ID-ova odvojenih zarezima dopušten za korištenje kontrole. |
+
+Za razliku od redova izravne radnje, komponentna radnja se piše bez vanjske
+stavlja zagrade i koristi razmake između svojih internih argumenata:
+
+```text
+action=mod:timeout {target} 10m Cool down
+action=econ:add user 100 Button reward
+```
+
+Ponovite označeno polje za izvođenje nekoliko radnji redom:
+
+```text
+$v{button: label=Approve && style=success && action=mod:role.add {target} @Member Approved && action=reply:Approved {target.mention} && once=true}
+```
+
+## Gumbi za veze i padajući izbornici
+
+Gumbi veze ne izvršavaju zaštićene radnje:
+
+```text
+$v{button: label=Website && url=https://rumi.rocks && emoji=🔗}
+```
+
+Padajući izbornici koriste ovaj raspored:
+
+```text
+$v{select: <id> && <placeholder> && <label>|<action-fields>|[description]|[emoji]}
+```
+
+Odvojite polja višestrukih radnji unutar jedne padajuće opcije s a
+točka sa zarezom:
+
+```text
+$v{select: staff_menu && Choose an action && Warn|action=mod:warn {target} Menu warning;reply=Warning saved.|Create a warning|⚠️}
+```
+
+Svaka je opcija odvojena prema `&&`. Unutar opcije, poredak odvojen cijevima je
+oznaka, radna polja, izborni opis i izborni emoji.

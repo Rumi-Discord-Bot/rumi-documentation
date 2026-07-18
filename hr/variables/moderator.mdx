@@ -1,0 +1,25 @@
+---
+title: "Varijable moderatora"
+description: "12 moderatorskih varijabli koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;moderator&#125;</code> | Prikaz moderatora ili izvršitelja za moderiranje/pozivanje događaja. | <code>&lt;@222222222222222222&gt;</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.avatar&#125;</code> | URL slike avatara. Izvor: moderator. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.bot&#125;</code> | Bot za moderatora. | <code>Primjer bota moderatora</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.color&#125;</code> | Boja za moderatora. | <code>Primjer boje moderatora</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.created_at&#125;</code> | Discord- formatirano vrijeme izrade. Izvor: moderator. | <code>&lt;t:1781460000:F&gt;</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.display_name&#125;</code> | Ime poslužitelja za prikaz moderatora ili izvršitelja. | <code>Mjesečina</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.id&#125;</code> | Discord ID moderatora ili izvršitelja. | <code>123456789012345678</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.mention&#125;</code> | Navedite moderatora ili izvršitelja za događaje moderiranja/pozivanja. | <code>&lt;@123456789012345678&gt;</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.name&#125;</code> | Korisničko ime moderatora ili izvršitelja. | <code>Rumi</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.role&#125;</code> | Naziv uloge ili vrijednost uloge. Izvor: moderator. | <code>Primjer uloge moderatora</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.tag&#125;</code> | Discord vrijednost stila oznake korisničkog imena/diskriminatora za moderatora. | <code>korisničko ime</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |
+| <code>&#123;moderator.username&#125;</code> | Discord korisničko ime. Izvor: moderator. | <code>Primjer korisničkog imena moderatora</code> | Dnevnici moderiranja, pozivanje poruka, predlošci upozorenja/zabrane/izbacivanja |

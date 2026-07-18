@@ -1,0 +1,374 @@
+---
+title: "Weggeefacties"
+description: "Creëer, plan, herhaal, beperk, wegen en beheer weggeefacties."
+icon: "gift"
+---
+
+Rumi kan knop- of reactie-weggeefacties uitvoeren, maximaal 25 winnaars kiezen, herbruikbaar opslaan
+presets, deelnamevoorwaarden toepassen, bonusinzendingen toekennen, later plannen
+start en herhaal een weggeefactie met een vast interval.
+
+Deze handleiding gebruikt de standaard `-` voorvoegsel. Vervang het als uw server een custom
+voorvoegsel.
+
+## Start een weggeefactie
+
+Het snelste formulier gebruikt vier waarden in deze volgorde:
+
+```text
+-giveaway start "Discord Nitro" 24h 2 #giveaways
+```
+
+1. `"Discord Nitro"` is de prijs. Zet aanhalingstekens rond prijzen die spaties bevatten.
+2. `24h` is hoe lang de toegang open blijft.
+3. `2` is het aantal winnaars, van 1 tot 25.
+4. `#giveaways` is optioneel. Zonder het, Rumi gebruikt het geconfigureerde weggeefkanaal en vervolgens het huidige kanaal.
+
+Duur ondersteunt seconden, minuten, uren, dagen en weken: `30s`, `45m`, `12h`,
+`3d`, of `2w`. Een winactie moet minimaal 10 seconden duren en niet langer dan
+365 dagen.
+
+### Knop- of reactie-invoer
+
+Knopinvoer is de standaard, tenzij de serverconfiguratie anders zegt:
+
+```text
+-giveaway start "Profile colour" 2h 1 --button
+```
+
+Gebruik `--reaction` voor reactie-invoer. Zet er een emoji achter, of laat deze weg
+gebruiken 🎉:
+
+```text
+-giveaway start "Nitro" 24h 1 --reaction 🎟️
+-giveaway start "Mystery prize" 30m 1 --reaction
+```
+
+Rumi heeft **Reacties toevoegen** en **Berichtgeschiedenis lezen** nodig voor reactie
+weggeefacties. Beide invoermodi vereisen **Berichten verzenden** en **Links insluiten** in de
+weggeef kanaal.
+
+## Uiterlijk en leveringsvlaggen
+
+Vlaggen kunnen na de vereiste startwaarden worden geplaatst. Citeer een waarde die uit meerdere woorden bestaat.
+
+| Vlag | Wat het verandert |
+| --- | --- |
+| `--winners <count>` | Heft de positionele winnaartelling op. |
+| `--host <user\|me>` | Toont een ander lid als gastheer. |
+| `--title <text>` | Vervangt de insluittitel. |
+| `--description <text>` | Voegt aangepaste hoofdtekst toe. |
+| `--footer <text>` | Voegt een ingesloten voettekst toe. |
+| `--image <url>` | Voegt een grote insluitafbeelding toe. De waarde moet een HTTP(S)-URL zijn. |
+| `--thumbnail <url>` | Voegt een kleine insluitminiatuur toe. |
+| `--color <hex>` | Verandert bijvoorbeeld de kleur van de insluiting `#c8d8f2`. |
+| `--content <text>` | Plaatst platte tekst boven de insluiting. `--message` wordt ook geaccepteerd. |
+| `--button-label <text>` | Wijzigt de tekst van de invoerknop. |
+| `--button-emoji <emoji>` | Plaatst een emoji op de invoerknop. |
+| `--button-style <style>` | Gebruik `primary`, `secondary`, `success`, of `danger`. |
+| `--winner-message <text>` | Wijzigt het bericht dat wordt verzonden wanneer winnaars worden geselecteerd. |
+| `--end-message <text>` | Wijzigt het bericht dat wordt gebruikt wanneer de weggeefactie eindigt. |
+| `--dm-winner <true\|false>` | Overschrijft de winnaar-DM-instelling van de server voor deze weggeefactie. |
+| `--preset <name>` | Laadt een opgeslagen voorinstelling voordat de andere vlaggen worden toegepast. |
+
+Bijvoorbeeld:
+
+```text
+-giveaway start "Two months of Nitro" 3d 2 #giveaways --button --title "Weekend draw" --description "Press the button below to enter." --color #b7a7ff --dm-winner true
+```
+
+## ID's en dagelijks beheer
+
+Rumi geeft elke weggeefactie een korte server-ID, zoals `#1`. Commando's die vragen
+een ID accepteert ook de Discord bericht-ID.
+
+```text
+-giveaway list
+-giveaway list active
+-giveaway list scheduled
+-giveaway info #1
+-giveaway entries #1
+-giveaway stats
+-giveaway stats user @moon
+```
+
+`list` accepteert `active`, `ended`, `cancelled`, of `scheduled`. `entries` verschijnt
+tot 25 geldige inzendingen. `stats user` rapporteert de geregistreerde inzendingen en overwinningen van het lid
+over de server weggeefacties dat Rumi cheques.
+
+### Bewerken, beëindigen, annuleren en opnieuw rollen
+
+```text
+-giveaway edit #1 --prize "Nitro Basic" --winners 2
+-giveaway edit #1 --duration 6h --title "Extended draw"
+-giveaway end #1
+-giveaway cancel #1
+-giveaway cancel #1 --delete-message
+-giveaway reroll #1 --winners 2
+```
+
+- `edit` wijzigt alleen de opgegeven velden. `--duration 6h` stelt het einde in op zes uur vanaf de bewerking.
+- `end` sluit een actieve winactie onmiddellijk en selecteert de winnaars.
+- `cancel` sluit het zonder winnaars te selecteren. Het bericht blijft staan, tenzij `--delete-message` wordt gebruikt.
+- `reroll` selecteert vervangende winnaars uit in aanmerking komende inzendingen in een beëindigde weggeefactie.
+
+## Voorwaarden om in aanmerking te komen
+
+Een voorwaarde bepaalt wie kan meedoen of winnen. Voorwaarden worden gecombineerd met **EN**:
+een lid moet aan alle toepasselijke voorwaarden voldoen.
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 100
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition list #1
+```
+
+### Conditiebereiken
+
+| Domein | Wanneer Rumi controleert het | Goed voor |
+| --- | --- | --- |
+| `entry` | Wanneer het lid op de knop drukt of de reactie toevoegt. | Onmiddellijke vereisten die de toegang zouden moeten blokkeren. |
+| `winner` | Wanneer Rumi winnaars selecteert of opnieuw uitrolt. | Vereisten die kunnen veranderen voordat de trekking eindigt. |
+| `both` | Bij binnenkomst en opnieuw tijdens de winnaarselectie. | Regels die gedurende de hele winactie geldig moeten blijven. |
+
+Indien een buttondeelnemer de toegangscontrole niet doorstaat, Rumi vertelt hen waarom. Indien een reactie
+deelnemer faalt, Rumi verwijdert hun reactie. Een lid dat niet slaagt voor een winnaarscontrole, wordt
+overgeslagen en Rumi blijft zoeken naar een in aanmerking komende winnaar.
+
+### Elk voorwaardetype
+
+| Type | Vereiste vlaggen | Betekenis |
+| --- | --- | --- |
+| `messages` | `--min <count>` | Vereist minimaal het opgegeven aantal berichten dat is opgenomen door Rumi op deze server. |
+| `vc_time` | `--min <duration>` | Vereist ten minste de opgegeven bijgehouden stemtijd, zoals `10h`. `vc-time` wordt ook geaccepteerd. |
+| `server_age` | `--min <duration>` | Vereist dat het lid al zo lang op de huidige server zit. |
+| `account_age` | `--min <duration>` | Vereist de Discord rekening minstens zo oud zijn. |
+| `role` | `--role <role>` | Vereist één rol. |
+| `not_role` | `--role <role>` | Wijst leden af ​​die de rol hebben. |
+| `boosting` | geen | Vereist een actieve boost voor de huidige server. |
+| `verified` | geen | Vereist voltooiing van Discord’s lidmaatschapsscreening. Dit is niet het geval Rumi’s captcha-verificatiesysteem. |
+| `warnings` | `--max <count>` | Staat niet meer toe dan het opgegeven aantal waarschuwingsrecords op deze server. |
+| `bans` | `--max <count>` | Staat niet meer toe dan het opgegeven aantal geregistreerde ban-acties op deze server. |
+| `mutual_server` | `--server <server-id>` | Vereist lidmaatschap van een andere server die dat ook heeft Rumi. |
+| `invited_to_server` | `--server <server-id>`, optioneel `--inviter <user\|me>` | Vereist lidmaatschap van de doelserver via de vereiste uitnodiger. |
+| `inviter` | hetzelfde als `invited_to_server` | Alias ​​voor de voorwaarde voor uitnodigingsgeschiedenis. |
+| `joined_via_invite` | hetzelfde als `invited_to_server` | Alias ​​voor de voorwaarde voor uitnodigingsgeschiedenis. |
+
+`warnings` En `bans` zijn maxima, dus `--max 0` betekent geen geregistreerde waarschuwingen of
+acties verbieden. Oudere opstellingen kunnen dit gebruiken `--min` voor deze twee typen; Rumi aanvaardt nog steeds
+het, maar `--max` is duidelijker.
+
+### Voorbeelden van praktische omstandigheden
+
+Vereist 250 bijgehouden berichten vóór toegang:
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 250
+```
+
+Vereist een 30 dagen oud account en zeven dagen op de server:
+
+```text
+-giveaway condition add #1 --type account_age --scope both --min 30d
+-giveaway condition add #1 --type server_age --scope both --min 7d
+```
+
+Leden toestaan, maar een gedempte rol uitsluiten:
+
+```text
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition add #1 --type not_role --scope both --role @Muted
+```
+
+Vereist vijf uur aan bijgehouden spraakactiviteit wanneer de winnaars worden getrokken:
+
+```text
+-giveaway condition add #1 --type vc_time --scope winner --min 5h
+```
+
+Lidmaatschap van een andere community vereisen:
+
+```text
+-giveaway condition add #1 --type mutual_server --scope entry --server 123456789012345678
+```
+
+Vereisen dat een lid via uw uitnodiging lid is geworden van een partnerserver:
+
+```text
+-giveaway condition add #1 --type invited_to_server --scope both --server 123456789012345678 --inviter me
+```
+
+Voor uitnodigingsvoorwaarden, Rumi moet zich op de doelserver bevinden, de deelnemer moet zich nog steeds bevinden
+daar lid zijn, en Rumi heeft daar **Manage Server** nodig om de uitnodiging te behouden
+volgen. De uitnodigingsgeschiedenis kan niet worden gereconstrueerd voor joins die er nooit zijn geweest
+opgenomen.
+
+Verwijder één regel met behulp van de voorwaarde-ID die wordt weergegeven door `condition list`, of verwijder alles
+regels:
+
+```text
+-giveaway condition remove #1 cond-1234
+-giveaway condition clear #1
+```
+
+## Bonusinzendingen
+
+Elk geldig lid begint met één deelname. Bonusregels voegen gewicht toe aan die inzending;
+ze omzeilen de omstandigheden niet. Overeenkomende bonussen stapelen zich op, maar één lid kan niet winnen
+meer dan één winnaar in dezelfde trekking.
+
+```text
+-giveaway bonus add #1 --role @VIP --entries 2
+-giveaway bonus add #1 --messages 500 --entries 1
+-giveaway bonus add #1 --vc-time 10h --entries 3
+-giveaway bonus add #1 --booster --entries 2
+```
+
+De beschikbare bonustypes zijn:
+
+| Vlag | Wie krijgt het extra gewicht |
+| --- | --- |
+| `--role <role>` | Leden met de geselecteerde rol. |
+| `--messages <count>` | Leden op of boven het bijgehouden aantal berichten. |
+| `--vc-time <duration>` | Leden op of boven de bijgehouden stemtijd. |
+| `--booster` | Huidige serverboosters. |
+
+`--entries` accepteert 1 tot en met 100. Een normaal lid heeft bijvoorbeeld één kans;
+een lidmatch `--entries 2` heeft in totaal drie gewogen inzendingen.
+
+```text
+-giveaway bonus list #1
+-giveaway bonus remove #1 bonus-1234
+```
+
+## Voorinstellingen
+
+Voorinstellingen slaan een volledige weggeeflay-out op, zodat het personeel niet lang hoeft te herhalen
+set vlaggen.
+
+```text
+-giveaway preset create nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --color #b7a7ff
+-giveaway preset list
+-giveaway preset view nitro
+-giveaway start --preset nitro
+```
+
+Bewerk alleen wat er moet veranderen; de overige opgeslagen velden blijven intact:
+
+```text
+-giveaway preset edit nitro --duration 48h --winners 2
+```
+
+Vlaggen meegeleverd `--preset` overschrijf de opgeslagen waarden voor die ene
+winactie:
+
+```text
+-giveaway start --preset nitro --winners 3 --title "Three winners today"
+```
+
+Verwijder een voorinstelling wanneer deze niet langer nodig is:
+
+```text
+-giveaway preset delete nitro
+```
+
+Als u een voorinstelling verwijdert, worden weggeefacties of terugkerende regels die al bestonden niet geannuleerd
+ervan gemaakt.
+
+## Geplande weggeefacties
+
+Planning slaat de weggeefactie nu op en publiceert deze later:
+
+```text
+-giveaway schedule --starts-in 2h --prize "Discord Nitro" --duration 24h --winners 1 --channel #giveaways --button
+```
+
+`--starts-in` is de vertraging vóór publicatie. `--duration` is hoe lang binnenkomst
+blijft open **na Rumi publiceert het**. De achtergrondloper controleert ruwweg
+elke 30 seconden, dus publicatie kan kort na het exacte doeltijdstip plaatsvinden.
+
+Alle weergavevlaggen van het startcommando werken ook `schedule`. Dat kan
+ook plannen vanuit een preset:
+
+```text
+-giveaway schedule --starts-in 1d --preset nitro --channel #events
+```
+
+Voordat deze begint, verschijnt de winactie onder:
+
+```text
+-giveaway list scheduled
+-giveaway info #1
+```
+
+Gebruik `giveaway cancel #1` als de geplande weggeefactie nooit mag worden gepubliceerd.
+Geplande rijen blijven vervallen als Discord of het doelkanaal is tijdelijk
+niet beschikbaar, toegestaan Rumi om het opnieuw te proberen bij een latere runnerpass.
+
+## Terugkerende weggeefacties
+
+Een terugkerende regel zorgt voor een nieuwe weggeefactie met een vast interval. De meest betrouwbare
+De installatie bestaat uit het eerst bouwen en inspecteren van een preset:
+
+```text
+-giveaway preset create weekly-nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --channel #giveaways
+-giveaway recurring create weekly --every 7d --preset weekly-nitro
+```
+
+Je kunt de weggeeflading ook rechtstreeks op de regel plaatsen:
+
+```text
+-giveaway recurring create daily-coins --every 1d --prize "10,000 coins" --duration 2h --winners 1 --channel #giveaways --button
+```
+
+Belangrijk terugkerend gedrag:
+
+- De eerste weggeefactie begint met één vol `--every` interval na het maken van de regel.
+- Elke run creëert zijn eigen weggeef-ID, bericht, inzendingen en winnaars.
+- Het schema gaat verder dan de beoogde cadans, zodat kleine vertragingen bij lopers niet elke latere run worden verplaatst.
+- Een mislukte publicatie wordt na ongeveer vijf minuten opnieuw geprobeerd in plaats van het hele interval over te slaan.
+- De regel slaat een momentopname op van de weggeefinstellingen. Als u de oorspronkelijke voorinstelling later bewerkt, wordt een bestaande terugkerende regel niet gewijzigd; verwijder de regel en maak deze opnieuw om de nieuwe voorinstelling toe te passen.
+- Het verwijderen van een regel voorkomt toekomstige runs, maar annuleert een weggeefactie die al is gemaakt niet.
+
+```text
+-giveaway recurring list
+-giveaway recurring delete weekly
+```
+
+## Instellingen voor server weggeefacties
+
+Leden met **Manage Server**, beheerders en de geconfigureerde weggeefactie
+De managerrol kan weggeefacties beheren. Een weggeeforganisator kan zijn/haar actie ook beëindigen of annuleren
+eigen winactie. Het bekijken van lijsten, informatie, vermeldingen en statistieken blijft beschikbaar
+zonder beheertoegang.
+
+```text
+-giveaway config view
+-giveaway config channel #giveaways
+-giveaway config channel off
+-giveaway config manager-role @Giveaway Manager
+-giveaway config manager-role off
+-giveaway config default-entry button
+-giveaway config default-entry reaction
+-giveaway config default-color #c8d8f2
+-giveaway config dm-winners on
+-giveaway config remove-entry-on-leave on
+-giveaway config log-channel #giveaway-logs
+-giveaway config log-channel off
+```
+
+| Instelling | Effect |
+| --- | --- |
+| `channel` | Standaarddoel wanneer een start-, plannings-, voorinstellings- of terugkerende payload geen kanaalnaam noemt. |
+| `manager-role` | Laat die rol weggeefacties beheren zonder brede serverbeheerrechten te verlenen. |
+| `default-entry` | Kiest voor een knop of reactie-invoer als geen van beide vlaggen is opgegeven. |
+| `default-color` | Stelt de standaard insluitkleur in. |
+| `dm-winners` | Er wordt geprobeerd de winnaars een direct bericht te sturen. Gesloten DM's kunnen bezorging verhinderen. |
+| `remove-entry-on-leave` | Maakt een invoer ongeldig wanneer het lid de server verlaat. |
+| `log-channel` | Stuurt weggeefbeheerrecords naar het geselecteerde kanaal. |
+
+<Tip>
+Bouw eerst een korte testweggeefactie en voeg vervolgens voorwaarden en bonusregels toe
+het breed delen. `-giveaway info #1` is de snelste manier om de stroom te bevestigen
+aantal deelnames, voorwaarden, bonusregels, host, status en berichtlink.
+</Tip>

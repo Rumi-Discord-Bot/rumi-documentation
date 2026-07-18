@@ -1,0 +1,63 @@
+---
+title: "Opgeslagen gegevens"
+description: "Bewaar en hergebruik servergegevens voor aangepaste opdrachtworkflows."
+icon: "database"
+---
+
+Aangepaste opdrachtgegevens worden georganiseerd door a `namespace` En `key`. Naamruimten blijven behouden
+niet-gerelateerde workflows afzonderlijk, bijvoorbeeld `cases:latest` En `events:count`.
+
+## Lijstgegevens
+
+```text
+-cc data list
+-cc data list cases
+```
+
+## Lees en schrijf een waarde
+
+```text
+-cc data get cases latest
+-cc data set cases latest "Reviewed by staff"
+```
+
+## Verhoog een getal
+
+Het bedrag is standaard `1` wanneer weggelaten. Als je het expliciet vermeldt, is het duidelijker:
+
+```text
+-cc data inc cases next 1
+```
+
+`increment` is een alias voor `inc`.
+
+## Verwijder een waarde
+
+```text
+-cc data delete cases latest
+```
+
+`del` En `remove` zijn aliassen voor de gegevens `delete` operatie.
+
+## Gegevens in een antwoord lezen
+
+Aangepaste opdrachtsjablonen ondersteunen lezingen zoals:
+
+```text
+{db.get:cases:latest}
+{db.exists:cases:latest}
+```
+
+Ze kunnen ook een waarde uit het antwoord verhogen:
+
+```text
+{db.inc:cases:next:1}
+```
+
+Plaats een increment-instructie op een eigen regel als u de update zonder wilt
+het ruwe resultaat laten zien. Loop `-variables customdb` voor de huidige sjabloonreferentie.
+
+<Warning>
+Het verwijderen van een aangepaste opdracht betekent niet dat alle gegevens die door de workflow worden gebruikt, dat ook zijn
+verwijderd. Verwijder expliciet niet langer benodigde vermeldingen.
+</Warning>

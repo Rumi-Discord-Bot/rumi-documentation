@@ -1,0 +1,86 @@
+---
+title: "Überprüfung der Mitglieder"
+description: "Richten Sie die Text- oder Captcha-Überprüfung ein, senden Sie das Panel erneut und passen Sie die Benutzeroberfläche für Mitglieder an."
+icon: "user-check"
+---
+
+Rumi kann neue Mitglieder hinter einem Text-Schlüsselwort- oder Captcha-Verifizierungsablauf platzieren.
+Das System speichert seine Konfiguration auf dem Server und kann sein Panel neu erstellen
+wenn nötig.
+
+## Vor der Einrichtung
+
+Die Person, die die Verifizierung konfiguriert, benötigt **Server verwalten** und **Verwalten
+Rollen**. Rumi braucht:
+
+- Rollen verwalten
+- Kanäle verwalten
+- Nachrichten senden
+- Nachrichten verwalten
+
+RumiDie Rolle von muss über der Rolle liegen, die der Verifizierungsfluss verwalten muss.
+
+## Textüberprüfung
+
+Wählen Sie einen Kanal und die Schlüsselwortmitglieder müssen Folgendes eingeben:
+
+```text
+-verification setup text #verify agree
+```
+
+Halten Sie das Schlüsselwort kurz und eindeutig. Der Verifizierungskanal sollte sein
+für nicht verifizierte Mitglieder sichtbar, während normale Community-Kanäle weiterhin kontrolliert werden
+von dir Discord Rollenberechtigungen.
+
+## Captcha-Überprüfung
+
+```text
+-verification setup captcha #verify
+```
+
+Im Captcha-Modus werden Mitglieder aufgefordert, die generierte Herausforderung abzuschließen, anstatt etwas einzugeben
+ein gemeinsames Schlüsselwort.
+
+## Überprüfen Sie das Panel oder stellen Sie es wieder her
+
+```text
+-verification status
+-verification panel
+```
+
+`status` zeigt den gespeicherten Modus und die Konfiguration an. `panel` sendet das konfigurierte
+Überprüfen Sie das Bestätigungsfeld erneut, was nützlich ist, wenn die ursprüngliche Nachricht gelöscht wurde.
+
+## Passen Sie die Benutzeroberfläche an
+
+Der Anpassungsbefehl akzeptiert einen Schlüssel und einen Wert:
+
+```text
+-verification customize panel.title Welcome
+-verification customize panel.text Type `{keyword}` to continue.
+-verification customize button.verify.style success
+-verification customize view
+```
+
+Verwenden `verification customize view` vor der Bearbeitung, damit Sie die Tasten sehen können
+Running Bot unterstützt derzeit. Setzen Sie die Anpassung zurück, wenn Sie zu zurückkehren möchten
+RumiStandardeinstellungen:
+
+```text
+-verification customize reset
+```
+
+## Verifizierung deaktivieren
+
+```text
+-verification disable
+```
+
+Durch die Deaktivierung wird das Verifizierungssystem gestoppt. Es erfolgt keine automatische Neugestaltung
+dein Discord Kanal überschreibt, also überprüfen Sie, welche nicht überprüften und bestätigten Rollen
+kann man danach sehen.
+
+<Tip>
+Testen Sie mit einem Nicht-Administratorkonto. Administratoren umgehen viele Discord
+unterliegen Kanalbeschränkungen und stellen nicht dar, was ein neues Mitglied erleben wird.
+</Tip>

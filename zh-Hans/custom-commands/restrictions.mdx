@@ -1,0 +1,58 @@
+---
+title: "限制"
+description: "控制谁可以运行自定义命令以及可以在何处运行。"
+icon: "lock-keyhole"
+---
+
+限制可以允许或拒绝用户、角色和通道。自定义命令可以
+还需要一个或多个命名 Discord 权限。
+
+## 允许目标
+
+```text
+-cc allow <name> user @member
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+```
+
+## 拒绝目标
+
+```text
+-cc deny <name> user @member
+-cc deny <name> role @Muted
+-cc deny <name> channel #off-topic
+```
+
+使用匹配的反向命令删除允许或拒绝条目：
+
+```text
+-cc unallow <name> role @Staff
+-cc undeny <name> channel #off-topic
+```
+
+＃＃ 要求 Discord 权限
+
+使用 Discord 权限名称，例如 `ManageMessages`:
+
+```text
+-cc requireperm cleanup ManageMessages
+```
+
+可以提供多个权限名称。使用 `clear` 删除所有必需的
+权限：
+
+```text
+-cc requireperm cleanup clear
+```
+
+## 查看或重置限制
+
+```text
+-cc restrictions <name>
+-cc restrictions <name> clear
+```
+
+<Warning>
+清除限制会删除所有允许、拒绝和所需权限规则
+来自该自定义命令。查看结果 `-cc show <name>`.
+</Warning>

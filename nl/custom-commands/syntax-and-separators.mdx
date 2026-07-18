@@ -1,0 +1,76 @@
+---
+title: "Syntaxis en scheidingstekens"
+description: "Begrijp namen, gedeclareerde argumenten, antwoordgrenzen, fallbacks en scripts met meerdere regels."
+icon: "code"
+---
+
+## Waarom `--` is er
+
+De scheidingsteken vertelt Rumi waar de opdrachtdefinitie eindigt en wordt opgeslagen
+reactie begint:
+
+```text
+-cc set greet <member> [message...] -- Hello {member}! {message|Welcome.}
+```
+
+Rumi leest de regel in drie secties:
+
+| Sectie | Waarde |
+| --- | --- |
+| Operatie | `-cc set` |
+| Definitie | `greet <member> [message...]` |
+| Opgeslagen reactie | `Hello {member}! {message\|Welcome.}` |
+
+Zonder scheidingsteken zouden woorden in het antwoord op argumenten kunnen lijken
+verklaringen. Het scheidingsteken neemt die dubbelzinnigheid weg. Het wordt geconsumeerd terwijl de
+opdracht wordt opgeslagen en wordt nooit in het antwoord opgenomen.
+
+`=>` En `->` zijn geaccepteerde alternatieven, maar `--` wordt in alle documenten gebruikt
+omdat het het gemakkelijkst te herkennen is in lange scripts.
+
+<Warning>
+De eerste zelfstandige `--`, `=>`, of `->` is de grens. Alles wat daarna komt is
+antwoordtekst, zelfs als deze begint met `--`. Zet argumentverklaringen ervoor
+de grens.
+</Warning>
+
+## Aangegeven argumenten
+
+| Formulier | Betekenis |
+| --- | --- |
+| `<member>` | Vereist argument van één woord |
+| `[reason]` | Optioneel argument van één woord |
+| `<text...>` | Vereist rustargument; verbruikt alles wat overblijft |
+| `[note...]` | Optioneel rustargument |
+
+Argumentnamen beginnen met een letter en kunnen letters, cijfers, `_`, `-`,
+of `.`. Een rest-argument moet als laatste worden gebruikt, omdat het alle resterende invoer verbruikt.
+
+## Scripts met meerdere regels
+
+Discord berichten kunnen regeleinden bevatten. Zet richtlijnen dus op hun eigen manier
+ze worden netjes uit het zichtbare antwoord verwijderd:
+
+```text
+-cc set daily --
+{cooldown:24h}
+{customdb:increment rewards && {user.id} && 1}
+You claimed reward number **{db.get:rewards:{user.id}}**.
+```
+
+Andere zelfstandige richtlijnen die door de runtime worden ondersteund, zijn onder meer `{delete}` naar
+verwijder het aanroepende bericht, `{silent}` voor alleen-actie-opdrachten,
+`{respond:#channel}` om een ​​antwoordkanaal te selecteren, `{dm:user}` om de te sturen
+resultaat per DM, en `{reaction:emoji}` reageren op de trigger.
+
+## Waarden en fallbacks
+
+Gebruik `{variable|fallback}` wanneer een waarde mogelijk ontbreekt:
+
+```text
+Nickname: {user.display_name|No server nickname}
+Target: {target.mention|No target selected}
+```
+
+Rumi lost eerst de gedeclareerde argumenten op, daarna de helperwaarden en conditionals,
+vervolgens contextvariabelen en het uiteindelijke insluitings-/componentscript.

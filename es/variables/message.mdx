@@ -1,0 +1,20 @@
+---
+title: "Variables de mensaje"
+description: "7 variables de mensaje soportadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;message.author&#125;</code> | Autor del mensaje. | <code>Autor de mensaje de ejemplo</code> | Comandos personalizados, respuestas automáticas, incrustaciones |
+| <code>&#123;message.author.id&#125;</code> | Discord IDENTIFICACIÓN. Fuente: autor del mensaje. | <code>123456789012345678</code> | Comandos personalizados, respuestas automáticas, incrustaciones |
+| <code>&#123;message.author.mention&#125;</code> | Discord mencionar texto. Fuente: autor del mensaje. | <code>&lt;@123456789012345678&gt;</code> | Comandos personalizados, respuestas automáticas, incrustaciones |
+| <code>&#123;message.content&#125;</code> | El contenido del mensaje desencadenante. | <code>-warn @user spam</code> | Comandos personalizados, respuestas automáticas, incrustaciones |
+| <code>&#123;message.created_at&#125;</code> | Discord-hora de creación formateada. Fuente: mensaje. | <code>&lt;t:1781460000:F&gt;</code> | Comandos personalizados, respuestas automáticas, incrustaciones |
+| <code>&#123;message.id&#125;</code> | Discord ID del mensaje desencadenante. | <code>123456789012345678</code> | Comandos personalizados, respuestas automáticas, incrustaciones |
+| <code>&#123;message.url&#125;</code> | Un enlace directo al mensaje desencadenante. | <code>https://discord.com/channels/123/456/789</code> | Comandos personalizados, respuestas automáticas, incrustaciones |

@@ -1,0 +1,55 @@
+---
+title: "Filtros"
+description: "Configure los filtros de servidor disponibles actualmente en Rumi."
+icon: "filter"
+---
+
+Rumi Actualmente proporciona filtros para expresiones de servidor y roles de refuerzo. Correr
+`-help expressionsblock` o `-help boosterrole` para obtener la sintaxis más reciente y
+requisitos.
+
+## Bloquear expresiones
+
+El `expressionsblock` El comando puede bloquear emojis personalizados específicos, emoji Unicode,
+pegatinas o emojis personalizados externos. Requiere permiso de administración del servidor,
+y Rumi necesita permiso para administrar mensajes.
+
+```text
+-expressionsblock add <emoji-or-sticker>
+-expressionsblock remove <emoji-or-sticker>
+-expressionsblock list
+-expressionsblock clear
+-expressionsblock external <on-or-off>
+```
+
+<Tip>
+`emojiblock` y `blockexpressions` son alias para `expressionsblock`.
+</Tip>
+
+## Filtrar nombres de funciones de refuerzo
+
+Los servidores que utilizan roles de refuerzo personal pueden mantener una lista de palabras bloqueadas:
+
+```text
+-boosterrole filter add <word>
+-boosterrole filter remove <word>
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+Los servidores premium también pueden usar filtros de nombres de expresiones regulares:
+
+```text
+-boosterrole regex filter add <pattern>
+-boosterrole regex filter remove <pattern>
+-boosterrole regex filter list
+-boosterrole regex filter clear
+```
+
+El filtro de texto NSFW para la entrada de iconos de función de refuerzo se controla por separado:
+
+```text
+-boosterrole filtericon nsfw <on-or-off>
+```
+
+Correr `-boosterrole filters` para ver la configuración actual del filtro de función de refuerzo.

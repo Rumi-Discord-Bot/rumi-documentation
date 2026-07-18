@@ -1,0 +1,29 @@
+---
+title: "variables de argumentos"
+description: "16 argumentos variables soportados por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;arg&#125;</code> | Todo lo escrito después del comando personalizado o del activador de respuesta automática coincidente. | <code>pastel azul con chispitas</code> | Comandos personalizados, respuestas automáticas |
+| <code>&#123;arg.1&#125;</code> | El primer argumento después del comando o disparador. | <code>azul</code> | Comandos personalizados, respuestas automáticas |
+| <code>&#123;arg.2+&#125;</code> | Argumento 2 y todo lo que sigue. | <code>pastel con chispitas</code> | Comandos personalizados, respuestas automáticas |
+| <code>&#123;arg.count&#125;</code> | Número de argumentos de comando analizados. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;arg.raw&#125;</code> | Texto del argumento del comando sin modificar. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;args&#125;</code> | Todo el texto proporcionado después del comando. Alias ​​de &#123;argumento&#125;. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;args.count&#125;</code> | Número de argumentos de comando analizados. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;args.raw&#125;</code> | Texto del argumento del comando sin modificar. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;arg.1+&#125;</code> | Argumento 1 y todos los argumentos posteriores. Reemplace 1 con la posición inicial. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;args.rest.1&#125;</code> | Argumento 1 y todos los argumentos posteriores. Reemplace 1 con la posición inicial. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;variable&#124;fallback text&#125;</code> | Devuelve texto alternativo cuando una variable de contexto normal no está disponible. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;name&#125;</code> | Valor de un declarado &lt;nombre&gt; o [nombre] argumento de comando personalizado. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;arg.name&#125;</code> | Valor de un argumento de comando personalizado con nombre declarado. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;arg1&#125;</code> | Alias ​​compacto para un argumento numerado. Reemplace 1 con la posición. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;args.1&#125;</code> | Argumento en posición numerada. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;1&#125;</code> | Argumento en posición numerada. Reemplace 1 con cualquier posición positiva. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |

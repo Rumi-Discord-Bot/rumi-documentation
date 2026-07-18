@@ -1,0 +1,24 @@
+---
+title: "邀请变量"
+description: "Rumi 支持 11 个邀请变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;invite.channel&#125;</code> | 频道提及或频道价值。来源：邀请。 | <code>邀请频道示例</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.channel_id&#125;</code> | Discord 频道ID。来源：邀请。 | <code>邀请频道 ID 示例</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.code&#125;</code> | 邀请码。 | <code>邀请码示例</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.created_at&#125;</code> | Discord-格式化的创建时间。来源：邀请。 | <code>&lt;t:1781460000:F&gt;</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.created_at_timestamp&#125;</code> | 创建时间的 Unix 时间戳。来源：邀请。 | <code>&lt;t:1781460000:F&gt;</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.inviter&#125;</code> | 邀请人。 | <code>邀请邀请者示例</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.inviter_id&#125;</code> | 邀请的邀请者 ID。 | <code>示例邀请邀请者 ID</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.inviter_mention&#125;</code> | 邀请人提及邀请。 | <code>邀请邀请人提及示例</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.max_uses&#125;</code> | 邀请的最大用途。 | <code>邀请最大使用次数示例</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.url&#125;</code> | 直接网址。来源：邀请。 | <code>https://discord.com/channels/123/456/789</code> | 邀请跟踪消息和日志 |
+| <code>&#123;invite.uses&#125;</code> | 用于邀请。 | <code>邀请用途示例</code> | 邀请跟踪消息和日志 |

@@ -1,0 +1,139 @@
+---
+title: "Testiranje i otklanjanje pogrešaka"
+description: "Izgradite prilagođene naredbe u malim koracima i dijagnosticirajte argumente, varijable, akcije i ograničenja Discorda."
+icon: "bug"
+---
+
+Prilagođenu naredbu najlakše je otkloniti pogreške kada znate koji sloj nije uspio. Testirajte
+prvo argumenti, zatim varijable, zatim ugrađivanje, a posljednje dodajte zaštićene radnje.
+
+## Provjerite što Rumi spremljeno
+
+```text
+-cc show <name>
+```
+
+Rezultat prikazuje spremljenu specifikaciju argumenta, skriptu odgovora i trenutni
+ograničenja. Ako odgovor počinje na pogrešnom mjestu, provjerite samostalan
+`--` korišten u originalu `cc set` naredba.
+
+Navedite svaku spremljenu naredbu kada niste sigurni koji je naziv korišten:
+
+```text
+-cc list
+```
+
+## Pregled s realnim argumentima
+
+```text
+-cc preview greet @member
+-cc preview announce Saturday 8pm
+```
+
+Pregled pokreće spremljeni predložak s uzorcima argumenata koje navedete. Koristite
+isti broj i vrstu argumenata koje bi član koristio u pravoj naredbi.
+
+Za problem argumenta, privremeno smanjite odgovor na čisti tekst:
+
+```text
+-cc set announce <day> <time> -- Day: {day}
+Time: {time}
+```
+
+Nakon što su te vrijednosti točne, vratite radnje umetanja ili.
+
+## Dijagnosticirajte varijable koje nedostaju
+
+Varijabla može vratiti samo informacije dostupne u svom trenutnom kontekstu. Za
+na primjer, ciljna varijabla treba ciljani argument ili razriješeni član. Dodaj a
+zamjena gdje je vrijednost izborna:
+
+```text
+{target.display_name|No member selected}
+```
+
+Koristite generiranu [referencu varijabli](../variables/overview) ili trčanje:
+
+```text
+-variables target
+-variables message
+-variables customdb
+```
+
+Ako se varijabla pojavljuje kao doslovni tekst, provjerite pravopis i zagrade. Ako je
+vraća `N/A`, njegova izvorna vrijednost nije bila prisutna u tom kontekstu naredbe.
+
+## Testirajte uvjete zasebno
+
+Rumi podržava provjere postojanja, usporedbe, sadržaj teksta, uloge i
+Discord dopuštenja:
+
+```text
+{if:{user.id} == 123456789012345678}
+This is the configured user.
+{else}
+This is somebody else.
+{endif}
+```
+
+Ostali oblici stanja uključuju:
+
+```text
+{if:{message.content} contains hello}
+{if:user has role 123456789012345678}
+{if:user has permission ManageMessages}
+{if:{db.get:visits:{user.id}} >= 10}
+```
+
+Zadrži otvor `{if:...}`, izborno `{else}`, i zatvaranje `{endif}` na njihovom
+vlastite linije tijekom otklanjanja pogrešaka. Uvjeti se mogu ugniježditi, ali ravan uvjet jest
+obično lakši za održavanje.
+
+## Odvojite prikaz od radnji
+
+Prvo spremite bezopasni odgovor:
+
+```text
+-cc set staffwarn <target> <reason...> --
+Would warn {target.mention} for: {reason}
+```
+
+Pregledajte ga sa sigurnom metom. Tek tada dodajte akciju:
+
+```text
+{mod:warn target && {reason}}
+Warned {target.mention} for: {reason}
+```
+
+Na kraju dodajte ulogu, kanal ili ograničenje dopuštenja. Rumi potvrđuje
+zaštićene radnje prilikom spremanja i ponavlja svoje provjere kada se naredba pokrene.
+
+## Problemi s komponentama
+
+Kada se gumb ili padajući izbornik ne pojavi:
+
+1. Pregledajte i pročitajte naredbu Rumiodgovor provjere valjanosti.
+2. Provjerite formatiranje URL-a za gumbe veze.
+3. Izbrojite komponente u svakom retku i ukupne retke.
+4. Skratite oznake, opise opcija ili ugradite sadržaj.
+5. Provjerite treba li akcijski gumb cilj ili dopuštenje koje nedostaje.
+
+Discord poruke podržavaju do 5 komponentnih redaka. Rumi također provodi ugradnju,
+ograničenja polja, gumba i padajućeg izbornika prije slanja korisnog tereta.
+
+## Problemi s pohranjenim podacima
+
+Izravno provjerite imenski prostor i ključ:
+
+```text
+-cc data list visits
+-cc data get visits 123456789012345678
+```
+
+Nazivi prostora i ključeva su odvojeni. `visits:user-id` nije isto pretraživanje
+kao `user-id:visits`.
+
+<Tip>
+Zadržite radnu kopiju prije velikog uređivanja. `-cc show <name>` daje vam točan
+spremljeni odgovor koji se može kopirati u vaše bilješke prije nego što ga zamijenite.
+</Tip>

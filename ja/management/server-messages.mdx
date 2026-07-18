@@ -1,0 +1,205 @@
+---
+title: "サーバーメッセージ"
+description: "スティッキー メッセージ、参加 ping、および再利用可能なイベント応答を構成します。"
+icon: "message-lines"
+---
+
+Rumi にはいくつかのサーバーメッセージシステムがあります。これらはさまざまな問題を解決します。
+
+- **スティッキー メッセージ** は、アクティブなチャンネルの下部近くにリマインダーを保持します。
+- **参加時に Ping** を実行すると、選択したチャンネルの新しいメンバーがメンションされます。
+- **応答を呼び出す** サポートされているサーバーに対して構成されたテキストまたは埋め込みを送信し、
+  管理イベント。
+
+3 つはすべて、**サーバーの管理** を持つメンバーによって構成されます。
+
+## Disboard バンプリマインダー
+
+固定リマインダーチャンネルを設定するか、 `dynamic` リマインダーはに戻ります
+バンプが検出されたチャンネル:
+
+```text
+-bumpreminder setup #bump-reminders @Bump Ping
+-bumpreminder setup dynamic here
+-bumpreminder status
+```
+
+ping はロール、メンバー、 `here`, `everyone`、 または `off`。 pingを変更する
+カスタム テキストに自動的に挿入されません。含む `{ping}` それはどこ
+が表示されるはずです。
+
+```text
+-bumpreminder channel #bump-reminders
+-bumpreminder channel dynamic
+-bumpreminder ping @Bump Ping
+-bumpreminder ping off
+```
+
+### 検出とタイミング
+
+自動検出は成功を監視します Disboard バンプ。検出されると、 Rumi
+構成された成功応答を送信し、リマインダーをスケジュールします。
+
+```text
+-bumpreminder autodetect on
+-bumpreminder cooldown 2h
+```
+
+バンプを検出できなかった場合は、同じタイマーを手動で開始します。
+
+```text
+-bumpreminder done
+```
+
+`done` セットアップ後にサーバーマネージャーを必要とせずに意図的に使用可能
+アクセスしたので走ったメンバー `/bump` それをマークすることができます。構成とプレビュー
+**サーバーの管理**がまだ必要です。
+
+### プレーンテキストと埋め込みスタイル
+
+成功確認のスタイルとは別にリマインダーのスタイルを選択します。
+
+```text
+-bumpreminder mode embed
+-bumpreminder successmode text
+```
+
+プレーンテキスト設定:
+
+```text
+-bumpreminder reminder {ping} **{server}** can be bumped again. Run /bump now.
+-bumpreminder success Thanks {bumped_by}! Next bump: {next_bump}
+```
+
+リマインダーの埋め込み設定:
+
+```text
+-bumpreminder content {ping}
+-bumpreminder title Time to bump
+-bumpreminder description **{server}** can be bumped again.\nRun `/bump` now.
+-bumpreminder color c8d8f2
+-bumpreminder image https://example.com/banner.png
+-bumpreminder thumbnail https://example.com/icon.png
+-bumpreminder footer Thanks for helping the server grow
+```
+
+成功した埋め込みには、一致するコントロールがあります。 `successcontent`, `successtitle`,
+`successdescription`, `successcolor`, `successimage`, `successthumbnail`、 そして
+`successfooter`。使用 `reset` テキスト、タイトル、説明、色、またはフッターの場合。
+使用 `off` 画像とサムネイルの URL をクリアします。
+
+### バンププレースホルダー
+
+走る `-bumpreminder variables` で Discord ライブリストを表示します。
+
+| プレースホルダー | 価値 |
+| --- | --- |
+| `{ping}` | ping ターゲットを設定しました。 |
+| `{server}` | サーバー名。 |
+| `{bumped_by}` または `{user}` | 知られている場合、衝突したメンバー。 |
+| `{next_bump}` | 次のバンプまでの相対時間。 |
+| `{next_bump_time}` | 完全な次のバンプのタイムスタンプ。 |
+| `{last_bump}` | 最後の衝突からの相対時間。 |
+| `{last_bump_time}` | 完全なラストバンプのタイムスタンプ。 |
+| `{bump_count}` | バンプの数 Rumi 追跡しました。 |
+| `{channel}` | リマインダーチャンネル。 |
+
+タイマーを変更せずに現在のリマインダーをプレビューするか、システムを無効にします。
+
+```text
+-bumpreminder test
+-bumpreminder disable
+```
+
+## スティッキーメッセージ
+
+多数のメッセージの後に更新されるスティッキーを作成します。
+
+```text
+-sticky add #rules --every 10 -- Read the pinned rules before chatting.
+```
+
+または、一定の間隔で更新します。
+
+```text
+-sticky add #info --time 30m -- {embed}$v{title: Reminder}$v{description: Check the links above.}
+```
+
+スタンドアロン `--` スティッキー設定をコンテンツから分離します。すべて
+プレーンテキストまたは埋め込みスクリプトとして保存された後。
+
+保存された付箋をリスト スロットまたは ID で管理します。
+
+```text
+-sticky list
+-sticky preview 1
+-sticky message 1 Updated sticky text.
+-sticky remove 1
+-sticky clear
+```
+
+Rumi **メッセージの送信**、**リンクの埋め込み**、**メッセージの管理**が必要です。
+
+## 参加時に ping を送信する
+
+宛先、オプションの削除遅延、およびオプションのメッセージを追加します。
+
+```text
+-pingonjoin add #general 10s
+-pingonjoin add #rules 30s Welcome {user.mention}
+```
+
+システムが人間、ボット、またはその両方をターゲットにするかを選択します。
+
+```text
+-pingonjoin target human
+-pingonjoin target both
+```
+
+1 つのチャネルまたはデフォルトの動作を編集します。
+
+```text
+-pingonjoin message #general {user.mention} read the rules.
+-pingonjoin delay #general 15s
+-pingonjoin preview #general
+-pingonjoin list
+```
+
+`clear` 設定されているすべての ping チャネルを削除します。 `reset` もう一方も復元します
+ping-on-join 設定をデフォルトに戻します。
+
+## イベント応答を呼び出す
+
+デフォルトの宛先を設定します。
+
+```text
+-invoke setup #mod-log
+-invoke list
+```
+
+サポートされているトリガーは、 `warn`, `ban`, `unban`, `kick`, `timeout`, `untimeout`,
+`role_add`, `role_remove`, `member_join`, `member_leave`、 そして `boost`.
+
+プレーン テキストまたは埋め込みスクリプトを構成します。
+
+```text
+-invoke set warn Staff warned {punishment.user.mention}.
+-invoke set member_join {embed}$v{title: Welcome}$v{description: Welcome {user.mention}.}
+```
+
+1 つのイベントに対して別のチャネルまたは DM 動作を選択します。
+
+```text
+-invoke channel warn #mod-log
+-invoke dm warn on
+-invoke preview warn
+```
+
+使用 `-variables punishment`, `-variables user`、または関連するイベント カテゴリ
+呼び出しテンプレートを構築するとき。
+
+<Info>
+起動テンプレートはイベント自体を作成しません。それは制御します Rumiさんの返答
+対応するサポートされているイベントが別のイベントによって観察またはトリガーされたとき
+Rumi ワークフロー。
+</Info>

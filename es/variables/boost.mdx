@@ -1,0 +1,19 @@
+---
+title: "Variables de impulso"
+description: "6 variables de impulso respaldadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;boost.count&#125;</code> | Valor de conteo. Fuente: impulso. | <code>128</code> | Impulsar mensajes, invocar mensajes |
+| <code>&#123;boost.next_tier&#125;</code> | Siguiente nivel para impulsar. | <code>Ejemplo de impulso al siguiente nivel</code> | Impulsar mensajes, invocar mensajes |
+| <code>&#123;boost.perks&#125;</code> | Beneficios por impulso. | <code>Ejemplos de ventajas de impulso</code> | Impulsar mensajes, invocar mensajes |
+| <code>&#123;boost.tier&#125;</code> | Nivel para impulso. | <code>Ejemplo de nivel de aumento</code> | Impulsar mensajes, invocar mensajes |
+| <code>&#123;boost.user_since&#125;</code> | Usuario desde para impulso. | <code>Ejemplo de impulso de usuario desde</code> | Impulsar mensajes, invocar mensajes |
+| <code>&#123;boost.user_since_timestamp&#125;</code> | Marca de tiempo Unix para el usuario desde. | <code>1781460000</code> | Impulsar mensajes, invocar mensajes |

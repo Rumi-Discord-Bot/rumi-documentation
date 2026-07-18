@@ -1,0 +1,41 @@
+---
+title: "Variables de punition"
+description: "28 variables de punition prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;punishment.audit_reason&#125;</code> | Texte du motif de Discord journaux d’audit lorsqu’ils sont disponibles. | <code>Aucune raison fournie.</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.case_id&#125;</code> | ID de cas amical pour la punition. | <code>AVERTIR-A1B2</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.channel&#125;</code> | Mention de chaîne ou valeur de chaîne. Source : punition. | <code>Exemple de canal de punition</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.channel.mention&#125;</code> | Mentionnez la chaîne liée à l'événement de modération. | <code>&lt;@123456789012345678&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.created_at&#125;</code> | Discord-heure de création formatée. Source : punition. | <code>&lt;t:1781460000:F&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.created_at_timestamp&#125;</code> | Horodatage Unix pour l’heure de création. Source : punition. | <code>&lt;t:1781460000:F&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.duration&#125;</code> | Durée des punitions temporaires, comme la durée du temps mort. | <code>10m</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.executor.id&#125;</code> | Discord ID de l'exécuteur du journal d'audit lorsque Discord l'expose. | <code>123456789012345678</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.executor.mention&#125;</code> | Mentionnez l'exécuteur du journal d'audit lorsque Discord l'expose. | <code>&lt;@123456789012345678&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.executor.tag&#125;</code> | Balise de nom d'utilisateur de l'exécuteur du journal d'audit lorsque Discord l'expose. | <code>nom d'utilisateur</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.expires_at&#125;</code> | Discord-heure d'expiration formatée pour les punitions temporaires. | <code>&lt;t:1781460000:F&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.expires_at_timestamp&#125;</code> | Horodatage Unix pour l’heure d’expiration. Source : punition. | <code>&lt;t:1781460000:F&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.guild&#125;</code> | Guilde pour punition. | <code>Exemple de guilde de punition</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.invite_url&#125;</code> | URL d'invitation. Source : punition. | <code>Exemple d'URL d'invitation à une punition</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.public_id&#125;</code> | ID de cas accessible au public lorsqu’il est disponible. | <code>CAS-42</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.reason&#125;</code> | Raison attachée à la sanction ou à l'affaire. | <code>Spam répété</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.role&#125;</code> | Nom du rôle ou valeur du rôle. Source : punition. | <code>Exemple de rôle de punition</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.role_id&#125;</code> | Discord ID de rôle. Source : punition. | <code>Exemple d'identifiant de rôle de punition</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.role_mention&#125;</code> | Mentionnez le rôle concerné. Source : punition. | <code>Exemple de mention de rôle de punition</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.type&#125;</code> | Type de punition, tel que warn, ban, kick, timeout, role_add ou role_remove. | <code>avertir</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.user&#125;</code> | Afficher l'utilisateur concerné par une action de modération. | <code>Exemple d'utilisateur de punition</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.user.avatar&#125;</code> | URL de l’image de l’avatar. Source : utilisateur de punition. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.user.created_at&#125;</code> | Discord-heure de création formatée. Source : utilisateur de punition. | <code>&lt;t:1781460000:F&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.user.id&#125;</code> | Discord ID de l'utilisateur puni. | <code>123456789012345678</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.user.joined_at&#125;</code> | Discord-heure de connexion au serveur formatée. Source : utilisateur de punition. | <code>&lt;t:1781460000:F&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.user.mention&#125;</code> | Mentionnez l'utilisateur qui a été puni. | <code>&lt;@123456789012345678&gt;</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.user.name&#125;</code> | Nom d'utilisateur de l'utilisateur puni. | <code>Roumi</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |
+| <code>&#123;punishment.user.tag&#125;</code> | Discord valeur de style de balise de nom d'utilisateur/discriminateur pour l'utilisateur puni. | <code>nom d'utilisateur</code> | Journaux de modération, appels de messages, réponses d'avertissement/bannissement/kick/timeout |

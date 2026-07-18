@@ -1,0 +1,41 @@
+---
+title: "Bestrafungsvariablen"
+description: "28 von Rumi unterstützte Bestrafungsvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;punishment.audit_reason&#125;</code> | Begründungstext von Discord Audit-Protokolle, sofern verfügbar. | <code>Kein Grund angegeben.</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.case_id&#125;</code> | Freundlicher Fallausweis für die Bestrafung. | <code>WARNUNG-A1B2</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.channel&#125;</code> | Kanalerwähnung oder Kanalwert. Quelle: Bestrafung. | <code>Beispiel eines Bestrafungskanals</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.channel.mention&#125;</code> | Erwähnen Sie den Kanal, der mit der Moderationsveranstaltung verknüpft ist. | <code>&lt;@123456789012345678&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.created_at&#125;</code> | Discord-formatierte Erstellungszeit. Quelle: Bestrafung. | <code>&lt;t:1781460000:F&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.created_at_timestamp&#125;</code> | Unix-Zeitstempel für die Erstellungszeit. Quelle: Bestrafung. | <code>&lt;t:1781460000:F&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.duration&#125;</code> | Dauer für vorübergehende Strafen, z. B. die Länge der Auszeit. | <code>10m</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.executor.id&#125;</code> | Discord ID des Audit-Log-Ausführers, wann Discord entlarvt es. | <code>123456789012345678</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.executor.mention&#125;</code> | Erwähnen Sie den Audit-Log-Executor, wenn Discord entlarvt es. | <code>&lt;@123456789012345678&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.executor.tag&#125;</code> | Benutzernamen-Tag des Audit-Log-Executors, wann Discord entlarvt es. | <code>Benutzername</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.expires_at&#125;</code> | Discord-Formatierte Ablaufzeit für vorübergehende Strafen. | <code>&lt;t:1781460000:F&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.expires_at_timestamp&#125;</code> | Unix-Zeitstempel für die Ablaufzeit. Quelle: Bestrafung. | <code>&lt;t:1781460000:F&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.guild&#125;</code> | Gilde zur Bestrafung. | <code>Beispiel Strafzunft</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.invite_url&#125;</code> | Einladungs-URL. Quelle: Bestrafung. | <code>Beispiel einer Bestrafungseinladungs-URL</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.public_id&#125;</code> | Öffentliche Fall-ID, sofern verfügbar. | <code>FALL-42</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.reason&#125;</code> | Der mit der Strafe oder dem Fall verbundene Grund. | <code>Wiederholter Spam</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.role&#125;</code> | Rollenname oder Rollenwert. Quelle: Bestrafung. | <code>Beispiel für eine Bestrafungsrolle</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.role_id&#125;</code> | Discord Rollen-ID. Quelle: Bestrafung. | <code>Beispiel für eine Bestrafungsrollen-ID</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.role_mention&#125;</code> | Erwähnen Sie die betroffene Rolle. Quelle: Bestrafung. | <code>Beispiel für die Erwähnung einer Bestrafungsrolle</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.type&#125;</code> | Bestrafungstyp, z. B. „Warnung“, „Verbot“, „Kick“, „Timeout“, „role_add“ oder „role_remove“. | <code>warnen</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.user&#125;</code> | Zeigen Sie den von einer Moderationsaktion betroffenen Benutzer an. | <code>Beispiel für einen Bestrafungsbenutzer</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.user.avatar&#125;</code> | Avatar-Bild-URL. Quelle: Bestrafungsbenutzer. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.user.created_at&#125;</code> | Discord-formatierte Erstellungszeit. Quelle: Bestrafungsbenutzer. | <code>&lt;t:1781460000:F&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.user.id&#125;</code> | Discord ID des bestraften Benutzers. | <code>123456789012345678</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.user.joined_at&#125;</code> | Discord-formatierte Serverbeitrittszeit. Quelle: Bestrafungsbenutzer. | <code>&lt;t:1781460000:F&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.user.mention&#125;</code> | Erwähnen Sie den Benutzer, der bestraft wurde. | <code>&lt;@123456789012345678&gt;</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.user.name&#125;</code> | Benutzername des bestraften Benutzers. | <code>Rumi</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |
+| <code>&#123;punishment.user.tag&#125;</code> | Discord Benutzername-Tag/Diskriminator-Stilwert für den bestraften Benutzer. | <code>Benutzername</code> | Moderationsprotokolle, Aufrufnachrichten, Warnungen/Verbot/Kick/Timeout-Antworten |

@@ -1,0 +1,82 @@
+---
+title: "Inbedden en componenten"
+description: "Bouw gestructureerde insluitingen, linkknoppen, actieknoppen, vervolgkeuzelijsten en gepagineerde uitvoer."
+icon: "panels-top-left"
+---
+
+Rumi'S `$v{...}` blokken beschrijven Discord bericht inhoud. Ze kunnen gemengd worden
+met gewone tekst en variabelen.
+
+## Eigenschappen insluiten
+
+```text
+-cc set profile [member] --
+$v{embed}
+$v{author: {target.display_name|{user.display_name}} && {target.avatar|{user.avatar}}}
+$v{title: Member profile}
+$v{description: Requested by {user.mention}}
+$v{thumbnail: {target.avatar|{user.avatar}}}
+$v{field: Account && {target.name|{user.name}} && true}
+$v{field: Joined && {target.joined_at|Unavailable} && true}
+$v{color: 6A8FB3}
+$v{footer: Rumi custom commands && {bot.avatar}}
+$v{timestamp: {date.utc_now}}
+```
+
+Ondersteunde insluitingseigenschappen zijn `title`, `description`/`desc`, `url`, `color`,
+`image`/`gif`, `thumbnail`/`thumb`, `timestamp`, `footer`, `author`, En
+`field`. Gebruik `&&` binnen auteurs, voetteksten en velden om hun delen te scheiden.
+
+<Accordion title="Onenigheidslimieten afgedwongen door Rumi">
+  Een bericht kan maximaal 10 insluitingen en 5 componentrijen bevatten. Een insluiting maakt dit mogelijk
+  25 velden, een titel van 256 tekens, een beschrijving van 4.096 tekens en 6.000
+  totale teksttekens. Knoplabels zijn beperkt tot 80 tekens en a
+  vervolgkeuzelijst kan maximaal 25 opties bevatten.
+</Accordion>
+
+## Koppelingsknoppen
+
+Koppelingsknoppen voeren geen botactie uit:
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{button: label=Support && url=https://discord.gg/NYs2jF9MCc && emoji=💬}
+```
+
+## Actieknoppen
+
+Knoppen zonder URL creëren een interactiesessie. De actie gaat nog steeds door
+dezelfde toestemmings-, doel-, rollenhiërarchie- en beperkingscontroles gebruikt door a
+directe aangepaste opdrachtactie.
+
+```text
+$v{button: Confirm && danger && action=mod:warn target && await=true && once=true}
+```
+
+Handige besturingsopties zijn onder meer `reply=...`, `ephemeral=true`, `dm=true`,
+`await=true`, `once=true`, `expires=10m`, En `allow_role=@Role`.
+
+## Vervolgkeuzelijsten
+
+De eerste twee delen zijn de interne naam en de tijdelijke aanduiding. Elke volgende
+optie gebruikt `label|action|description|emoji`:
+
+```text
+$v{dropdown: color && Choose a color && Red|reply=You chose red|Warm|🔴 && Blue|reply=You chose blue|Cool|🔵}
+```
+
+## Meerdere pagina's en insluitingen
+
+Gebruik `$v{embed}` om een ​​nieuwe insluiting in hetzelfde bericht te starten. Neerzetten `$v{page}` op
+een eigen regel om een ​​aparte navigeerbare pagina te starten:
+
+```text
+$v{embed}$v{title: Page one}$v{description: First section}
+$v{page}
+$v{embed}$v{title: Page two}$v{description: Second section}
+```
+
+Altijd rennen `-cc preview <name>` na het toevoegen van componenten. Vangsten bekijken
+ongeldige URL's, kleuren, veldgroottes en Discord componentlimieten vóór leden
+gebruik de opdracht.
+

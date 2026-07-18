@@ -1,0 +1,96 @@
+---
+title: "Personalización del servidor"
+description: "Personalice el perfil del servidor de Rumi y la apariencia de respuesta estándar."
+icon: "palette"
+---
+
+Rumi Puede mantener un perfil de servidor y un tema de respuesta diferentes para cada servidor.
+Estas configuraciones no cambian el nombre ni el color de los nombres de los comandos y no alteran la
+perfil global del bot en otras comunidades.
+
+## Ver la personalización guardada
+
+```text
+-custom view
+-custom response list
+```
+
+`custom view` muestra los campos del perfil del servidor. `custom response list` muestra el
+tipos de respuesta, modos, colores y emoji personalizados guardados actualmente por Rumi.
+
+Cambiar esta configuración requiere **Administrar servidor**.
+
+## Perfil del servidor
+
+```text
+-custom nick Rumi Support
+-custom bio Community tools and music
+-custom avatar <image URL>
+-custom banner <image URL>
+```
+
+Para cambios de avatar y banner, adjunte una imagen o proporcione una URL de imagen. Discord
+debe admitir ese campo de perfil para el bot en el servidor.
+
+Borre un campo sin afectar a los demás:
+
+```text
+-custom clear nick
+-custom clear avatar
+-custom clear banner
+-custom clear bio
+```
+
+Si Discord estado y el perfil guardado no está sincronizado, vuelva a aplicarlo:
+
+```text
+-custom apply
+```
+
+## Modos de respuesta
+
+Cada tipo de respuesta puede utilizar una inserción normal o texto sin formato:
+
+```text
+-custom response mode good embed
+-custom response mode bad text
+```
+
+Correr `-custom response list` para ver los nombres de los tipos de respuesta aceptados por el
+robot ejecutando. Un tipo de respuesta representa el propósito de una respuesta, como por ejemplo una
+éxito, error, resultado informativo o lista.
+
+## Colores de respuesta
+
+```text
+-custom response color good #7fc8a9
+-custom response color bad #d97b7b
+```
+
+Los colores afectan las respuestas de ese tipo en modo incrustado. Las respuestas en texto plano no tienen incrustaciones
+color del borde.
+
+## Emojis de respuesta
+
+Rumi utiliza una configuración personalizada Discord emoji, o ningún emoji cuando ese tipo no tiene
+emojis. No sustituye a un emoji Unicode predeterminado.
+
+```text
+-custom response emoji good <:approved:123456789012345678>
+-custom response emoji good off
+-custom response emoji good reset
+```
+
+El emoji personalizado debe ser utilizable por Rumi. Usar `off` sin icono y `reset` para
+RumiEstá configurado de forma predeterminada.
+
+Restablezca un tipo de respuesta completo con:
+
+```text
+-custom response reset good
+```
+
+<Tip>
+Cambie un tipo de respuesta, ejecute un comando que produzca ese tipo de respuesta y
+Comprueba el resultado antes de peinar el resto.
+</Tip>

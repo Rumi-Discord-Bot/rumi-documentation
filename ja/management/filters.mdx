@@ -1,0 +1,55 @@
+---
+title: "フィルター"
+description: "Rumi で現在利用可能なサーバー フィルターを設定します。"
+icon: "filter"
+---
+
+Rumi 現在、サーバー式とブースター ロール用のフィルターが提供されています。走る
+`-help expressionsblock` または `-help boosterrole` 最新の構文については、
+要件。
+
+## ブロック式
+
+の `expressionsblock` コマンドは特定のカスタム絵文字、Unicode 絵文字、
+ステッカー、または外部のカスタム絵文字。サーバー管理権限が必要です。
+そして Rumi メッセージを管理するには権限が必要です。
+
+```text
+-expressionsblock add <emoji-or-sticker>
+-expressionsblock remove <emoji-or-sticker>
+-expressionsblock list
+-expressionsblock clear
+-expressionsblock external <on-or-off>
+```
+
+<Tip>
+`emojiblock` そして `blockexpressions` のエイリアスです `expressionsblock`.
+</Tip>
+
+## ブースターロール名をフィルタリングする
+
+個人ブースターの役割を使用するサーバーは、禁止単語リストを維持できます。
+
+```text
+-boosterrole filter add <word>
+-boosterrole filter remove <word>
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+プレミアム サーバーでは、正規表現名フィルターも使用できます。
+
+```text
+-boosterrole regex filter add <pattern>
+-boosterrole regex filter remove <pattern>
+-boosterrole regex filter list
+-boosterrole regex filter clear
+```
+
+ブースター ロール アイコン入力用の NSFW テキスト フィルターは個別に制御されます。
+
+```text
+-boosterrole filtericon nsfw <on-or-off>
+```
+
+走る `-boosterrole filters` 現在のブースター役割フィルター設定を表示します。

@@ -1,0 +1,106 @@
+---
+title: "Ausgabesteuerung"
+description: "Leiten Sie Antworten weiter, senden Sie DMs, fügen Sie Reaktionen hinzu, wenden Sie Abklingzeiten an und steuern Sie die Auslösenachricht."
+icon: "route"
+---
+
+Ausgabesteuerelemente sind eigenständige Anweisungszeilen in einer benutzerdefinierten Befehlsantwort.
+Sie ändern, wie Rumi sendet das Ergebnis und wird nicht als Antworttext angezeigt.
+
+## Löschen Sie den Auslöser
+
+```text
+{delete}
+```
+
+Rumi Entfernt die Nachricht, die den benutzerdefinierten Befehl ausgeführt hat. Dies muss verwaltet werden
+Nachrichten** im Quellkanal. Wenn das Löschen fehlschlägt, kann der Rest des Befehls ausgeführt werden
+weiterhin gemäß seinen anderen Einstellungen behandelt werden.
+
+## Stille Ausgabe
+
+```text
+{silent}
+```
+
+Verwenden Sie den Silent-Modus für einen Befehl, der nur konfigurierte Aktionen oder Daten ausführt
+aktualisiert und sollte nicht die normale sichtbare Antwort senden. Während der Entwicklung
+Lassen Sie eine sichtbare Bestätigung bestehen, bis die Aktion getestet wurde.
+
+## Leiten Sie die Antwort weiter
+
+```text
+{respond:#suggestions}
+```
+
+Rumi Sendet die gerenderte Ausgabe an den ausgewählten Serverkanal. Es muss in der Lage sein
+um diesen Kanal anzuzeigen und den vom Befehl verwendeten Nutzlasttyp zu senden.
+
+Beispiel:
+
+```text
+-cc set report <text...> --
+{respond:#reports}
+$v{embed}
+$v{author: {user.display_name} && {user.avatar}}
+$v{description: {text}}
+$v{footer: Sent from {channel.name}}
+```
+
+Beschränken Sie die Quellkanäle des Befehls, wenn Berichte nur von gesendet werden sollen
+bestimmte Orte.
+
+## Senden Sie eine Direktnachricht
+
+```text
+{dm:user}
+```
+
+Die Ausgabe wird an das ausgewählte Benutzerziel und nicht an den öffentlichen Kanal gesendet.
+Die DM-Zustellung kann fehlschlagen, wenn der Empfänger DMs von Servermitgliedern blockiert oder hat
+blockiert Rumi.
+
+## Reaktionen hinzufügen
+
+```text
+{react:✅}
+{react:✅ && ❌}
+```
+
+Rumi Fügt die aufgelisteten Reaktionen zur Trigger-Nachricht hinzu, wenn sie die lesen kann
+Nachricht und fügen Sie diese Reaktionen hinzu. Benutzerdefinierte Server-Emojis müssen ebenfalls verwendbar sein
+Rumi.
+
+## Abklingzeiten pro Benutzer
+
+```text
+{cooldown:10m}
+```
+
+Die Abklingzeit gilt für die wiederholte Verwendung dieses benutzerdefinierten Befehls durch ein Mitglied. Verwenden
+lesbare Dauern wie z `30s`, `10m`, oder `24h`.
+
+```text
+-cc set daily-note --
+{cooldown:24h}
+You can use this response again tomorrow.
+```
+
+## Bedienelemente sorgfältig kombinieren
+
+```text
+-cc set confidential <text...> --
+{cooldown:5m}
+{delete}
+{dm:user}
+Your saved note: {text}
+```
+
+Testen Sie Routing und DMs, bevor Sie sie hinzufügen `{delete}`. Andernfalls ein fehlgeschlagenes Ziel
+kann Ihnen weder die Auslösenachricht noch die erwartete Antwort hinterlassen.
+
+<Warning>
+Ausgabesteuerelemente ändern die Zustellung, nicht Berechtigungen. Geschützte Aktionen innerhalb der
+Derselbe Befehl wird immer noch ausgeführt RumiBerechtigung, Einschränkung, Ziel und Rolle des Benutzers
+Hierarchieprüfungen.
+</Warning>

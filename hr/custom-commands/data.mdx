@@ -1,0 +1,63 @@
+---
+title: "Pohranjeni podaci"
+description: "Pohranite i ponovno koristite podatke poslužitelja za prilagođene tijekove rada naredbi."
+icon: "database"
+---
+
+Prilagođene podatke o naredbama organizira a `namespace` i `key`. Imenski prostori čuvaju
+nepovezani tijekovi rada odvojeni—na primjer, `cases:latest` i `events:count`.
+
+## Podaci popisa
+
+```text
+-cc data list
+-cc data list cases
+```
+
+## Pročitajte i napišite vrijednost
+
+```text
+-cc data get cases latest
+-cc data set cases latest "Reviewed by staff"
+```
+
+## Povećaj broj
+
+Zadani iznos `1` kada se izostavi. Jasnije je ako ga eksplicitno navedete:
+
+```text
+-cc data inc cases next 1
+```
+
+`increment` je alias za `inc`.
+
+## Brisanje vrijednosti
+
+```text
+-cc data delete cases latest
+```
+
+`del` i `remove` su aliasi za podatke `delete` operacija.
+
+## Pročitajte podatke u odgovoru
+
+Prilagođeni predlošci naredbi podržavaju čitanja kao što su:
+
+```text
+{db.get:cases:latest}
+{db.exists:cases:latest}
+```
+
+Također mogu povećati vrijednost iz odgovora:
+
+```text
+{db.inc:cases:next:1}
+```
+
+Postavite instrukciju povećanja u vlastiti redak kada želite ažuriranje bez
+pokazujući svoj sirovi rezultat. Trčanje `-variables customdb` za trenutnu referencu predloška.
+
+<Warning>
+Brisanje prilagođene naredbe ne znači da su svi podaci koje koristi njezin tijek rada
+izbrisano. Eksplicitno uklonite unose koji više nisu potrebni.
+</Warning>

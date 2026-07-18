@@ -1,0 +1,34 @@
+---
+title: "Naredbe s prefiksom i kosom crtom"
+description: "Razumjeti dva načina pokretanja Rumi naredbi."
+icon: "code"
+---
+
+## Prefiks naredbe
+
+Naredbe s prefiksom upisuju se kao i obično Discord poruka. Zadani prefiks je
+`-`:
+
+```text
+-command argument
+```
+
+Konfiguracija poslužitelja može omogućiti prilagođeni prefiks. Ako niste sigurni, spomenite Rumi ili
+koristiti Discordbirač naredbi kose crte za otkrivanje dostupnih naredbi.
+
+## Naredbe kose crte
+
+Naredbe kose crte koriste Discordaplikacijsko-naredbeno sučelje:
+
+```text
+/command
+```
+
+Discord provjerava opcije kose crte prije slanja naredbe Rumi. Neki
+naredbe ostaju samo s prefiksom kada to čini njihov format argumenta ili tijek interakcije
+ne preslikati čisto na Discordshema naredbe kose crte.
+
+## Lokalizacija
+
+Nazivi naredbi ne mijenjaju se s odabranim jezikom. Opisi, odgovori,
+validacijske poruke, gumbi, izbornici i modalne oznake mogu se lokalizirati.

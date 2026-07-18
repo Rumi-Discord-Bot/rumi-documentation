@@ -1,0 +1,205 @@
+---
+title: "Servernachrichten"
+description: "Konfigurieren Sie Sticky-Nachrichten, Join-Pings und wiederverwendbare Ereignisantworten."
+icon: "message-lines"
+---
+
+Rumi verfügt über mehrere Server-Nachrichtensysteme. Sie lösen unterschiedliche Probleme:
+
+- **Sticky Messages** halten eine Erinnerung am unteren Rand eines aktiven Kanals bereit.
+- **Ping bei Beitritt** erwähnt neue Mitglieder in ausgewählten Kanälen.
+- **Antworten aufrufen** senden Sie konfigurierten Text oder Einbettungen für unterstützte Server und
+  Managementveranstaltungen.
+
+Alle drei werden von Mitgliedern mit **Server verwalten** konfiguriert.
+
+## Disboard Stoßerinnerungen
+
+Legen Sie einen festen Erinnerungskanal fest oder verwenden Sie ihn `dynamic` Daher kehrt die Erinnerung zum zurück
+Kanal, auf dem die Beule erkannt wurde:
+
+```text
+-bumpreminder setup #bump-reminders @Bump Ping
+-bumpreminder setup dynamic here
+-bumpreminder status
+```
+
+Der Ping kann eine Rolle, ein Mitglied, `here`, `everyone`, oder `off`. Ping ändern
+fügt es nicht automatisch in benutzerdefinierten Text ein; enthalten `{ping}` wo es ist
+sollte erscheinen.
+
+```text
+-bumpreminder channel #bump-reminders
+-bumpreminder channel dynamic
+-bumpreminder ping @Bump Ping
+-bumpreminder ping off
+```
+
+### Erkennung und Timing
+
+Automatische Erkennungsuhren für einen Erfolg Disboard stoßen. Wenn es erkannt wird, Rumi
+sendet die konfigurierte Erfolgsantwort und plant die Erinnerung:
+
+```text
+-bumpreminder autodetect on
+-bumpreminder cooldown 2h
+```
+
+Wenn bei der Erkennung ein Stoß übersehen wird, starten Sie denselben Timer manuell:
+
+```text
+-bumpreminder done
+```
+
+`done` ist nach der Einrichtung absichtlich verfügbar, ohne dass ein Server-Manager erforderlich ist
+Zugriff, also das Mitglied, das ausgeführt hat `/bump` kann es markieren. Konfiguration und Vorschauen
+erfordert weiterhin **Server verwalten**.
+
+### Einfacher Text und Einbettungsstile
+
+Wählen Sie den Erinnerungsstil unabhängig vom Erfolgsbestätigungsstil:
+
+```text
+-bumpreminder mode embed
+-bumpreminder successmode text
+```
+
+Klartexteinstellungen:
+
+```text
+-bumpreminder reminder {ping} **{server}** can be bumped again. Run /bump now.
+-bumpreminder success Thanks {bumped_by}! Next bump: {next_bump}
+```
+
+Einstellungen für die Einbettung von Erinnerungen:
+
+```text
+-bumpreminder content {ping}
+-bumpreminder title Time to bump
+-bumpreminder description **{server}** can be bumped again.\nRun `/bump` now.
+-bumpreminder color c8d8f2
+-bumpreminder image https://example.com/banner.png
+-bumpreminder thumbnail https://example.com/icon.png
+-bumpreminder footer Thanks for helping the server grow
+```
+
+Erfolgseinbettungen verfügen über passende Steuerelemente: `successcontent`, `successtitle`,
+`successdescription`, `successcolor`, `successimage`, `successthumbnail`, Und
+`successfooter`. Verwenden `reset` für Text, Titel, Beschreibungen, Farben oder Fußzeilen;
+verwenden `off` um Bild- und Miniaturbild-URLs zu löschen.
+
+### Bump-Platzhalter
+
+Laufen `-bumpreminder variables` In Discord um die Live-Liste zu sehen.
+
+| Platzhalter | Wert |
+| --- | --- |
+| `{ping}` | Konfiguriertes Ping-Ziel. |
+| `{server}` | Servername. |
+| `{bumped_by}` oder `{user}` | Mitglied, das gestoßen ist, sofern bekannt. |
+| `{next_bump}` | Relative Zeit bis zur nächsten Bodenwelle. |
+| `{next_bump_time}` | Vollständiger Zeitstempel für den nächsten Stoß. |
+| `{last_bump}` | Relative Zeit seit dem letzten Stoß. |
+| `{last_bump_time}` | Vollständiger Zeitstempel des letzten Stoßes. |
+| `{bump_count}` | Anzahl der Unebenheiten Rumi hat verfolgt. |
+| `{channel}` | Erinnerungskanal. |
+
+Sehen Sie sich die aktuelle Erinnerung in der Vorschau an, ohne den Timer zu ändern, oder deaktivieren Sie das System:
+
+```text
+-bumpreminder test
+-bumpreminder disable
+```
+
+## Haftnotizen
+
+Erstellen Sie einen Sticky, der nach mehreren Nachrichten aktualisiert wird:
+
+```text
+-sticky add #rules --every 10 -- Read the pinned rules before chatting.
+```
+
+Oder aktualisieren Sie es in einem bestimmten Zeitintervall:
+
+```text
+-sticky add #info --time 30m -- {embed}$v{title: Reminder}$v{description: Check the links above.}
+```
+
+Der Standalone `--` trennt Sticky-Einstellungen vom Inhalt. Alles
+nachdem es als einfacher Text oder als Einbettungsskript gespeichert wurde.
+
+Verwalten Sie gespeicherte Stickies anhand ihres Listenplatzes oder ihrer ID:
+
+```text
+-sticky list
+-sticky preview 1
+-sticky message 1 Updated sticky text.
+-sticky remove 1
+-sticky clear
+```
+
+Rumi benötigt **Nachrichten senden**, **Links einbetten** und **Nachrichten verwalten**.
+
+## Ping bei Beitritt
+
+Fügen Sie ein Ziel, eine optionale Löschverzögerung und eine optionale Nachricht hinzu:
+
+```text
+-pingonjoin add #general 10s
+-pingonjoin add #rules 30s Welcome {user.mention}
+```
+
+Wählen Sie, ob das System auf Menschen, Bots oder beides abzielt:
+
+```text
+-pingonjoin target human
+-pingonjoin target both
+```
+
+Bearbeiten Sie einen Kanal oder das Standardverhalten:
+
+```text
+-pingonjoin message #general {user.mention} read the rules.
+-pingonjoin delay #general 15s
+-pingonjoin preview #general
+-pingonjoin list
+```
+
+`clear` Entfernt jeden konfigurierten Ping-Kanal. `reset` stellt auch das andere wieder her
+Ping-on-Join-Einstellungen auf ihre Standardwerte zurücksetzen.
+
+## Ereignisantworten aufrufen
+
+Richten Sie ein Standardziel ein:
+
+```text
+-invoke setup #mod-log
+-invoke list
+```
+
+Unterstützte Trigger sind `warn`, `ban`, `unban`, `kick`, `timeout`, `untimeout`,
+`role_add`, `role_remove`, `member_join`, `member_leave`, Und `boost`.
+
+Konfigurieren Sie einfachen Text oder ein Einbettungsskript:
+
+```text
+-invoke set warn Staff warned {punishment.user.mention}.
+-invoke set member_join {embed}$v{title: Welcome}$v{description: Welcome {user.mention}.}
+```
+
+Wählen Sie einen separaten Kanal oder ein DM-Verhalten für ein Ereignis:
+
+```text
+-invoke channel warn #mod-log
+-invoke dm warn on
+-invoke preview warn
+```
+
+Verwenden `-variables punishment`, `-variables user`oder die entsprechende Veranstaltungskategorie
+beim Erstellen einer Aufrufvorlage.
+
+<Info>
+Eine Aufrufvorlage erstellt nicht das Ereignis selbst. Es kontrolliert Rumi's Antwort
+wenn das entsprechende unterstützte Ereignis von einem anderen beobachtet oder ausgelöst wird
+Rumi Arbeitsablauf.
+</Info>

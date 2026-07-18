@@ -1,0 +1,186 @@
+---
+title: "Ekonomija poslužitelja"
+description: "Postavite valutu, nagrade, banke, transfere, trgovine, pljačku i ograničenja kasina."
+icon: "coins"
+---
+
+Svaki poslužitelj ima svoje Rumi gospodarstva. Nazivi valuta, iznosi nagrada, postavke,
+stanja, a predmeti trgovine čuvaju se u gospodarstvu tog poslužitelja, a ne dijele
+između nesrodnih zajednica.
+
+## Što članovi mogu učiniti
+
+Svakodnevne naredbe su jednostavne:
+
+```text
+-balance
+-balance @member
+-daily
+-weekly
+-work
+-deposit 500
+-deposit all
+-withdraw 250
+-give @member 100
+-economytop
+```
+
+Novac i bankovni saldo su odvojeni. `deposit` prenosi gotovinu u banku;
+`withdraw` pomiče ga natrag. Transferi obavljeni sa `give` može utjecati na
+poslužitelj konfiguriran porez na prijenos.
+
+## Početna konfiguracija
+
+Članovi s **Manage Server** mogu pregledavati i uređivati ​​postavke:
+
+```text
+-economy config
+-economy config currency petals
+-economy config icon 🌸
+-economy config daily 250
+-economy config weekly 2500
+-economy config work 50 350
+-economy config cooldown work 3600
+```
+
+Raspon rada je minimalna i maksimalna isplata. Upisuju se vremena hlađenja
+sekundi u naredbi ekonomične konfiguracije.
+
+Onemogućite ekonomičnu naredbu bez onemogućavanja cijelog sustava:
+
+```text
+-economy config disable rob
+-economy config enable rob
+```
+
+`economy config reset confirm` vraća postavke na njihove zadane, ali ne
+ne brisati stanja. `economy reset confirm` je drugačiji: resetira
+stanja korisnika poslužitelja. čitati Rumiprije upotrebe pažljivo potvrdite.
+
+## Pljačke i kasino igre
+
+Pljačkanje se može podesiti ili onemogućiti:
+
+```text
+-economy rob
+-economy rob on
+-economy rob cooldown 3600
+-economy rob limits 25 500
+-economy rob chance 35
+-economy rob fine 20
+-economy rob protection 12
+```
+
+Članovi koriste `-rob @member [amount]`. Rumi primjenjuje spremljenu šansu, ograničenja,
+globa za neuspjeli pokušaj, hlađenje i razdoblje zaštite.
+
+Kontrole kasina rade na isti način:
+
+```text
+-economy casino on
+-economy casino cooldown 20
+-economy casino limits 10 1000
+-casino coinflip 100 heads
+-casino slots 100
+```
+
+## Trgovine i zalihe
+
+Članovi mogu pregledavati trgovinu poslužitelja, kupovati artikle, pregledavati svoj inventar i
+prodaj podržane artikle:
+
+```text
+-shop
+-shop view <item>
+-buy <item>
+-inventory
+-sell <item>
+```
+
+### Izgradite predmet trgovine
+
+Članovi s **Upravljanje poslužiteljem** mogu kreirati i održavati artikle trgovine poslužitelja. The
+stvoriti format je `name`, `buy price`, izborno `sell price`, onda `|` i
+opis:
+
+```text
+-shop add coffee 150 45 | Fresh server coffee
+-shop add vip-pass 5000 0 | Unlocks the VIP role
+-shop view coffee
+```
+
+Nazivi stavki su pojedinačni tokeni, pa ih koristite `vip-pass` radije nego `VIP pass`. Prodaja
+cijena od `0` sprječava vraćanje valute artikla kada se proda. `edit` koristi
+isti potpuni format:
+
+```text
+-shop edit coffee 175 50 | A warm drink and a small energy boost
+```
+
+Za manje promjene koristite fokusirane naredbe:
+
+```text
+-shop price coffee 200
+-shop sellprice coffee 60
+-shop desc coffee A limited seasonal drink
+-shop remove coffee
+```
+
+### Stavke podržane ulogama
+
+Priložite jednu ili više Discord uloge za stavku:
+
+```text
+-shop role add vip-pass @VIP
+-shop role add vip-pass @Supporter
+-shop role remove vip-pass @Supporter
+```
+
+Rumi mora biti u stanju upravljati svakom pridruženom ulogom, što znači svojom najvišom ulogom
+mora sjediti iznad njih Discordpopis uloga.
+
+### Kodovi artikala i poklon kartice
+
+Šifra artikla pohranjuje se uz artikl i može ga održavati osoblje:
+
+```text
+-shop code create vip-pass WELCOME1
+-shop code remove vip-pass WELCOME1
+```
+
+Poklon kartice su iskoristivi kodovi valuta koji su povezani s artiklom. Opskrba
+iznos valute i broj korištenja nakon šifre:
+
+```text
+-shop giftcard create vip-pass LAUNCH500 500 25
+-shop giftcard remove vip-pass LAUNCH500
+```
+
+Članovi iskorištavaju valjani kod s:
+
+```text
+-shop redeem LAUNCH500
+```
+
+Svako uspješno iskorištavanje dodaje konfigurirani iznos iznosu tog člana
+zarade i troši jednu upotrebu. Tretirajte kodove darovnih kartica kao privatne veze: bilo tko
+tko zna važeći kod, može ga pokušati iskoristiti dok ga ima.
+
+`rumishop` je Rumi's globalna trgovina botovima i odvojena je od konfiguracije poslužitelja
+dućan.
+
+## Promjene revizije
+
+Rumi bilježi promjene ekonomskih postavki i transakcije:
+
+```text
+-economy audit
+-economy logs
+```
+
+Oni su korisni nakon promjene nagrada, poreza, postavki roba ili ograničenja kasina.
+
+<Tip>
+Najprije postavite konzervativne nagrade i ograničenja klađenja. Lakše je povećati an
+ekonomičniji tempo nego popraviti ravnoteže nakon pretjerano velikodušnog postavljanja.
+</Tip>

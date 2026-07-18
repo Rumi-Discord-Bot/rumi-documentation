@@ -1,0 +1,125 @@
+---
+title: "Niveaus en XP"
+description: "Configureer XP, berichten voor een hoger niveau, beloningsrollen, vermenigvuldigers en genegeerde kanalen."
+icon: "arrow-up-right-dots"
+---
+
+RumiHet nivelleringssysteem houdt server XP bij, toont rangkaarten, bouwt een klassement,
+en kan rollen toekennen bij gekozen mijlpalen. De XP van een lid behoort toe aan de server
+waar het verdiend werd.
+
+## Begin met de instellingen
+
+Serverbeheerders kunnen het systeem inschakelen en de opgeslagen configuratie inspecteren:
+
+```text
+-levels enable
+-levels settings
+```
+
+Leden kunnen dan gebruik maken van:
+
+```text
+-level
+-level @member
+-leaderboard
+```
+
+`level` is ook verkrijgbaar als `rank`. Het klassement toont de XP van de server
+rangschikking.
+
+## Aankondigingen van een hoger niveau
+
+Stel een bericht in met `levels message`. Het bericht kan meerdere regels omvatten en gebruiken
+niveauvariabelen zoals `{user.mention}` En `{level}`:
+
+```text
+-levels message GG {user.mention}!
+You reached level {level}. --delete 15
+```
+
+De `--delete 15` vlag vertelt Rumi om de mededeling na 15 seconden te verwijderen.
+Bekijk een voorbeeld van het opgeslagen resultaat voordat u erop vertrouwt:
+
+```text
+-levels preview
+```
+
+Kies of aankondigingen normale tekst of een insluiting gebruiken, en waar ze staan
+verstuurd:
+
+```text
+-levels messagemode text
+-levels messagemode embed
+-levels channel #level-ups
+```
+
+Loop `-variables level` om de huidige niveaugerelateerde variabelen te zien die beschikbaar zijn
+berichtsjablonen.
+
+## Beloningsrollen
+
+Wijs een rol toe aan een mijlpaal:
+
+```text
+-levels role 10 @Veteran
+-levels role 25 @Regular
+```
+
+Gebruik `stackroles` om te kiezen of leden eerdere mijlpaalrollen behouden of
+behouden alleen de rol die is gekoppeld aan de hoogst bereikte mijlpaal:
+
+```text
+-levels stackroles on
+-levels stackroles off
+```
+
+Verwijder één mijlpaal en pas de huidige rolconfiguratie opnieuw toe met:
+
+```text
+-levels roleclear 10
+-levels sync
+```
+
+Rumi heeft **Manage Roles** nodig, en de hoogste rol moet boven elke beloning staan
+rol die zij naar verwachting zal toebedelen.
+
+## Multipliers en genegeerde kanalen
+
+Stel een serverbrede XP-vermenigvuldiger in of een vermenigvuldiger die aan een rol is gekoppeld:
+
+```text
+-levels multiplier 1.5
+-levels rolemultiplier @Booster 2
+```
+
+Kanalen waar normaal chatten geen XP zou moeten opleveren, kunnen worden uitgesloten:
+
+```text
+-levels ignore #spam
+-levels unignore #spam
+```
+
+## XP en reputatie aanpassen
+
+Het beheercommando voor directe XP-wijzigingen is:
+
+```text
+-xp add @member 100
+-xp remove @member 50
+-xp set @member 1000
+```
+
+Rumi heeft ook een apart reputatiesysteem:
+
+```text
+-rep give @member
+-rep remove @member
+-rep leaderboard
+```
+
+<Warning>
+Het wijzigen van vermenigvuldigers of XP kan de betekenis van bestaande ranglijsten veranderen. Rekening
+`-levels settings` voor en na een grote verandering, gebruik dan `-levels sync` als
+beloningsrollen moeten op elkaar worden afgestemd.
+</Warning>

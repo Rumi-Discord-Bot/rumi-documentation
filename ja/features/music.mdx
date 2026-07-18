@@ -1,0 +1,46 @@
+---
+title: "音楽"
+description: "Rumi を音声に接続し、音楽コマンドを使用します。"
+icon: "music"
+---
+
+走る `-help music` 現在利用可能な音楽コマンドとそのコマンドを見つけるには
+構文。
+
+## 基本的な流れ
+
+1. 参加する Discord 音声チャンネル。
+2. サポートされている検索語または URL を指定して play コマンドを実行します。
+3. キュー コントロールを使用して再生を管理します。
+4. 切断する Rumi 再生が終了したとき。
+
+<Note>
+利用できる音楽は、別の軽量音楽サービスによって異なります。音楽なら
+コマンドは応答しますが、再生を開始できません。サービスのステータスを確認するか、連絡してください。
+サポート。
+</Note>
+
+使用 `-help <command>` music コマンドを実行する前に現在のオプションを確認する
+そして要件。
+
+## 共通コントロール
+
+```text
+-play <song, playlist, or supported URL>
+-queue
+-nowplaying
+-pause
+-resume
+-skip
+-volume 65
+-seek 1:30
+-loop track
+-shuffle
+```
+
+Rumiの音声キューとユーザーの個人情報 Spotify デバイスは別々の再生です
+ターゲット。などのコマンド `-pause` コントロール Rumi で Discord 声。などのコマンド
+として `-spotify pause` リンクされたユーザーのアクティブを制御する Spotify デバイスを接続します。
+
+見る [Spotify リンクとコントロール](./spotify) プレイリスト用、「いいね」
+曲、デバイス、移動 Spotify ライブラリは、 Discord 音声キュー。

@@ -1,0 +1,163 @@
+---
+title: "アクション"
+description: "保護されたメンバー、ロール、メッセージ、エコノミー、リアクション、およびデータ アクションを追加します。"
+icon: "bolt"
+---
+
+アクションを使用すると、カスタム コマンドはテキストを返す以上のことを行うことができます。走る：
+
+```text
+-cc actions
+```
+
+Rumi アクション ボタン、メンバー管理の現在の構文が表示されます。
+アクション、役割、メッセージ、経済変化、反応、名前付きアクション、カスタム
+データ。スクリプトを作成するときに、その応答を信頼できる情報源として使用します。
+
+## 安全モデル
+
+保護されたアクションは、カスタム コマンドの保存時と実行時にチェックされます。
+アクションに応じて、次のチェックが行われます。
+
+- 構成メンバーの Discord 許可
+- 実行中のメンバーの権限または明示的な許可リスト
+- Rumiさんの Discord 許可
+- メンバーと役割の階層
+- ターゲットが有効で管理可能かどうか
+
+Rumi 現在、禁止、ソフト禁止、
+キック、タイムアウト、警告、役割の変更、メッセージの削除、経済の変更、
+名前付きアクションとカスタム データ。これらは <mark>カスタム内のビルディングブロック
+コマンド</mark>、デフォルトのパブリック モデレーション コマンドではありません。
+
+## 慎重に構築する
+
+1. テキストのみの応答を作成してプレビューします。
+2. 必要な最小限のアクションを追加します。
+3. コマンドを信頼できる役割、チャネル、または権限に制限します。
+4. 走る `-cc show <name>` 保存したスクリプトを確認します。
+5. スタッフが使用する前に、安全なターゲットでテストしてください。
+
+<Warning>
+誰もが破壊的な行動を行えるようにしてはなりません。 Rumiのチェックは減少します
+リスクはありますが、サーバー管理者はワークフローとその許可リストに対して責任を負います。
+</Warning>
+
+## ダイレクトアクション形式
+
+アクションを独自の行に配置します。使用 `&&` 引数の間の名前と理由
+次の引数の開始位置を変更せずにスペースを含めることができます。
+
+```text
+{mod:warn target && Repeated rule violation}
+{mod:timeout target && 10m && Cool down period}
+{econ:add user && 100 && Daily custom reward}
+{customdb:increment activity && {user.id} && 1}
+```
+
+目に見える応答はこれらのアクション行の後に表示されます。集中線自体はそうではありません
+ユーザーに表示されます。 Rumi コマンドが次の場合に、保護されたアクセス許可を検証します。
+保存され、実行時に権限、ターゲット、およびロール階層のチェックが繰り返されます。
+
+## 正確なダイレクトアクション文法
+
+以下の山括弧フィールドは必須です。角括弧フィールドは、
+オプション。括弧自体を入力しないでください。
+
+| アクション | 正確な配置 |
+| --- | --- |
+| 禁止 | `{mod:ban <target> && [reason]}` |
+| ソフバン | `{mod:softban <target> && [reason]}` |
+| キック | `{mod:kick <target> && [reason]}` |
+| タイムアウト | `{mod:timeout <target> && <duration> && [reason]}` |
+| タイムアウトのクリア | `{mod:untimeout <target> && [reason]}` |
+| 警告する | `{mod:warn <target> && [reason]}` |
+| 役割の追加 | `{mod:role.add <target> && <role> && [reason]}` |
+| 役割の削除 | `{mod:role.remove <target> && <role> && [reason]}` |
+| 役割の切り替え | `{mod:role.toggle <target> && <role> && [reason]}` |
+| 通貨を追加 | `{econ:add <target> && <amount> && [reason]}` |
+| 通貨を削除する | `{econ:remove <target> && <amount> && [reason]}` |
+| ウォレットを設定する | `{econ:set <target> && <amount> && [reason]}` |
+| 送金通貨 | `{econ:transfer <source> && <destination> && <amount>}` |
+| カスタムデータを設定する | `{customdb:set <namespace> && <key> && <value>}` |
+| カスタムデータをインクリメントする | `{customdb:increment <namespace> && <key> && [amount]}` |
+| カスタムデータを削除する | `{customdb:delete <namespace> && <key>}` |
+
+`mute` のエイリアスとして受け入れられます `timeout`; `unmute` のエイリアスです
+`untimeout`。ターゲットは、次のような宣言された引数にすることができます。 `{target}`、メンバー
+メンション、ID、または `user`/`self` ここで、そのアクションはコマンド メンバーをサポートします。
+
+`&&` 直接アクションの引数を区切ります。これは、理由にスペースが含まれる可能性があることを意味します
+ターゲットや期間を混同することなく。引数を並べ替えるだけ
+テーブルが異なる順序を示している場合、アクション実行プログラムは次のようにそれらを読み取ります。
+位置。
+
+## アクションボタン
+
+ボタンというのは、 `$v{button: ...}` ブロック。ボタンフィールドは次のように区切られています。 `&&`.
+キー付きフィールドは名前で識別できるため、再配置できます。
+
+```text
+$v{button: label=Confirm && style=danger && action=mod:kick {target} Rule violation && reply=Member removed.}
+```
+
+正確な形状は次のとおりです。
+
+```text
+$v{button: label=<text> && style=<style> && [emoji=<emoji>] && action=<action-spec> && [reply=<text>]}
+```
+
+ボタンフィールド:
+
+| 分野 | 受け入れられる値 |
+| --- | --- |
+| `label` | ボタンのテキスト、最大 Discordの 80 文字制限。 |
+| `style` | `primary`, `secondary`, `success`、 または `danger`。などの色の別名 `blue`, `grey`, `green`、 そして `red` も働きます。 |
+| `emoji` | Unicode 絵文字またはカスタム Discord 絵文字の言及。 |
+| `action` | 1 つのコンポーネントのアクション仕様。繰り返す `action=` 連鎖を形成します。 |
+| `reply` | クリッカーに対してのみ表示される一時的な応答。 |
+| `public` | 一時的な応答ではなく、チャネル内での公開応答。 |
+| `dm` | クリッカーにDMで送信されるテキスト。 |
+| `role` そして `mode` | クリッカーで変更する役割と `add`, `remove`、 または `toggle`. |
+| `page` | `next`, `previous`、またはで作成されたページ番号 `$v{page}`. |
+| `await`, `once`, `defer` | 次のようなブール実行制御 `true` または `false`. |
+| `expires` | コントロールが使用可能な期間 (例: `10m` または `1h`. |
+| `allow_user`, `allow_role`, `allow_channel` | コントロールの使用を許可される 1 つの ID またはコンマ区切りの ID リスト。 |
+
+直接的なアクション行とは異なり、コンポーネントアクションは外側のアクション行なしで記述されます。
+内部引数の間に中括弧を付けてスペースを使用します。
+
+```text
+action=mod:timeout {target} 10m Cool down
+action=econ:add user 100 Button reward
+```
+
+キー付きフィールドを繰り返して、いくつかのアクションを順番に実行します。
+
+```text
+$v{button: label=Approve && style=success && action=mod:role.add {target} @Member Approved && action=reply:Approved {target.mention} && once=true}
+```
+
+## リンク ボタンとドロップダウン
+
+リンク ボタンは保護されたアクションを実行しません。
+
+```text
+$v{button: label=Website && url=https://rumi.rocks && emoji=🔗}
+```
+
+ドロップダウンでは次の配置が使用されます。
+
+```text
+$v{select: <id> && <placeholder> && <label>|<action-fields>|[description]|[emoji]}
+```
+
+1 つのドロップダウン オプション内の複数のキー付きアクション フィールドを
+セミコロン：
+
+```text
+$v{select: staff_menu && Choose an action && Warn|action=mod:warn {target} Menu warning;reply=Warning saved.|Create a warning|⚠️}
+```
+
+各オプションは次のように区切られています。 `&&`。オプション内では、パイプで区切られた順序は次のとおりです。
+ラベル、アクションフィールド、オプションの説明、オプションの絵文字。

@@ -17,166 +17,1251 @@
     "interaction": {
       "drilldown": false
     },
-    "groups": [
+    "products": [
       {
-        "group": "Rumi",
-        "pages": [
-          "index",
+        "product": "Rumi",
+        "icon": "book-open",
+        "languages": [
           {
-            "group": "Getting started",
-            "icon": "play",
-            "expanded": true,
-            "pages": [
-              "getting-started/invite-rumi",
-              "getting-started/first-command",
-              "getting-started/server-setup",
-              "guides/prefix-and-slash",
-              "guides/language"
-            ]
-          },
-          {
-            "group": "Commands",
-            "icon": "list",
-            "expanded": false,
-            "pages": [
-              "commands/overview",
-              "commands/reading-syntax"
-            ]
-          },
-          {
-            "group": "Management",
-            "icon": "sliders",
-            "expanded": false,
-            "pages": [
-              "features/management",
-              "management/filters",
-              "management/staff-management",
-              "management/automation",
-              "management/server-messages",
-              "management/roles-and-channels",
-              "management/verification",
-              "management/invite-tracking",
-              "management/voice-activity"
-            ]
-          },
-          {
-            "group": "Community features",
-            "icon": "users",
-            "expanded": false,
-            "pages": [
-              "features/levels",
-              "features/economy",
-              "features/giveaways"
-            ]
-          },
-          {
-            "group": "Tools and entertainment",
-            "icon": "shapes",
-            "expanded": false,
-            "pages": [
-              "features/personal-tools",
-              "features/server-customization",
-              "features/media-and-embeds",
-              "features/games"
-            ]
-          },
-          {
-            "group": "Custom commands",
-            "icon": "wand-magic-sparkles",
-            "expanded": false,
-            "pages": [
-              "custom-commands/overview",
-              "custom-commands/create-and-preview",
-              "custom-commands/syntax-and-separators",
-              "custom-commands/arguments-and-variables",
-              "custom-commands/output-controls",
-              "custom-commands/embeds-and-components",
-              "custom-commands/recipes",
-              "custom-commands/testing-and-debugging",
-              "custom-commands/restrictions",
-              "custom-commands/actions",
-              "custom-commands/data"
-            ]
-          },
-          {
-            "group": "Variables",
-            "icon": "brackets-curly",
-            "expanded": false,
-            "pages": [
-              "variables/overview",
+            "language": "en",
+            "default": true,
+            "groups": [
               {
-                "group": "Core context",
-                "expanded": false,
+                "group": "Rumi",
                 "pages": [
-                  "variables/general",
-                  "variables/user",
-                  "variables/target",
-                  "variables/guild",
-                  "variables/channel",
-                  "variables/message",
-                  "variables/date",
-                  "variables/bot",
-                  "variables/command"
-                ]
-              },
-              {
-                "group": "Systems and events",
-                "expanded": false,
-                "pages": [
-                  "variables/level",
-                  "variables/boost",
-                  "variables/moderator",
-                  "variables/punishment",
-                  "variables/giveaway",
-                  "variables/winner",
-                  "variables/ticket",
-                  "variables/verification",
-                  "variables/economy",
-                  "variables/invite"
-                ]
-              },
-              {
-                "group": "Logic and storage",
-                "expanded": false,
-                "pages": [
-                  "variables/arguments",
-                  "variables/random",
-                  "variables/conditionals",
-                  "variables/customdb",
-                  "variables/actions"
+                  "index",
+                  {
+                    "group": "Getting started",
+                    "icon": "play",
+                    "expanded": true,
+                    "pages": [
+                      "getting-started/invite-rumi",
+                      "getting-started/first-command",
+                      "getting-started/server-setup",
+                      "guides/prefix-and-slash",
+                      "guides/language"
+                    ]
+                  },
+                  {
+                    "group": "Commands",
+                    "icon": "list",
+                    "expanded": false,
+                    "pages": [
+                      "commands/overview",
+                      "commands/reading-syntax"
+                    ]
+                  },
+                  {
+                    "group": "Management",
+                    "icon": "sliders",
+                    "expanded": false,
+                    "pages": [
+                      "features/management",
+                      "management/filters",
+                      "management/staff-management",
+                      "management/automation",
+                      "management/server-messages",
+                      "management/roles-and-channels",
+                      "management/verification",
+                      "management/invite-tracking",
+                      "management/voice-activity"
+                    ]
+                  },
+                  {
+                    "group": "Community features",
+                    "icon": "users",
+                    "expanded": false,
+                    "pages": [
+                      "features/levels",
+                      "features/economy",
+                      "features/giveaways"
+                    ]
+                  },
+                  {
+                    "group": "Tools and entertainment",
+                    "icon": "shapes",
+                    "expanded": false,
+                    "pages": [
+                      "features/personal-tools",
+                      "features/server-customization",
+                      "features/media-and-embeds",
+                      "features/games"
+                    ]
+                  },
+                  {
+                    "group": "Custom commands",
+                    "icon": "wand-magic-sparkles",
+                    "expanded": false,
+                    "pages": [
+                      "custom-commands/overview",
+                      "custom-commands/create-and-preview",
+                      "custom-commands/syntax-and-separators",
+                      "custom-commands/arguments-and-variables",
+                      "custom-commands/output-controls",
+                      "custom-commands/embeds-and-components",
+                      "custom-commands/recipes",
+                      "custom-commands/testing-and-debugging",
+                      "custom-commands/restrictions",
+                      "custom-commands/actions",
+                      "custom-commands/data"
+                    ]
+                  },
+                  {
+                    "group": "Variables",
+                    "icon": "brackets-curly",
+                    "expanded": false,
+                    "pages": [
+                      "variables/overview",
+                      {
+                        "group": "Core context",
+                        "expanded": false,
+                        "pages": [
+                          "variables/general",
+                          "variables/user",
+                          "variables/target",
+                          "variables/guild",
+                          "variables/channel",
+                          "variables/message",
+                          "variables/date",
+                          "variables/bot",
+                          "variables/command"
+                        ]
+                      },
+                      {
+                        "group": "Systems and events",
+                        "expanded": false,
+                        "pages": [
+                          "variables/level",
+                          "variables/boost",
+                          "variables/moderator",
+                          "variables/punishment",
+                          "variables/giveaway",
+                          "variables/winner",
+                          "variables/ticket",
+                          "variables/verification",
+                          "variables/economy",
+                          "variables/invite"
+                        ]
+                      },
+                      {
+                        "group": "Logic and storage",
+                        "expanded": false,
+                        "pages": [
+                          "variables/arguments",
+                          "variables/random",
+                          "variables/conditionals",
+                          "variables/customdb",
+                          "variables/actions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Music",
+                    "icon": "music",
+                    "expanded": false,
+                    "pages": [
+                      "features/music",
+                      "features/spotify",
+                      "features/lastfm"
+                    ]
+                  },
+                  {
+                    "group": "Help",
+                    "icon": "circle-question",
+                    "expanded": false,
+                    "pages": [
+                      "troubleshooting/common-issues"
+                    ]
+                  }
                 ]
               }
             ]
           },
           {
-            "group": "Music",
-            "icon": "music",
-            "expanded": false,
-            "pages": [
-              "features/music",
-              "features/spotify",
-              "features/lastfm"
+            "language": "nl",
+            "groups": [
+              {
+                "group": "Rumi",
+                "pages": [
+                  "nl/index",
+                  {
+                    "group": "Aan de slag",
+                    "icon": "play",
+                    "expanded": true,
+                    "pages": [
+                      "nl/getting-started/invite-rumi",
+                      "nl/getting-started/first-command",
+                      "nl/getting-started/server-setup",
+                      "nl/guides/prefix-and-slash",
+                      "nl/guides/language"
+                    ]
+                  },
+                  {
+                    "group": "Opdrachten",
+                    "icon": "list",
+                    "expanded": false,
+                    "pages": [
+                      "nl/commands/overview",
+                      "nl/commands/reading-syntax"
+                    ]
+                  },
+                  {
+                    "group": "Beheer",
+                    "icon": "sliders",
+                    "expanded": false,
+                    "pages": [
+                      "nl/features/management",
+                      "nl/management/filters",
+                      "nl/management/staff-management",
+                      "nl/management/automation",
+                      "nl/management/server-messages",
+                      "nl/management/roles-and-channels",
+                      "nl/management/verification",
+                      "nl/management/invite-tracking",
+                      "nl/management/voice-activity"
+                    ]
+                  },
+                  {
+                    "group": "Communityfuncties",
+                    "icon": "users",
+                    "expanded": false,
+                    "pages": [
+                      "nl/features/levels",
+                      "nl/features/economy",
+                      "nl/features/giveaways"
+                    ]
+                  },
+                  {
+                    "group": "Hulpmiddelen en entertainment",
+                    "icon": "shapes",
+                    "expanded": false,
+                    "pages": [
+                      "nl/features/personal-tools",
+                      "nl/features/server-customization",
+                      "nl/features/media-and-embeds",
+                      "nl/features/games"
+                    ]
+                  },
+                  {
+                    "group": "Aangepaste opdrachten",
+                    "icon": "wand-magic-sparkles",
+                    "expanded": false,
+                    "pages": [
+                      "nl/custom-commands/overview",
+                      "nl/custom-commands/create-and-preview",
+                      "nl/custom-commands/syntax-and-separators",
+                      "nl/custom-commands/arguments-and-variables",
+                      "nl/custom-commands/output-controls",
+                      "nl/custom-commands/embeds-and-components",
+                      "nl/custom-commands/recipes",
+                      "nl/custom-commands/testing-and-debugging",
+                      "nl/custom-commands/restrictions",
+                      "nl/custom-commands/actions",
+                      "nl/custom-commands/data"
+                    ]
+                  },
+                  {
+                    "group": "Variabelen",
+                    "icon": "brackets-curly",
+                    "expanded": false,
+                    "pages": [
+                      "nl/variables/overview",
+                      {
+                        "group": "Basiscontext",
+                        "expanded": false,
+                        "pages": [
+                          "nl/variables/general",
+                          "nl/variables/user",
+                          "nl/variables/target",
+                          "nl/variables/guild",
+                          "nl/variables/channel",
+                          "nl/variables/message",
+                          "nl/variables/date",
+                          "nl/variables/bot",
+                          "nl/variables/command"
+                        ]
+                      },
+                      {
+                        "group": "Systemen en gebeurtenissen",
+                        "expanded": false,
+                        "pages": [
+                          "nl/variables/level",
+                          "nl/variables/boost",
+                          "nl/variables/moderator",
+                          "nl/variables/punishment",
+                          "nl/variables/giveaway",
+                          "nl/variables/winner",
+                          "nl/variables/ticket",
+                          "nl/variables/verification",
+                          "nl/variables/economy",
+                          "nl/variables/invite"
+                        ]
+                      },
+                      {
+                        "group": "Logica en opslag",
+                        "expanded": false,
+                        "pages": [
+                          "nl/variables/arguments",
+                          "nl/variables/random",
+                          "nl/variables/conditionals",
+                          "nl/variables/customdb",
+                          "nl/variables/actions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Muziek",
+                    "icon": "music",
+                    "expanded": false,
+                    "pages": [
+                      "nl/features/music",
+                      "nl/features/spotify",
+                      "nl/features/lastfm"
+                    ]
+                  },
+                  {
+                    "group": "Hulp",
+                    "icon": "circle-question",
+                    "expanded": false,
+                    "pages": [
+                      "nl/troubleshooting/common-issues"
+                    ]
+                  }
+                ]
+              }
             ]
           },
           {
-            "group": "Help",
-            "icon": "circle-question",
-            "expanded": false,
-            "pages": ["troubleshooting/common-issues"]
+            "language": "de",
+            "groups": [
+              {
+                "group": "Rumi",
+                "pages": [
+                  "de/index",
+                  {
+                    "group": "Erste Schritte",
+                    "icon": "play",
+                    "expanded": true,
+                    "pages": [
+                      "de/getting-started/invite-rumi",
+                      "de/getting-started/first-command",
+                      "de/getting-started/server-setup",
+                      "de/guides/prefix-and-slash",
+                      "de/guides/language"
+                    ]
+                  },
+                  {
+                    "group": "Befehle",
+                    "icon": "list",
+                    "expanded": false,
+                    "pages": [
+                      "de/commands/overview",
+                      "de/commands/reading-syntax"
+                    ]
+                  },
+                  {
+                    "group": "Verwaltung",
+                    "icon": "sliders",
+                    "expanded": false,
+                    "pages": [
+                      "de/features/management",
+                      "de/management/filters",
+                      "de/management/staff-management",
+                      "de/management/automation",
+                      "de/management/server-messages",
+                      "de/management/roles-and-channels",
+                      "de/management/verification",
+                      "de/management/invite-tracking",
+                      "de/management/voice-activity"
+                    ]
+                  },
+                  {
+                    "group": "Community-Funktionen",
+                    "icon": "users",
+                    "expanded": false,
+                    "pages": [
+                      "de/features/levels",
+                      "de/features/economy",
+                      "de/features/giveaways"
+                    ]
+                  },
+                  {
+                    "group": "Werkzeuge und Unterhaltung",
+                    "icon": "shapes",
+                    "expanded": false,
+                    "pages": [
+                      "de/features/personal-tools",
+                      "de/features/server-customization",
+                      "de/features/media-and-embeds",
+                      "de/features/games"
+                    ]
+                  },
+                  {
+                    "group": "Benutzerdefinierte Befehle",
+                    "icon": "wand-magic-sparkles",
+                    "expanded": false,
+                    "pages": [
+                      "de/custom-commands/overview",
+                      "de/custom-commands/create-and-preview",
+                      "de/custom-commands/syntax-and-separators",
+                      "de/custom-commands/arguments-and-variables",
+                      "de/custom-commands/output-controls",
+                      "de/custom-commands/embeds-and-components",
+                      "de/custom-commands/recipes",
+                      "de/custom-commands/testing-and-debugging",
+                      "de/custom-commands/restrictions",
+                      "de/custom-commands/actions",
+                      "de/custom-commands/data"
+                    ]
+                  },
+                  {
+                    "group": "Variablen",
+                    "icon": "brackets-curly",
+                    "expanded": false,
+                    "pages": [
+                      "de/variables/overview",
+                      {
+                        "group": "Grundkontext",
+                        "expanded": false,
+                        "pages": [
+                          "de/variables/general",
+                          "de/variables/user",
+                          "de/variables/target",
+                          "de/variables/guild",
+                          "de/variables/channel",
+                          "de/variables/message",
+                          "de/variables/date",
+                          "de/variables/bot",
+                          "de/variables/command"
+                        ]
+                      },
+                      {
+                        "group": "Systeme und Ereignisse",
+                        "expanded": false,
+                        "pages": [
+                          "de/variables/level",
+                          "de/variables/boost",
+                          "de/variables/moderator",
+                          "de/variables/punishment",
+                          "de/variables/giveaway",
+                          "de/variables/winner",
+                          "de/variables/ticket",
+                          "de/variables/verification",
+                          "de/variables/economy",
+                          "de/variables/invite"
+                        ]
+                      },
+                      {
+                        "group": "Logik und Speicher",
+                        "expanded": false,
+                        "pages": [
+                          "de/variables/arguments",
+                          "de/variables/random",
+                          "de/variables/conditionals",
+                          "de/variables/customdb",
+                          "de/variables/actions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Musik",
+                    "icon": "music",
+                    "expanded": false,
+                    "pages": [
+                      "de/features/music",
+                      "de/features/spotify",
+                      "de/features/lastfm"
+                    ]
+                  },
+                  {
+                    "group": "Hilfe",
+                    "icon": "circle-question",
+                    "expanded": false,
+                    "pages": [
+                      "de/troubleshooting/common-issues"
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "group": "Documentation languages",
-            "icon": "languages",
-            "expanded": false,
+            "language": "es",
+            "groups": [
+              {
+                "group": "Rumi",
+                "pages": [
+                  "es/index",
+                  {
+                    "group": "Primeros pasos",
+                    "icon": "play",
+                    "expanded": true,
+                    "pages": [
+                      "es/getting-started/invite-rumi",
+                      "es/getting-started/first-command",
+                      "es/getting-started/server-setup",
+                      "es/guides/prefix-and-slash",
+                      "es/guides/language"
+                    ]
+                  },
+                  {
+                    "group": "Comandos",
+                    "icon": "list",
+                    "expanded": false,
+                    "pages": [
+                      "es/commands/overview",
+                      "es/commands/reading-syntax"
+                    ]
+                  },
+                  {
+                    "group": "Gestión",
+                    "icon": "sliders",
+                    "expanded": false,
+                    "pages": [
+                      "es/features/management",
+                      "es/management/filters",
+                      "es/management/staff-management",
+                      "es/management/automation",
+                      "es/management/server-messages",
+                      "es/management/roles-and-channels",
+                      "es/management/verification",
+                      "es/management/invite-tracking",
+                      "es/management/voice-activity"
+                    ]
+                  },
+                  {
+                    "group": "Funciones de la comunidad",
+                    "icon": "users",
+                    "expanded": false,
+                    "pages": [
+                      "es/features/levels",
+                      "es/features/economy",
+                      "es/features/giveaways"
+                    ]
+                  },
+                  {
+                    "group": "Herramientas y entretenimiento",
+                    "icon": "shapes",
+                    "expanded": false,
+                    "pages": [
+                      "es/features/personal-tools",
+                      "es/features/server-customization",
+                      "es/features/media-and-embeds",
+                      "es/features/games"
+                    ]
+                  },
+                  {
+                    "group": "Comandos personalizados",
+                    "icon": "wand-magic-sparkles",
+                    "expanded": false,
+                    "pages": [
+                      "es/custom-commands/overview",
+                      "es/custom-commands/create-and-preview",
+                      "es/custom-commands/syntax-and-separators",
+                      "es/custom-commands/arguments-and-variables",
+                      "es/custom-commands/output-controls",
+                      "es/custom-commands/embeds-and-components",
+                      "es/custom-commands/recipes",
+                      "es/custom-commands/testing-and-debugging",
+                      "es/custom-commands/restrictions",
+                      "es/custom-commands/actions",
+                      "es/custom-commands/data"
+                    ]
+                  },
+                  {
+                    "group": "Variables",
+                    "icon": "brackets-curly",
+                    "expanded": false,
+                    "pages": [
+                      "es/variables/overview",
+                      {
+                        "group": "Contexto principal",
+                        "expanded": false,
+                        "pages": [
+                          "es/variables/general",
+                          "es/variables/user",
+                          "es/variables/target",
+                          "es/variables/guild",
+                          "es/variables/channel",
+                          "es/variables/message",
+                          "es/variables/date",
+                          "es/variables/bot",
+                          "es/variables/command"
+                        ]
+                      },
+                      {
+                        "group": "Sistemas y eventos",
+                        "expanded": false,
+                        "pages": [
+                          "es/variables/level",
+                          "es/variables/boost",
+                          "es/variables/moderator",
+                          "es/variables/punishment",
+                          "es/variables/giveaway",
+                          "es/variables/winner",
+                          "es/variables/ticket",
+                          "es/variables/verification",
+                          "es/variables/economy",
+                          "es/variables/invite"
+                        ]
+                      },
+                      {
+                        "group": "Lógica y almacenamiento",
+                        "expanded": false,
+                        "pages": [
+                          "es/variables/arguments",
+                          "es/variables/random",
+                          "es/variables/conditionals",
+                          "es/variables/customdb",
+                          "es/variables/actions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Música",
+                    "icon": "music",
+                    "expanded": false,
+                    "pages": [
+                      "es/features/music",
+                      "es/features/spotify",
+                      "es/features/lastfm"
+                    ]
+                  },
+                  {
+                    "group": "Ayuda",
+                    "icon": "circle-question",
+                    "expanded": false,
+                    "pages": [
+                      "es/troubleshooting/common-issues"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "language": "ja",
+            "groups": [
+              {
+                "group": "Rumi",
+                "pages": [
+                  "ja/index",
+                  {
+                    "group": "はじめに",
+                    "icon": "play",
+                    "expanded": true,
+                    "pages": [
+                      "ja/getting-started/invite-rumi",
+                      "ja/getting-started/first-command",
+                      "ja/getting-started/server-setup",
+                      "ja/guides/prefix-and-slash",
+                      "ja/guides/language"
+                    ]
+                  },
+                  {
+                    "group": "コマンド",
+                    "icon": "list",
+                    "expanded": false,
+                    "pages": [
+                      "ja/commands/overview",
+                      "ja/commands/reading-syntax"
+                    ]
+                  },
+                  {
+                    "group": "管理",
+                    "icon": "sliders",
+                    "expanded": false,
+                    "pages": [
+                      "ja/features/management",
+                      "ja/management/filters",
+                      "ja/management/staff-management",
+                      "ja/management/automation",
+                      "ja/management/server-messages",
+                      "ja/management/roles-and-channels",
+                      "ja/management/verification",
+                      "ja/management/invite-tracking",
+                      "ja/management/voice-activity"
+                    ]
+                  },
+                  {
+                    "group": "コミュニティ機能",
+                    "icon": "users",
+                    "expanded": false,
+                    "pages": [
+                      "ja/features/levels",
+                      "ja/features/economy",
+                      "ja/features/giveaways"
+                    ]
+                  },
+                  {
+                    "group": "ツールとエンターテインメント",
+                    "icon": "shapes",
+                    "expanded": false,
+                    "pages": [
+                      "ja/features/personal-tools",
+                      "ja/features/server-customization",
+                      "ja/features/media-and-embeds",
+                      "ja/features/games"
+                    ]
+                  },
+                  {
+                    "group": "カスタムコマンド",
+                    "icon": "wand-magic-sparkles",
+                    "expanded": false,
+                    "pages": [
+                      "ja/custom-commands/overview",
+                      "ja/custom-commands/create-and-preview",
+                      "ja/custom-commands/syntax-and-separators",
+                      "ja/custom-commands/arguments-and-variables",
+                      "ja/custom-commands/output-controls",
+                      "ja/custom-commands/embeds-and-components",
+                      "ja/custom-commands/recipes",
+                      "ja/custom-commands/testing-and-debugging",
+                      "ja/custom-commands/restrictions",
+                      "ja/custom-commands/actions",
+                      "ja/custom-commands/data"
+                    ]
+                  },
+                  {
+                    "group": "変数",
+                    "icon": "brackets-curly",
+                    "expanded": false,
+                    "pages": [
+                      "ja/variables/overview",
+                      {
+                        "group": "基本コンテキスト",
+                        "expanded": false,
+                        "pages": [
+                          "ja/variables/general",
+                          "ja/variables/user",
+                          "ja/variables/target",
+                          "ja/variables/guild",
+                          "ja/variables/channel",
+                          "ja/variables/message",
+                          "ja/variables/date",
+                          "ja/variables/bot",
+                          "ja/variables/command"
+                        ]
+                      },
+                      {
+                        "group": "システムとイベント",
+                        "expanded": false,
+                        "pages": [
+                          "ja/variables/level",
+                          "ja/variables/boost",
+                          "ja/variables/moderator",
+                          "ja/variables/punishment",
+                          "ja/variables/giveaway",
+                          "ja/variables/winner",
+                          "ja/variables/ticket",
+                          "ja/variables/verification",
+                          "ja/variables/economy",
+                          "ja/variables/invite"
+                        ]
+                      },
+                      {
+                        "group": "ロジックとストレージ",
+                        "expanded": false,
+                        "pages": [
+                          "ja/variables/arguments",
+                          "ja/variables/random",
+                          "ja/variables/conditionals",
+                          "ja/variables/customdb",
+                          "ja/variables/actions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "音楽",
+                    "icon": "music",
+                    "expanded": false,
+                    "pages": [
+                      "ja/features/music",
+                      "ja/features/spotify",
+                      "ja/features/lastfm"
+                    ]
+                  },
+                  {
+                    "group": "ヘルプ",
+                    "icon": "circle-question",
+                    "expanded": false,
+                    "pages": [
+                      "ja/troubleshooting/common-issues"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "language": "zh-Hans",
+            "groups": [
+              {
+                "group": "Rumi",
+                "pages": [
+                  "zh-Hans/index",
+                  {
+                    "group": "快速入门",
+                    "icon": "play",
+                    "expanded": true,
+                    "pages": [
+                      "zh-Hans/getting-started/invite-rumi",
+                      "zh-Hans/getting-started/first-command",
+                      "zh-Hans/getting-started/server-setup",
+                      "zh-Hans/guides/prefix-and-slash",
+                      "zh-Hans/guides/language"
+                    ]
+                  },
+                  {
+                    "group": "命令",
+                    "icon": "list",
+                    "expanded": false,
+                    "pages": [
+                      "zh-Hans/commands/overview",
+                      "zh-Hans/commands/reading-syntax"
+                    ]
+                  },
+                  {
+                    "group": "管理",
+                    "icon": "sliders",
+                    "expanded": false,
+                    "pages": [
+                      "zh-Hans/features/management",
+                      "zh-Hans/management/filters",
+                      "zh-Hans/management/staff-management",
+                      "zh-Hans/management/automation",
+                      "zh-Hans/management/server-messages",
+                      "zh-Hans/management/roles-and-channels",
+                      "zh-Hans/management/verification",
+                      "zh-Hans/management/invite-tracking",
+                      "zh-Hans/management/voice-activity"
+                    ]
+                  },
+                  {
+                    "group": "社区功能",
+                    "icon": "users",
+                    "expanded": false,
+                    "pages": [
+                      "zh-Hans/features/levels",
+                      "zh-Hans/features/economy",
+                      "zh-Hans/features/giveaways"
+                    ]
+                  },
+                  {
+                    "group": "工具和娱乐",
+                    "icon": "shapes",
+                    "expanded": false,
+                    "pages": [
+                      "zh-Hans/features/personal-tools",
+                      "zh-Hans/features/server-customization",
+                      "zh-Hans/features/media-and-embeds",
+                      "zh-Hans/features/games"
+                    ]
+                  },
+                  {
+                    "group": "自定义命令",
+                    "icon": "wand-magic-sparkles",
+                    "expanded": false,
+                    "pages": [
+                      "zh-Hans/custom-commands/overview",
+                      "zh-Hans/custom-commands/create-and-preview",
+                      "zh-Hans/custom-commands/syntax-and-separators",
+                      "zh-Hans/custom-commands/arguments-and-variables",
+                      "zh-Hans/custom-commands/output-controls",
+                      "zh-Hans/custom-commands/embeds-and-components",
+                      "zh-Hans/custom-commands/recipes",
+                      "zh-Hans/custom-commands/testing-and-debugging",
+                      "zh-Hans/custom-commands/restrictions",
+                      "zh-Hans/custom-commands/actions",
+                      "zh-Hans/custom-commands/data"
+                    ]
+                  },
+                  {
+                    "group": "变量",
+                    "icon": "brackets-curly",
+                    "expanded": false,
+                    "pages": [
+                      "zh-Hans/variables/overview",
+                      {
+                        "group": "核心上下文",
+                        "expanded": false,
+                        "pages": [
+                          "zh-Hans/variables/general",
+                          "zh-Hans/variables/user",
+                          "zh-Hans/variables/target",
+                          "zh-Hans/variables/guild",
+                          "zh-Hans/variables/channel",
+                          "zh-Hans/variables/message",
+                          "zh-Hans/variables/date",
+                          "zh-Hans/variables/bot",
+                          "zh-Hans/variables/command"
+                        ]
+                      },
+                      {
+                        "group": "系统和事件",
+                        "expanded": false,
+                        "pages": [
+                          "zh-Hans/variables/level",
+                          "zh-Hans/variables/boost",
+                          "zh-Hans/variables/moderator",
+                          "zh-Hans/variables/punishment",
+                          "zh-Hans/variables/giveaway",
+                          "zh-Hans/variables/winner",
+                          "zh-Hans/variables/ticket",
+                          "zh-Hans/variables/verification",
+                          "zh-Hans/variables/economy",
+                          "zh-Hans/variables/invite"
+                        ]
+                      },
+                      {
+                        "group": "逻辑和存储",
+                        "expanded": false,
+                        "pages": [
+                          "zh-Hans/variables/arguments",
+                          "zh-Hans/variables/random",
+                          "zh-Hans/variables/conditionals",
+                          "zh-Hans/variables/customdb",
+                          "zh-Hans/variables/actions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "音乐",
+                    "icon": "music",
+                    "expanded": false,
+                    "pages": [
+                      "zh-Hans/features/music",
+                      "zh-Hans/features/spotify",
+                      "zh-Hans/features/lastfm"
+                    ]
+                  },
+                  {
+                    "group": "帮助",
+                    "icon": "circle-question",
+                    "expanded": false,
+                    "pages": [
+                      "zh-Hans/troubleshooting/common-issues"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "language": "fr",
+            "groups": [
+              {
+                "group": "Rumi",
+                "pages": [
+                  "fr/index",
+                  {
+                    "group": "Bien démarrer",
+                    "icon": "play",
+                    "expanded": true,
+                    "pages": [
+                      "fr/getting-started/invite-rumi",
+                      "fr/getting-started/first-command",
+                      "fr/getting-started/server-setup",
+                      "fr/guides/prefix-and-slash",
+                      "fr/guides/language"
+                    ]
+                  },
+                  {
+                    "group": "Commandes",
+                    "icon": "list",
+                    "expanded": false,
+                    "pages": [
+                      "fr/commands/overview",
+                      "fr/commands/reading-syntax"
+                    ]
+                  },
+                  {
+                    "group": "Gestion",
+                    "icon": "sliders",
+                    "expanded": false,
+                    "pages": [
+                      "fr/features/management",
+                      "fr/management/filters",
+                      "fr/management/staff-management",
+                      "fr/management/automation",
+                      "fr/management/server-messages",
+                      "fr/management/roles-and-channels",
+                      "fr/management/verification",
+                      "fr/management/invite-tracking",
+                      "fr/management/voice-activity"
+                    ]
+                  },
+                  {
+                    "group": "Fonctionnalités communautaires",
+                    "icon": "users",
+                    "expanded": false,
+                    "pages": [
+                      "fr/features/levels",
+                      "fr/features/economy",
+                      "fr/features/giveaways"
+                    ]
+                  },
+                  {
+                    "group": "Outils et divertissement",
+                    "icon": "shapes",
+                    "expanded": false,
+                    "pages": [
+                      "fr/features/personal-tools",
+                      "fr/features/server-customization",
+                      "fr/features/media-and-embeds",
+                      "fr/features/games"
+                    ]
+                  },
+                  {
+                    "group": "Commandes personnalisées",
+                    "icon": "wand-magic-sparkles",
+                    "expanded": false,
+                    "pages": [
+                      "fr/custom-commands/overview",
+                      "fr/custom-commands/create-and-preview",
+                      "fr/custom-commands/syntax-and-separators",
+                      "fr/custom-commands/arguments-and-variables",
+                      "fr/custom-commands/output-controls",
+                      "fr/custom-commands/embeds-and-components",
+                      "fr/custom-commands/recipes",
+                      "fr/custom-commands/testing-and-debugging",
+                      "fr/custom-commands/restrictions",
+                      "fr/custom-commands/actions",
+                      "fr/custom-commands/data"
+                    ]
+                  },
+                  {
+                    "group": "Variables",
+                    "icon": "brackets-curly",
+                    "expanded": false,
+                    "pages": [
+                      "fr/variables/overview",
+                      {
+                        "group": "Contexte principal",
+                        "expanded": false,
+                        "pages": [
+                          "fr/variables/general",
+                          "fr/variables/user",
+                          "fr/variables/target",
+                          "fr/variables/guild",
+                          "fr/variables/channel",
+                          "fr/variables/message",
+                          "fr/variables/date",
+                          "fr/variables/bot",
+                          "fr/variables/command"
+                        ]
+                      },
+                      {
+                        "group": "Systèmes et événements",
+                        "expanded": false,
+                        "pages": [
+                          "fr/variables/level",
+                          "fr/variables/boost",
+                          "fr/variables/moderator",
+                          "fr/variables/punishment",
+                          "fr/variables/giveaway",
+                          "fr/variables/winner",
+                          "fr/variables/ticket",
+                          "fr/variables/verification",
+                          "fr/variables/economy",
+                          "fr/variables/invite"
+                        ]
+                      },
+                      {
+                        "group": "Logique et stockage",
+                        "expanded": false,
+                        "pages": [
+                          "fr/variables/arguments",
+                          "fr/variables/random",
+                          "fr/variables/conditionals",
+                          "fr/variables/customdb",
+                          "fr/variables/actions"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Musique",
+                    "icon": "music",
+                    "expanded": false,
+                    "pages": [
+                      "fr/features/music",
+                      "fr/features/spotify",
+                      "fr/features/lastfm"
+                    ]
+                  },
+                  {
+                    "group": "Aide",
+                    "icon": "circle-question",
+                    "expanded": false,
+                    "pages": [
+                      "fr/troubleshooting/common-issues"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Hrvatski",
+        "icon": "language",
+        "groups": [
+          {
+            "group": "Rumi",
             "pages": [
-              "languages/en",
-              "languages/nl",
-              "languages/de",
-              "languages/es",
-              "languages/ja",
-              "languages/zh-CN",
-              "languages/hr",
-              "languages/fr"
+              "hr/index",
+              {
+                "group": "Početak",
+                "icon": "play",
+                "expanded": true,
+                "pages": [
+                  "hr/getting-started/invite-rumi",
+                  "hr/getting-started/first-command",
+                  "hr/getting-started/server-setup",
+                  "hr/guides/prefix-and-slash",
+                  "hr/guides/language"
+                ]
+              },
+              {
+                "group": "Naredbe",
+                "icon": "list",
+                "expanded": false,
+                "pages": [
+                  "hr/commands/overview",
+                  "hr/commands/reading-syntax"
+                ]
+              },
+              {
+                "group": "Upravljanje",
+                "icon": "sliders",
+                "expanded": false,
+                "pages": [
+                  "hr/features/management",
+                  "hr/management/filters",
+                  "hr/management/staff-management",
+                  "hr/management/automation",
+                  "hr/management/server-messages",
+                  "hr/management/roles-and-channels",
+                  "hr/management/verification",
+                  "hr/management/invite-tracking",
+                  "hr/management/voice-activity"
+                ]
+              },
+              {
+                "group": "Značajke zajednice",
+                "icon": "users",
+                "expanded": false,
+                "pages": [
+                  "hr/features/levels",
+                  "hr/features/economy",
+                  "hr/features/giveaways"
+                ]
+              },
+              {
+                "group": "Alati i zabava",
+                "icon": "shapes",
+                "expanded": false,
+                "pages": [
+                  "hr/features/personal-tools",
+                  "hr/features/server-customization",
+                  "hr/features/media-and-embeds",
+                  "hr/features/games"
+                ]
+              },
+              {
+                "group": "Prilagođene naredbe",
+                "icon": "wand-magic-sparkles",
+                "expanded": false,
+                "pages": [
+                  "hr/custom-commands/overview",
+                  "hr/custom-commands/create-and-preview",
+                  "hr/custom-commands/syntax-and-separators",
+                  "hr/custom-commands/arguments-and-variables",
+                  "hr/custom-commands/output-controls",
+                  "hr/custom-commands/embeds-and-components",
+                  "hr/custom-commands/recipes",
+                  "hr/custom-commands/testing-and-debugging",
+                  "hr/custom-commands/restrictions",
+                  "hr/custom-commands/actions",
+                  "hr/custom-commands/data"
+                ]
+              },
+              {
+                "group": "Varijable",
+                "icon": "brackets-curly",
+                "expanded": false,
+                "pages": [
+                  "hr/variables/overview",
+                  {
+                    "group": "Osnovni kontekst",
+                    "expanded": false,
+                    "pages": [
+                      "hr/variables/general",
+                      "hr/variables/user",
+                      "hr/variables/target",
+                      "hr/variables/guild",
+                      "hr/variables/channel",
+                      "hr/variables/message",
+                      "hr/variables/date",
+                      "hr/variables/bot",
+                      "hr/variables/command"
+                    ]
+                  },
+                  {
+                    "group": "Sustavi i događaji",
+                    "expanded": false,
+                    "pages": [
+                      "hr/variables/level",
+                      "hr/variables/boost",
+                      "hr/variables/moderator",
+                      "hr/variables/punishment",
+                      "hr/variables/giveaway",
+                      "hr/variables/winner",
+                      "hr/variables/ticket",
+                      "hr/variables/verification",
+                      "hr/variables/economy",
+                      "hr/variables/invite"
+                    ]
+                  },
+                  {
+                    "group": "Logika i pohrana",
+                    "expanded": false,
+                    "pages": [
+                      "hr/variables/arguments",
+                      "hr/variables/random",
+                      "hr/variables/conditionals",
+                      "hr/variables/customdb",
+                      "hr/variables/actions"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Glazba",
+                "icon": "music",
+                "expanded": false,
+                "pages": [
+                  "hr/features/music",
+                  "hr/features/spotify",
+                  "hr/features/lastfm"
+                ]
+              },
+              {
+                "group": "Pomoć",
+                "icon": "circle-question",
+                "expanded": false,
+                "pages": [
+                  "hr/troubleshooting/common-issues"
+                ]
+              }
             ]
           }
         ]
@@ -185,7 +1270,7 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Support",
+          "anchor": "Discord",
           "icon": "messages",
           "href": "https://discord.gg/NYs2jF9MCc"
         }

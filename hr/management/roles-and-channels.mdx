@@ -1,0 +1,226 @@
+---
+title: "Uloge i kanali"
+description: "Stvorite i organizirajte Discord uloge i kanale pomoću Rumijevih upravljačkih naredbi."
+icon: "layer-group"
+---
+
+Rumi može stvarati, pregledavati, dodjeljivati, preimenovati, mijenjati boje, brisati i vraćati uloge. To
+također može stvoriti i organizirati tekst, glas, kategoriju, pozornicu, forum i
+kanali za najave.
+
+## Hijerarhija uloga je na prvom mjestu
+
+Discord dopušta botu samo upravljanje ulogama ispod njegove najviše uloge. Isto pravilo
+primjenjuje se na člana koji izvodi naredbu uloge. Prije rješavanja problema neuspješno
+dodjele, provjerite redoslijed u **Postavke poslužitelja → Uloge**.
+
+I član i Rumi trebate **Upravljanje ulogama** za `role` upravljanje
+naredba.
+
+## Stvorite i provjerite uloge
+
+```text
+-role create Event Host --color #c8d8f2
+-role info Event Host
+-role rename Event Host Events Team
+-role color Events Team #6A8FB3
+```
+
+Koristite spominjanje ili ID kada više uloga dijeli ime.
+
+## Dodajte i uklonite uloge
+
+```text
+-role add @member Member
+-role remove @member Member
+```
+
+Rumi provjerava ciljnog člana i hijerarhiju uloga prije primjene promjene.
+
+## Svrhe povezanih uloga
+
+Povezana uloga pohranjuje naziv namjene koji se može ponovno koristiti, kao što je `staff`, protiv an
+postojeći Discord uloga:
+
+```text
+-role connect staff @Staff
+-role list
+-role disconnect staff
+```
+
+Ovo ne stvara drugu ulogu. To daje Rumi stabilna svrha za pozivanje
+čak i ako se uloga inače koristi u većem tijeku rada.
+
+## Izbriši i vrati
+
+`role delete` čuva snimku vraćanja. `role restore` obnavlja najnovije
+obrisana ili promijenjena snimka uloga koju podržava naredba:
+
+```text
+-role delete Old Staff
+-role restore
+```
+
+Restauracija stvara ili ažurira Discord stanje iz pohranjene snimke; to
+ne može poništiti nepovezane promjene napravljene izvana Rumi nakon brisanja.
+
+## Pridružite se ulogama
+
+Automatski dodijelite uloge ljudima, botovima ili oboma kada se pridruže:
+
+```text
+-joinrole add human @Member
+-joinrole add bot @Bot
+-joinrole add both @Community
+-joinrole list
+```
+
+Uklonite odabrane uloge ili izbrišite jednu ciljnu skupinu:
+
+```text
+-joinrole remove human @Member
+-joinrole clear bot
+```
+
+Rumi i dalje treba sjediti iznad svake konfigurirane uloge pridruživanja.
+
+## Osobne booster uloge
+
+Aktivni pojačivači poslužitelja mogu stvoriti i oblikovati ulogu koja Rumi upravlja za njih:
+
+```text
+-boosterrole view
+-boosterrole create Moonlight
+-boosterrole rename Pink Dawn
+-boosterrole color #ff88cc
+-boosterrole color #ff88cc, #ffddee
+```
+
+Dvobojni obrazac zahtijeva Discord's gradient role boja. da li Discord
+prikazuje svaku ulogu značajka izgleda može ovisiti o dostupnoj ulozi poslužitelja
+značajke.
+
+Postavite ikonu uloge iz privitka, URL-a slike, Unicode emojija ili prilagođene Discord
+spominjanje emotikona. Koristiti `clear` da biste ga uklonili:
+
+```text
+-boosterrole icon ✨
+-boosterrole icon <:sparkle:123456789012345678>
+-boosterrole icon https://example.com/icon.png
+-boosterrole icon clear
+```
+
+### Podijelite ulogu pomoćnika
+
+Booster koji posjeduje ulogu može je podijeliti s drugim članovima:
+
+```text
+-boosterrole share @friend
+-boosterrole share remove @friend
+```
+
+Osoblje s **Upravljanje ulogama** može provjeriti sve vlasnike i dionice te postaviti koliko
+članovi s kojima svaki vlasnik može dijeliti:
+
+```text
+-boosterrole share list
+-boosterrole share limit 3
+-boosterrole share limit none
+```
+
+`boosterrole limit off` onemogućuje stvaranje na cijelom poslužitelju; razlikuje se od
+ograničenje dijeljenja:
+
+```text
+-boosterrole limit on
+-boosterrole limit off
+```
+
+### Položaj i čišćenje
+
+Zadržite generirane uloge unutar predviđenog odjeljka popisa uloga imenovanjem a
+gornje i donje sidro:
+
+```text
+-boosterrole hoist @Booster Top @Booster Bottom
+```
+
+Oba sidra moraju ostati upravljiva Rumi. Čišćenje uklanja staro vlasništvo
+i dijeljenja nakon promjena statusa pojačanja:
+
+```text
+-boosterrole cleanup
+-boosterrole cleanup auto on
+-boosterrole cleanup auto off
+```
+
+### Filtri naziva i ikona
+
+Jednostavni filtri riječi blokiraju neželjeni tekst u nazivima uloga pojačivača:
+
+```text
+-boosterrole filter add admin
+-boosterrole filter remove admin
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+Premium poslužitelji mogu dodati filtre regularnih izraza za preciznije podudaranje:
+
+```text
+-boosterrole regex filter add ^admin
+-boosterrole regex filter list
+-boosterrole regex filter remove ^admin
+-boosterrole regex filter clear
+```
+
+Dodajte samo regularni izraz koji razumijete; širok obrazac može odbiti obična imena.
+Filtriranje teksta ikona i kombinirani prikaz postavki dostupni su putem:
+
+```text
+-boosterrole filtericon nsfw on
+-boosterrole filters
+```
+
+## Reakcijske uloge
+
+The `reactionrole` naredba, također dostupna kao `rr`, povezuje emoji na a
+poruka za ulogu:
+
+```text
+-help reactionrole
+```
+
+Upotrijebite trenutni unos pomoći za redoslijed argumenata poruke, emojija i uloge.
+Reakcijske uloge zahtijevaju Rumi za čitanje ciljane poruke, dodavanje reakcija i
+upravljati odabranom ulogom.
+
+## Stvorite kanale
+
+```text
+-channel create text announcements
+-channel create voice Lounge
+-channel create category Events
+-channel create text event-chat --category Events
+```
+
+Podržane vrste kanala su `text`, `voice`, `category`, `stage`, `forum`, i
+`announcement`.
+
+## Preimenovanje, premještanje i brisanje kanala
+
+```text
+-channel rename #old-name new-name
+-channel move #event-chat Events
+-channel move #event-chat 3
+-channel delete #temporary
+```
+
+Ako nijedan kanal nije dostavljen za podržanu radnju, Rumi može koristiti struju
+kanal. Spominjanje kanala sigurnije je kada se radi o destruktivnoj akciji
+uključeni.
+
+<Warning>
+Brisanje kanala je trajno uključeno Discord. Provjerite spominjanje u svojoj naredbi
+prije slanja; vraćanje uloga ne vraća izbrisane kanale.
+</Warning>

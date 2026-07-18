@@ -1,0 +1,136 @@
+---
+title: "Problèmes courants"
+description: "Résolvez les problèmes courants de commande, d’autorisation, de langue, de gestion et de musique."
+icon: "wrench"
+---
+
+## Rumi ne répond pas
+
+1. Confirmez Rumi est en ligne.
+2. Confirmez qu'il peut voir la chaîne et envoyer des messages.
+3. Vérifiez le préfixe et l'orthographe de la commande.
+4. Essayez `/help` ou `-help`.
+5. Vérifiez si la commande est limitée à un serveur ou à un message direct.
+
+## Il manque une commande slash
+
+Discord L'actualisation des commandes enregistrées globalement peut prendre du temps. Redémarrage Discord,
+vérifiez l'autorisation de commande d'application du bot et essayez le formulaire de préfixe.
+
+## La langue n'a pas changé
+
+Courir `-language` pour afficher la langue effective et sa source. Ensuite, réglez le
+portée prévue explicitement :
+
+```text
+-language user de
+-language server de
+```
+
+La langue personnelle est prioritaire sur la langue du serveur. Modifications à l'échelle du serveur
+nécessiter l'autorisation de l'administrateur.
+
+## Rumi j'ai quitté le serveur
+
+Rumi laisse les serveurs sans activité enregistrée pendant 30 jours pour préserver les ressources
+et la stabilité des services. Vous pouvez inviter Rumi encore une fois à tout moment. Une fois que les membres utilisent
+le serveur et Rumi enregistre l'activité, la fenêtre d'inactivité normale redémarre.
+
+## Une commande de gestion est refusée
+
+Courir `-help <command>` et vérifiez les exigences des membres et des robots. Pour le rôle
+ou des changements de chaîne, DiscordLa hiérarchie des rôles s'applique toujours. Rumi ne peut pas gérer
+un rôle égal ou supérieur à son rôle le plus élevé.
+
+## Je ne trouve pas de bannissement ou de kick
+
+Rumi intentionnellement, ne fournit pas un usage général `ban` ou `kick` commandes par
+défaut. Cela permet de réduire les exigences d'autorisation de base. Serveur
+les gestionnaires peuvent créer des flux de travail soigneusement restreints avec le
+[système de commande personnalisé](../custom-commands/overview).
+
+## La musique ne démarre pas
+
+Confirmez que vous êtes sur un canal vocal, Rumi peut se connecter et parler, et la musique
+le service est disponible.
+
+Si Rumi rejoint mais ne joue pas, essayez un nom de piste ou une URL directe, puis inspectez
+la file d'attente. Une page de playlist ou de plateforme peut échouer même lorsque la lecture directe fonctionne
+car son fournisseur externe n'est pas disponible.
+
+## Spotify les contrôles me demandent de rétablir le lien
+
+Les fonctionnalités du lecteur, de l'appareil, de la liste de lecture et des chansons appréciées utilisent différentes Spotify
+autorisations. Courir `-spotify link` à nouveau et approuvez l'autorisation mise à jour.
+Les liens existants créés avant l'ajout de ces fonctionnalités ne bénéficient pas d'un nouvel accès
+automatiquement.
+
+SpotifyLes commandes des appareils personnels de nécessitent un Spotify appareil et Spotify
+Prime. Ouvrir Spotify sur l'appareil souhaité, démarrez la lecture une fois, puis exécutez :
+
+```text
+-spotify devices
+-spotify player status
+```
+
+## Un rôle de niveau n'est pas attribué
+
+Vérifiez les trois conditions :
+
+1. Rumi a **Gérer les rôles**.
+2. RumiLe rôle le plus élevé de est au-dessus du rôle de récompense.
+3. Le jalon apparaît dans `-levels settings`.
+
+Après avoir corrigé la configuration, exécutez `-levels sync` pour réconcilier les rôles de récompense en utilisant
+la configuration actuelle.
+
+## Les invitations à rejoindre sont inconnues
+
+Rafraîchir RumiInstantané d'invitation actuel :
+
+```text
+-invites refresh
+```
+
+Rumi ne peut pas garantir l'attribution lorsqu'une invitation a été supprimée, un lien personnalisé a été
+utilisé, l'accès sur invitation est manquant, ou Discord n'a pas fourni suffisamment d'état pour
+identifier quel compteur a changé. L'actualisation de l'instantané facilite les futures jointures, mais
+ne reconstruit pas les anciens.
+
+## La conversion multimédia échoue
+
+Essayez une entrée plus petite ou plus courte et utilisez une pièce jointe directe ou une URL de fichier. Pour
+conversion vidéo, réduire `--duration`; pour la sortie GIF, réduisez la durée, le cadre
+taux ou largeur. Les téléchargements de la plateforme dépendent du service multimédia et peuvent même échouer
+lorsque les fichiers joints fonctionnent.
+
+## Une commande personnalisée s'imprime `N/A`
+
+La variable existe, mais sa valeur source n'était pas présente lors de cette exécution. Une cible
+une variable, par exemple, a besoin d'une cible résoluble. Ajoutez une solution de secours :
+
+```text
+{target.display_name|No member selected}
+```
+
+Utiliser `-cc show <name>` pour inspecter le script enregistré et l'aperçu `-cc <name>
+[exemples d'arguments]` pour le reproduire en toute sécurité. Le [guide de test](../custom-commands/testing-and-debugging)
+parcourt chaque couche.
+
+## Une action personnalisée est refusée
+
+Les actions protégées vérifient le membre de configuration, le membre exécutant le
+commande, Rumiles autorisations de, la cible, la hiérarchie des rôles et celles de la commande
+restrictions. Revoir:
+
+```text
+-cc show <name>
+-cc restrictions <name>
+-permissions @member
+```
+
+Ne supprimez pas toutes les restrictions juste pour faire passer l’action. Corriger le spécifique
+problème de rôle, de canal, d'autorisation ou de hiérarchie.
+
+Si le problème persiste, rejoignez le
+[serveur d'assistance](https://discord.gg/NYs2jF9MCc).

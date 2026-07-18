@@ -1,0 +1,48 @@
+---
+title: "行会变量"
+description: "Rumi 支持 35 个公会变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;guild.afk_channel&#125;</code> | 公会的 Afk 频道。 | <code>公会 afk 频道示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.afk_timeout&#125;</code> | 公会 Afk 超时。 | <code>公会 ak 超时示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.banner&#125;</code> | 横幅图像 URL。来源：公会。 | <code>公会横幅示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.boost_count&#125;</code> | 当前服务器提升计数。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.boost_tier&#125;</code> | 当前服务器提升层。 | <code>2级</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.category_channels&#125;</code> | 公会的类别频道。 | <code>公会类别频道示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.category_channels_count&#125;</code> | 公会类别频道数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.channels&#125;</code> | 公会渠道。 | <code>公会频道示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.channels_count&#125;</code> | 公会频道数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.count&#125;</code> | 当前会员人数。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.created_at&#125;</code> | Discord-格式化的创建时间。来源：公会。 | <code>&lt;t:1781460000:F&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.created_at_timestamp&#125;</code> | 创建时间的 Unix 时间戳。来源：公会。 | <code>&lt;t:1781460000:F&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.discovery&#125;</code> | 公会的发现。 | <code>公会发现示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.emoji_count&#125;</code> | 服务器中自定义表情符号的数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.icon&#125;</code> | 图标图像 URL。来源：公会。 | <code>公会图标示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.id&#125;</code> | Discord 当前服务器的ID。 | <code>123456789012345678</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.key_features&#125;</code> | 公会的主要特点。 | <code>公会主要功能示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.max_members&#125;</code> | 公会最大成员数。 | <code>公会最大成员示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.max_presences&#125;</code> | 公会的最大存在人数。 | <code>公会最大存在人数示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.max_video_channel_users&#125;</code> | 公会的最大视频频道用户数。 | <code>公会最大视频频道用户示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.member_count&#125;</code> | 当前会员人数。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.name&#125;</code> | 当前服务器名称。 | <code>鲁米发展</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.owner_id&#125;</code> | 公会的所有者 ID。 | <code>公会所有者 ID 示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.preferred_locale&#125;</code> | 公会的首选区域设置。 | <code>公会首选区域设置示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.region&#125;</code> | 公会区域。 | <code>公会区域示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.role_count&#125;</code> | 服务器中的角色数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.shard&#125;</code> | 公会碎片。 | <code>公会碎片示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.splash&#125;</code> | 飞溅公会。 | <code>公会飞溅示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.text_channels&#125;</code> | 公会的文本频道。 | <code>公会文本频道示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.text_channels_count&#125;</code> | 公会的文本频道数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.vanity&#125;</code> | 公会的虚荣心。 | <code>公会虚荣心示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.voice_channels&#125;</code> | 公会语音频道。 | <code>公会语音频道示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;guild.voice_channels_count&#125;</code> | 公会语音频道数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;server.id&#125;</code> | Discord ID。来源：服务器。 | <code>123456789012345678</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;server.name&#125;</code> | 当前服务器名称。 | <code>鲁米发展</code> | 嵌入、自定义命令、自动回复、调用消息 |

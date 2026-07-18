@@ -1,0 +1,82 @@
+---
+title: "Intégrations et composants"
+description: "Créez des intégrations structurées, des boutons de lien, des contrôles d'action, des listes déroulantes et une sortie paginée."
+icon: "panels-top-left"
+---
+
+Rumic'est `$v{...}` les blocs décrivent Discord contenu des messages. Ils peuvent être mélangés
+avec du texte ordinaire et des variables.
+
+## Intégrer les propriétés
+
+```text
+-cc set profile [member] --
+$v{embed}
+$v{author: {target.display_name|{user.display_name}} && {target.avatar|{user.avatar}}}
+$v{title: Member profile}
+$v{description: Requested by {user.mention}}
+$v{thumbnail: {target.avatar|{user.avatar}}}
+$v{field: Account && {target.name|{user.name}} && true}
+$v{field: Joined && {target.joined_at|Unavailable} && true}
+$v{color: 6A8FB3}
+$v{footer: Rumi custom commands && {bot.avatar}}
+$v{timestamp: {date.utc_now}}
+```
+
+Les propriétés d'intégration prises en charge sont `title`, `description`/`desc`, `url`, `color`,
+`image`/`gif`, `thumbnail`/`thumb`, `timestamp`, `footer`, `author`, et
+`field`. Utiliser `&&` à l'intérieur des auteurs, des pieds de page et des champs pour séparer leurs parties.
+
+<Accordion title="Limites de discorde appliquées par Rumi">
+  Un message peut contenir jusqu'à 10 intégrations et 5 lignes de composants. Une intégration permet
+  25 champs, un titre de 256 caractères, une description de 4 096 caractères et 6 000
+  nombre total de caractères de texte. Les étiquettes des boutons sont limitées à 80 caractères et un
+  la liste déroulante peut contenir jusqu'à 25 options.
+</Accordion>
+
+## Boutons de lien
+
+Les boutons de lien n’exécutent pas d’action de robot :
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{button: label=Support && url=https://discord.gg/NYs2jF9MCc && emoji=💬}
+```
+
+## Boutons d'action
+
+Les boutons sans URL créent une session d'interaction. L'action passe toujours
+les mêmes contrôles d'autorisation, de cible, de hiérarchie de rôles et de restrictions utilisés par un
+action directe de commande personnalisée.
+
+```text
+$v{button: Confirm && danger && action=mod:warn target && await=true && once=true}
+```
+
+Les options de contrôle utiles incluent `reply=...`, `ephemeral=true`, `dm=true`,
+`await=true`, `once=true`, `expires=10m`, et `allow_role=@Role`.
+
+## Listes déroulantes
+
+Les deux premières parties sont le nom interne et l'espace réservé. Chaque suite
+utilisations des options `label|action|description|emoji`:
+
+```text
+$v{dropdown: color && Choose a color && Red|reply=You chose red|Warm|🔴 && Blue|reply=You chose blue|Cool|🔵}
+```
+
+## Plusieurs pages et intégrations
+
+Utiliser `$v{embed}` pour démarrer une autre intégration dans le même message. Mettre `$v{page}` sur
+sa propre ligne pour démarrer une page navigable distincte :
+
+```text
+$v{embed}$v{title: Page one}$v{description: First section}
+$v{page}
+$v{embed}$v{title: Page two}$v{description: Second section}
+```
+
+Courez toujours `-cc preview <name>` après avoir ajouté des composants. Aperçu des captures
+URL, couleurs, tailles de champs non valides et Discord limites des composants avant les membres
+utilisez la commande.
+

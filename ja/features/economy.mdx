@@ -1,0 +1,186 @@
+---
+title: "サーバーの経済性"
+description: "通貨、特典、銀行、送金、ショップ、強盗、カジノの制限を設定します。"
+icon: "coins"
+---
+
+各サーバーには独自のサーバーがあります Rumi 経済。通貨名、報酬額、設定、
+残高とショップアイテムは共有されるのではなく、そのサーバーのエコノミーに保持されます。
+関係のないコミュニティ間。
+
+## メンバーができること
+
+日常的なコマンドは簡単です。
+
+```text
+-balance
+-balance @member
+-daily
+-weekly
+-work
+-deposit 500
+-deposit all
+-withdraw 250
+-give @member 100
+-economytop
+```
+
+現金と銀行残高は別です。 `deposit` 現金を銀行に移す。
+`withdraw` それを元に戻します。で行われた転送 `give` の影響を受ける可能性があります
+サーバーに設定された譲渡税。
+
+## 初期設定
+
+**サーバーの管理**を持つメンバーは、設定を検査および編集できます。
+
+```text
+-economy config
+-economy config currency petals
+-economy config icon 🌸
+-economy config daily 250
+-economy config weekly 2500
+-economy config work 50 350
+-economy config cooldown work 3600
+```
+
+作業範囲は最小支払額と最大支払額です。クールダウンが入力されます
+エコノミーコンフィギュレーションコマンドの秒数。
+
+システム全体を無効にせずにエコノミー コマンドを無効にします。
+
+```text
+-economy config disable rob
+-economy config enable rob
+```
+
+`economy config reset confirm` 設定をデフォルトにリセットしますが、
+残高を削除しないでください。 `economy reset confirm` は異なります。リセットします。
+サーバーのユーザー残高。読む Rumiいずれもご使用前によくご確認ください。
+
+## 強盗とカジノ ゲーム
+
+ロビングは調整または無効にすることができます。
+
+```text
+-economy rob
+-economy rob on
+-economy rob cooldown 3600
+-economy rob limits 25 500
+-economy rob chance 35
+-economy rob fine 20
+-economy rob protection 12
+```
+
+会員が利用する `-rob @member [amount]`. Rumi 保存されたチャンス、制限を適用します。
+失敗時の罰金、クールダウン、および保護期間。
+
+カジノのコントロールも同様に機能します。
+
+```text
+-economy casino on
+-economy casino cooldown 20
+-economy casino limits 10 1000
+-casino coinflip 100 heads
+-casino slots 100
+```
+
+## ショップと在庫
+
+メンバーはサーバー ショップを閲覧したり、アイテムを購入したり、在庫を調べたり、
+サポートされているアイテムを販売する:
+
+```text
+-shop
+-shop view <item>
+-buy <item>
+-inventory
+-sell <item>
+```
+
+### ショップアイテムを構築する
+
+**サーバーの管理**を持つメンバーは、サーバー ショップ アイテムを作成および維持できます。の
+作成フォーマットは `name`, `buy price`、オプション `sell price`、 それから `|` そして
+説明：
+
+```text
+-shop add coffee 150 45 | Fresh server coffee
+-shop add vip-pass 5000 0 | Unlocks the VIP role
+-shop view coffee
+```
+
+項目名は単一のトークンなので、 `vip-pass` それよりも `VIP pass`。売り
+の価格 `0` アイテムが販売されたときに通貨が返されないようにします。 `edit` 用途
+同じ完全な形式:
+
+```text
+-shop edit coffee 175 50 | A warm drink and a small energy boost
+```
+
+より小さな変更の場合は、焦点を当てたコマンドを使用します。
+
+```text
+-shop price coffee 200
+-shop sellprice coffee 60
+-shop desc coffee A limited seasonal drink
+-shop remove coffee
+```
+
+### ロールバックアイテム
+
+1 つ以上添付してください Discord アイテムに対する役割:
+
+```text
+-shop role add vip-pass @VIP
+-shop role add vip-pass @Supporter
+-shop role remove vip-pass @Supporter
+```
+
+Rumi 関連付けられた各ロール、つまりその最上位のロールを管理できる必要があります
+彼らの上に座らなければなりません Discordの役割リスト。
+
+### アイテムコードとギフトカード
+
+アイテム コードはアイテムに対して保存され、スタッフが管理できます。
+
+```text
+-shop code create vip-pass WELCOME1
+-shop code remove vip-pass WELCOME1
+```
+
+ギフト カードは、アイテムに関連付けられた引き換え可能な通貨コードです。供給してください
+コードの後の通貨金額と使用回数:
+
+```text
+-shop giftcard create vip-pass LAUNCH500 500 25
+-shop giftcard remove vip-pass LAUNCH500
+```
+
+メンバーは次の方法で有効なコードを引き換えます。
+
+```text
+-shop redeem LAUNCH500
+```
+
+引き換えが成功するたびに、設定された金額がそのメンバーの特典に追加されます。
+収益と 1 回の使用を消費します。ギフトカード コードをプライベート リンクのように扱います: 誰でも
+有効なコードを知っている人は、使用期間が残っている間にそれを引き換えることができます。
+
+`rumishop` は Rumiのグローバルボットショップであり、サーバーで構成されたボットショップとは別のものです
+店。
+
+## 変更の監査
+
+Rumi エコノミー設定の変更とトランザクションを記録します。
+
+```text
+-economy audit
+-economy logs
+```
+
+これらは、報酬、税金、強盗設定、またはカジノ制限を変更した後に役立ちます。
+
+<Tip>
+最初に控えめな報酬と賭け金制限を設定します。増やす方が簡単です
+過度に寛大なセットアップ後にバランスを修復するよりも、経済のペースに合わせて調整してください。
+</Tip>

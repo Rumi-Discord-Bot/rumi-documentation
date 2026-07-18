@@ -1,0 +1,132 @@
+---
+title: "Medios e incrustaciones"
+description: "Edite imágenes y videos, exporte medios y cree incrustaciones de Discord reutilizables."
+icon: "photo-film"
+---
+
+RumiEl comando multimedia acepta archivos adjuntos, URL directas y, en los casos compatibles.
+acciones: los medios adjuntos a un mensaje respondido. Las herramientas integradas se vuelven compactas
+guión en un Discord incrustar que se puede obtener una vista previa, guardar y reutilizar.
+
+## Elegir entrada de medios
+
+La entrada menos ambigua es un archivo adjunto directo o URL:
+
+```text
+-media blur https://example.com/image.png 3
+-media bgremove https://example.com/photo.jpg
+```
+
+También puede responder a un mensaje que contenga medios y ejecutar el comando sin un
+URL. Si la fuente es una página de plataforma en lugar de un archivo directo, la disponibilidad
+depende de si RumiEl servicio de medios de Soporta esa plataforma.
+
+## Efectos de imagen
+
+Las acciones de imagen actuales incluyen:
+
+- `blur [amount]`
+- `brightness [amount]`
+- `contrast [amount]`
+- `deepfry`
+- `flip`
+- `glitch`
+- `grayscale`
+- `invert`
+- `jail-bars`
+- `pixelate [factor]`
+- `resize <width>x<height>`
+- `rotate [degrees]`
+- `vaporwave`
+- `wasted`
+
+Ejemplos:
+
+```text
+-media pixelate 18
+-media resize 512x512
+-media rotate 180
+```
+
+## Subtítulos
+
+```text
+-media caption Welcome to the server
+-media caption --position=top --size=42 --color=#ffffff Welcome!
+```
+
+Los indicadores de subtítulos incluyen posición, familia de fuentes, color de texto, color de fondo y
+tamaño de fuente. Usar `-help media caption` para los alias actuales y la forma aceptada.
+
+## Conversión GIF y MP4
+
+```text
+-media gif <url>
+-media mp4 <url> --start 10s --duration 30s
+-media togif <url> --start 5s --duration 6s --fps 12 --width 480
+```
+
+`media gif` recupera el archivo multimedia o GIF original compatible. `media mp4`
+crea un MP4 descargable, mientras `media togif` crea un clip GIF corto.
+Rumi aplica límites de entrada, salida, duración y procesamiento para que una fuente grande
+Es posible que necesite un clip más corto o dimensiones más pequeñas.
+
+## Eliminación de fondo
+
+```text
+-media bgremove
+```
+
+Adjunte una imagen, incluya una URL de imagen o responda a una imagen. Rumi devuelve un
+PNG transparente cuando el servicio de eliminación de fondo configurado tiene éxito.
+
+## Insertar scripts
+
+Comience con una vista previa:
+
+```text
+-embed preview {embed}$v{title: Rules}$v{description: Read the channels below.}$v{color: 6A8FB3}
+```
+
+`{embed}` inicia el script de inserción. Cada `$v{property: value}` agrega una propiedad.
+Por ejemplo:
+
+```text
+{embed}
+$v{title: Event night}
+$v{description: Join us at {timestamp}.}
+$v{field: Where && #events && true}
+$v{field: Host && {user.mention} && true}
+$v{thumbnail: {guild.icon}}
+$v{color: 6A8FB3}
+```
+
+Las tres partes del campo son nombre, valor y si debe estar en línea.
+
+## Guardar y reutilizar incrustaciones
+
+```text
+-embed save event <script>
+-embed list
+-embed load event
+-embed edit event <updated script>
+-embed delete event
+```
+
+Envíe un script directamente al canal actual o especifique otro canal:
+
+```text
+-embed send {embed}$v{description: Hello!}
+-embed send #announcements {embed}$v{title: Update}$v{description: New event this weekend.}
+```
+
+Usar `-embed validate <script>` cuando solo desea comentarios de sintaxis. Insertar guardado
+Las plantillas y los comandos personalizados comparten las mismas ideas de script de inserción, por lo que
+[guía de incrustaciones y componentes](../custom-commands/embeds-and-components) es útil
+para ambos.
+
+<Warning>
+Rumi no puedo hacer Discord aceptar una inserción que exceda Discordcampo, texto o
+límites de los componentes. Valide y obtenga una vista previa de guiones largos antes de enviarlos a un
+canal público.
+</Warning>

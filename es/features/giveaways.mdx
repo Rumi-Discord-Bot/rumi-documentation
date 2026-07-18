@@ -1,0 +1,374 @@
+---
+title: "Sorteos"
+description: "Cree, programe, repita, restrinja, pondere y administre obsequios."
+icon: "gift"
+---
+
+Rumi puede realizar sorteos de botones o reacciones, elegir hasta 25 ganadores, guardar y reutilizar
+ajustes preestablecidos, aplicar condiciones de elegibilidad, otorgar entradas de bonificación, programar una sesión posterior
+Comience y repita un sorteo en un intervalo fijo.
+
+Esta guía utiliza el valor predeterminado `-` prefijo. Reemplácelo si su servidor usa un personalizado
+prefijo.
+
+## Iniciar un sorteo
+
+La forma más rápida utiliza cuatro valores en este orden:
+
+```text
+-giveaway start "Discord Nitro" 24h 2 #giveaways
+```
+
+1. `"Discord Nitro"` es el premio. Coloque comillas alrededor de los premios que contengan espacios.
+2. `24h` es cuánto tiempo permanece abierta la entrada.
+3. `2` es el número de ganadores, de 1 a 25.
+4. `#giveaways` es opcional. Sin él, Rumi utiliza el canal de sorteo configurado y luego el canal actual.
+
+Las duraciones admiten segundos, minutos, horas, días y semanas: `30s`, `45m`, `12h`,
+`3d`, o `2w`. Un sorteo debe durar al menos 10 segundos y no más de
+365 días.
+
+### Botón o entrada de reacción
+
+La entrada del botón es la predeterminada a menos que la configuración del servidor indique lo contrario:
+
+```text
+-giveaway start "Profile colour" 2h 1 --button
+```
+
+Usar `--reaction` para la entrada de la reacción. Añade un emoji después o déjalo fuera.
+para usar 🎉:
+
+```text
+-giveaway start "Nitro" 24h 1 --reaction 🎟️
+-giveaway start "Mystery prize" 30m 1 --reaction
+```
+
+Rumi necesita **Agregar reacciones** y **Leer historial de mensajes** para reaccionar
+obsequios. Ambos modos de entrada requieren **Enviar mensajes** e **Incrustar enlaces** en el
+canal de sorteos.
+
+## Banderas de apariencia y entrega
+
+Las banderas se pueden colocar después de los valores iniciales requeridos. Cite cualquier valor de varias palabras.
+
+| Bandera | que cambia |
+| --- | --- |
+| `--winners <count>` | Anula el recuento de ganadores posicionales. |
+| `--host <user\|me>` | Muestra a otro miembro como anfitrión. |
+| `--title <text>` | Reemplaza el título de inserción. |
+| `--description <text>` | Agrega texto de cuerpo personalizado. |
+| `--footer <text>` | Agrega un pie de página para insertar. |
+| `--image <url>` | Agrega una imagen incrustada grande. El valor debe ser una URL HTTP(S). |
+| `--thumbnail <url>` | Agrega una pequeña miniatura para insertar. |
+| `--color <hex>` | Cambia el color de inserción, por ejemplo. `#c8d8f2`. |
+| `--content <text>` | Coloca texto sin formato encima de la inserción. `--message` También se acepta. |
+| `--button-label <text>` | Cambia el texto del botón de entrada. |
+| `--button-emoji <emoji>` | Coloca un emoji en el botón de entrada. |
+| `--button-style <style>` | Usos `primary`, `secondary`, `success`, o `danger`. |
+| `--winner-message <text>` | Cambia el mensaje enviado cuando se seleccionan los ganadores. |
+| `--end-message <text>` | Cambia el mensaje utilizado cuando finaliza el sorteo. |
+| `--dm-winner <true\|false>` | Anula la configuración de DM del ganador del servidor para este sorteo. |
+| `--preset <name>` | Carga un ajuste preestablecido guardado antes de aplicar las otras banderas. |
+
+Por ejemplo:
+
+```text
+-giveaway start "Two months of Nitro" 3d 2 #giveaways --button --title "Weekend draw" --description "Press the button below to enter." --color #b7a7ff --dm-winner true
+```
+
+## ID y gestión diaria
+
+Rumi le da a cada sorteo una ID de servidor corta, como `#1`. Comandos que piden
+un documento de identidad también acepta el Discord ID del mensaje.
+
+```text
+-giveaway list
+-giveaway list active
+-giveaway list scheduled
+-giveaway info #1
+-giveaway entries #1
+-giveaway stats
+-giveaway stats user @moon
+```
+
+`list` acepta `active`, `ended`, `cancelled`, o `scheduled`. `entries` aparece
+hasta 25 entradas válidas. `stats user` informa las entradas registradas del miembro y gana
+en los sorteos del servidor que Rumi cheques.
+
+### Editar, finalizar, cancelar y volver a publicar
+
+```text
+-giveaway edit #1 --prize "Nitro Basic" --winners 2
+-giveaway edit #1 --duration 6h --title "Extended draw"
+-giveaway end #1
+-giveaway cancel #1
+-giveaway cancel #1 --delete-message
+-giveaway reroll #1 --winners 2
+```
+
+- `edit` cambia sólo los campos proporcionados. `--duration 6h` establece el final en seis horas desde la edición.
+- `end` cierra un sorteo activo inmediatamente y selecciona a sus ganadores.
+- `cancel` lo cierra sin seleccionar ganadores. El mensaje permanece a menos que `--delete-message` se utiliza.
+- `reroll` selecciona ganadores de reemplazo entre las entradas elegibles en un sorteo finalizado.
+
+## Condiciones de elegibilidad
+
+Una condición controla quién puede participar o ganar. Las condiciones se combinan con **Y**:
+un miembro debe pasar todas las condiciones aplicables.
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 100
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition list #1
+```
+
+### Ámbitos de condición
+
+| Alcance | Cuando Rumi lo comprueba | Bueno para |
+| --- | --- | --- |
+| `entry` | Cuando el miembro presiona el botón o agrega la reacción. | Requisitos inmediatos que deberían bloquear la entrada. |
+| `winner` | Cuando Rumi selecciona o vuelve a lanzar los ganadores. | Requisitos que pueden cambiar antes de que finalice el sorteo. |
+| `both` | Al ingresar y nuevamente durante la selección del ganador. | Reglas que deben seguir siendo válidas durante todo el sorteo. |
+
+Si un participante del botón no pasa la verificación de entrada, Rumi les dice por qué. Si una reacción
+el participante falla, Rumi elimina su reacción. Un miembro que no pasa un control de ganador es
+saltado y Rumi continúa buscando un ganador elegible.
+
+### Cada tipo de condición
+
+| Tipo | Banderas requeridas | Significado |
+| --- | --- | --- |
+| `messages` | `--min <count>` | Requiere al menos el número indicado de mensajes grabados por Rumi en este servidor. |
+| `vc_time` | `--min <duration>` | Requiere al menos el tiempo de voz registrado indicado, como `10h`. `vc-time` También se acepta. |
+| `server_age` | `--min <duration>` | Requiere que el miembro haya estado en el servidor actual durante ese tiempo. |
+| `account_age` | `--min <duration>` | Requiere el Discord cuenta debe tener al menos esa antigüedad. |
+| `role` | `--role <role>` | Requiere un rol. |
+| `not_role` | `--role <role>` | Rechaza a los miembros que tienen el rol. |
+| `boosting` | ninguno | Requiere un impulso activo para el servidor actual. |
+| `verified` | ninguno | Requiere completar DiscordEvaluación de membresía. esto no es RumiEl sistema de verificación de captcha de. |
+| `warnings` | `--max <count>` | No permite más que el número indicado de registros de advertencia en este servidor. |
+| `bans` | `--max <count>` | No permite más que el número indicado de acciones de prohibición registradas en este servidor. |
+| `mutual_server` | `--server <server-id>` | Requiere membresía en otro servidor que también tenga Rumi. |
+| `invited_to_server` | `--server <server-id>`, opcionalmente `--inviter <user\|me>` | Requiere seguimiento de membresía en el servidor de destino a través del invitador requerido. |
+| `inviter` | igual que `invited_to_server` | Alias ​​para la condición del historial de invitaciones. |
+| `joined_via_invite` | igual que `invited_to_server` | Alias ​​para la condición del historial de invitaciones. |
+
+`warnings` y `bans` son máximos, entonces `--max 0` significa que no hay advertencias registradas o
+acciones de prohibición. Las configuraciones más antiguas pueden usar `--min` para estos dos tipos; Rumi todavía acepta
+eso, pero `--max` es más claro.
+
+### Ejemplos de condiciones prácticas
+
+Requerir 250 mensajes rastreados antes de la entrada:
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 250
+```
+
+Requiere una cuenta con 30 días de antigüedad y siete días en el servidor:
+
+```text
+-giveaway condition add #1 --type account_age --scope both --min 30d
+-giveaway condition add #1 --type server_age --scope both --min 7d
+```
+
+Permitir miembros pero excluir una función silenciada:
+
+```text
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition add #1 --type not_role --scope both --role @Muted
+```
+
+Requiere cinco horas de seguimiento de la actividad de voz cuando se sortean los ganadores:
+
+```text
+-giveaway condition add #1 --type vc_time --scope winner --min 5h
+```
+
+Requerir membresía en otra comunidad:
+
+```text
+-giveaway condition add #1 --type mutual_server --scope entry --server 123456789012345678
+```
+
+Requerir que un miembro se haya unido a un servidor asociado a través de su invitación:
+
+```text
+-giveaway condition add #1 --type invited_to_server --scope both --server 123456789012345678 --inviter me
+```
+
+Para condiciones de invitación, Rumi debe estar en el servidor de destino, el participante aún debe
+ser miembro allí, y Rumi necesita **Administrar servidor** allí para mantener la invitación
+seguimiento. El historial de invitaciones no se puede reconstruir para uniones que nunca se realizaron
+grabado.
+
+Elimine una regla utilizando el ID de condición que se muestra en `condition list`, o eliminar todo
+normas:
+
+```text
+-giveaway condition remove #1 cond-1234
+-giveaway condition clear #1
+```
+
+## Entradas de bonificación
+
+Cada miembro válido comienza con una entrada. Las reglas de bonificación añaden peso a esa entrada;
+no pasan por alto las condiciones. Los bonos coincidentes se acumulan, pero un miembro no puede ganar
+más de un lugar ganador en el mismo sorteo.
+
+```text
+-giveaway bonus add #1 --role @VIP --entries 2
+-giveaway bonus add #1 --messages 500 --entries 1
+-giveaway bonus add #1 --vc-time 10h --entries 3
+-giveaway bonus add #1 --booster --entries 2
+```
+
+Los tipos de bonos disponibles son:
+
+| Bandera | ¿Quién recibe el peso extra? |
+| --- | --- |
+| `--role <role>` | Miembros con el rol seleccionado. |
+| `--messages <count>` | Miembros que igualen o superen el recuento de mensajes rastreados. |
+| `--vc-time <duration>` | Miembros en o por encima del tiempo de voz registrado. |
+| `--booster` | Impulsores de servidor actuales. |
+
+`--entries` acepta del 1 al 100. Por ejemplo, un miembro normal tiene una oportunidad;
+un miembro que coincide `--entries 2` tiene tres entradas ponderadas en total.
+
+```text
+-giveaway bonus list #1
+-giveaway bonus remove #1 bonus-1234
+```
+
+## Preajustes
+
+Los ajustes preestablecidos guardan un diseño de obsequio completo para que el personal no tenga que repetir un largo proceso.
+conjunto de banderas.
+
+```text
+-giveaway preset create nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --color #b7a7ff
+-giveaway preset list
+-giveaway preset view nitro
+-giveaway start --preset nitro
+```
+
+Edite sólo lo que necesita cambiar; los demás campos guardados permanecen intactos:
+
+```text
+-giveaway preset edit nitro --duration 48h --winners 2
+```
+
+Banderas suministradas junto `--preset` anular sus valores guardados para ese
+donar:
+
+```text
+-giveaway start --preset nitro --winners 3 --title "Three winners today"
+```
+
+Elimine un ajuste preestablecido cuando ya no sea necesario:
+
+```text
+-giveaway preset delete nitro
+```
+
+Eliminar un ajuste preestablecido no cancela los obsequios ni las reglas recurrentes que ya estaban
+creado a partir de él.
+
+## Sorteos programados
+
+La programación almacena el sorteo ahora y lo publica más tarde:
+
+```text
+-giveaway schedule --starts-in 2h --prize "Discord Nitro" --duration 24h --winners 1 --channel #giveaways --button
+```
+
+`--starts-in` es el retraso antes de la publicación. `--duration` es cuanto tiempo de entrada
+permanece abierto **después Rumi lo publica**. El corredor de fondo comprueba aproximadamente
+cada 30 segundos, por lo que la publicación puede ocurrir poco después del tiempo objetivo exacto.
+
+Todas las banderas de apariencia del comando de inicio también funcionan con `schedule`. Puede
+también programar desde un preset:
+
+```text
+-giveaway schedule --starts-in 1d --preset nitro --channel #events
+```
+
+Antes de que comience, el sorteo aparece en:
+
+```text
+-giveaway list scheduled
+-giveaway info #1
+```
+
+Usar `giveaway cancel #1` si el sorteo programado nunca debe publicarse.
+Las filas programadas siguen venciendo si Discord o el canal de destino está temporalmente
+no disponible, permitiendo Rumi para volver a intentarlo en un pase de corredor posterior.
+
+## Sorteos recurrentes
+
+Una regla recurrente crea un nuevo obsequio en un intervalo fijo. el mas confiable
+La configuración es construir e inspeccionar un ajuste preestablecido primero:
+
+```text
+-giveaway preset create weekly-nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --channel #giveaways
+-giveaway recurring create weekly --every 7d --preset weekly-nitro
+```
+
+También puedes poner la carga útil del sorteo directamente en la regla:
+
+```text
+-giveaway recurring create daily-coins --every 1d --prize "10,000 coins" --duration 2h --winners 1 --channel #giveaways --button
+```
+
+Comportamiento recurrente importante:
+
+- El primer sorteo comienza completo. `--every` intervalo después de la creación de la regla.
+- Cada ejecución crea su propio ID de sorteo, mensaje, entradas y ganadores.
+- El programa avanza desde su cadencia prevista, por lo que los pequeños retrasos de los corredores no se modifican en cada carrera posterior.
+- Una publicación fallida se vuelve a intentar después de unos cinco minutos en lugar de omitir todo el intervalo.
+- La regla almacena una instantánea de la configuración del sorteo. Editar el ajuste preestablecido original más tarde no cambia una regla recurrente existente; elimine y vuelva a crear la regla para aplicar el nuevo ajuste preestablecido.
+- Eliminar una regla evita ejecuciones futuras pero no cancela un sorteo que ya creó.
+
+```text
+-giveaway recurring list
+-giveaway recurring delete weekly
+```
+
+## Configuración del sorteo del servidor
+
+Miembros con **Administrar servidor**, administradores y el sorteo configurado
+El rol de administrador puede gestionar los obsequios. El anfitrión del sorteo también puede finalizar o cancelar su
+propio sorteo. La visualización de listas, información, entradas y estadísticas permanece disponible
+sin acceso de gestión.
+
+```text
+-giveaway config view
+-giveaway config channel #giveaways
+-giveaway config channel off
+-giveaway config manager-role @Giveaway Manager
+-giveaway config manager-role off
+-giveaway config default-entry button
+-giveaway config default-entry reaction
+-giveaway config default-color #c8d8f2
+-giveaway config dm-winners on
+-giveaway config remove-entry-on-leave on
+-giveaway config log-channel #giveaway-logs
+-giveaway config log-channel off
+```
+
+| Configuración | Efecto |
+| --- | --- |
+| `channel` | Destino predeterminado cuando una carga útil de inicio, programación, preajuste o recurrente no nombra un canal. |
+| `manager-role` | Permite que esa función administre obsequios sin otorgar amplios permisos de administración del servidor. |
+| `default-entry` | Elige el botón o la entrada de reacción cuando no se proporciona ninguna bandera. |
+| `default-color` | Establece el color de incrustación predeterminado. |
+| `dm-winners` | Intenta enviar un mensaje directo a los ganadores. Los mensajes directos cerrados pueden impedir la entrega. |
+| `remove-entry-on-leave` | Invalida una entrada cuando su miembro abandona el servidor. |
+| `log-channel` | Envía registros de gestión de sorteos al canal seleccionado. |
+
+<Tip>
+Primero cree un sorteo de prueba breve y luego agregue condiciones y reglas de bonificación antes.
+compartiéndolo ampliamente. `-giveaway info #1` es la forma más rápida de confirmar la actual
+recuento de entradas, condiciones, reglas de bonificación, anfitrión, estado y enlace de mensaje.
+</Tip>

@@ -1,0 +1,159 @@
+---
+title: "カスタムコマンドレシピ"
+description: "引数、埋め込み、ランダム値、カウンター、クールダウン、スタッフ ワークフローの完全な例をコピーします。"
+icon: "book-open"
+---
+
+一度に 1 つのレイヤーを構築します。コマンドを保存し、現実的な入力でプレビューします。
+次に、保護されたアクションの前に制限を追加します。
+
+<AccordionGroup>
+  <Accordion title="簡単なウェルカムコマンド">
+    ```text
+    -cc set hello -- Hello {user.mention}! Welcome to **{guild.name}**.
+    ```
+
+    でテストします `-cc preview hello`.
+  </Accordion>
+
+  <Accordion title="必要なメッセージを繰り返します">
+    ```text
+    -cc set say <text...> -- {text}
+    ```
+
+    ランニング `-say The event starts soon` 残りの引数全体を返します。
+  </Accordion>
+
+  <Accordion title="ランダムな応答を選択する">
+    ```text
+    -cc set snack -- {choose:Cookie|Cake|Fruit|Popcorn}
+    ```
+
+    結果を再利用する場合は、結果に名前を付けます。
+
+    ```text
+    -cc set lucky --
+    {range:number:1-100}
+    Your lucky number is **{number}**.
+    ```
+  </Accordion>
+
+  <Accordion title="メンバープロフィールカードを作成する">
+    ```text
+    -cc set profile [member] --
+    $v{embed}
+    $v{title: {target.display_name|{user.display_name}}}
+    $v{thumbnail: {target.avatar|{user.avatar}}}
+    $v{field: Account created && {target.created_at|{user.created_at}} && false}
+    $v{field: Joined server && {target.joined_at|{user.joined_at}} && false}
+    $v{color: 6A8FB3}
+    ```
+
+    試す `-profile @member` そして `-profile`.
+  </Accordion>
+
+  <Accordion title="カスタムデータの使用数をカウントする">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    You have used this command **{db.get:visits:{user.id}}** times.
+    ```
+
+    スタンドアロンのミューテーションは、生のミューテーションを出力せずに値を更新します。
+    結果。で検査してください `-cc data get visits <user-id>`.
+  </Accordion>
+
+  <Accordion title="クールダウン報酬">
+    ```text
+    -cc set treat --
+    {cooldown:24h}
+    {range:reward:50-150}
+    {econ:add user && reward && Custom daily treat}
+    You received **{reward}** coins.
+    ```
+
+    経済活動は保護されます。コマンドを制限し、安全なツールでテストする
+    公開前の金額です。
+  </Accordion>
+
+  <Accordion title="スタッフの警告ワークフロー">
+    ```text
+    -cc set staffwarn <target> <reason...> --
+    {mod:warn target && {reason}}
+    Warned {target.mention}: **{reason}**
+    ```
+
+    ```text
+    -cc requireperm staffwarn ModerateMembers
+    -cc allow staffwarn role @Staff
+    -cc allow staffwarn channel #staff-commands
+    ```
+
+    Rumi 実行時にランナー、ボットの権限、ターゲット、およびロールの階層をチェックします。
+    実行します。
+  </Accordion>
+
+  <Accordion title="2 ページのサーバー ガイド">
+    ```text
+    -cc set guide --
+    $v{embed}$v{title: Getting started}$v{description: Read #rules and choose your roles.}
+    $v{page}
+    $v{embed}$v{title: Need help?}$v{description: Ask in #support.}
+    ```
+  </Accordion>
+
+  <Accordion title="スタッフに異なる反応を示す">
+    ```text
+    -cc set panel --
+    {if:user has permission ManageMessages}
+    Staff controls are available in #staff-commands.
+    {else}
+    Ask a staff member if you need help.
+    {endif}
+    ```
+
+    メンバーのライブをチェックします Discord コマンドごとに許可
+    走る。その許可は与えられません。
+  </Accordion>
+
+  <Accordion title="ユーザーごとの訪問マイルストーン">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    {if:{db.get:visits:{user.id}} >= 10}
+    Welcome back {user.mention}. You have visited at least ten times.
+    {else}
+    Welcome {user.mention}. Visit number: {db.get:visits:{user.id}}.
+    {endif}
+    ```
+
+    名前空間は `visits`;それぞれ Discord ユーザー ID は別のキーです。
+  </Accordion>
+
+  <Accordion title="別のチャネルで応答する">
+    ```text
+    -cc set suggestion <text...> --
+    {respond:#suggestions}
+    $v{embed}
+    $v{author: {user.display_name} && {user.avatar}}
+    $v{description: {text}}
+    $v{footer: Submitted from {channel.name}}
+    ```
+
+    送信を受け入れる必要があるチャネルにコマンドを制限します。
+    Rumi 宛先チャネルで埋め込みを表示および送信できる必要があります。
+  </Accordion>
+
+  <Accordion title="トリガーメッセージに反応して削除する">
+    ```text
+    -cc set submit <text...> --
+    {react:✅}
+    {delete}
+    Submission received: {text}
+    ```
+
+    `{delete}` 次の場合にメンバーのトリガー メッセージを削除します。 Rumi **管理あり
+    メッセージ**。トリガーが消える前にリアクションが追加されます。 Discord
+    それを許可します。
+  </Accordion>
+</AccordionGroup>

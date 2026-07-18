@@ -1,0 +1,99 @@
+---
+title: "Igre"
+description: "Igrajte interaktivne igre Discord i potražite podržane profile i poslužitelje igara."
+icon: "gamepad"
+---
+
+RumiModul Igre korisnika sadrži dvije vrste naredbi: igre koje se igraju unutar Discord
+i pretrage koje dohvaćaju javne informacije od pružatelja igre ili platforme.
+Naredbe za igre trenutno su samo prefiksi.
+
+## Interaktivne igre
+
+### Kamen, škare za papir
+
+```text
+-rps play bo3
+-rps challenge @member bo5
+-rps stats
+-rps leaderboard
+```
+
+Podudaranja koriste privatne izbore gumba gdje je to potrebno. Najbolje vrijednosti koje podržava
+naredba su `bo1`, `bo3`, `bo5`, `bo7`, i `bo9`.
+
+### Tic-tac-toe i mine
+
+```text
+-tictactoe @member
+-mines
+```
+
+Oba koriste interaktivne komponente. Samo igrači priključeni igri mogu
+upravljati njegovim gumbima.
+
+### Brze igre chata
+
+```text
+-fasttype
+-fasttype Type this exact custom phrase
+-mathrace hard
+-unscramble 5 20
+```
+
+`fasttype` čeka prvu točnu frazu, `mathrace` čeka prvi
+točan odgovor, i `unscramble` trči utrku riječi. Njihov izborni broj se mijenja
+ciljni rezultat ili vrijeme gdje ih naredba podržava.
+
+### Čaj i igre preživljavanja
+
+```text
+-blacktea 3 20
+-greentea 5 15
+-redtea 3 20
+-whitetea 3 20
+-wordchain 3 20
+-forbiddenword 30
+```
+
+Varijante čaja koriste različita pravila eliminacije. čitati `-help <game>` prije a
+veća sesija kako bi svi znali nagrađuje li runda brzinu, važeće riječi,
+ili izbjegavanje fragmenta.
+
+### Male igre
+
+```text
+-coinflip
+-roll 2d20
+-slots
+-coinrace
+```
+
+Oni ne koriste poslužiteljsko gospodarstvo. Ekonomske kasino igre su ispod
+`-casino`, a ne modul Igre.
+
+## Traženje igara i platformi
+
+Modul trenutno uključuje naredbe za Roblox, Minecraft, Fortnite, Steam,
+Valorant, Apex Legends, Overwatch, League of Legends, osu!, Clash of Clans,
+Grupe Clash Royale, Brawl Stars i Roblox.
+
+Primjeri iz trenutnih naredbi:
+
+```text
+-roblox user Builderman
+-roblox avatar Builderman
+-minecraft status play.example.net
+-minecraft player Notch
+-fortnite <account>
+```
+
+Trčanje `-help roblox`, `-help minecraft`, ili odgovarajuću naredbu igre prije a
+traženje. Svaki pružatelj očekuje drugačije korisničko ime, oznaku, regiju, ID računa ili
+adresa poslužitelja.
+
+<Info>
+Podaci traženja dolaze iz vanjskih usluga igara. Privatni profil, nevažeći
+identifikator, ispad pružatelja usluga ili nedostatak dodatne API integracije može spriječiti a
+rezultat čak i dok Rumi sama je online.
+</Info>

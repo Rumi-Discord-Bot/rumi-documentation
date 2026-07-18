@@ -1,0 +1,41 @@
+---
+title: "Strafvariabelen"
+description: "28 strafvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;punishment.audit_reason&#125;</code> | Redentekst van Discord auditlogboeken indien beschikbaar. | <code>Geen reden opgegeven.</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.case_id&#125;</code> | Vriendelijke casus-ID voor de straf. | <code>WAARSCHUW-A1B2</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.channel&#125;</code> | Kanaalvermelding of kanaalwaarde. Bron: straf. | <code>Voorbeeld strafkanaal</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.channel.mention&#125;</code> | Vermeld het kanaal dat aan de moderatiegebeurtenis is gekoppeld. | <code>&lt;@123456789012345678&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.created_at&#125;</code> | Discord-geformatteerde aanmaaktijd. Bron: straf. | <code>&lt;t:1781460000:F&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.created_at_timestamp&#125;</code> | Unix-tijdstempel voor aanmaaktijd. Bron: straf. | <code>&lt;t:1781460000:F&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.duration&#125;</code> | Duur van tijdelijke straffen, zoals de duur van de time-out. | <code>10m</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.executor.id&#125;</code> | Discord ID van de uitvoerder van het auditlogboek wanneer Discord legt het bloot. | <code>123456789012345678</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.executor.mention&#125;</code> | Vermeld de uitvoerder van het auditlogboek wanneer Discord legt het bloot. | <code>&lt;@123456789012345678&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.executor.tag&#125;</code> | Gebruikersnaamtag van de uitvoerder van het auditlogboek wanneer Discord legt het bloot. | <code>gebruikersnaam</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.expires_at&#125;</code> | Discord-geformatteerde vervaltijd voor tijdelijke straffen. | <code>&lt;t:1781460000:F&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.expires_at_timestamp&#125;</code> | Unix-tijdstempel voor vervaltijd. Bron: straf. | <code>&lt;t:1781460000:F&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.guild&#125;</code> | Gilde voor straf. | <code>Voorbeeld strafgilde</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.invite_url&#125;</code> | Uitnodigings-URL. Bron: straf. | <code>Voorbeeld van een strafuitnodigings-URL</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.public_id&#125;</code> | Publiekvriendelijke case-ID indien beschikbaar. | <code>GEVAL-42</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.reason&#125;</code> | Reden verbonden aan de straf of zaak. | <code>Herhaalde spam</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.role&#125;</code> | Rolnaam of rolwaarde. Bron: straf. | <code>Voorbeeld strafrol</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.role_id&#125;</code> | Discord rol-ID. Bron: straf. | <code>Voorbeeld strafrol id</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.role_mention&#125;</code> | Vermeld de betrokken rol. Bron: straf. | <code>Voorbeeld strafrol vermelden</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.type&#125;</code> | Straftype, zoals waarschuwen, verbannen, schoppen, time-out, rol_toevoegen of rol_verwijderen. | <code>waarschuwen</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.user&#125;</code> | Geef de gebruiker weer die wordt beïnvloed door een moderatieactie. | <code>Voorbeeld strafgebruiker</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.user.avatar&#125;</code> | URL van avatarafbeelding. Bron: strafgebruiker. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.user.created_at&#125;</code> | Discord-geformatteerde aanmaaktijd. Bron: strafgebruiker. | <code>&lt;t:1781460000:F&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.user.id&#125;</code> | Discord ID van de gestrafte gebruiker. | <code>123456789012345678</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.user.joined_at&#125;</code> | Discord-geformatteerde server-deelnametijd. Bron: strafgebruiker. | <code>&lt;t:1781460000:F&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.user.mention&#125;</code> | Vermeld de gebruiker die gestraft is. | <code>&lt;@123456789012345678&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.user.name&#125;</code> | Gebruikersnaam van de gestrafte gebruiker. | <code>Rumi</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |
+| <code>&#123;punishment.user.tag&#125;</code> | Discord gebruikersnaamtag/discriminatorstijlwaarde voor de gestrafte gebruiker. | <code>gebruikersnaam</code> | Moderatielogboeken, oproepen van berichten, waarschuwingen/ban/kick/time-outreacties |

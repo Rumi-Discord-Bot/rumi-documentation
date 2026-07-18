@@ -1,0 +1,76 @@
+---
+title: "Dernier.fm"
+description: "Liez Last.fm pour afficher des profils, des scrobbles, des graphiques, des morceaux aimés, des collages et des comparaisons de goûts."
+icon: "lastfm"
+---
+
+Last.fm liaison permet Rumi lire le message d'un utilisateur Last.fm profil et historique d’écoute.
+Il ne contrôle pas Spotify lecture ou Rumic'est Discord file d'attente vocale.
+
+## Associer un compte
+
+```text
+-lastfm link
+```
+
+Ouvrez le lien d'autorisation unique Rumi fournit et termine le Last.fm couler.
+Ensuite, confirmez la connexion :
+
+```text
+-lastfm profile
+```
+
+Déconnectez-le avec :
+
+```text
+-lastfm unlink
+```
+
+## Écoute actuelle et récente
+
+```text
+-lastfm nowplaying
+-lastfm recent
+-lastfm loved
+```
+
+`nowplaying` affiche la piste active lorsque Last.fm marque quelqu'un comme jouant;
+sinon, il peut afficher le dernier scrobble.
+
+La plupart des commandes d'affichage acceptent un autre lien Discord membre ou un Last.fm
+nom d'utilisateur:
+
+```text
+-lastfm nowplaying @member
+-lastfm recent some_lastfm_name
+```
+
+## Graphiques
+
+```text
+-lastfm toptracks 1month
+-lastfm topartists overall @member
+-lastfm topalbums 3month
+-lastfm collage 1month
+```
+
+Le point précède le membre facultatif ou le nom d’utilisateur. `collage` renvoie un
+résumé de l'album sous forme de graphique utilisant les données d'écoute disponibles sur Last.fm.
+
+## Comparez les goûts d'écoute
+
+Les deux Discord les membres ont besoin de comptes liés :
+
+```text
+-lastfm compare @member
+-lastfm compare @member 1month
+```
+
+Rumi compare les artistes et les morceaux partagés pour la période choisie. Le résultat est
+basé sur Last.fm scrobbles, donc l’écoute non scrobble ne sera pas incluse.
+
+<Info>
+Last.fm et Spotify sont des connexions distinctes. Utiliser `-spotify link` pour personnel
+Spotify commandes, listes de lecture et chansons appréciées ; utiliser `-lastfm link` pour les scrobbles
+et Last.fm graphiques.
+</Info>

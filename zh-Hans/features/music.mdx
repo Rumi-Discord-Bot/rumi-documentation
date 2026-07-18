@@ -1,0 +1,46 @@
+---
+title: "音乐"
+description: "将 Rumi 连接到语音并使用其音乐命令。"
+icon: "music"
+---
+
+跑步 `-help music` 查找当前可用的音乐命令及其
+句法。
+
+## 基本流程
+
+1. 加入 Discord 语音频道。
+2. 使用支持的搜索词或 URL 运行播放命令。
+3. 使用队列控件来管理播放。
+4. 断开连接 Rumi 当播放结束时。
+
+<Note>
+音乐可用性取决于单独的轻量级音乐服务。如果音乐
+命令有响应但无法开始播放，请检查服务状态或联系
+支持。
+</Note>
+
+使用 `-help <command>` 在运行音乐命令之前查看其当前选项
+和要求。
+
+## 常用控件
+
+```text
+-play <song, playlist, or supported URL>
+-queue
+-nowplaying
+-pause
+-resume
+-skip
+-volume 65
+-seek 1:30
+-loop track
+-shuffle
+```
+
+Rumi的语音队列和用户的个人 Spotify 设备单独播放
+目标。命令如 `-pause` 控制 Rumi 在 Discord 嗓音。命令如
+作为 `-spotify pause` 控制链接用户的活跃度 Spotify 连接设备。
+
+看 [Spotify 链接和控制](./spotify) 对于播放列表，喜欢
+歌曲、设备和移动 Spotify 库曲目进入 Discord 语音队列。

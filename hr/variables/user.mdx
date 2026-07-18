@@ -1,0 +1,43 @@
+---
+title: "Korisničke varijable"
+description: "30 korisničkih varijabli koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;user&#125;</code> | Prikažite korisnika koji je pokrenuo odgovor. | <code>&lt;@123456789012345678&gt;</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.avatar&#125;</code> | URL avatara za korisnika koji pokreće. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.badges&#125;</code> | Značke za korisnika. | <code>Primjeri korisničkih bedževa</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.badges_icons&#125;</code> | Značke Ikone za korisnika. | <code>Primjer ikona korisničkih bedževa</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.banner&#125;</code> | URL slike natpisa. Izvor: korisnik. | <code>Primjer korisničkog bannera</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.boost_count&#125;</code> | Broj pojačanja za korisnika. | <code>128</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.boost_since&#125;</code> | Boost Since za korisnika. | <code>Primjer povećanja korisnika od</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.boost_since_timestamp&#125;</code> | Unix vremenska oznaka za pojačanje od. | <code>1781460000</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.color&#125;</code> | Boja za korisnika. | <code>Primjer korisničke boje</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.created_at&#125;</code> | Discord- formatirano vrijeme kada je korisnički račun kreiran. | <code>&lt;t:1781460000:F&gt;</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.created_at_timestamp&#125;</code> | Unix vremenska oznaka za vrijeme stvaranja. Izvor: korisnik. | <code>&lt;t:1781460000:F&gt;</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.display_avatar&#125;</code> | Prikaži Avatar za korisnika. | <code>Primjer korisničkog prikaza avatara</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.display_name&#125;</code> | Ime poslužitelja za prikaz ili nadimak člana koji pokreće. | <code>Mjesečina</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.global_name&#125;</code> | Globalno ime za prikaz korisnika koji je pokrenuo. | <code>Primjer globalnog imena korisnika</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.guild_avatar&#125;</code> | Guild Avatar za korisnika. | <code>Primjer avatara saveza korisnika</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.guild_banner&#125;</code> | Guild Banner za korisnika. | <code>Primjer natpisa saveza korisnika</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.id&#125;</code> | Discord ID korisnika koji pokreće. | <code>123456789012345678</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.is_boost&#125;</code> | Je Boost za korisnika. | <code>Primjer korisnika je boost</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.is_bot&#125;</code> | Je bot za korisnika. | <code>Primjer korisnika je bot</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.join_position&#125;</code> | Pozicija pridruživanja za korisnika. | <code>Primjer pozicije pridruživanja korisnika</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.join_position_sfx&#125;</code> | Join Position Sfx za korisnika. | <code>Primjer sfx pozicije pridruživanja korisnika</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.joined_at&#125;</code> | Discord-formatirano vrijeme kada se član pridružio ovom poslužitelju. | <code>&lt;t:1781460000:F&gt;</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.joined_at_timestamp&#125;</code> | Unix vremenska oznaka za vrijeme pridruživanja poslužitelju. Izvor: korisnik. | <code>&lt;t:1781460000:F&gt;</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.mention&#125;</code> | Navedite korisnika koji je pokrenuo poruku. | <code>&lt;@123456789012345678&gt;</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.name&#125;</code> | Korisničko ime korisnika koji pokreće. | <code>Rumi</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.role_list&#125;</code> | Navedite popis korisničkih uloga, prvo najviši. | <code>Primjer popisa korisničkih uloga</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.role_list_text&#125;</code> | Popis s običnim tekstom korisničkih uloga, prvo najviši. | <code>Primjer teksta popisa korisničkih uloga</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.tag&#125;</code> | Discord vrijednost stila oznake korisničkog imena/diskriminatora kada je dostupna. | <code>korisničko ime</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.top_role&#125;</code> | Vrhunska uloga za korisnika. | <code>Primjer najviše uloge korisnika</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;user.username&#125;</code> | Korisničko ime korisnika koji pokreće. | <code>Primjer korisničkog imena korisnika</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |

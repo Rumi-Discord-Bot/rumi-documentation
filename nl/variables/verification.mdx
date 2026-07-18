@@ -1,0 +1,22 @@
+---
+title: "Verificatievariabelen"
+description: "9 verificatievariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;verification.captcha_code&#125;</code> | Captcha-code voor verificatie. | <code>Voorbeeld van verificatie-captcha-code</code> | Verificatiepanelen en verificatieberichten |
+| <code>&#123;verification.channel&#125;</code> | Kanaalvermelding of kanaalwaarde. Bron: verificatie. | <code>Voorbeeld verificatiekanaal</code> | Verificatiepanelen en verificatieberichten |
+| <code>&#123;verification.channel_id&#125;</code> | Discord kanaal-ID. Bron: verificatie. | <code>Voorbeeld van verificatiekanaal-ID</code> | Verificatiepanelen en verificatieberichten |
+| <code>&#123;verification.mode&#125;</code> | Geconfigureerde modus. Bron: verificatie. | <code>Voorbeeld verificatiemodus</code> | Verificatiepanelen en verificatieberichten |
+| <code>&#123;verification.status&#125;</code> | Huidige status. Bron: verificatie. | <code>Voorbeeld verificatiestatus</code> | Verificatiepanelen en verificatieberichten |
+| <code>&#123;verification.unverified_role&#125;</code> | Niet-geverifieerde rol voor verificatie. | <code>Voorbeeld van verificatie van niet-geverifieerde rol</code> | Verificatiepanelen en verificatieberichten |
+| <code>&#123;verification.unverified_role_id&#125;</code> | Niet-geverifieerde rol-ID voor verificatie. | <code>Voorbeeld van verificatie van niet-geverifieerde rol-ID</code> | Verificatiepanelen en verificatieberichten |
+| <code>&#123;verification.verified_role&#125;</code> | Geverifieerde rol voor verificatie. | <code>Voorbeeld verificatie geverifieerde rol</code> | Verificatiepanelen en verificatieberichten |
+| <code>&#123;verification.verified_role_id&#125;</code> | Geverifieerde rol-ID voor verificatie. | <code>Voorbeeld verificatie geverifieerde rol-ID</code> | Verificatiepanelen en verificatieberichten |

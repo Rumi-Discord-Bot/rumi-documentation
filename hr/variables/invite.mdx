@@ -1,0 +1,24 @@
+---
+title: "Pozovite varijable"
+description: "11 pozivnih varijabli koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;invite.channel&#125;</code> | Spominjanje kanala ili vrijednost kanala. Izvor: poziv. | <code>Primjer poziva kanala</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.channel_id&#125;</code> | Discord ID kanala. Izvor: poziv. | <code>Primjer pozivnog ID-a kanala</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.code&#125;</code> | Kod za pozivnicu. | <code>Primjer koda pozivnice</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.created_at&#125;</code> | Discord- formatirano vrijeme izrade. Izvor: poziv. | <code>&lt;t:1781460000:F&gt;</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.created_at_timestamp&#125;</code> | Unix vremenska oznaka za vrijeme stvaranja. Izvor: poziv. | <code>&lt;t:1781460000:F&gt;</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.inviter&#125;</code> | Pozivnica za pozivnicom. | <code>Primjer invite inviter</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.inviter_id&#125;</code> | ID pozivatelja za pozivnicu. | <code>Primjer ID-a pozivatelja pozivnice</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.inviter_mention&#125;</code> | Spominjanje pozivatelja za pozivnicu. | <code>Primjer invite spominjanje pozivatelja</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.max_uses&#125;</code> | Max Koristi za pozivnicu. | <code>Primjer maksimalne upotrebe poziva</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.url&#125;</code> | Izravni URL. Izvor: poziv. | <code>https://discord.com/channels/123/456/789</code> | Pozovite poruke za praćenje i zapisnike |
+| <code>&#123;invite.uses&#125;</code> | Koristi se za pozivnice. | <code>Primjeri upotrebe poziva</code> | Pozovite poruke za praćenje i zapisnike |

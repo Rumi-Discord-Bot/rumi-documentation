@@ -1,0 +1,22 @@
+---
+title: "Überprüfungsvariablen"
+description: "9 von Rumi unterstützte Verifizierungsvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;verification.captcha_code&#125;</code> | Captcha-Code zur Verifizierung. | <code>Beispiel für einen Verifizierungs-Captcha-Code</code> | Verifizierungsfelder und Verifizierungsmeldungen |
+| <code>&#123;verification.channel&#125;</code> | Kanalerwähnung oder Kanalwert. Quelle: Verifizierung. | <code>Beispiel eines Verifizierungskanals</code> | Verifizierungsfelder und Verifizierungsmeldungen |
+| <code>&#123;verification.channel_id&#125;</code> | Discord Kanal-ID. Quelle: Verifizierung. | <code>Beispiel für eine Verifizierungskanal-ID</code> | Verifizierungsfelder und Verifizierungsmeldungen |
+| <code>&#123;verification.mode&#125;</code> | Konfigurierter Modus. Quelle: Verifizierung. | <code>Beispiel für einen Verifizierungsmodus</code> | Verifizierungsfelder und Verifizierungsmeldungen |
+| <code>&#123;verification.status&#125;</code> | Aktueller Stand. Quelle: Verifizierung. | <code>Beispiel für den Verifizierungsstatus</code> | Verifizierungsfelder und Verifizierungsmeldungen |
+| <code>&#123;verification.unverified_role&#125;</code> | Nicht verifizierte Rolle zur Verifizierung. | <code>Beispiel für eine nicht verifizierte Rolle</code> | Verifizierungsfelder und Verifizierungsmeldungen |
+| <code>&#123;verification.unverified_role_id&#125;</code> | Nicht verifizierte Rollen-ID zur Verifizierung. | <code>Beispiel für eine unbestätigte Rollen-ID für die Verifizierung</code> | Verifizierungsfelder und Verifizierungsmeldungen |
+| <code>&#123;verification.verified_role&#125;</code> | Verifizierte Rolle zur Verifizierung. | <code>Beispiel einer verifizierten Rolle</code> | Verifizierungsfelder und Verifizierungsmeldungen |
+| <code>&#123;verification.verified_role_id&#125;</code> | Verifizierte Rollen-ID zur Überprüfung. | <code>Beispiel für eine verifizierte Rollen-ID</code> | Verifizierungsfelder und Verifizierungsmeldungen |

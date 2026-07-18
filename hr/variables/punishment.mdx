@@ -1,0 +1,41 @@
+---
+title: "Varijable kazne"
+description: "28 varijabli kazne koje podupire Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;punishment.audit_reason&#125;</code> | Tekst razloga od Discord revizijski zapisnici kada su dostupni. | <code>Nije naveden razlog.</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.case_id&#125;</code> | Prijateljski slučaj ID za kaznu. | <code>UPOZORI-A1B2</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.channel&#125;</code> | Spominjanje kanala ili vrijednost kanala. Izvor: kazna. | <code>Primjer kanala za kažnjavanje</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.channel.mention&#125;</code> | Navedite kanal povezan s događajem moderiranja. | <code>&lt;@123456789012345678&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.created_at&#125;</code> | Discord- formatirano vrijeme izrade. Izvor: kazna. | <code>&lt;t:1781460000:F&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.created_at_timestamp&#125;</code> | Unix vremenska oznaka za vrijeme stvaranja. Izvor: kazna. | <code>&lt;t:1781460000:F&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.duration&#125;</code> | Trajanje privremenih kazni, kao što je duljina vremenskog ograničenja. | <code>10m</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.executor.id&#125;</code> | Discord ID izvršitelja audit-log-a kada Discord razotkriva ga. | <code>123456789012345678</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.executor.mention&#125;</code> | Navedite izvršitelja revizijskog dnevnika kada Discord razotkriva ga. | <code>&lt;@123456789012345678&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.executor.tag&#125;</code> | Oznaka korisničkog imena izvršitelja revizijskog dnevnika kada Discord razotkriva ga. | <code>korisničko ime</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.expires_at&#125;</code> | Discord-formatirano vrijeme isteka za privremene kazne. | <code>&lt;t:1781460000:F&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.expires_at_timestamp&#125;</code> | Unix vremenska oznaka za vrijeme isteka. Izvor: kazna. | <code>&lt;t:1781460000:F&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.guild&#125;</code> | Ceh za kaznu. | <code>Primjer kaznenog ceha</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.invite_url&#125;</code> | URL poziva. Izvor: kazna. | <code>Primjer URL-a pozivnice za kaznu</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.public_id&#125;</code> | Javno prilagođen ID slučaja kada je dostupan. | <code>SLUČAJ-42</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.reason&#125;</code> | Razlog priložen uz kaznu ili slučaj. | <code>Ponovljena neželjena pošta</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.role&#125;</code> | Naziv uloge ili vrijednost uloge. Izvor: kazna. | <code>Primjer kaznene uloge</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.role_id&#125;</code> | Discord ID uloge. Izvor: kazna. | <code>ID uloge primjera kazne</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.role_mention&#125;</code> | Navedite pogođenu ulogu. Izvor: kazna. | <code>Primjer spominjanja uloge kazne</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.type&#125;</code> | Vrsta kazne, kao što je upozorenje, zabrana, izbacivanje, timeout, role_add ili role_remove. | <code>upozoriti</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.user&#125;</code> | Prikažite korisnika na kojeg utječe radnja moderiranja. | <code>Primjer kažnjavanja korisnika</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.user.avatar&#125;</code> | URL slike avatara. Izvor: korisnik kazne. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.user.created_at&#125;</code> | Discord- formatirano vrijeme izrade. Izvor: korisnik kazne. | <code>&lt;t:1781460000:F&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.user.id&#125;</code> | Discord ID kažnjenog korisnika. | <code>123456789012345678</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.user.joined_at&#125;</code> | Discord- formatirano vrijeme pridruživanja poslužitelju. Izvor: korisnik kazne. | <code>&lt;t:1781460000:F&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.user.mention&#125;</code> | Navedite korisnika koji je kažnjen. | <code>&lt;@123456789012345678&gt;</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.user.name&#125;</code> | Korisničko ime kažnjenog korisnika. | <code>Rumi</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |
+| <code>&#123;punishment.user.tag&#125;</code> | Discord vrijednost stila oznake korisničkog imena/diskriminatora za kažnjenog korisnika. | <code>korisničko ime</code> | Dnevnici moderiranja, pozivanje poruka, odgovori upozorenja/ban/kick/timeout |

@@ -1,0 +1,113 @@
+---
+title: "消息自动化"
+description: "使用匹配模式、冷却时间、权限、渠道、嵌入和自定义数据构建自动回复器和自动反应。"
+icon: "gears"
+---
+
+自动回复器对普通消息做出反应，而无需添加其他公众
+命令。自动反应匹配消息并添加配置的反应。
+
+＃＃ 为什么 `--` 出现在这里
+
+自动回复器具有匹配的标志和响应。最后的独立版
+`--` 结束标志并开始响应：
+
+```text
+-autoresponder set "hello there" --exact -- General Kenobi.
+```
+
+第一个 `--exact` 是一面旗帜。后期的独立版 `--` 是边界。这
+防止响应文本被误认为选项。
+
+## 匹配模式
+
+| 旗帜 | 行为 |
+| --- | --- |
+| `--exact` | 整个消息必须匹配 |
+| `--startswith` | 消息必须以触发器开始 |
+| `--endswith` | 消息必须以触发器结束 |
+| `--contains` | 触发器可能出现在任何地方 |
+| `--match` | 将触发器视为正则表达式 |
+| `--within 30s` | 应用每个用户的冷却时间窗口 |
+
+只选择一种匹配模式。 `exact` 对于类似命令的触发器来说是最安全的；
+`contains` 对于短语很有用； `startswith` 和 `endswith` 保留额外的
+另一侧的文字。 `match` 将触发器解释为正则表达式
+适用于已经习惯测试正则表达式模式的人们。
+
+## 响应和安全标志
+
+```text
+-autoresponder set "rules" --exact --embed -- $v{title: Rules}$v{description: Be kind.}
+-autoresponder set "counter" --exact --db -- {db.inc:uses:{user.id}:1}Count: {db.get:uses:{user.id}}
+-autoresponder set "staff" --exact --require-permission ManageMessages -- Staff response
+-autoresponder set "hello" --contains --ignore-channel #bots -- Hi {user.mention}
+```
+
+`--embed` 解析 `$v{...}` 输出，同时 `--text` 强制使用普通文本。 `--db`
+为该响应者启用自定义数据读取和写入。允许并被忽略
+通道标志保持敏感的自动化范围。
+
+`--require-permission` 检查发送匹配消息的成员。使用一个
+Discord 权限名称例如 `ManageMessages`. `--ignore-channel` 可以是
+当相同的响应应该远离多个渠道时重复。
+
+`--languagedetect` 是一个优质的选择。它将传入的文本翻译成英语
+在匹配之前，这可以让一个英语触发器识别等效的消息
+在其他语言中。它不会翻译保存的响应。
+
+## 列出、测试和删除响应者
+
+Rumi 列表中的自动回复数量：
+
+```text
+-autoresponder list
+-autoresponder test 1
+-autoresponder remove 1
+```
+
+`test` 通过相同的消息自动化路径运行保存的触发器。使用它
+添加变量、自定义数据或操作后，您可以捕获格式错误的错误
+在成员遇到之前做出响应。一台服务器最多可以存储 500 个响应者。
+
+## 独家目标
+
+排他性将一个响应者缩小到特定的渠道、角色或成员。这
+第一个数字是响应者插槽，如下所示 `autoresponder list`:
+
+```text
+-autoresponder exclusive set 1 #general
+-autoresponder exclusive set 1 @Event Team
+-autoresponder exclusive set 1 @member
+-autoresponder exclusive list 1
+```
+
+当响应者应在多个批准的工作中工作时，添加多个目标
+地方或几个经批准的团体。仅删除您不再关注的目标
+需要：
+
+```text
+-autoresponder exclusive remove 1 #general
+```
+
+被忽略的通道和独占通道解决相反的问题：
+`--ignore-channel` 阻止选定的通道，同时独占目标限制
+对选定目标的响应者。
+
+<Warning>
+正则表达式和广义 `--contains` 触发器可以匹配更多消息
+比预期的。从测试通道开始，添加 `--within`，并查看触发器
+在启用受保护的操作之前。
+</Warning>
+
+## 自我反应
+
+自动反应共享相同的核心匹配模式：
+
+```text
+-autoreaction add "good morning" ☀️ ❤️ --startswith
+```
+
+对常用单词使用窄匹配。一个 `contains` 附着在a上的自反应
+短触发可能会比预期更频繁地增加反应。
+

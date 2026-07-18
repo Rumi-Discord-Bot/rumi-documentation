@@ -1,0 +1,49 @@
+---
+title: "Personalführung"
+description: "Bereiten Sie Rollen, Berechtigungen und benutzerdefinierte Arbeitsabläufe für Mitarbeiter vor."
+icon: "user-shield"
+---
+
+RumiDer Bereich Personalmanagement wird erweitert. Heute ist das sichere Fundament
+Rollenverwaltung, Berechtigungsprüfung und eingeschränkte benutzerdefinierte Befehle.
+
+## Bereiten Sie die Rollen der Mitarbeiter vor
+
+Verwenden `role` verwalten Discord Rollen. Rumi unterstützt das Erstellen, Zuweisen,
+Überprüfen, Umbenennen, Umfärben, Löschen und Wiederherstellen von Rollen. Es kann auch
+Verbinden Sie eine Rolle mit einem wiederverwendbaren Zweck:
+
+```text
+-role connect staff @Staff
+-role list
+```
+
+Laufen `-help role` vor dem Rollenwechsel. Die Person, die den Befehl ausführt und Rumi
+beide benötigen Zugriff auf die Rollenverwaltung, und Discord Hierarchie gilt.
+
+## Zugriff prüfen
+
+Verwenden `permissions` (oder `perms`), um die eines Mitglieds zu sehen Discord Berechtigungen und alle
+Rumi-spezifische Berechtigungserteilungen:
+
+```text
+-permissions @member
+```
+
+## Erstellen Sie einen Workflow nur für Mitarbeiter
+
+Benutzerdefinierte Befehle können auf eine zulässige Rolle, einen zulässigen Kanal oder einen zulässigen Benutzer beschränkt werden
+erfordern auch einen Namen Discord Berechtigungen. Dadurch kann jeder Server seine eigenen definieren
+Stabwerkzeuge ohne Rumi Versand umfassender Standardmoderationsbefehle.
+
+```text
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+-cc requireperm <name> ManageMessages
+```
+
+<Warning>
+Einer Rolle die Ausführung eines benutzerdefinierten Befehls zu erlauben, ist eine Sicherheitsentscheidung. Überprüfen Sie die
+gespeichertes Skript mit `-cc show <name>` und teste es damit `-cc preview <name>` vor
+Mitarbeiter nutzen es.
+</Warning>

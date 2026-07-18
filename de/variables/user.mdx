@@ -1,0 +1,43 @@
+---
+title: "Benutzervariablen"
+description: "30 von Rumi unterstützte Benutzervariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;user&#125;</code> | Zeigen Sie den Benutzer an, der die Antwort ausgelöst hat. | <code>&lt;@123456789012345678&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.avatar&#125;</code> | Avatar-URL für den auslösenden Benutzer. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.badges&#125;</code> | Abzeichen für Benutzer. | <code>Beispiel-Benutzerausweise</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.badges_icons&#125;</code> | Abzeichen-Symbole für Benutzer. | <code>Beispiele für Benutzerausweissymbole</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.banner&#125;</code> | Bannerbild-URL. Quelle: Benutzer. | <code>Beispiel für ein Benutzerbanner</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.boost_count&#125;</code> | Anzahl der Boosts für den Benutzer. | <code>128</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.boost_since&#125;</code> | Boost Since für Benutzer. | <code>Beispiel für einen Benutzerboost seitdem</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.boost_since_timestamp&#125;</code> | Unix-Zeitstempel für Boost seit. | <code>1781460000</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.color&#125;</code> | Farbe für Benutzer. | <code>Beispielbenutzerfarbe</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.created_at&#125;</code> | Discord-formatierte Uhrzeit, zu der das Benutzerkonto erstellt wurde. | <code>&lt;t:1781460000:F&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.created_at_timestamp&#125;</code> | Unix-Zeitstempel für die Erstellungszeit. Quelle: Benutzer. | <code>&lt;t:1781460000:F&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.display_avatar&#125;</code> | Avatar für Benutzer anzeigen. | <code>Beispiel für einen Benutzer-Anzeige-Avatar</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.display_name&#125;</code> | Serveranzeigename oder Spitzname des auslösenden Mitglieds. | <code>Mondlicht</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.global_name&#125;</code> | Globaler Anzeigename des auslösenden Benutzers. | <code>Beispiel für einen globalen Benutzernamen</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.guild_avatar&#125;</code> | Gilden-Avatar für Benutzer. | <code>Beispiel für einen Benutzergilden-Avatar</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.guild_banner&#125;</code> | Gildenbanner für Benutzer. | <code>Beispiel für ein Benutzergildenbanner</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.id&#125;</code> | Discord ID des auslösenden Benutzers. | <code>123456789012345678</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.is_boost&#125;</code> | Ist Boost für den Benutzer. | <code>Beispielbenutzer ist boost</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.is_bot&#125;</code> | Ist Bot für Benutzer. | <code>Beispielbenutzer ist Bot</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.join_position&#125;</code> | Beitrittsposition für Benutzer. | <code>Beispiel einer Benutzerbeitrittsposition</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.join_position_sfx&#125;</code> | Join Position Sfx für Benutzer. | <code>Beispiel für eine SFX-Datei für die Beitrittsposition eines Benutzers</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.joined_at&#125;</code> | Discord-formatierte Uhrzeit, zu der das Mitglied diesem Server beigetreten ist. | <code>&lt;t:1781460000:F&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.joined_at_timestamp&#125;</code> | Unix-Zeitstempel für die Serverbeitrittszeit. Quelle: Benutzer. | <code>&lt;t:1781460000:F&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.mention&#125;</code> | Erwähnen Sie den Benutzer, der die Nachricht ausgelöst hat. | <code>&lt;@123456789012345678&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.name&#125;</code> | Benutzername des auslösenden Benutzers. | <code>Rumi</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.role_list&#125;</code> | Erwähnen Sie die Liste der Benutzerrollen, die höchste zuerst. | <code>Beispielliste für Benutzerrollen</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.role_list_text&#125;</code> | Klartextliste der Benutzerrollen, höchste zuerst. | <code>Beispieltext für eine Benutzerrollenliste</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.tag&#125;</code> | Discord Benutzername-Tag/Diskriminator-Stilwert, sofern verfügbar. | <code>Benutzername</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.top_role&#125;</code> | Oberste Rolle für den Benutzer. | <code>Beispiel für die oberste Benutzerrolle</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;user.username&#125;</code> | Benutzername des auslösenden Benutzers. | <code>Beispiel für einen Benutzernamen</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |

@@ -1,0 +1,76 @@
+---
+title: "Last.fm"
+description: "Koppel Last.fm om profielen, scrobbles, grafieken, geliefde nummers, collages en smaakvergelijkingen te bekijken."
+icon: "lastfm"
+---
+
+Last.fm laten koppelen Rumi lees die van een gebruiker Last.fm profiel en luistergeschiedenis.
+Het heeft geen controle Spotify afspelen of Rumi'S Discord stem wachtrij.
+
+## Koppel een account
+
+```text
+-lastfm link
+```
+
+Open de eenmalige autorisatielink Rumi levert en voltooit de Last.fm stroom.
+Bevestig daarna de verbinding:
+
+```text
+-lastfm profile
+```
+
+Ontkoppel het met:
+
+```text
+-lastfm unlink
+```
+
+## Huidig ​​en recent luisteren
+
+```text
+-lastfm nowplaying
+-lastfm recent
+-lastfm loved
+```
+
+`nowplaying` toont het actieve nummer wanneer Last.fm markeert er één als spelend;
+anders kan het de laatste scrobble weergeven.
+
+De meeste weergaveopdrachten accepteren een andere gekoppelde opdracht Discord lid of een Last.fm
+gebruikersnaam:
+
+```text
+-lastfm nowplaying @member
+-lastfm recent some_lastfm_name
+```
+
+## Grafieken
+
+```text
+-lastfm toptracks 1month
+-lastfm topartists overall @member
+-lastfm topalbums 3month
+-lastfm collage 1month
+```
+
+De punt komt vóór het optionele lid of de gebruikersnaam. `collage` retourneert een
+albumoverzicht in grafiekstijl met behulp van de luistergegevens die beschikbaar zijn via Last.fm.
+
+## Vergelijk luistersmaak
+
+Beide Discord leden hebben gekoppelde accounts nodig:
+
+```text
+-lastfm compare @member
+-lastfm compare @member 1month
+```
+
+Rumi vergelijkt gedeelde artiesten en tracks voor de gekozen periode. Het resultaat is
+gebaseerd op Last.fm scrobbles, dus ongescrobbled luisteren wordt niet opgenomen.
+
+<Info>
+Last.fm En Spotify zijn aparte aansluitingen. Gebruik `-spotify link` voor persoonlijk
+Spotify bedieningselementen, afspeellijsten en gelikete nummers; gebruik `-lastfm link` voor scrobbles
+En Last.fm grafieken.
+</Info>

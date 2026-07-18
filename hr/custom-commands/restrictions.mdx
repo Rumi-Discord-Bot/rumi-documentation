@@ -1,0 +1,58 @@
+---
+title: "Ograničenja"
+description: "Kontrolirajte tko može pokrenuti prilagođenu naredbu i gdje se može pokrenuti."
+icon: "lock-keyhole"
+---
+
+Ograničenja mogu dopustiti ili zabraniti korisnike, uloge i kanale. Prilagođena naredba može
+također zahtijevaju jedan ili više imenovanih Discord dozvole.
+
+## Dopusti cilj
+
+```text
+-cc allow <name> user @member
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+```
+
+## Uskrati cilj
+
+```text
+-cc deny <name> user @member
+-cc deny <name> role @Muted
+-cc deny <name> channel #off-topic
+```
+
+Uklonite dopušteni ili zabrani unos odgovarajućom inverznom naredbom:
+
+```text
+-cc unallow <name> role @Staff
+-cc undeny <name> channel #off-topic
+```
+
+## Zahtijevati Discord dozvole
+
+Koristiti Discord imena dopuštenja kao što su `ManageMessages`:
+
+```text
+-cc requireperm cleanup ManageMessages
+```
+
+Moguće je dati više naziva dopuštenja. Koristiti `clear` za uklanjanje svih potrebnih
+dopuštenja:
+
+```text
+-cc requireperm cleanup clear
+```
+
+## Pregledajte ili poništite ograničenja
+
+```text
+-cc restrictions <name>
+-cc restrictions <name> clear
+```
+
+<Warning>
+Brisanjem ograničenja uklanjaju se sva pravila za dopuštenje, odbijanje i potrebna dopuštenja
+iz te prilagođene naredbe. Pregledajte rezultat pomoću `-cc show <name>`.
+</Warning>

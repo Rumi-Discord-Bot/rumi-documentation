@@ -1,0 +1,111 @@
+---
+title: "引数と変数"
+description: "コマンド入力、Discord コンテキスト、ヘルパー、埋め込み、コンポーネントを使用します。"
+icon: "brackets-curly"
+---
+
+走る `-variables` で Discord のために Rumiの現在の変数参照。このページ
+最も一般的なパターンをカバーします。
+
+## コマンド入力の読み取り
+
+| 変数 | 価値 |
+| --- | --- |
+| `{arg}` または `{args}` | コマンドの後に入力されたすべてのもの |
+| `{1}`, `{2}` | 番号付き引数 |
+| `{arg.1}`, `{arg.2}` | 番号付き引数 |
+| `{arg.2+}` | 引数 2 とその後のすべて |
+| `{args.rest.2}` | 引数 2 とその後のすべて |
+| `{link}` | として宣言された名前付き引数 `[link]` または `<link>` |
+
+必須およびオプションの引数は、コマンドの作成時に宣言されます。
+
+```text
+-cc set ship <target> [reason...] -- {user.mention} chose {target.mention}. {reason|No reason given.}
+```
+
+`<target>` は必須ですが、 `[reason...]` はオプションです。 3つの点は、
+`reason` 次の単語だけではなく、残りの単語をすべて消費します。休憩
+引数はすべてを消費するため、最後に宣言された引数である必要があります
+その後。
+
+これら 2 つの定義を比較してください。
+
+```text
+-cc set pair <first> <second> -- First: {first}; second: {second}
+-cc set quote <text...> -- “{text}”
+```
+
+`-pair red blue` それぞれの名前に 1 つの単語を割り当てます。 `-quote this is all one value`
+フレーズ全体をに割り当てます `text`.
+
+必須の引数が欠落している場合は、 Rumi 停止して、不足している引数に名前を付けます。
+オプションの値は空にすることもできるため、応答がまだ必要な場合はフォールバックを使用してください。
+読みやすいテキスト。
+
+＃＃ 使用 Discord コンテクスト
+
+一般的な変数には次のものがあります。 `{user.mention}`, `{user.name}`, `{server.name}`、 そして
+`{channel.mention}`。言及されたターゲットまたは最初のターゲットは、次のような値を公開することもできます。
+`{target.mention}`, `{target.name}`、 そして `{target.avatar}`.
+
+名前付き引数はテキスト値です。ターゲット変数は別個に解決されます。
+最初に言及された、または解決可能なメンバー。アクションがメンバーに依存する場合、
+テスト中にメンションを使用して、ターゲットが明確になるようにします。
+
+変数はその後のフォールバックを受け入れます `|`。値が次の場合にフォールバックが使用されます。
+そのコンテキストでは使用できません:
+
+```text
+{target.display_name|No member was selected}
+```
+
+<Note>
+すべてのイベントにすべての価値があるわけではありません。チケット変数にはチケットコンテキスト、勝者が必要です
+変数にはギブアウェイの結果が必要で、罰変数には管理が必要です。
+イベント。 [完全な変数リファレンス]](../variables/overview) それぞれがどこにあるかを示します
+変数が利用可能です。
+</Note>
+
+## 値を変換して選択する
+
+```text
+{random:red|green|blue}
+{range:score:1-100}
+{choose:item:cookie|cake|pie}
+{upper:text}
+{lower:text}
+{title:text}
+{urlencode:text}
+{len:text}
+```
+
+名前付き `range` そして `choose` 結果は後で次のように再利用できます `{score}` または `{item}`.
+
+テキスト ヘルパーは入力を変換します。保存されたコマンドは変更されません。のために
+例、 `{upper:{user.display_name}}` その場合のみ大文字のバージョンを返します
+応答。
+
+## 埋め込みを作成する
+
+埋め込みフィールドの使用 `$v{...}` ブロック:
+
+```text
+-cc set rules -- $v{title: Rules} $v{description: Welcome {user.mention}}
+```
+
+## インタラクティブな出力を追加する
+
+Rumi リンク ボタン、アクション ボタン、ドロップダウン、およびページ分割されたページをサポートします。
+で表示される構文から始めます。 `-variables`、コマンドをプレビューします
+共有する前に。
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{page}
+```
+
+<Warning>
+保護されたアクションを実行するボタンは、通常のリンクよりも多くのレビューが必要です。使用
+`-cc actions` 現在の構文と安全性の要件について。
+</Warning>

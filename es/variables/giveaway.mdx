@@ -1,0 +1,46 @@
+---
+title: "Variables del sorteo"
+description: "33 variables de sorteo respaldadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;giveaway.bonus_rules&#125;</code> | Reglas de bonificación para el sorteo. | <code>Ejemplos de reglas de bonificación de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.channel&#125;</code> | Mención del canal o valor del canal. Fuente: sorteo. | <code>Ejemplo de canal de sorteos</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.channel_id&#125;</code> | Discord identificación del canal. Fuente: sorteo. | <code>Ejemplo de ID de canal de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.conditions&#125;</code> | Condiciones para el sorteo. | <code>Ejemplo de condiciones de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.created_at&#125;</code> | Discord-hora de creación formateada. Fuente: sorteo. | <code>&lt;t:1781460000:F&gt;</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.created_at_timestamp&#125;</code> | Marca de tiempo Unix para el tiempo de creación. Fuente: sorteo. | <code>&lt;t:1781460000:F&gt;</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.description&#125;</code> | Texto de descripción. Fuente: sorteo. | <code>Ejemplo de descripción del sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.duration&#125;</code> | Texto de duración. Fuente: sorteo. | <code>Ejemplo de duración del sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.ends_at&#125;</code> | Termina en para sorteo. | <code>El sorteo de ejemplo finaliza en</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.ends_at_timestamp&#125;</code> | La marca de tiempo de Unix termina en. | <code>1781460000</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.ends_relative&#125;</code> | Termina Relativo para sorteo. | <code>El sorteo de ejemplo termina en relación</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.entries_count&#125;</code> | Número de entradas al sorteo. Fuente: sorteo. | <code>128</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.entry_conditions&#125;</code> | Condiciones de entrada para el sorteo. | <code>Ejemplo de condiciones de entrada al sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.entry_mode&#125;</code> | Modo de entrada para sorteo. | <code>Ejemplo de modo de entrada al sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.host&#125;</code> | Anfitrión del sorteo. Fuente: sorteo. | <code>Ejemplo de anfitrión de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.host_id&#125;</code> | ID de anfitrión para el sorteo. | <code>Ejemplo de identificación del anfitrión del sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.host_mention&#125;</code> | Menciona al anfitrión del sorteo. Fuente: sorteo. | <code>Ejemplo de mención de anfitrión de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.id&#125;</code> | Discord IDENTIFICACIÓN. Fuente: sorteo. | <code>123456789012345678</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.message_id&#125;</code> | Discord ID del mensaje. Fuente: sorteo. | <code>Ejemplo de ID de mensaje de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.message_url&#125;</code> | Directo Discord enlace de mensaje. Fuente: sorteo. | <code>Ejemplo de URL de mensaje de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.number&#125;</code> | Número para sorteo. | <code>Ejemplo de número de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.prize&#125;</code> | Premio de sorteo. Fuente: sorteo. | <code>Ejemplo de premio de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.public_id&#125;</code> | Identificación amigable para el público. Fuente: sorteo. | <code>Ejemplo de identificación pública de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.reaction_emoji&#125;</code> | Emoji de reacción para sorteo. | <code>Ejemplo de emoji de reacción de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.reroll_count&#125;</code> | Número de reroll para sorteo. | <code>128</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.starts_at&#125;</code> | Comienza a las para el sorteo. | <code>El sorteo de ejemplo comienza en</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.starts_at_timestamp&#125;</code> | Marca de tiempo de Unix para inicios a las. | <code>1781460000</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.status&#125;</code> | Estado actual. Fuente: sorteo. | <code>Ejemplo de estado de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.title&#125;</code> | Mostrar título. Fuente: sorteo. | <code>Ejemplo de título de sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.winner_conditions&#125;</code> | Ganador Condiciones para el sorteo. | <code>Ejemplo de condiciones del ganador del sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.winner_mentions&#125;</code> | Lista de menciones de ganadores. Fuente: sorteo. | <code>Ejemplo de menciones de ganadores de sorteos</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.winners&#125;</code> | Lista de ganadores. Fuente: sorteo. | <code>Ejemplos de ganadores del sorteo</code> | Mensajes de sorteos y plantillas de resultados de sorteos |
+| <code>&#123;giveaway.winners_count&#125;</code> | Número de ganadores del sorteo. Fuente: sorteo. | <code>128</code> | Mensajes de sorteos y plantillas de resultados de sorteos |

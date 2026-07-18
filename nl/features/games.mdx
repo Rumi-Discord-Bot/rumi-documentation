@@ -1,0 +1,99 @@
+---
+title: "Spellen"
+description: "Speel interactieve Discord-games en zoek ondersteunde gameprofielen en servers op."
+icon: "gamepad"
+---
+
+Rumi's Games-module bevat twee soorten opdrachten: games die binnenin worden gespeeld Discord
+en zoekopdrachten die openbare informatie ophalen van een game- of platformaanbieder.
+Spelcommando's hebben momenteel alleen een voorvoegsel.
+
+## Interactieve spellen
+
+### Steenpapierschaar
+
+```text
+-rps play bo3
+-rps challenge @member bo5
+-rps stats
+-rps leaderboard
+```
+
+Matches gebruiken waar nodig privéknopkeuzes. De beste waarden ondersteund door
+de opdracht zijn `bo1`, `bo3`, `bo5`, `bo7`, En `bo9`.
+
+### Boter-kaas-en-eieren en mijnen
+
+```text
+-tictactoe @member
+-mines
+```
+
+Beide maken gebruik van interactieve componenten. Alleen de spelers die aan het spel zijn gekoppeld, kunnen dat doen
+controle over de knoppen.
+
+### Snelle chatspellen
+
+```text
+-fasttype
+-fasttype Type this exact custom phrase
+-mathrace hard
+-unscramble 5 20
+```
+
+`fasttype` wacht op de eerste exacte zin, `mathrace` wacht op de eerste
+juist antwoord, en `unscramble` loopt een woordrace. Hun optionele nummers veranderen
+de doelscore of tijd waarop de opdracht ze ondersteunt.
+
+### Thee- en overlevingsspellen
+
+```text
+-blacktea 3 20
+-greentea 5 15
+-redtea 3 20
+-whitetea 3 20
+-wordchain 3 20
+-forbiddenword 30
+```
+
+De theevarianten hanteren verschillende eliminatieregels. Lezen `-help <game>` vóór een
+grotere sessie zodat iedereen weet of de ronde snelheid, geldige woorden,
+of een fragment vermijden.
+
+### Kleine spelletjes
+
+```text
+-coinflip
+-roll 2d20
+-slots
+-coinrace
+```
+
+Deze maken geen gebruik van de servereconomie. Economy casinospellen zijn onder
+`-casino`, niet de Games-module.
+
+## Game- en platformzoekopdrachten
+
+De module bevat momenteel opdrachten voor Roblox, Minecraft, Fortnite, Steam,
+Valorant, Apex Legends, Overwatch, League of Legends, osu!, Clash of Clans,
+Clash Royale-, Brawl Stars- en Roblox-groepen.
+
+Voorbeelden van de huidige commando's:
+
+```text
+-roblox user Builderman
+-roblox avatar Builderman
+-minecraft status play.example.net
+-minecraft player Notch
+-fortnite <account>
+```
+
+Loop `-help roblox`, `-help minecraft`, of het relevante spelcommando vóór a
+opzoeken. Elke provider verwacht een andere gebruikersnaam, tag, regio, account-ID of
+serveradres.
+
+<Info>
+Opzoekgegevens zijn afkomstig van externe gameservices. Een privéprofiel, ongeldig
+ID, providerstoring of ontbrekende optionele API-integratie kunnen een
+resultaat zelfs terwijl Rumi zelf staat online.
+</Info>

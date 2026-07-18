@@ -1,0 +1,113 @@
+---
+title: "メッセージの自動化"
+description: "一致するモード、クールダウン、権限、チャネル、埋め込み、カスタム データを使用して自動応答と自動応答を構築します。"
+icon: "gears"
+---
+
+自動応答は、別のパブリックを追加せずに通常のメッセージに反応します
+指示。自動反応はメッセージと一致し、設定された反応を追加します。
+
+＃＃ なぜ `--` ここに表示されます
+
+自動応答には、一致するフラグと応答の両方があります。最後のスタンドアロン
+`--` フラグを終了し、応答を開始します。
+
+```text
+-autoresponder set "hello there" --exact -- General Kenobi.
+```
+
+最初 `--exact` フラグです。後のスタンドアロン `--` が境界です。これ
+応答テキストがオプションと間違われるのを防ぎます。
+
+## マッチングモード
+
+| フラグ | 行動 |
+| --- | --- |
+| `--exact` | メッセージ全体が一致する必要があります |
+| `--startswith` | メッセージはトリガーで始まる必要があります |
+| `--endswith` | メッセージはトリガーで終わる必要があります |
+| `--contains` | トリガーはどこにでも現れる可能性があります |
+| `--match` | トリガーを正規表現として扱う |
+| `--within 30s` | ユーザーごとのクールダウンウィンドウを適用する |
+
+一致モードを 1 つだけ選択してください。 `exact` コマンドのようなトリガーの場合は最も安全です。
+`contains` フレーズに便利です。 `startswith` そして `endswith` 余分に保存する
+反対側のテキスト。 `match` トリガーを正規表現として解釈します
+これは、すでに正規表現パターンのテストに慣れている人を対象としています。
+
+## 応答および安全フラグ
+
+```text
+-autoresponder set "rules" --exact --embed -- $v{title: Rules}$v{description: Be kind.}
+-autoresponder set "counter" --exact --db -- {db.inc:uses:{user.id}:1}Count: {db.get:uses:{user.id}}
+-autoresponder set "staff" --exact --require-permission ManageMessages -- Staff response
+-autoresponder set "hello" --contains --ignore-channel #bots -- Hi {user.mention}
+```
+
+`--embed` 解析する `$v{...}` 出力しながら、 `--text` 通常のテキストを強制します。 `--db`
+そのレスポンダーのカスタムデータの読み取りと書き込みを有効にします。許可と無視
+チャネル フラグにより​​、機密性の高いオートメーションのスコープが維持されます。
+
+`--require-permission` 一致するメッセージを送信したメンバーを確認します。を使用します。
+Discord などの権限名 `ManageMessages`. `--ignore-channel` できる
+同じ応答が複数のチャネルから外れる必要がある場合に繰り返されます。
+
+`--languagedetect` はプレミアムオプションです。受信したテキストを英語に翻訳します
+一致する前に、1 つの英語トリガーが同等のメッセージを認識できるようにします。
+他の言語でも。保存された応答は翻訳されません。
+
+## レスポンダーのリスト、テスト、および削除
+
+Rumi リスト内の自動応答の番号:
+
+```text
+-autoresponder list
+-autoresponder test 1
+-autoresponder remove 1
+```
+
+`test` 保存されたトリガーを同じメッセージ自動化パスを通じて実行します。使ってください
+変数、カスタム データ、またはアクションを追加した後、不正な形式を検出できるようにします。
+メンバーが遭遇する前に応答します。サーバーには最大 500 のレスポンダーを保存できます。
+
+## 排他的なターゲット
+
+排他的では、1 人の応答者を特定のチャネル、役割、またはメンバーに絞り込みます。の
+最初の番号は、次のように示される応答側スロットです。 `autoresponder list`:
+
+```text
+-autoresponder exclusive set 1 #general
+-autoresponder exclusive set 1 @Event Team
+-autoresponder exclusive set 1 @member
+-autoresponder exclusive list 1
+```
+
+レスポンダーが複数の承認済みのターゲットで作業する必要がある場合は、複数のターゲットを追加します
+場所または複数の承認されたグループに対して。不要になったターゲットのみを削除します
+必要：
+
+```text
+-autoresponder exclusive remove 1 #general
+```
+
+無視されるチャネルと排他的チャネルは、相反する問題を解決します。
+`--ignore-channel` 選択されたチャンネルをブロックし、排他的なターゲットが制限します
+選択されたターゲットへの応答者。
+
+<Warning>
+正規表現と広範な表現 `--contains` トリガーはより多くのメッセージに一致する可能性があります
+予想以上に。テストチャンネルで開始し、追加します `--within`、トリガーを確認します
+保護されたアクションを有効にする前に。
+</Warning>
+
+## 自動反応
+
+自動反応は同じコア マッチング モードを共有します。
+
+```text
+-autoreaction add "good morning" ☀️ ❤️ --startswith
+```
+
+一般的な単語には部分一致を使用します。あ `contains` に付加された自動反応
+トリガーが短いと、意図したよりもはるかに頻繁に反応が追加される可能性があります。
+

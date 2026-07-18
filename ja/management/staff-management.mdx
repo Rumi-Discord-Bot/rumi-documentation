@@ -1,0 +1,49 @@
+---
+title: "スタッフ管理"
+description: "役割、権限、カスタム スタッフ ワークフローを準備します。"
+icon: "user-shield"
+---
+
+Rumiのスタッフ管理エリアが拡大されています。今日、安全な基盤は
+ロール管理、権限検査、および制限されたカスタム コマンド。
+
+## スタッフの役割を準備する
+
+使用 `role` 管理する Discord 役割。 Rumi 作成、割り当て、
+役割の検査、名前変更、色の変更、削除、復元。また、
+役割を再利用可能な目的に結び付ける:
+
+```text
+-role connect staff @Staff
+-role list
+```
+
+走る `-help role` 役割を変える前に。コマンドを実行している人および Rumi
+どちらもロール管理アクセスが必要であり、 Discord 階層が適用されます。
+
+## アクセスを検査する
+
+使用 `permissions` （または `perms`) メンバーの Discord 権限とその他の
+Rumi- 固有の権限付与:
+
+```text
+-permissions @member
+```
+
+## スタッフ専用のワークフローを構築する
+
+カスタム コマンドは、許可されたロール、チャネル、またはユーザーに制限できます。
+名前も必要です Discord 権限。これにより、各サーバーが独自の定義を行うことができます
+スタッフツールなし Rumi 広範なデフォルトのモデレーション コマンドを提供します。
+
+```text
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+-cc requireperm <name> ManageMessages
+```
+
+<Warning>
+ロールにカスタム コマンドの実行を許可するかどうかは、セキュリティ上の決定です。を確認してください
+で保存されたスクリプト `-cc show <name>` そしてそれをテストしてください `-cc preview <name>` 前に
+スタッフが使っています。
+</Warning>

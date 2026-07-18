@@ -1,0 +1,50 @@
+---
+title: "语音活动"
+description: "检查服务器、成员、频道和滚动周期的跟踪语音时间。"
+icon: "waveform"
+---
+
+Rumi 记录它观察到的语音会话，并可以为服务器总结它们
+经理。报告使用跟踪时间，而不是 Discord的服务器见解。
+
+## 服务器总数
+
+```text
+-voicecount server
+-voicecount daily
+-voicecount weekly
+-voicecount monthly
+```
+
+服务器视图包括生命周期总计、会话计数、最近滚动总计、
+以及最后跟踪的语音活动。每日、每周和每月视图涵盖
+分别为当天、7 天和 30 天。
+
+## 会员和频道
+
+```text
+-voicecount user @member
+-voicecount channel #General
+-voicecount leaderboard
+-voicecount active
+```
+
+`active` 显示会话 Rumi 目前考虑活跃。 `leaderboard` 排名
+服务器分析存储中提供的跟踪成员总数。
+
+## 重置跟踪总数
+
+```text
+-voicecount reset user @member
+-voicecount reset channel #General
+-voicecount reset server
+```
+
+重置具有破坏性。选择解决问题的最窄目标。
+重置服务器会清除这些报告使用的存储的语音分析。
+
+<Info>
+语音活动开始于 Rumi 观察一个会话。距离追踪器之前的时间
+正在运行，期间 Rumi 不可用或无法访问语音通道
+以后无法重建。
+</Info>

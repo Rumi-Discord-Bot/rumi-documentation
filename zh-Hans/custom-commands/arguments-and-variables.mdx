@@ -1,0 +1,111 @@
+---
+title: "参数和变量"
+description: "使用命令输入、Discord 上下文、帮助程序、嵌入和组件。"
+icon: "brackets-curly"
+---
+
+跑步 `-variables` 在 Discord 为了 Rumi的当前变量引用。本页
+涵盖了最常见的模式。
+
+## 读取命令输入
+
+| 多变的 | 价值 |
+| --- | --- |
+| `{arg}` 或者 `{args}` | 命令后输入的所有内容 |
+| `{1}`, `{2}` | 编号参数 |
+| `{arg.1}`, `{arg.2}` | 编号参数 |
+| `{arg.2+}` | 参数 2 及其之后的所有内容 |
+| `{args.rest.2}` | 参数 2 及其之后的所有内容 |
+| `{link}` | 命名参数声明为 `[link]` 或者 `<link>` |
+
+创建命令时声明必需和可选参数：
+
+```text
+-cc set ship <target> [reason...] -- {user.mention} chose {target.mention}. {reason|No reason given.}
+```
+
+`<target>` 是必需的，同时 `[reason...]` 是可选的。三个点使
+`reason` 消耗所有剩余的单词，而不是仅消耗下一个单词。休息一下
+参数应该是最终声明的参数，因为它消耗了所有内容
+在它之后。
+
+比较这两个定义：
+
+```text
+-cc set pair <first> <second> -- First: {first}; second: {second}
+-cc set quote <text...> -- “{text}”
+```
+
+`-pair red blue` 为每个名称分配一个单词。 `-quote this is all one value`
+将整个短语分配给 `text`.
+
+如果缺少必需的参数， Rumi 停止并命名缺少的参数。
+可选值可以为空，因此当回复仍然需要时使用后备
+可读的文本。
+
+＃＃ 使用 Discord 语境
+
+常见变量包括 `{user.mention}`, `{user.name}`, `{server.name}`， 和
+`{channel.mention}`。提到的或第一个目标还可以公开诸如
+`{target.mention}`, `{target.name}`， 和 `{target.avatar}`.
+
+命名参数是文本值。目标变量分别解析
+第一个提到的或可解析的成员。当行动取决于成员时，
+在测试期间使用提及，以便目标明确。
+
+变量接受后备 `|`。当该值为
+在这种情况下不可用：
+
+```text
+{target.display_name|No member was selected}
+```
+
+<Note>
+并非每个事件都具有所有价值。门票变量需要门票上下文、获胜者
+变量需要赠品结果，惩罚变量需要管理
+事件。 [完整变量参考](../variables/overview) 状态，其中每个
+变量可用。
+</Note>
+
+## 转换并选择值
+
+```text
+{random:red|green|blue}
+{range:score:1-100}
+{choose:item:cookie|cake|pie}
+{upper:text}
+{lower:text}
+{title:text}
+{urlencode:text}
+{len:text}
+```
+
+命名 `range` 和 `choose` 结果可以稍后重复使用 `{score}` 或者 `{item}`.
+
+文本助手转换他们的输入；他们不会修改已保存的命令。为了
+例子， `{upper:{user.display_name}}` 仅返回大写版本
+回复。
+
+## 创建嵌入
+
+嵌入字段使用 `$v{...}` 块：
+
+```text
+-cc set rules -- $v{title: Rules} $v{description: Welcome {user.mention}}
+```
+
+## 添加交互输出
+
+Rumi 支持链接按钮、操作按钮、下拉菜单和分页页面。
+从显示的语法开始 `-variables`，然后预览命令
+在分享之前。
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{page}
+```
+
+<Warning>
+运行受保护操作的按钮比普通链接需要更多的审查。使用
+`-cc actions` 了解他们当前的语法和安全要求。
+</Warning>

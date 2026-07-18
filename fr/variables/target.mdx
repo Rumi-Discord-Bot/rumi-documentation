@@ -1,0 +1,24 @@
+---
+title: "Variables cibles"
+description: "11 variables cibles prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;target&#125;</code> | Affichez l'utilisateur cible résolu. | <code>&lt;@987654321098765432&gt;</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.avatar&#125;</code> | URL de l’image de l’avatar. Source : cible. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.created_at&#125;</code> | Discord-heure de création formatée. Source : cible. | <code>&lt;t:1781460000:F&gt;</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.display_name&#125;</code> | Nom d’affichage du serveur ou surnom du membre cible. | <code>Clair de lune</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.id&#125;</code> | Discord ID de l'utilisateur cible. | <code>123456789012345678</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.is_bot&#125;</code> | Est-ce que Bot est pour la cible. | <code>L'exemple de cible est un bot</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.joined_at&#125;</code> | Discord-heure de connexion au serveur formatée. Source : cible. | <code>&lt;t:1781460000:F&gt;</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.mention&#125;</code> | Mentionnez l'utilisateur cible, généralement le premier membre mentionné. | <code>&lt;@123456789012345678&gt;</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.name&#125;</code> | Nom d'utilisateur de l'utilisateur cible. | <code>Roumi</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.tag&#125;</code> | Discord valeur de style de balise de nom d'utilisateur/discriminateur pour la cible. | <code>nom d'utilisateur</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |
+| <code>&#123;target.username&#125;</code> | Discord nom d'utilisateur. Source : cible. | <code>Exemple de nom d'utilisateur cible</code> | Commandes personnalisées, répondeurs automatiques, jeu de rôle, contextes de modération/appel |

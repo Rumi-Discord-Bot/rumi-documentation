@@ -1,0 +1,76 @@
+---
+title: "Last.fm"
+description: "Verknüpfen Sie Last.fm, um Profile, Scrobbles, Charts, beliebte Titel, Collagen und Geschmacksvergleiche anzuzeigen."
+icon: "lastfm"
+---
+
+Last.fm Verknüpfen lässt Rumi Lesen Sie die eines Benutzers Last.fm Profil und Hörverlauf.
+Es kontrolliert nicht Spotify Wiedergabe bzw Rumi'S Discord Sprachwarteschlange.
+
+## Verknüpfen Sie ein Konto
+
+```text
+-lastfm link
+```
+
+Öffnen Sie den Link zur einmaligen Autorisierung Rumi liefert und beendet das Last.fm fließen.
+Bestätigen Sie anschließend die Verbindung:
+
+```text
+-lastfm profile
+```
+
+Trennen Sie es mit:
+
+```text
+-lastfm unlink
+```
+
+## Aktuelles und aktuelles Hören
+
+```text
+-lastfm nowplaying
+-lastfm recent
+-lastfm loved
+```
+
+`nowplaying` Zeigt den aktiven Titel an, wenn Last.fm markiert einen als spielend;
+Andernfalls kann das neueste Scrobble angezeigt werden.
+
+Die meisten Anzeigebefehle akzeptieren eine andere Verknüpfung Discord Mitglied oder ein Last.fm
+Benutzername:
+
+```text
+-lastfm nowplaying @member
+-lastfm recent some_lastfm_name
+```
+
+## Diagramme
+
+```text
+-lastfm toptracks 1month
+-lastfm topartists overall @member
+-lastfm topalbums 3month
+-lastfm collage 1month
+```
+
+Der Punkt steht vor dem optionalen Mitglieds- oder Benutzernamen. `collage` gibt a zurück
+Albumzusammenfassung im Chart-Stil unter Verwendung der verfügbaren Hördaten von Last.fm.
+
+## Hörgeschmack vergleichen
+
+Beide Discord Mitglieder benötigen verknüpfte Konten:
+
+```text
+-lastfm compare @member
+-lastfm compare @member 1month
+```
+
+Rumi vergleicht geteilte Künstler und Titel für den gewählten Zeitraum. Das Ergebnis ist
+bezogen auf Last.fm Scrobbles, daher wird ungescrobbletes Hören nicht berücksichtigt.
+
+<Info>
+Last.fm Und Spotify sind getrennte Verbindungen. Verwenden `-spotify link` für Persönlich
+Spotify Steuerelemente, Wiedergabelisten und beliebte Songs; verwenden `-lastfm link` für Scrobbles
+Und Last.fm Diagramme.
+</Info>

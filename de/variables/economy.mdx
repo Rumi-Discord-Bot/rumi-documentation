@@ -1,0 +1,31 @@
+---
+title: "Wirtschaftsvariablen"
+description: "18 von Rumi unterstützte Wirtschaftsvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;economy.balance&#125;</code> | Formatierter Gesamtsaldo für den Benutzer. | <code>1.250 Münzen</code> | Economy-Befehle, benutzerdefinierte Befehle, Autoresponder mit Economy-Kontext |
+| <code>&#123;economy.bank&#125;</code> | Bankguthaben, wenn Wirtschaftskontext verfügbar ist. | <code>830 Münzen</code> | Economy-Befehle, benutzerdefinierte Befehle, Autoresponder mit Economy-Kontext |
+| <code>&#123;economy.cash&#125;</code> | Formatiertes Wallet-Guthaben des Befehlsbenutzers. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;economy.currency&#125;</code> | Symbol für die aktuelle Serverökonomie. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;economy.currency_name&#125;</code> | Aktueller Währungsname der Serverwirtschaft. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;economy.daily_streak&#125;</code> | Anzahl der täglichen Belohnungssträhne. Quelle: Wirtschaft. | <code>1.250 Münzen</code> | Economy-Befehle, benutzerdefinierte Befehle, Autoresponder mit Economy-Kontext |
+| <code>&#123;economy.networth&#125;</code> | Wallet plus Bankguthaben, wenn Wirtschaftskontext verfügbar ist. | <code>1.250 Münzen</code> | Economy-Befehle, benutzerdefinierte Befehle, Autoresponder mit Economy-Kontext |
+| <code>&#123;economy.rank&#125;</code> | Rangwert. Quelle: Wirtschaft. | <code>1.250 Münzen</code> | Economy-Befehle, benutzerdefinierte Befehle, Autoresponder mit Economy-Kontext |
+| <code>&#123;economy.raw_balance&#125;</code> | Unformatiertes Wallet plus Bankguthaben des Command-Benutzers. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;economy.raw_bank&#125;</code> | Unformatierter ganzzahliger Kontostand des Befehlsbenutzers. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;economy.raw_cash&#125;</code> | Unformatierter, ganzzahliger Wallet-Kontostand des Befehlsbenutzers. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;economy.wallet&#125;</code> | Wallet-Guthaben, wenn Wirtschaftskontext verfügbar ist. | <code>420 Münzen</code> | Economy-Befehle, benutzerdefinierte Befehle, Autoresponder mit Economy-Kontext |
+| <code>&#123;server_currency&#125;</code> | Kompatibilitätsalias für &#123;Wirtschaft.Währung&#125;. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;target.economy.balance&#125;</code> | Formatiertes Wallet plus Bankguthaben des aufgelösten Ziels. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;target.economy.bank&#125;</code> | Formatierter Banksaldo des aufgelösten Ziels. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;target.economy.cash&#125;</code> | Formatierter Wallet-Saldo des aufgelösten Ziels. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;user_balance&#125;</code> | Kompatibilitätsalias für den Befehl „Benutzer-Gesamtsaldo“. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;user_balance_locale&#125;</code> | Kompatibilitätsalias für den formatierten Gesamtsaldo des Befehlsbenutzers. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |

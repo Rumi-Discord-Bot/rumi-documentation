@@ -1,0 +1,106 @@
+---
+title: "输出控制"
+description: "路由回复、发送私信、添加反应、应用冷却时间以及控制触发消息。"
+icon: "route"
+---
+
+输出控件是自定义命令响应中的独立指令行。
+他们改变了方式 Rumi 发送结果并且不显示为回复文本。
+
+## 删除触发器
+
+```text
+{delete}
+```
+
+Rumi 删除运行自定义命令的消息。这需要**管理
+源频道中的消息**。如果删除失败，其余命令可以
+仍按其其他设置处理。
+
+## 静默输出
+
+```text
+{silent}
+```
+
+对仅执行配置的操作或数据的命令使用静默模式
+更新并且不应发送其正常的可见响应。在开发过程中，
+在测试操作之前留下可见的确认信息。
+
+## 路由响应
+
+```text
+{respond:#suggestions}
+```
+
+Rumi 将渲染的输出发送到选定的服务器通道。一定可以
+查看该通道并发送命令使用的有效负载类型。
+
+例子：
+
+```text
+-cc set report <text...> --
+{respond:#reports}
+$v{embed}
+$v{author: {user.display_name} && {user.avatar}}
+$v{description: {text}}
+$v{footer: Sent from {channel.name}}
+```
+
+如果报告只能从以下位置提交，则限制命令的源渠道
+具体的地方。
+
+## 发送私信
+
+```text
+{dm:user}
+```
+
+输出被发送到选定的用户目标而不是公共通道。
+当收件人阻止来自服务器成员的 DM 或已发送 DM 时，DM 传送可能会失败
+被阻止 Rumi.
+
+## 添加反应
+
+```text
+{react:✅}
+{react:✅ && ❌}
+```
+
+Rumi 当它可以读取时，将列出的反应添加到触发消息中
+消息并添加这些反应。自定义服务器表情符号也必须可供使用
+Rumi.
+
+## 每个用户的冷却时间
+
+```text
+{cooldown:10m}
+```
+
+冷却时间适用于成员重复使用该自定义命令。使用
+可读的持续时间，例如 `30s`, `10m`， 或者 `24h`.
+
+```text
+-cc set daily-note --
+{cooldown:24h}
+You can use this response again tomorrow.
+```
+
+## 仔细组合控件
+
+```text
+-cc set confidential <text...> --
+{cooldown:5m}
+{delete}
+{dm:user}
+Your saved note: {text}
+```
+
+添加之前测试路由和 DM `{delete}`。否则，目的地失败
+既不会给您留下触发消息，也不会给您留下预期的回复。
+
+<Warning>
+输出控制变更交付，而不是权限。内部受保护的动作
+仍然运行相同的命令 Rumi的权限、限制、目标和角色
+层次结构检查。
+</Warning>

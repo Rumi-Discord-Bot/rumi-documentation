@@ -1,0 +1,31 @@
+---
+title: "Economievariabelen"
+description: "18 economische variabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;economy.balance&#125;</code> | Geformatteerd totaalsaldo voor de gebruiker. | <code>1.250 munten</code> | Economy-opdrachten, aangepaste opdrachten, autoresponders met economische context |
+| <code>&#123;economy.bank&#125;</code> | Banksaldo wanneer economische context beschikbaar is. | <code>830 munten</code> | Economy-opdrachten, aangepaste opdrachten, autoresponders met economische context |
+| <code>&#123;economy.cash&#125;</code> | Geformatteerd portefeuillesaldo van de opdrachtgebruiker. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;economy.currency&#125;</code> | Huidig ​​servereconomie icoon. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;economy.currency_name&#125;</code> | Huidige valutanaam van de servereconomie. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;economy.daily_streak&#125;</code> | Dagelijkse beloningsreekstelling. Bron: economie. | <code>1.250 munten</code> | Economy-opdrachten, aangepaste opdrachten, autoresponders met economische context |
+| <code>&#123;economy.networth&#125;</code> | Portemonnee plus banksaldo wanneer economische context beschikbaar is. | <code>1.250 munten</code> | Economy-opdrachten, aangepaste opdrachten, autoresponders met economische context |
+| <code>&#123;economy.rank&#125;</code> | Rangwaarde. Bron: economie. | <code>1.250 munten</code> | Economy-opdrachten, aangepaste opdrachten, autoresponders met economische context |
+| <code>&#123;economy.raw_balance&#125;</code> | Niet-geformatteerde portemonnee plus banksaldo van de opdrachtgebruiker. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;economy.raw_bank&#125;</code> | Niet-geformatteerd banksaldo op geheel getal van de opdrachtgebruiker. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;economy.raw_cash&#125;</code> | Niet-geformatteerd portefeuillesaldo met geheel getal van de opdrachtgebruiker. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;economy.wallet&#125;</code> | Wallet-saldo wanneer economische context beschikbaar is. | <code>420 munten</code> | Economy-opdrachten, aangepaste opdrachten, autoresponders met economische context |
+| <code>&#123;server_currency&#125;</code> | Compatibiliteitsalias voor &#123;economie.valuta&#125;. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;target.economy.balance&#125;</code> | Opgemaakte portemonnee plus banksaldo van het opgeloste doel. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;target.economy.bank&#125;</code> | Opgemaakt banksaldo van het opgeloste doel. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;target.economy.cash&#125;</code> | Geformatteerd portemonneesaldo van het opgeloste doel. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;user_balance&#125;</code> | Compatibiliteitsalias voor de opdracht Totaalsaldo van de gebruiker. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;user_balance_locale&#125;</code> | Compatibiliteitsalias voor het geformatteerde commando Totaalsaldo van de gebruiker. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |

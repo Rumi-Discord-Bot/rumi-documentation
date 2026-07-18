@@ -1,0 +1,139 @@
+---
+title: "测试与调试"
+description: "逐步构建自定义命令并诊断参数、变量、操作和 Discord 限制。"
+icon: "bug"
+---
+
+当您知道哪一层失败时，自定义命令最容易调试。测试
+首先是参数，然后是变量，然后是嵌入，最后添加受保护的操作。
+
+## 检查什么 Rumi 已保存
+
+```text
+-cc show <name>
+```
+
+结果显示保存的参数规范、响应脚本和当前
+限制。如果响应在错误的位置开始，请检查独立的
+`--` 原作中使用的 `cc set` 命令。
+
+当您不确定使用哪个名称时，列出每个已保存的命令：
+
+```text
+-cc list
+```
+
+## 用现实的论据进行预览
+
+```text
+-cc preview greet @member
+-cc preview announce Saturday 8pm
+```
+
+预览使用您提供的示例参数运行已保存的模板。使用
+成员在实际命令中使用的参数数量和类型相同。
+
+对于论证问题，暂时减少对纯文本的响应：
+
+```text
+-cc set announce <day> <time> -- Day: {day}
+Time: {time}
+```
+
+一旦这些值正确，就恢复嵌入或操作。
+
+## 诊断缺失变量
+
+变量只能返回其当前上下文中可用的信息。为了
+例如，目标变量需要目标参数或已解析成员。添加一个
+回退，其中值是可选的：
+
+```text
+{target.display_name|No member selected}
+```
+
+使用生成的[变量引用](../variables/overview) 或运行：
+
+```text
+-variables target
+-variables message
+-variables customdb
+```
+
+如果变量显示为文字文本，请检查其拼写和大括号。如果它
+回报 `N/A`，其源值不存在于该命令上下文中。
+
+## 单独测试条件
+
+Rumi 支持存在检查、比较、文本包含、角色和
+Discord 权限：
+
+```text
+{if:{user.id} == 123456789012345678}
+This is the configured user.
+{else}
+This is somebody else.
+{endif}
+```
+
+其他条件形式包括：
+
+```text
+{if:{message.content} contains hello}
+{if:user has role 123456789012345678}
+{if:user has permission ManageMessages}
+{if:{db.get:visits:{user.id}} >= 10}
+```
+
+保留开口 `{if:...}`， 选修的 `{else}`，并关闭 `{endif}` 在他们的
+调试时自己的线路。条件可以嵌套，但平面条件是
+通常更容易维护。
+
+## 将显示与操作分开
+
+首先保存一个无害的响应：
+
+```text
+-cc set staffwarn <target> <reason...> --
+Would warn {target.mention} for: {reason}
+```
+
+使用安全目标进行预览。然后添加操作：
+
+```text
+{mod:warn target && {reason}}
+Warned {target.mention} for: {reason}
+```
+
+最后添加角色、通道或权限限制。 Rumi 验证
+保存时受保护的操作并在命令运行时重复检查。
+
+## 组件问题
+
+当按钮或下拉菜单未出现时：
+
+1. 预览命令并阅读 Rumi的验证响应。
+2. 检查链接按钮的 URL 格式。
+3. 计算每行中的成分和总行数。
+4. 缩短标签、选项描述或嵌入内容。
+5. 检查操作按钮是否需要缺少的目标或权限。
+
+Discord 消息最多支持 5 个组件行。 Rumi 还强制嵌入，
+发送有效负载之前的字段、按钮和下拉列表限制。
+
+## 存储数据问题
+
+直接检查命名空间和密钥：
+
+```text
+-cc data list visits
+-cc data get visits 123456789012345678
+```
+
+命名空间和键名是分开的。 `visits:user-id` 不是同一个查找
+作为 `user-id:visits`.
+
+<Tip>
+在进行大规模编辑之前保留一份工作副本。 `-cc show <name>` 给你确切的
+保存的回复可以在替换之前复制到您的笔记中。
+</Tip>

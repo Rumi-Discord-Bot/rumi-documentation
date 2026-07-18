@@ -1,0 +1,53 @@
+---
+title: "Ändere Rumis Sprache"
+description: "Wählen Sie eine persönliche Sprache oder legen Sie die Sprache für einen Discord-Server fest."
+icon: "languages"
+---
+
+Rumi unterstützt:
+
+- Englisch (`en`)
+- Deutsch (`de`)
+- Französisch (`fr`)
+- Niederländisch (`nl`)
+- Japanisch (`ja`)
+- Vereinfachtes Chinesisch (`zh-CN`)
+
+Die Dokumentationswebsite bietet auch Einstiegsseiten in Englisch, Niederländisch, Deutsch,
+Spanisch, Japanisch, vereinfachtes Chinesisch, Kroatisch und Französisch. Spanisch und
+Die Verfügbarkeit der kroatischen Dokumentation bedeutet nicht, dass es auch Bot-Antworten gibt
+noch nicht in diesen Sprachen verfügbar.
+
+## Sehen Sie sich die effektive Sprache an
+
+```text
+-language
+```
+
+Die Antwort zeigt die aktuelle Sprache und woher die Präferenz kam.
+
+## Stellen Sie Ihre persönliche Sprache ein
+
+```text
+-language user de
+```
+
+Für Sie gelten persönliche Spracheinstellungen. In Direktnachrichten, Rumi speichert dies
+Präferenz in Ihrem Benutzerdatensatz.
+
+## Stellen Sie die Serversprache ein
+
+```text
+-language server de
+```
+
+Zum Ändern der serverweiten Sprache ist eine Administratorberechtigung erforderlich. Der
+Die Präferenz wird für diesen Server gespeichert.
+
+<Info>
+Ihre persönliche Sprache hat Vorrang vor der Serversprache. Falls nicht
+eine persönliche Sprache gewählt, Rumi verwendet dann die Servereinstellung Discord's Gebietsschema,
+dann Englisch.
+</Info>
+
+Die Bestätigung wird sofort in der neu gewählten Sprache angezeigt.

@@ -1,0 +1,58 @@
+---
+title: "Einschränkungen"
+description: "Steuern Sie, wer einen benutzerdefinierten Befehl ausführen kann und wo er ausgeführt werden kann."
+icon: "lock-keyhole"
+---
+
+Einschränkungen können Benutzer, Rollen und Kanäle zulassen oder verweigern. Ein benutzerdefinierter Befehl kann
+erfordern auch einen oder mehrere benannte Discord Berechtigungen.
+
+## Ein Ziel zulassen
+
+```text
+-cc allow <name> user @member
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+```
+
+## Ein Ziel ablehnen
+
+```text
+-cc deny <name> user @member
+-cc deny <name> role @Muted
+-cc deny <name> channel #off-topic
+```
+
+Entfernen Sie einen Zulassungs- oder Verweigerungseintrag mit dem entsprechenden Umkehrbefehl:
+
+```text
+-cc unallow <name> role @Staff
+-cc undeny <name> channel #off-topic
+```
+
+## Erfordern Discord Berechtigungen
+
+Verwenden Discord Berechtigungsnamen wie `ManageMessages`:
+
+```text
+-cc requireperm cleanup ManageMessages
+```
+
+Es können mehrere Berechtigungsnamen angegeben werden. Verwenden `clear` um alles Erforderliche zu entfernen
+Berechtigungen:
+
+```text
+-cc requireperm cleanup clear
+```
+
+## Einschränkungen überprüfen oder zurücksetzen
+
+```text
+-cc restrictions <name>
+-cc restrictions <name> clear
+```
+
+<Warning>
+Durch das Löschen von Einschränkungen werden alle Zulassungs-, Verweigerungs- und erforderlichen Berechtigungsregeln entfernt
+von diesem benutzerdefinierten Befehl. Überprüfen Sie das Ergebnis mit `-cc show <name>`.
+</Warning>

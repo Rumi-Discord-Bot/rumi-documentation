@@ -1,0 +1,205 @@
+---
+title: "Poruke poslužitelja"
+description: "Konfigurirajte ljepljive poruke, pridružene pingove i višekratne odgovore na događaje."
+icon: "message-lines"
+---
+
+Rumi ima nekoliko poslužiteljskih sustava poruka. Rješavaju različite probleme:
+
+- **Ljepljive poruke** drže podsjetnik pri dnu aktivnog kanala.
+- **Ping on join** spominje nove članove na odabranim kanalima.
+- **Pozovite odgovore** pošaljite konfigurirani tekst ili ugrađene za podržani poslužitelj i
+  događaji upravljanja.
+
+Sva tri su konfigurirana od strane članova pomoću **Manage Server**.
+
+## Disboard podsjetnici za neravnine
+
+Postavite fiksni kanal podsjetnika ili koristite `dynamic` pa se podsjetnik vraća na
+kanal na kojem je otkrivena izbočina:
+
+```text
+-bumpreminder setup #bump-reminders @Bump Ping
+-bumpreminder setup dynamic here
+-bumpreminder status
+```
+
+Ping može biti uloga, član, `here`, `everyone`, ili `off`. Promjena pinga
+ne umeće ga automatski u prilagođeni tekst; uključiti `{ping}` gdje je
+treba se pojaviti.
+
+```text
+-bumpreminder channel #bump-reminders
+-bumpreminder channel dynamic
+-bumpreminder ping @Bump Ping
+-bumpreminder ping off
+```
+
+### Detekcija i vrijeme
+
+Automatsko otkrivanje prati uspješnost Disboard kvrga. Kada se otkrije, Rumi
+šalje konfigurirani odgovor o uspješnosti i zakazuje podsjetnik:
+
+```text
+-bumpreminder autodetect on
+-bumpreminder cooldown 2h
+```
+
+Ako otkrivanje propusti izbočinu, pokrenite isti mjerač vremena ručno:
+
+```text
+-bumpreminder done
+```
+
+`done` je namjerno dostupan nakon postavljanja bez potrebe za upraviteljem poslužitelja
+pristup, pa član koji se kandidirao `/bump` može to označiti. Konfiguracija i pregledi
+i dalje zahtijevaju **Upravljanje poslužiteljem**.
+
+### Običan tekst i ugrađeni stilovi
+
+Odaberite stil podsjetnika neovisno o stilu potvrde uspjeha:
+
+```text
+-bumpreminder mode embed
+-bumpreminder successmode text
+```
+
+Postavke običnog teksta:
+
+```text
+-bumpreminder reminder {ping} **{server}** can be bumped again. Run /bump now.
+-bumpreminder success Thanks {bumped_by}! Next bump: {next_bump}
+```
+
+Postavke ugradnje podsjetnika:
+
+```text
+-bumpreminder content {ping}
+-bumpreminder title Time to bump
+-bumpreminder description **{server}** can be bumped again.\nRun `/bump` now.
+-bumpreminder color c8d8f2
+-bumpreminder image https://example.com/banner.png
+-bumpreminder thumbnail https://example.com/icon.png
+-bumpreminder footer Thanks for helping the server grow
+```
+
+Uspješna ugrađivanja imaju odgovarajuće kontrole: `successcontent`, `successtitle`,
+`successdescription`, `successcolor`, `successimage`, `successthumbnail`, i
+`successfooter`. Koristiti `reset` za tekst, naslove, opise, boje ili podnožja;
+koristiti `off` za brisanje URL-ova slika i minijatura.
+
+### Bump rezervirana mjesta
+
+Trčanje `-bumpreminder variables` u Discord da biste vidjeli popis uživo.
+
+| Rezervirano mjesto | Vrijednost |
+| --- | --- |
+| `{ping}` | Konfigurirani ping cilj. |
+| `{server}` | Naziv poslužitelja. |
+| `{bumped_by}` ili `{user}` | Član koji je udario, kad se zna. |
+| `{next_bump}` | Relativno vrijeme do sljedećeg udara. |
+| `{next_bump_time}` | Puna vremenska oznaka sljedećeg bumpa. |
+| `{last_bump}` | Relativno vrijeme od zadnjeg udara. |
+| `{last_bump_time}` | Puna vremenska oznaka zadnjeg bumpa. |
+| `{bump_count}` | Broj neravnina Rumi je pratio. |
+| `{channel}` | Kanal podsjetnika. |
+
+Pregledajte trenutni podsjetnik bez promjene vremena ili onemogućite sustav:
+
+```text
+-bumpreminder test
+-bumpreminder disable
+```
+
+## Ljepljive poruke
+
+Napravite sticky koji se osvježava nakon određenog broja poruka:
+
+```text
+-sticky add #rules --every 10 -- Read the pinned rules before chatting.
+```
+
+Ili ga osvježite u vremenskom intervalu:
+
+```text
+-sticky add #info --time 30m -- {embed}$v{title: Reminder}$v{description: Check the links above.}
+```
+
+Samostalni `--` odvaja ljepljive postavke od sadržaja. Sve
+nakon što je pohranjen kao običan tekst ili ugrađena skripta.
+
+Upravljajte spremljenim naljepnicama prema njihovom utoru na popisu ili ID-u:
+
+```text
+-sticky list
+-sticky preview 1
+-sticky message 1 Updated sticky text.
+-sticky remove 1
+-sticky clear
+```
+
+Rumi treba **Slanje poruka**, **Ugrađivanje poveznica** i **Upravljanje porukama**.
+
+## Ping pri pridruživanju
+
+Dodajte odredište, izbornu odgodu brisanja i izbornu poruku:
+
+```text
+-pingonjoin add #general 10s
+-pingonjoin add #rules 30s Welcome {user.mention}
+```
+
+Odaberite hoće li sustav ciljati na ljude, robote ili oboje:
+
+```text
+-pingonjoin target human
+-pingonjoin target both
+```
+
+Uredite jedan kanal ili zadano ponašanje:
+
+```text
+-pingonjoin message #general {user.mention} read the rules.
+-pingonjoin delay #general 15s
+-pingonjoin preview #general
+-pingonjoin list
+```
+
+`clear` uklanja svaki konfigurirani ping kanal. `reset` također obnavlja ono drugo
+postavke ping-on-join na zadane vrijednosti.
+
+## Pozovite odgovore događaja
+
+Postavite zadano odredište:
+
+```text
+-invoke setup #mod-log
+-invoke list
+```
+
+Podržani okidači su `warn`, `ban`, `unban`, `kick`, `timeout`, `untimeout`,
+`role_add`, `role_remove`, `member_join`, `member_leave`, i `boost`.
+
+Konfigurirajte običan tekst ili skriptu za ugradnju:
+
+```text
+-invoke set warn Staff warned {punishment.user.mention}.
+-invoke set member_join {embed}$v{title: Welcome}$v{description: Welcome {user.mention}.}
+```
+
+Odaberite zasebni kanal ili DM ponašanje za jedan događaj:
+
+```text
+-invoke channel warn #mod-log
+-invoke dm warn on
+-invoke preview warn
+```
+
+Koristiti `-variables punishment`, `-variables user`ili odgovarajuću kategoriju događaja
+prilikom izrade predloška pozivanja.
+
+<Info>
+Predložak poziva ne stvara sam događaj. Ono kontrolira Rumiodgovor
+kada je odgovarajući podržani događaj opažen ili pokrenut od strane drugog
+Rumi tijek rada.
+</Info>

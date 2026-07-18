@@ -1,0 +1,59 @@
+---
+title: "作成とプレビュー"
+description: "カスタム コマンドを作成、検査、テスト、更新、削除します。"
+icon: "flask"
+---
+
+## コマンドを作成する
+
+場所 `--`, `=>`、 または `->` コマンド定義とその応答の間。
+
+```text
+-cc set welcome -- Welcome {user.mention} to {guild.name}
+```
+
+カスタム コマンド名には、小文字、数字、アンダースコア、またはハイフンが使用されます
+32 文字に制限されています。既存の名前を置き換えることはできません Rumi
+コマンドまたはエイリアス。
+
+## 引数を追加する
+
+引数の仕様を名前の後、区切り文字の前に置きます。
+
+```text
+-cc set say <text...> -- {text}
+-cc set link [link] -- [Open the link]({link|https://rumi.rocks})
+```
+
+- `<name>` が必要です。
+- `[name]` はオプションです。
+- 追加 `...` 残りの単語を 1 つの引数に集めます。
+
+必須の引数はコマンドを停止し、不足しているものを特定します。オプション
+引数は空の値に解決されるため、空の出力が返される場合はフォールバックを使用してください。
+気まずそうに見える: `{link|https://rumi.rocks}`.
+
+## 使用前にプレビューする
+
+プレビューは、サンプル引数を使用して保存されたコマンドを実行します。
+
+```text
+-cc preview say This is a test
+-cc preview link https://example.com
+```
+
+## 検査、更新、または削除
+
+```text
+-cc show welcome
+-cc set welcome -- Hello {user.mention}
+-cc remove welcome
+```
+
+ランニング `set` 同じ名前を再度使用すると、既存のカスタム コマンドが更新されます。
+
+<Note>
+の `--` トークンは区切り文字であり、保存された応答の一部ではありません。見る
+[構文と区切り文字](./syntax-and-separators) なぜそうなるのか
+必要性と、引数と応答テキストの周りでどのように動作するかについて説明します。
+</Note>

@@ -1,0 +1,59 @@
+---
+title: "创建和预览"
+description: "创建、检查、测试、更新和删除自定义命令。"
+icon: "flask"
+---
+
+## 创建命令
+
+地方 `--`, `=>`， 或者 `->` 命令定义及其响应之间。
+
+```text
+-cc set welcome -- Welcome {user.mention} to {guild.name}
+```
+
+自定义命令名称使用小写字母、数字、下划线或连字符
+并且限制为 32 个字符。名称不能取代现有的名称 Rumi
+命令或别名。
+
+## 添加参数
+
+将参数规范放在名称之后、分隔符之前：
+
+```text
+-cc set say <text...> -- {text}
+-cc set link [link] -- [Open the link]({link|https://rumi.rocks})
+```
+
+- `<name>` 是必须的。
+- `[name]` 是可选的。
+- 添加 `...` 将剩余的单词收集到一个参数中。
+
+必需的参数会停止命令并确定缺少的内容。选修的
+参数解析为空值，因此当输出为空时使用回退
+看起来很尴尬： `{link|https://rumi.rocks}`.
+
+## 使用前预览
+
+预览使用示例参数运行已保存的命令：
+
+```text
+-cc preview say This is a test
+-cc preview link https://example.com
+```
+
+## 检查、更新或删除
+
+```text
+-cc show welcome
+-cc set welcome -- Hello {user.mention}
+-cc remove welcome
+```
+
+跑步 `set` 再次使用相同的名称更新现有的自定义命令。
+
+<Note>
+这 `--` token 是一个分隔符，不是保存的回复的一部分。看
+[语法和分隔符](./syntax-and-separators) 为什么会这样
+需要以及它如何围绕参数和响应文本表现。
+</Note>

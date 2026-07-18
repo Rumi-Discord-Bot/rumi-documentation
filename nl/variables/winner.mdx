@@ -1,0 +1,21 @@
+---
+title: "Winnaar variabelen"
+description: "8 winnaarvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;winner&#125;</code> | Winnaargegevens voor aankondigingen van winnaars van weggeefacties. | <code>Voorbeeld winnaar</code> | Sjablonen voor weggeefresultaten |
+| <code>&#123;winner.avatar&#125;</code> | URL van avatarafbeelding. Bron: winnaar. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Sjablonen voor weggeefresultaten |
+| <code>&#123;winner.bonus_entries&#125;</code> | Bonusinzendingen voor winnaar. | <code>Voorbeeld van winnaarbonusinzendingen</code> | Sjablonen voor weggeefresultaten |
+| <code>&#123;winner.display_name&#125;</code> | Weergavenaam of bijnaam van de server. Bron: winnaar. | <code>Maanlicht</code> | Sjablonen voor weggeefresultaten |
+| <code>&#123;winner.entries&#125;</code> | Inzendingen voor winnaar. | <code>Voorbeeld winnaarinzendingen</code> | Sjablonen voor weggeefresultaten |
+| <code>&#123;winner.id&#125;</code> | Discord Identiteitskaart. Bron: winnaar. | <code>123456789012345678</code> | Sjablonen voor weggeefresultaten |
+| <code>&#123;winner.mention&#125;</code> | Discord tekst vermelden. Bron: winnaar. | <code>&lt;@123456789012345678&gt;</code> | Sjablonen voor weggeefresultaten |
+| <code>&#123;winner.name&#125;</code> | Naam waarde. Bron: winnaar. | <code>Rumi</code> | Sjablonen voor weggeefresultaten |

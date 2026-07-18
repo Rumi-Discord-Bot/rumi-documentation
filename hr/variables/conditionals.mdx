@@ -1,0 +1,19 @@
+---
+title: "Uvjetne varijable"
+description: "6 uvjetnih varijabli koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;if:&lt;left&gt;&lt;operator&gt;&lt;right&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Usporedi vrijednosti s ==, !=, &gt;, &lt;, &gt;=, ili &lt;=. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;if:&lt;value&gt; contains &lt;text&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Provjerite sadrži li tekst drugu vrijednost, zanemarujući velika i mala slova. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;if:exists &lt;value&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Provjerite postoji li razriješena vrijednost i nije li lažna. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;if user has permission &lt;permission&gt;&#125;yes&#123;else&#125;no&#123;endif&#125;</code> | Provjerite a Discord dopuštenje za korisnika ili cilj. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;if user has role @Role&#125;Allowed&#123;else&#125;Denied&#123;endif&#125;</code> | Provjerite ima li član ulogu. | <code>Dopušteno</code> | Prilagođene naredbe, automatski odgovori |
+| <code>&#123;if:&#123;user.id&#125;==&#123;target.id&#125;&#125;No self target.&#123;else&#125;OK&#123;endif&#125;</code> | Prikaži drugačiji tekst kada sigurno stanje prođe ili ne uspije. | <code>U REDU</code> | Prilagođene naredbe, automatski odgovori |

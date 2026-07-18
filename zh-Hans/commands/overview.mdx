@@ -1,0 +1,77 @@
+---
+title: "命令目录"
+description: "查找准确的命令名称、描述、别名和权限。"
+icon: "list"
+---
+
+Rumi是在-Discord 帮助菜单是可用命令的真实来源
+给你：
+
+```text
+-help
+```
+
+使用 `-help <command>` 检查特定命令。例如：
+
+```text
+-help customcommand
+```
+
+帮助条目可以包括：
+
+- 命令和子命令名称
+- 描述和前缀别名
+- 用法和参数信息
+- 所需的用户和机器人权限
+- 仅服务器和 NSFW 限制
+- 斜线命令支持
+
+<Info>
+该网站深入解释了工作流程。如果有向导和 Rumi当前的帮助条目
+如有不同，请按照机器人的帮助条目进行操作。
+</Info>
+
+## 有效搜索
+
+按类别浏览帮助菜单，或按名称搜索命令。有用的领域
+包括管理、音乐、实用、经济、角色、频道和服务器工具。
+
+<CardGroup cols={2}>
+  <Card title="管理" icon="sliders" href="../features/management">
+    过滤器、员工访问、自动化、角色、渠道、验证和邀请。
+  </Card>
+  <Card title="社区系统" icon="users" href="../features/levels">
+    等级、经济设置、商店和赠品。
+  </Card>
+  <Card title="自定义命令" icon="wand-magic-sparkles" href="../custom-commands/overview">
+    参数、变量、嵌入、组件、操作、限制和数据。
+  </Card>
+  <Card title="音乐" icon="music" href="../features/music">
+    Discord 语音播放、 Spotify 设备控制，以及 Last.fm 收听数据。
+  </Card>
+  <Card title="媒体和游戏" icon="photo-film" href="../features/media-and-embeds">
+    图像和视频工具、嵌入、互动游戏和游戏查找。
+  </Card>
+  <Card title="个人工具" icon="toolbox" href="../features/personal-tools">
+    提及、翻译、书签和待办事项列表。
+  </Card>
+</CardGroup>
+
+## 命令别名
+
+有些命令的别名更短。例如， `cc` 打开 `customcommand`,
+`rr` 打开 `reactionrole`， 和 `rank` 打开 `level`。别名运行相同的命令
+并使用相同的权限和保存的设置。
+
+帮助条目显示支持的别名。不要假设每个缩短的单词都是
+别名；如果未列出，请使用完整的命令名称。
+
+## 仅前缀命令
+
+Rumi 前缀命令比斜杠命令多。这是故意的
+斜杠目录正在被清理。标记为 **仅前缀** 的命令必须是
+使用服务器前缀运行，即使类似名称的斜杠命令出现在
+Discord.
+
+请参阅[如何阅读命令语法](./reading-syntax) 对于所需的值，
+可选参数、选择、标志、引号和子命令。

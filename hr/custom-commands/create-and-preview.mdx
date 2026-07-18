@@ -1,0 +1,59 @@
+---
+title: "Stvorite i pregledajte"
+description: "Stvorite, pregledajte, testirajte, ažurirajte i uklonite prilagođenu naredbu."
+icon: "flask"
+---
+
+## Kreirajte naredbu
+
+Mjesto `--`, `=>`, ili `->` između definicije naredbe i njezinog odgovora.
+
+```text
+-cc set welcome -- Welcome {user.mention} to {guild.name}
+```
+
+Nazivi prilagođenih naredbi koriste mala slova, brojeve, podvlake ili crtice
+i ograničeni su na 32 znaka. Ime ne može zamijeniti postojeće Rumi
+naredba ili alias.
+
+## Dodajte argumente
+
+Stavite specifikacije argumenata iza imena i ispred separatora:
+
+```text
+-cc set say <text...> -- {text}
+-cc set link [link] -- [Open the link]({link|https://rumi.rocks})
+```
+
+- `<name>` je potrebno.
+- `[name]` nije obavezan.
+- Dodaj `...` sakupiti preostale riječi u jedan argument.
+
+Potrebni argumenti zaustavljaju naredbu i identificiraju što nedostaje. Neobavezno
+argumenti rješavaju praznu vrijednost, pa upotrijebite zamjenu kada bi prazan izlaz
+izgledati neugodno: `{link|https://rumi.rocks}`.
+
+## Pregled prije upotrebe
+
+Pregled pokreće spremljenu naredbu s oglednim argumentima:
+
+```text
+-cc preview say This is a test
+-cc preview link https://example.com
+```
+
+## Pregledajte, ažurirajte ili uklonite
+
+```text
+-cc show welcome
+-cc set welcome -- Hello {user.mention}
+-cc remove welcome
+```
+
+Trčanje `set` ponovno s istim imenom ažurira postojeću prilagođenu naredbu.
+
+<Note>
+The `--` token je separator, a ne dio spremljenog odgovora. Vidjeti
+[Sintaksa i separatori](./syntax-and-separators) zašto je
+potreban i kako se ponaša oko argumenata i teksta odgovora.
+</Note>

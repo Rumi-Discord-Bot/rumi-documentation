@@ -1,0 +1,82 @@
+---
+title: "Incrustaciones y componentes"
+description: "Cree incrustaciones estructuradas, botones de enlace, controles de acción, menús desplegables y resultados paginados."
+icon: "panels-top-left"
+---
+
+Rumi's `$v{...}` los bloques describen Discord contenido del mensaje. Se pueden mezclar
+con texto ordinario y variables.
+
+## Incrustar propiedades
+
+```text
+-cc set profile [member] --
+$v{embed}
+$v{author: {target.display_name|{user.display_name}} && {target.avatar|{user.avatar}}}
+$v{title: Member profile}
+$v{description: Requested by {user.mention}}
+$v{thumbnail: {target.avatar|{user.avatar}}}
+$v{field: Account && {target.name|{user.name}} && true}
+$v{field: Joined && {target.joined_at|Unavailable} && true}
+$v{color: 6A8FB3}
+$v{footer: Rumi custom commands && {bot.avatar}}
+$v{timestamp: {date.utc_now}}
+```
+
+Las propiedades de inserción admitidas son `title`, `description`/`desc`, `url`, `color`,
+`image`/`gif`, `thumbnail`/`thumb`, `timestamp`, `footer`, `author`, y
+`field`. Usar `&&` dentro de autores, pies de página y campos para separar sus partes.
+
+<Accordion title="Límites de discordia impuestos por Rumi">
+  Un mensaje puede contener hasta 10 incrustaciones y 5 filas de componentes. Una inserción permite
+  25 campos, un título de 256 caracteres, una descripción de 4096 caracteres y 6000
+  caracteres de texto totales. Las etiquetas de los botones están limitadas a 80 caracteres y un
+  El menú desplegable puede contener hasta 25 opciones.
+</Accordion>
+
+## Botones de enlace
+
+Los botones de enlace no ejecutan una acción de bot:
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{button: label=Support && url=https://discord.gg/NYs2jF9MCc && emoji=💬}
+```
+
+## Botones de acción
+
+Los botones sin URL crean una sesión de interacción. La acción todavía pasa.
+las mismas comprobaciones de permisos, objetivos, jerarquía de funciones y restricciones utilizadas por un
+acción directa de comando personalizado.
+
+```text
+$v{button: Confirm && danger && action=mod:warn target && await=true && once=true}
+```
+
+Las opciones de control útiles incluyen `reply=...`, `ephemeral=true`, `dm=true`,
+`await=true`, `once=true`, `expires=10m`, y `allow_role=@Role`.
+
+## Menús desplegables
+
+Las dos primeras partes son el nombre interno y el marcador de posición. Cada uno de los siguientes
+usos de opciones `label|action|description|emoji`:
+
+```text
+$v{dropdown: color && Choose a color && Red|reply=You chose red|Warm|🔴 && Blue|reply=You chose blue|Cool|🔵}
+```
+
+## Varias páginas e incrustaciones
+
+Usar `$v{embed}` para iniciar otra inserción en el mismo mensaje. Poner `$v{page}` en
+su propia línea para iniciar una página navegable separada:
+
+```text
+$v{embed}$v{title: Page one}$v{description: First section}
+$v{page}
+$v{embed}$v{title: Page two}$v{description: Second section}
+```
+
+Siempre corre `-cc preview <name>` después de agregar componentes. Vista previa de capturas
+URL, colores y tamaños de campo no válidos. Discord límites de componentes antes que miembros
+usa el comando.
+

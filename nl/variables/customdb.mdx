@@ -1,0 +1,23 @@
+---
+title: "Aangepaste DB-variabelen"
+description: "10 customdb-variabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;customdb.&lt;operation&gt;:namespace:key[:value]&#125;</code> | Lange alias voor elke databasebewerking: get, exist, set, inc, increment, dec, decrement, delete en del. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;db.dec:namespace:key:amount&#125;</code> | Een aangepast gegevensnummer verlagen. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;db.decrement:namespace:key:amount&#125;</code> | Lange alias van db.dec. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;db.del:namespace:key&#125;</code> | Alias ​​van db.delete. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;db.delete:namespace:key&#125;</code> | Een aangepaste gegevenssleutel verwijderen. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;db.exists:namespace:key&#125;</code> | Retourneert waar als de aangepaste gegevenssleutel bestaat, anders onwaar. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;db.get:namespace:key&#125;</code> | Een opgeslagen aangepaste gegevenswaarde lezen. | <code>42</code> | Aangepaste opdrachten; autoresponders met --db |
+| <code>&#123;db.inc:namespace:key:1&#125;</code> | Een opgeslagen nummer verhogen. Zet het op een eigen regel om het onbewerkte resultaat te verbergen. | <code>43</code> | Aangepaste opdrachten; autoresponders met --db |
+| <code>&#123;db.increment:namespace:key:amount&#125;</code> | Verhoog een aangepast gegevensnummer. Alias ​​van db.inc. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;db.set:namespace:key:value&#125;</code> | Sla een aangepaste gegevenswaarde op. Op zijn eigen lijn produceert de mutatie geen zichtbare output. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |

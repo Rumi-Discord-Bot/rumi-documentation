@@ -1,0 +1,125 @@
+---
+title: "等级和经验值"
+description: "配置 XP、升级消息、奖励角色、乘数和忽略的通道。"
+icon: "arrow-up-right-dots"
+---
+
+Rumi的升级系统跟踪服务器 XP，显示排名卡，构建排行榜，
+并可以在选定的里程碑授予角色。会员的XP属于服务器
+它是在哪里赚取的。
+
+## 从设置开始
+
+服务器管理员可以启用系统并检查保存的配置：
+
+```text
+-levels enable
+-levels settings
+```
+
+然后会员可以使用：
+
+```text
+-level
+-level @member
+-leaderboard
+```
+
+`level` 也可用作 `rank`。排行榜显示服务器的XP
+排行。
+
+## 升级公告
+
+设置消息 `levels message`。该消息可以跨越多行并使用
+级别变量，例如 `{user.mention}` 和 `{level}`:
+
+```text
+-levels message GG {user.mention}!
+You reached level {level}. --delete 15
+```
+
+这 `--delete 15` 旗帜告诉 Rumi 15 秒后删除公告。
+在依赖之前预览保存的结果：
+
+```text
+-levels preview
+```
+
+选择公告是使用普通文本还是嵌入内容以及它们的位置
+发送：
+
+```text
+-levels messagemode text
+-levels messagemode embed
+-levels channel #level-ups
+```
+
+跑步 `-variables level` 查看当前可用的与级别相关的变量
+消息模板。
+
+## 奖励角色
+
+为里程碑分配角色：
+
+```text
+-levels role 10 @Veteran
+-levels role 25 @Regular
+```
+
+使用 `stackroles` 选择成员是否保留早期的里程碑角色或
+只保留与其最高达到的里程碑相关的角色：
+
+```text
+-levels stackroles on
+-levels stackroles off
+```
+
+删除一个里程碑并使用以下命令重新应用当前角色配置：
+
+```text
+-levels roleclear 10
+-levels sync
+```
+
+Rumi 需要**管理角色**，其最高角色必须高于所有奖励
+预期分配的角色。
+
+## 乘数和忽略的通道
+
+设置服务器范围的 XP 乘数或附加到角色的乘数：
+
+```text
+-levels multiplier 1.5
+-levels rolemultiplier @Booster 2
+```
+
+正常聊天不应产生 XP 的频道可以被排除：
+
+```text
+-levels ignore #spam
+-levels unignore #spam
+```
+
+## 调整 XP 和声誉
+
+直接XP更改的管理命令是：
+
+```text
+-xp add @member 100
+-xp remove @member 50
+-xp set @member 1000
+```
+
+Rumi 还有一个单独的声誉系统：
+
+```text
+-rep give @member
+-rep remove @member
+-rep leaderboard
+```
+
+<Warning>
+更改乘数或 XP 可能会改变现有排名的含义。查看
+`-levels settings` 前后有较大变化，然后使用 `-levels sync` 如果
+奖励角色需要协调一致。
+</Warning>

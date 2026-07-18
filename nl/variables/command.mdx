@@ -1,0 +1,24 @@
+---
+title: "Commandovariabelen"
+description: "11 opdrachtvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;command.alias&#125;</code> | Alias ​​die wordt gebruikt om de opdracht te activeren, indien beschikbaar. | <code>Voorbeeld van een opdrachtalias</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.arg_count&#125;</code> | Aantal arg voor opdracht. | <code>128</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.category&#125;</code> | Categorie voor opdracht. | <code>Voorbeeld opdrachtcategorie</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.channel&#125;</code> | Kanaalvermelding of kanaalwaarde. Bron: commando. | <code>Voorbeeld commandokanaal</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.channel_id&#125;</code> | Discord kanaal-ID. Bron: commando. | <code>Voorbeeld commandokanaal-ID</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.description&#125;</code> | Beschrijving tekst. Bron: commando. | <code>Voorbeeldopdrachtbeschrijving</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.name&#125;</code> | Naam van de opdracht die momenteel dit antwoord weergeeft. | <code>Rumi</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.usage&#125;</code> | Gebruik voor commando. | <code>Voorbeeld van opdrachtgebruik</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.user&#125;</code> | Gebruiker voor opdracht. | <code>Voorbeeld opdrachtgebruiker</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.user_id&#125;</code> | Gebruikers-ID voor opdracht. | <code>Voorbeeldopdracht gebruikers-ID</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |
+| <code>&#123;command.user_mention&#125;</code> | Gebruikersvermelding voor opdracht. | <code>Voorbeeldopdracht gebruikersvermelding</code> | Aangepaste opdrachten en opdrachtbewuste sjablonen |

@@ -1,0 +1,131 @@
+---
+title: "Liaison et contrôles Spotify"
+description: "Liez Spotify, inspectez les appareils, contrôlez la lecture personnelle, parcourez votre bibliothèque et mettez les pistes en file d'attente dans Discord Voice."
+icon: "spotify"
+---
+
+Spotify la liaison donne Rumi l'autorisation de lire les données de la bibliothèque que vous demandez et
+envoyer des contrôles à votre propre actif Spotify appareil. Il n'expose pas votre jeton
+à Discord ou partagez des listes de lecture privées avec d'autres membres.
+
+## Lier ou actualiser les autorisations
+
+```text
+-spotify link
+-spotify status
+-spotify unlink
+```
+
+Ouvrez le lien unique et approuvez les autorisations demandées. Utilisateurs liés
+avant que les contrôles de l'appareil et les chansons que vous aimez soient ajoutés, vous devez les exécuter `-spotify link`
+encore une fois donc Spotify peut accorder les nouvelles étendues de lecture et de bibliothèque.
+
+<Warning>
+Spotify Les commandes de lecture connectées nécessitent Spotify Prime. Ouvrir Spotify sur le
+ciblez le téléphone, l'ordinateur, le navigateur ou le haut-parleur au moins une fois afin Spotify rapporte un
+appareil disponible.
+</Warning>
+
+## Parcourir les appareils et la lecture
+
+```text
+-spotify devices
+-spotify player status
+-spotify pause
+-spotify resume
+-spotify next
+-spotify previous
+-spotify volume 45
+-spotify seek 1:30
+-spotify shuffle on
+-spotify repeat track
+```
+
+`seek` accepte les secondes (`90`), l'heure de l'horloge (`1:30`), ou une durée (`2m`). Répéter
+accepte `off`, `track`, ou `context`.
+
+## Transférer la lecture
+
+Courir `-spotify devices` d'abord. Virement par le numéro affiché, appareil exact
+nom, une partie de son nom ou l'ID de l'appareil :
+
+```text
+-spotify transfer 2
+-spotify transfer Kitchen speaker
+```
+
+Les appareils restreints peuvent apparaître dans la liste mais ne peuvent pas accepter les contrôles de l'API Web.
+Les ID d'appareil peuvent changer, donc la sélection par la liste actuelle ou le nom de l'appareil est plus
+pratique que d’enregistrer une pièce d’identité.
+
+## Démarrer ou mettre en file d'attente une piste sur Spotify
+
+```text
+-spotify play pink pony club
+-spotify play https://open.spotify.com/track/...
+-spotify queue deftones change
+```
+
+`spotify play` remplace la lecture sur le personnel Spotify appareil. `spotify
+queue` ajoute un élément à celui de cet appareil Spotify file d'attente. Aucune des commandes ne change
+Rumic'est Discord file d'attente vocale.
+
+## Afficher les listes de lecture
+
+```text
+-spotify playlists
+-spotify playlists @member
+```
+
+Vous pouvez parcourir les playlists **publiques** d'un autre membre uniquement lorsque cela Discord
+le membre a lié Spotify. Les playlists privées restent visibles uniquement par leur propriétaire.
+
+Pour ajouter l'une de vos propres listes de lecture liées à Rumic'est Discord file d'attente vocale, rejoignez un
+canal vocal et sélectionnez-le par numéro de liste, nom, identifiant ou Spotify URL :
+
+```text
+-spotify playlists queue 2
+-spotify playlists queue "Night drive" 30
+-spotify playlists queue https://open.spotify.com/playlist/... 50
+```
+
+Le numéro final facultatif limite l’importation à 1 à 75 pistes.
+
+## Chansons aimées
+
+```text
+-spotify liked
+-spotify liked list 30
+-spotify liked queue 25
+```
+
+Les chansons aimées sont privées pour l’utilisateur lié. Les mettre en file d'attente nécessite que l'utilisateur
+possède ce lien pour être dans un Discord canal vocal.
+
+<Note>
+Rumi utilise Spotify URL et métadonnées comme entrées de recherche pour la musique configurée
+service. Il ne télécharge, ne rediffuse ni n'extrait l'audio de Spotify.
+</Note>
+
+## Dépannage
+
+<AccordionGroup>
+  <Accordion title="Rumi me demande de me reconnecter">
+    Votre autorisation enregistrée est antérieure à une ou plusieurs étendues requises. Courir
+    `-spotify link` et approuvez l'écran d'autorisation mis à jour.
+  </Accordion>
+  <Accordion title="Aucun appareil n'est disponible">
+    Ouvrir Spotify sur l’appareil souhaité et démarrez la lecture une fois. Puis relancez
+    `-spotify devices`. Les appareils en session privée ou restreints peuvent rejeter
+    contrôles.
+  </Accordion>
+  <Accordion title="Spotify renvoie Premium requis">
+    Les points de terminaison du contrôle de lecture sont limités par Spotify aux utilisateurs Premium. Bibliothèque
+    la navigation peut toujours fonctionner lorsque les autorisations de lecture requises sont présentes.
+  </Accordion>
+  <Accordion title="Une liste de lecture ne peut pas être mise en file d'attente">
+    Spotify expose actuellement les éléments de la liste de lecture uniquement lorsque l'utilisateur lié possède ou
+    collabore sur cette playlist. Confirmez également que vous êtes en voix et que
+    RumiLe service musical de est prêt.
+  </Accordion>
+</AccordionGroup>

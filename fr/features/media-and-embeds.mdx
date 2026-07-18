@@ -1,0 +1,132 @@
+---
+title: "Médias et intégrations"
+description: "Modifiez des images et des vidéos, exportez des médias et créez des intégrations Discord réutilisables."
+icon: "photo-film"
+---
+
+RumiLa commande media de accepte les pièces jointes, les URL directes et, dans les formats pris en charge
+actions : le média joint à un message répondu. Les outils d'intégration transforment un compact
+script dans un Discord intégrer qui peut être prévisualisé, enregistré et réutilisé.
+
+## Choisir l'entrée multimédia
+
+L'entrée la moins ambiguë est une pièce jointe directe ou une URL :
+
+```text
+-media blur https://example.com/image.png 3
+-media bgremove https://example.com/photo.jpg
+```
+
+Vous pouvez également répondre à un message contenant un média et exécuter la commande sans
+URL. Si la source est une page de plateforme plutôt qu'un fichier direct, la disponibilité
+dépend si RumiLe service multimédia de prend en charge cette plate-forme.
+
+## Effets d'image
+
+Les actions d'image actuelles incluent :
+
+- `blur [amount]`
+- `brightness [amount]`
+- `contrast [amount]`
+- `deepfry`
+- `flip`
+- `glitch`
+- `grayscale`
+- `invert`
+- `jail-bars`
+- `pixelate [factor]`
+- `resize <width>x<height>`
+- `rotate [degrees]`
+- `vaporwave`
+- `wasted`
+
+Exemples :
+
+```text
+-media pixelate 18
+-media resize 512x512
+-media rotate 180
+```
+
+## Légendes
+
+```text
+-media caption Welcome to the server
+-media caption --position=top --size=42 --color=#ffffff Welcome!
+```
+
+Les indicateurs de légende incluent la position, la famille de polices, la couleur du texte, la couleur d'arrière-plan et
+taille de la police. Utiliser `-help media caption` pour les alias actuels et le formulaire accepté.
+
+## Conversion GIF et MP4
+
+```text
+-media gif <url>
+-media mp4 <url> --start 10s --duration 30s
+-media togif <url> --start 5s --duration 6s --fps 12 --width 480
+```
+
+`media gif` récupère le fichier GIF ou multimédia d'origine pris en charge. `media mp4`
+crée un MP4 téléchargeable, tandis que `media togif` crée un court clip GIF.
+Rumi applique des limites d'entrée, de sortie, de durée et de traitement afin qu'une grande source
+peut nécessiter un clip plus court ou des dimensions plus petites.
+
+## Suppression de l'arrière-plan
+
+```text
+-media bgremove
+```
+
+Joignez une image, incluez une URL d’image ou répondez à une image. Rumi renvoie un
+PNG transparent lorsque le service de suppression d’arrière-plan configuré réussit.
+
+## Intégrer des scripts
+
+Commencez par un aperçu :
+
+```text
+-embed preview {embed}$v{title: Rules}$v{description: Read the channels below.}$v{color: 6A8FB3}
+```
+
+`{embed}` démarre le script d'intégration. Chaque `$v{property: value}` ajoute une propriété.
+Par exemple:
+
+```text
+{embed}
+$v{title: Event night}
+$v{description: Join us at {timestamp}.}
+$v{field: Where && #events && true}
+$v{field: Host && {user.mention} && true}
+$v{thumbnail: {guild.icon}}
+$v{color: 6A8FB3}
+```
+
+Les trois parties du champ sont le nom, la valeur et s'il doit être en ligne.
+
+## Enregistrer et réutiliser les intégrations
+
+```text
+-embed save event <script>
+-embed list
+-embed load event
+-embed edit event <updated script>
+-embed delete event
+```
+
+Envoyez un script directement au canal actuel ou spécifiez un autre canal :
+
+```text
+-embed send {embed}$v{description: Hello!}
+-embed send #announcements {embed}$v{title: Update}$v{description: New event this weekend.}
+```
+
+Utiliser `-embed validate <script>` lorsque vous souhaitez uniquement des commentaires sur la syntaxe. Intégration enregistrée
+les modèles et les commandes personnalisées partagent les mêmes idées de script d'intégration, de sorte que le
+[guide des intégrations et des composants](../custom-commands/embeds-and-components) est utile
+pour les deux.
+
+<Warning>
+Rumi ne peut pas faire Discord accepter une intégration qui dépasse DiscordLe champ, le texte ou
+limites des composants. Validez et prévisualisez les longs scripts avant de les envoyer à un
+chaîne publique.
+</Warning>

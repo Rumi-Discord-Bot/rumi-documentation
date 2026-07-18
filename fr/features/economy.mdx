@@ -1,0 +1,186 @@
+---
+title: "Économie des serveurs"
+description: "Configurez les devises, les récompenses, les banques, les transferts, les magasins, les vols et les limites du casino."
+icon: "coins"
+---
+
+Chaque serveur a son propre Rumi économie. Noms des devises, montants des récompenses, paramètres,
+les soldes et les articles de la boutique sont conservés dans l'économie de ce serveur plutôt que partagés
+entre communautés indépendantes.
+
+## Ce que les membres peuvent faire
+
+Les commandes quotidiennes sont simples :
+
+```text
+-balance
+-balance @member
+-daily
+-weekly
+-work
+-deposit 500
+-deposit all
+-withdraw 250
+-give @member 100
+-economytop
+```
+
+Les soldes de trésorerie et bancaires sont distincts. `deposit` transfère de l'argent à la banque ;
+`withdraw` le recule. Virements effectués avec `give` peut être affecté par le
+taxe de transfert configurée par le serveur.
+
+## Configuration initiale
+
+Les membres disposant de **Gérer le serveur** peuvent inspecter et modifier les paramètres :
+
+```text
+-economy config
+-economy config currency petals
+-economy config icon 🌸
+-economy config daily 250
+-economy config weekly 2500
+-economy config work 50 350
+-economy config cooldown work 3600
+```
+
+La plage de travail est un paiement minimum et maximum. Les temps de recharge sont entrés dans
+secondes dans la commande de configuration économique.
+
+Désactivez une commande d'économie sans désactiver l'ensemble du système :
+
+```text
+-economy config disable rob
+-economy config enable rob
+```
+
+`economy config reset confirm` réinitialise les paramètres à leurs valeurs par défaut mais le fait
+pas supprimer les soldes. `economy reset confirm` est différent : il réinitialise le
+soldes d'utilisateurs du serveur. Lire RumiVérifiez soigneusement la confirmation avant d'utiliser l'un ou l'autre.
+
+## Vols et jeux de casino
+
+Le vol peut être réglé ou désactivé :
+
+```text
+-economy rob
+-economy rob on
+-economy rob cooldown 3600
+-economy rob limits 25 500
+-economy rob chance 35
+-economy rob fine 20
+-economy rob protection 12
+```
+
+Les membres utilisent `-rob @member [amount]`. Rumi applique la chance sauvegardée, les limites,
+amende de tentative infructueuse, temps de recharge et période de protection.
+
+Les contrôles du casino fonctionnent de la même manière :
+
+```text
+-economy casino on
+-economy casino cooldown 20
+-economy casino limits 10 1000
+-casino coinflip 100 heads
+-casino slots 100
+```
+
+## Boutiques et inventaires
+
+Les membres peuvent parcourir la boutique du serveur, acheter des articles, inspecter leur inventaire et
+vendre des articles pris en charge :
+
+```text
+-shop
+-shop view <item>
+-buy <item>
+-inventory
+-sell <item>
+```
+
+### Créer un article de boutique
+
+Les membres disposant de **Gérer le serveur** peuvent créer et gérer des éléments de boutique de serveurs. Le
+créer le format est `name`, `buy price`, facultatif `sell price`, alors `|` et le
+description:
+
+```text
+-shop add coffee 150 45 | Fresh server coffee
+-shop add vip-pass 5000 0 | Unlocks the VIP role
+-shop view coffee
+```
+
+Les noms d'éléments sont des jetons uniques, utilisez donc `vip-pass` plutôt que `VIP pass`. Une vente
+prix de `0` empêche l'article de restituer de la monnaie une fois vendu. `edit` utilise
+le même format complet :
+
+```text
+-shop edit coffee 175 50 | A warm drink and a small energy boost
+```
+
+Pour des modifications plus petites, utilisez les commandes ciblées :
+
+```text
+-shop price coffee 200
+-shop sellprice coffee 60
+-shop desc coffee A limited seasonal drink
+-shop remove coffee
+```
+
+### Éléments basés sur un rôle
+
+Joindre un ou plusieurs Discord rôles sur un élément :
+
+```text
+-shop role add vip-pass @VIP
+-shop role add vip-pass @Supporter
+-shop role remove vip-pass @Supporter
+```
+
+Rumi doit être capable de gérer chaque rôle attaché, c'est-à-dire son rôle le plus élevé
+doit s'asseoir au-dessus d'eux dans Discordla liste des rôles.
+
+### Codes articles et cartes cadeaux
+
+Un code article est stocké pour un article et peut être géré par le personnel :
+
+```text
+-shop code create vip-pass WELCOME1
+-shop code remove vip-pass WELCOME1
+```
+
+Les cartes cadeaux sont des codes de devises échangeables associés à un article. Fournir le
+montant en devise et nombre d'utilisations après le code :
+
+```text
+-shop giftcard create vip-pass LAUNCH500 500 25
+-shop giftcard remove vip-pass LAUNCH500
+```
+
+Les membres échangent un code valide avec :
+
+```text
+-shop redeem LAUNCH500
+```
+
+Chaque rachat réussi ajoute le montant configuré au compte de ce membre.
+gains et consomme une utilisation. Traitez les codes de carte-cadeau comme des liens privés : tout le monde
+qui connaît un code valide peut essayer de l'utiliser tant qu'il reste des utilisations.
+
+`rumishop` est Rumila boutique de robots globale de et est distincte de la boutique de robots configurée sur le serveur
+boutique.
+
+## Modifications de l'audit
+
+Rumi enregistre les changements et les transactions dans les paramètres économiques :
+
+```text
+-economy audit
+-economy logs
+```
+
+Ceux-ci sont utiles après avoir modifié les récompenses, les taxes, les paramètres de vol ou les limites du casino.
+
+<Tip>
+Fixez d’abord des récompenses prudentes et des limites de pari. Il est plus facile d'augmenter un
+le rythme de l'économie plutôt que de rétablir les équilibres après une configuration trop généreuse.
+</Tip>

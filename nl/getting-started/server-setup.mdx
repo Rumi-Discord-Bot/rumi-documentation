@@ -1,0 +1,106 @@
+---
+title: "Zet een server op"
+description: "Een praktische eerste kennismaking met Rumi's serverinstellingen, rollen, taal en helptools."
+icon: "list-check"
+---
+
+U hoeft niet alles te configureren Rumi module in één keer. Begin met de onderdelen
+uw community daadwerkelijk zal gebruiken, controleer ze allemaal en voeg er later meer toe.
+
+## 1. Bevestig Rumi kan reageren
+
+Voer deze uit in een kanaal waar Rumi kan berichten lezen en verzenden:
+
+```text
+-ping
+-help
+```
+
+Als geen van beide opdrachten iets retourneert, controleer dan de kanaaloverschrijvingen Rumi'S
+rol. De gebruikelijke vereisten zijn **Kanaal bekijken**, **Berichten verzenden**, **Insluiten
+Links** en **Berichtgeschiedenis lezen**. Individuele functies kunnen meer nodig hebben; de
+relevant `-help <command>` vermelding vermeldt ze.
+
+## 2. Controleer het voorvoegsel
+
+De voorbeelden op deze site gebruiken `-`. Als uw server een ander voorvoegsel heeft, gebruikt u
+dat voorvoegsel in plaats daarvan. Slash-opdrachtnamen veranderen niet met het voorvoegsel.
+
+```text
+-help prefix
+```
+
+Zie [prefix- en slash-opdrachten](../guides/prefix-and-slash) voor het verschil
+tussen de twee opdrachtstijlen.
+
+## 3. Kies het taalgedrag
+
+Ieder lid kan een persoonlijke taal hanteren. Beheerders kunnen ook kiezen voor een
+serverstandaard voor leden die er geen hebben geselecteerd.
+
+```text
+-language
+-language set user de
+-language set server fr
+```
+
+Persoonlijke voorkeuren hebben voorrang op de serverstandaard. Commandonamen blijven
+in het Engels; Rumi vertaalt de antwoorden en interfacetekst.
+
+## 4. Bereid rollen en kanalen voor
+
+Rumi volgt Discord's rollenhiërarchie. Beweging Rumi's rol boven welke rol dan ook
+wordt verwacht dat deze wordt toegewezen, verwijderd, hernoemd of hersteld.
+
+Nuttige controles:
+
+```text
+-permissions @Rumi
+-role info Staff
+-channelinfo #general
+```
+
+Geef niet Rumi Beheerder alleen om installatiewerk te voorkomen. Verleen de machtigingen
+nodig zijn voor de modules die u gebruikt. Hierdoor blijft de toegang van de bot gemakkelijker te begrijpen.
+
+## 5. Schakel één systeem tegelijk in
+
+Hier zijn verstandige uitgangspunten:
+
+<CardGroup cols={2}>
+  <Card title="Beheer" icon="sliders" href="../features/management">
+    Configureer rollen, kanalen, filters, verificatie en personeelsworkflows.
+  </Card>
+  <Card title="Niveaus" icon="arrow-up-right-dots" href="../features/levels">
+    Schakel XP in, kies aankondigingen en voeg niveaurollen toe.
+  </Card>
+  <Card title="Economie" icon="coins" href="../features/economy">
+    Stel de valuta, beloningen, cooldowns, winkel-, berovings- en casinolimieten in.
+  </Card>
+  <Card title="Muziek" icon="music" href="../features/music">
+    Sluit je aan bij een spraakkanaal, speel een nummer af en leer de wachtrijbedieningen.
+  </Card>
+</CardGroup>
+
+Nadat u een systeem hebt gewijzigd, voert u de status- of instellingenopdracht uit. Bijvoorbeeld,
+`-levels settings`, `-economy config`, of `-verification status` laat zien wat Rumi
+momenteel is opgeslagen.
+
+## 6. Test als gewoon lid
+
+Een beheerder kan per ongeluk toestemmingsproblemen verbergen omdat deze worden omzeild
+veel Discord beperkingen. Test na het instellen de workflow met een vast lid
+of een testrol. Controleer zowel het kanaal waarop de opdracht wordt uitgevoerd als elk kanaal
+waar Rumi Er wordt verwacht dat er een resultaat wordt verzonden.
+
+<Tip>
+Als iets niet lukt, ren dan `-help <command>` voordat u de machtigingen wijzigt. Het is
+meestal sneller dan raden welke toestemming of argument ontbreekt.
+</Tip>
+
+## Inactieve servers
+
+Rumi verlaat automatisch een server na **30 dagen zonder opgenomen server
+activiteit**. Hierdoor blijven gedeelde bronnen en servicestabiliteit behouden. Er is niets
+Er is iets mis met uw server en u kunt uitnodigen Rumi opnieuw wanneer de gemeenschap
+wordt actief.

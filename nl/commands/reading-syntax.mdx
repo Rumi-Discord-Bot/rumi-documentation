@@ -1,0 +1,112 @@
+---
+title: "Hoe de syntaxis van opdrachten te lezen"
+description: "Begrijp de vereiste argumenten, optionele waarden, keuzes, vlaggen, ID's en geciteerde tekst."
+icon: "code"
+---
+
+Rumi's help-items gebruiken een kleine hoeveelheid notatie om te laten zien wat een commando is
+verwacht. De haakjes zijn instructies; normaal typ je ze niet.
+
+## Vereiste en optionele argumenten
+
+`<angle brackets>` betekent dat de waarde vereist is:
+
+```text
+role add <member> <role>
+```
+
+Een geldige run zou zijn:
+
+```text
+-role add @Moon Member
+```
+
+`[square brackets]` betekent dat de waarde optioneel is:
+
+```text
+level [user]
+```
+
+Beide `-level` En `-level @Moon` zijn geldig.
+
+## Keuzes
+
+Een verticale balk betekent “kies er één”:
+
+```text
+deposit <amount|all>
+```
+
+Gebruik beide `-deposit 500` of `-deposit all`. Typ de balk niet.
+
+## Tekst met spaties
+
+Sommige opdrachten behandelen de rest van het bericht als één waarde. Anderen hebben er nog een
+argument erna, dus aanhalingstekens maken de grens duidelijk:
+
+```text
+-giveaway start "Discord Nitro" 24h 1 #giveaways
+```
+
+Zonder aanhalingstekens, `Discord` En `Nitro` kan als afzonderlijk positioneel worden gelezen
+argumenten. Citeren is vooral handig voor prijzen, namen, redenen en titels.
+
+## Vlaggen
+
+Vlaggen beginnen met `--` en verander een deel van een commando zonder het te veranderen
+hoofdactie:
+
+```text
+-role create Event Host --color #c8d8f2
+-media caption --position=top --size=42 Welcome!
+-giveaway start "Nitro" 24h 1 --button
+```
+
+Afhankelijk van het commando kan een vlag worden geschreven als `--name value` of
+`--name=value`. Volg het Help-voorbeeld van dat commando als beide formulieren dat niet zijn
+vermeld.
+
+## Vermeldingen, namen en ID's
+
+Rumi accepteert vaak a Discord vermelding, onbewerkte ID of oplosbare naam. Vermeldingen zijn
+het minst dubbelzinnige:
+
+```text
+-role info @Staff
+-channel rename #old-name new-name
+-inviter 123456789012345678
+```
+
+Wanneer twee rollen of kanalen dezelfde naam hebben, gebruik dan een vermelding of ID.
+
+## Subopdrachten
+
+Het eerste woord na een commando selecteert vaak een actie:
+
+```text
+-economy config
+-economy config currency petals
+-economy rob chance 35
+```
+
+Lees deze van links naar rechts: `economy` opent het systeem, `rob` selecteert zijn
+configuratiegebied, en `chance` selecteert de instelling.
+
+## Waarom aangepaste opdrachten worden gebruikt `--`
+
+De `customcommand set` commando moet het eigen argument van het commando scheiden
+definitie van het antwoord dat het opslaat:
+
+```text
+-cc set greet <member> -- Hello {target.mention}!
+```
+
+Alles vóór de standalone `--` definieert de aangepaste opdracht. Alles
+nadat het het antwoord of script is. Hierdoor kan het antwoord spaties bevatten,
+variabelen, insluitingen en meerdere regels zonder Rumi ze voor meer aanzien
+argumenten opzetten. Zie [syntaxis en scheidingstekens](../custom-commands/syntax-and-separators)
+voor het volledige aangepaste opdrachtformaat.
+
+<Info>
+Loop `-help <command>` wanneer een voorbeeld onduidelijk is. Als u nog steeds problemen ondervindt, kunt u het ingebouwde AI-model opvragen met behulp van `-rumi <question>`.
+</Info>

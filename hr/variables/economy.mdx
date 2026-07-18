@@ -1,0 +1,31 @@
+---
+title: "Ekonomske varijable"
+description: "18 ekonomskih varijabli koje podupire Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;economy.balance&#125;</code> | Formatirano ukupno stanje za korisnika. | <code>1.250 kovanica</code> | Ekonomične naredbe, prilagođene naredbe, automatski odgovori s ekonomskim kontekstom |
+| <code>&#123;economy.bank&#125;</code> | Bankovno stanje kada je dostupan ekonomski kontekst. | <code>830 novčića</code> | Ekonomične naredbe, prilagođene naredbe, automatski odgovori s ekonomskim kontekstom |
+| <code>&#123;economy.cash&#125;</code> | Formatirano stanje novčanika korisnika naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;economy.currency&#125;</code> | Ikona trenutne ekonomije poslužitelja. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;economy.currency_name&#125;</code> | Naziv trenutne valute gospodarstva poslužitelja. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;economy.daily_streak&#125;</code> | Broj dnevnih nizova nagrada. Izvor: gospodarstvo. | <code>1.250 kovanica</code> | Ekonomične naredbe, prilagođene naredbe, automatski odgovori s ekonomskim kontekstom |
+| <code>&#123;economy.networth&#125;</code> | Novčanik plus bankovni saldo kada je dostupan ekonomski kontekst. | <code>1.250 kovanica</code> | Ekonomične naredbe, prilagođene naredbe, automatski odgovori s ekonomskim kontekstom |
+| <code>&#123;economy.rank&#125;</code> | Vrijednost ranga. Izvor: gospodarstvo. | <code>1.250 kovanica</code> | Ekonomične naredbe, prilagođene naredbe, automatski odgovori s ekonomskim kontekstom |
+| <code>&#123;economy.raw_balance&#125;</code> | Neformatirani novčanik plus bankovni saldo korisnika naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;economy.raw_bank&#125;</code> | Neformatirani cijeli broj bankovnog stanja korisnika naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;economy.raw_cash&#125;</code> | Neformatirani saldo novčanika s cijelim brojem korisnika naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;economy.wallet&#125;</code> | Stanje novčanika kada je dostupan ekonomski kontekst. | <code>420 novčića</code> | Ekonomične naredbe, prilagođene naredbe, automatski odgovori s ekonomskim kontekstom |
+| <code>&#123;server_currency&#125;</code> | Pseudonim kompatibilnosti za &#123;ekonomija.valuta&#125;. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;target.economy.balance&#125;</code> | Formatirani novčanik plus bankovni saldo riješenog cilja. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;target.economy.bank&#125;</code> | Formatirano bankovno stanje razriješenog cilja. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;target.economy.cash&#125;</code> | Formatirano stanje novčanika razriješenog cilja. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;user_balance&#125;</code> | Pseudonim kompatibilnosti za ukupni saldo korisnika naredbe. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;user_balance_locale&#125;</code> | Pseudonim kompatibilnosti za oblikovanu naredbu ukupni saldo korisnika. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |

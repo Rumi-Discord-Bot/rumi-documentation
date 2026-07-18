@@ -1,0 +1,106 @@
+---
+title: "设置服务器"
+description: "初步了解 Rumi 的服务器设置、角色、语言和帮助工具。"
+icon: "list-check"
+---
+
+您不需要配置每一个 Rumi 立即模块。从零件开始
+您的社区将实际使用、检查每一项，然后添加更多。
+
+## 1. 确认 Rumi 可以回应
+
+在通道中运行这些 Rumi 可以读取和发送消息：
+
+```text
+-ping
+-help
+```
+
+如果两个命令都没有返回任何内容，请检查通道覆盖 Rumi的
+角色。通常的要求是**查看频道**、**发送消息**、**嵌入
+链接**和**阅读消息历史记录**。个别功能可能需要更多；这
+相关的 `-help <command>` 条目列出了它们。
+
+## 2.检查前缀
+
+本网站中的示例使用 `-`。如果您的服务器有不同的前缀，请使用
+改为该前缀。斜杠命令名称不会随前缀而改变。
+
+```text
+-help prefix
+```
+
+请参阅 [前缀和斜杠命令](../guides/prefix-and-slash) 为了差异
+介于两种命令样式之间。
+
+## 3.选择语言行为
+
+每个成员都可以保留个人语言。管理员还可以选择
+未选择的成员的服务器默认值。
+
+```text
+-language
+-language set user de
+-language set server fr
+```
+
+个人偏好优先于服务器默认值。命令名称保留
+用英语; Rumi 翻译其回复和界面文本。
+
+## 4. 准备角色和渠道
+
+Rumi 如下 Discord的角色层次结构。移动 Rumi的角色高于任何角色
+预期分配、删除、重命名或恢复。
+
+有用的检查：
+
+```text
+-permissions @Rumi
+-role info Staff
+-channelinfo #general
+```
+
+不给 Rumi 管理员只是为了避免设置工作。授予权限
+您使用的模块需要。这使得机器人的访问更容易理解。
+
+## 5. 一次启用一个系统
+
+以下是合理的起点：
+
+<CardGroup cols={2}>
+  <Card title="管理" icon="sliders" href="../features/management">
+    配置角色、渠道、过滤器、验证和员工工作流程。
+  </Card>
+  <Card title="级别" icon="arrow-up-right-dots" href="../features/levels">
+    启用 XP、选择公告并添加级别角色。
+  </Card>
+  <Card title="经济" icon="coins" href="../features/economy">
+    设置货币、奖励、冷却时间、商店、抢劫和赌场限制。
+  </Card>
+  <Card title="音乐" icon="music" href="../features/music">
+    加入语音频道、播放曲目并学习队列控件。
+  </Card>
+</CardGroup>
+
+更改系统后，运行其状态或设置命令。例如，
+`-levels settings`, `-economy config`， 或者 `-verification status` 显示什么 Rumi
+目前已保存。
+
+## 6. 普通会员测试
+
+管理员可能会意外隐藏权限问题，因为它们会绕过
+许多 Discord 限制。设置完成后，与普通会员一起测试工作流程
+或测试角色。检查命令运行的通道和任意通道
+在哪里 Rumi 预计会发送结果。
+
+<Tip>
+当出现故障时，运行 `-help <command>` 在更改权限之前。这是
+通常比猜测缺少哪个权限或参数要快。
+</Tip>
+
+## 非活动服务器
+
+Rumi **30天后自动离开服务器，没有记录服务器
+活动**。这可以保留共享资源和服务稳定性。没有什么是
+你的服务器有问题，你可以邀请 Rumi 每当社区再次
+变得活跃。

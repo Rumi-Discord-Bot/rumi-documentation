@@ -1,0 +1,44 @@
+---
+title: "Variables du robot"
+description: "31 variables de bot prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;bot.avatar&#125;</code> | URL de l’image de l’avatar. Source : bot. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.command_count&#125;</code> | Numéro de commande pour le bot. | <code>128</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.custom.avatar&#125;</code> | URL de l’image de l’avatar. Source : bot personnalisé. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.custom.banner&#125;</code> | URL de l’image de bannière. Source : bot personnalisé. | <code>Exemple de bannière personnalisée de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.custom.bio&#125;</code> | Bio pour le bot personnalisé. | <code>Exemple de biographie personnalisée d'un bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.custom.name&#125;</code> | Valeur du nom. Source : bot personnalisé. | <code>Roumi</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.dashboard&#125;</code> | Tableau de bord pour bot. | <code>Exemple de tableau de bord de robot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.guild_count&#125;</code> | Nombre de guilde pour le bot. | <code>128</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.id&#125;</code> | Discord IDENTIFIANT. Source : bot. | <code>123456789012345678</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.invite&#125;</code> | Inviter pour le bot. | <code>Exemple d'invitation de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.mention&#125;</code> | Mention Rumi. | <code>&lt;@123456789012345678&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.name&#125;</code> | Rumi nom d'utilisateur du robot. | <code>Roumi</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.prefix&#125;</code> | Préfixe de commande actuel. | <code>,</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.color.alert&#125;</code> | Alerte pour la couleur de la réponse du bot. | <code>Exemple d'alerte de couleur de réponse de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.color.bad&#125;</code> | Mauvais pour la couleur de réponse du bot. | <code>Exemple de couleur de réponse de bot incorrecte</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.color.good&#125;</code> | Bon pour la couleur de réponse du bot. | <code>Exemple de réponse de bot, couleur bonne</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.color.info&#125;</code> | Informations sur la couleur de la réponse du bot. | <code>Exemple d'informations sur la couleur de la réponse du bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.color.list&#125;</code> | Liste des couleurs de réponse du bot. | <code>Exemple de liste de couleurs de réponse de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.emoji.alert&#125;</code> | Alerte pour les emoji de réponse du bot. | <code>Exemple d'alerte emoji de réponse de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.emoji.bad&#125;</code> | Mauvais pour les emoji de réponse du bot. | <code>Exemple de réponse d'un bot avec un emoji incorrect</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.emoji.good&#125;</code> | Bon pour les emoji de réponse du bot. | <code>Exemple de réponse de bot emoji : bonne</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.emoji.info&#125;</code> | Informations pour les emoji de réponse du bot. | <code>Exemple d'informations emoji de réponse de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.emoji.list&#125;</code> | Liste des emoji de réponse du bot. | <code>Exemple de liste d'emojis de réponse de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.reply.mode&#125;</code> | Mode configuré. Source : réponse du bot. | <code>Exemple de mode de réponse du bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.shard_count&#125;</code> | Nombre de fragments pour le bot. | <code>128</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.shard_id&#125;</code> | ID de fragment pour le bot. | <code>Exemple d'identifiant de fragment de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.support_server&#125;</code> | Serveur de support pour le bot. | <code>Exemple de serveur de support de bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.uptime&#125;</code> | Depuis combien de temps ce processus de robot est exécuté. | <code>Exemple de disponibilité du bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.user_count&#125;</code> | Nombre d'utilisateurs pour le bot. | <code>128</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.version&#125;</code> | Version pour bot. | <code>Exemple de version du robot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;bot.website&#125;</code> | Site Web pour bot. | <code>Exemple de site Web de robot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |

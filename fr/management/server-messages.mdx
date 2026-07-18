@@ -1,0 +1,205 @@
+---
+title: "Messages du serveur"
+description: "Configurez les messages persistants, les pings de jointure et les réponses aux événements réutilisables."
+icon: "message-lines"
+---
+
+Rumi dispose de plusieurs systèmes de messagerie serveur. Ils résolvent différents problèmes :
+
+- Les **Messages collants** conservent un rappel en bas d'une chaîne active.
+- **Ping lors de l'adhésion** mentionne les nouveaux membres dans les chaînes sélectionnées.
+- **Invoquer des réponses** envoyer du texte configuré ou des intégrations pour le serveur pris en charge et
+  événements de gestion.
+
+Tous les trois sont configurés par des membres disposant de **Gérer le serveur**.
+
+## Disboard rappels de bosses
+
+Définissez un canal de rappel fixe ou utilisez `dynamic` donc le rappel revient au
+canal où la bosse a été détectée :
+
+```text
+-bumpreminder setup #bump-reminders @Bump Ping
+-bumpreminder setup dynamic here
+-bumpreminder status
+```
+
+Le ping peut être un rôle, un membre, `here`, `everyone`, ou `off`. Changer le ping
+ne l'insère pas automatiquement dans le texte personnalisé ; inclure `{ping}` où il
+devrait apparaître.
+
+```text
+-bumpreminder channel #bump-reminders
+-bumpreminder channel dynamic
+-bumpreminder ping @Bump Ping
+-bumpreminder ping off
+```
+
+### Détection et synchronisation
+
+La détection automatique surveille pour une réussite Disboard bosse. Une fois détecté, Rumi
+envoie la réponse de réussite configurée et planifie le rappel :
+
+```text
+-bumpreminder autodetect on
+-bumpreminder cooldown 2h
+```
+
+Si la détection manque une bosse, démarrez le même chronomètre manuellement :
+
+```text
+-bumpreminder done
+```
+
+`done` est intentionnellement disponible après l'installation sans nécessiter de gestionnaire de serveur
+accès, donc le membre qui a couru `/bump` peut le marquer. Configuration et aperçus
+nécessite toujours **Gérer le serveur**.
+
+### Texte brut et styles d'intégration
+
+Choisissez le style de rappel indépendamment du style de confirmation de réussite :
+
+```text
+-bumpreminder mode embed
+-bumpreminder successmode text
+```
+
+Paramètres de texte brut :
+
+```text
+-bumpreminder reminder {ping} **{server}** can be bumped again. Run /bump now.
+-bumpreminder success Thanks {bumped_by}! Next bump: {next_bump}
+```
+
+Paramètres d'intégration des rappels :
+
+```text
+-bumpreminder content {ping}
+-bumpreminder title Time to bump
+-bumpreminder description **{server}** can be bumped again.\nRun `/bump` now.
+-bumpreminder color c8d8f2
+-bumpreminder image https://example.com/banner.png
+-bumpreminder thumbnail https://example.com/icon.png
+-bumpreminder footer Thanks for helping the server grow
+```
+
+Les intégrations réussies ont des contrôles correspondants : `successcontent`, `successtitle`,
+`successdescription`, `successcolor`, `successimage`, `successthumbnail`, et
+`successfooter`. Utiliser `reset` pour le texte, les titres, les descriptions, les couleurs ou les pieds de page ;
+utiliser `off` pour effacer les URL des images et des miniatures.
+
+### Déplacer les espaces réservés
+
+Courir `-bumpreminder variables` dans Discord pour voir la liste en direct.
+
+| Espace réservé | Valeur |
+| --- | --- |
+| `{ping}` | Cible de ping configurée. |
+| `{server}` | Nom du serveur. |
+| `{bumped_by}` ou `{user}` | Membre qui a cédé, lorsqu'il est connu. |
+| `{next_bump}` | Temps relatif jusqu'à la prochaine bosse. |
+| `{next_bump_time}` | Horodatage complet du prochain coup. |
+| `{last_bump}` | Temps relatif depuis la dernière bosse. |
+| `{last_bump_time}` | Horodatage complet de la dernière bosse. |
+| `{bump_count}` | Nombre de bosses Rumi a suivi. |
+| `{channel}` | Canal de rappel. |
+
+Prévisualisez le rappel en cours sans modifier sa minuterie ou désactivez le système :
+
+```text
+-bumpreminder test
+-bumpreminder disable
+```
+
+## Messages collants
+
+Créez un sticky qui s'actualise après un certain nombre de messages :
+
+```text
+-sticky add #rules --every 10 -- Read the pinned rules before chatting.
+```
+
+Ou actualisez-le à intervalles réguliers :
+
+```text
+-sticky add #info --time 30m -- {embed}$v{title: Reminder}$v{description: Check the links above.}
+```
+
+Le autonome `--` sépare les paramètres persistants du contenu. Tout
+après qu'il soit stocké sous forme de texte brut ou de script d'intégration.
+
+Gérez les stickies enregistrés par leur emplacement de liste ou leur identifiant :
+
+```text
+-sticky list
+-sticky preview 1
+-sticky message 1 Updated sticky text.
+-sticky remove 1
+-sticky clear
+```
+
+Rumi nécessite **Envoyer des messages**, **Intégrer des liens** et **Gérer les messages**.
+
+## Ping lors de la participation
+
+Ajoutez une destination, un délai de suppression facultatif et un message facultatif :
+
+```text
+-pingonjoin add #general 10s
+-pingonjoin add #rules 30s Welcome {user.mention}
+```
+
+Choisissez si le système cible les humains, les robots ou les deux :
+
+```text
+-pingonjoin target human
+-pingonjoin target both
+```
+
+Modifiez un canal ou le comportement par défaut :
+
+```text
+-pingonjoin message #general {user.mention} read the rules.
+-pingonjoin delay #general 15s
+-pingonjoin preview #general
+-pingonjoin list
+```
+
+`clear` supprime chaque canal ping configuré. `reset` restaure également l'autre
+paramètres de ping-on-join à leurs valeurs par défaut.
+
+## Invoquer des réponses à un événement
+
+Configurez une destination par défaut :
+
+```text
+-invoke setup #mod-log
+-invoke list
+```
+
+Les déclencheurs pris en charge sont `warn`, `ban`, `unban`, `kick`, `timeout`, `untimeout`,
+`role_add`, `role_remove`, `member_join`, `member_leave`, et `boost`.
+
+Configurez du texte brut ou un script d'intégration :
+
+```text
+-invoke set warn Staff warned {punishment.user.mention}.
+-invoke set member_join {embed}$v{title: Welcome}$v{description: Welcome {user.mention}.}
+```
+
+Choisissez un canal ou un comportement DM distinct pour un événement :
+
+```text
+-invoke channel warn #mod-log
+-invoke dm warn on
+-invoke preview warn
+```
+
+Utiliser `-variables punishment`, `-variables user`, ou la catégorie d'événement concernée
+lors de la création d'un modèle d'appel.
+
+<Info>
+Un modèle d'appel ne crée pas l'événement lui-même. Il contrôle Rumila réponse de
+lorsque l'événement pris en charge correspondant est observé ou déclenché par un autre
+Rumi flux de travail.
+</Info>

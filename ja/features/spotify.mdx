@@ -1,0 +1,131 @@
+---
+title: "Spotify のリンクとコントロール"
+description: "Spotify をリンクし、デバイスを検査し、個人再生を制御し、ライブラリを参照し、Discord 音声でトラックをキューに追加します。"
+icon: "spotify"
+---
+
+Spotify リンクすると得られる Rumi あなたが要求するライブラリデータを読み取る権限と、
+コントロールを自分のアクティブなデバイスに送信します Spotify デバイス。トークンは公開されません
+に Discord またはプライベートプレイリストを他のメンバーと共有します。
+
+## リンクまたはリフレッシュ権限
+
+```text
+-spotify link
+-spotify status
+-spotify unlink
+```
+
+ワンタイム リンクを開いて、要求された権限を承認します。ユーザーがリンクされました
+デバイスコントロールと好きな曲が追加される前に実行する必要があります `-spotify link`
+またまたそうです Spotify 新しい再生スコープとライブラリ スコープを付与できます。
+
+<Warning>
+Spotify 接続再生コントロールには次のものが必要です Spotify プレミアム。開ける Spotify で
+電話、コンピュータ、ブラウザ、またはスピーカーを少なくとも 1 回ターゲットにするため、 Spotify 報告する
+利用可能なデバイス。
+</Warning>
+
+## デバイスの参照と再生
+
+```text
+-spotify devices
+-spotify player status
+-spotify pause
+-spotify resume
+-spotify next
+-spotify previous
+-spotify volume 45
+-spotify seek 1:30
+-spotify shuffle on
+-spotify repeat track
+```
+
+`seek` 秒を受け入れます (`90`)、時計時間 (`1:30`)、または期間 (`2m`）。繰り返す
+受け入れる `off`, `track`、 または `context`.
+
+## 転送再生
+
+走る `-spotify devices` 初め。表示された番号、正確なデバイスによる転送
+名前、名前の一部、またはデバイス ID:
+
+```text
+-spotify transfer 2
+-spotify transfer Kitchen speaker
+```
+
+制限されたデバイスはリストに表示されますが、Web API コントロールを受け入れることはできません。
+デバイス ID は変更される可能性があるため、現在のリストまたはデバイス名で選択するほうが正確です。
+IDを保存するよりも便利です。
+
+## トラックを開始またはキューに入れる Spotify
+
+```text
+-spotify play pink pony club
+-spotify play https://open.spotify.com/track/...
+-spotify queue deftones change
+```
+
+`spotify play` 個人用の再生を置き換えます Spotify デバイス。 `spotify
+queue` はそのデバイスのアイテムに 1 つのアイテムを追加します Spotify 列。どちらのコマンドも変更されません
+Rumiさんの Discord 音声キュー。
+
+## プレイリストを表示する
+
+```text
+-spotify playlists
+-spotify playlists @member
+```
+
+他のメンバーの**公開**プレイリストを閲覧できるのは、次の場合に限られます。 Discord
+メンバーがリンクしました Spotify。プライベート プレイリストは、その所有者のみに表示されます。
+
+リンクされた独自のプレイリストの 1 つを追加するには Rumiさんの Discord 音声キューに参加する
+音声チャネルを選択し、リスト番号、名前、ID、または Spotify URL:
+
+```text
+-spotify playlists queue 2
+-spotify playlists queue "Night drive" 30
+-spotify playlists queue https://open.spotify.com/playlist/... 50
+```
+
+オプションの最後の番号は、インポートを 1 ～ 75 トラックに制限します。
+
+## 好きな曲
+
+```text
+-spotify liked
+-spotify liked list 30
+-spotify liked queue 25
+```
+
+気に入った曲は、リンクされたユーザーのみに公開されます。それらをキューに入れるには、ユーザーが次のことを行う必要があります。
+にあるリンクを所有しています Discord 音声チャンネル。
+
+<Note>
+Rumi 用途 Spotify 構成された音楽の検索入力としての URL とメタデータ
+サービス。ダウンロード、再ブロードキャスト、または音声の抽出は行いません。 Spotify.
+</Note>
+
+## トラブルシューティング
+
+<AccordionGroup>
+  <Accordion title="ルミは私に再接続するように頼みます">
+    保存された承認は、1 つ以上の必要なスコープより前の日付です。走る
+    `-spotify link` 更新された許可画面を承認します。
+  </Accordion>
+  <Accordion title="使用可能なデバイスがありません">
+    開ける Spotify 目的のデバイスで一度再生を開始します。その後、再実行します
+    `-spotify devices`。プライベートセッションまたは制限されたデバイスが拒否する場合があります
+    コントロール。
+  </Accordion>
+  <Accordion title="Spotify が戻ってくる プレミアムが必要">
+    再生制御エンドポイントは次によって制限されます。 Spotify プレミアムユーザーへ。図書館
+    必要な読み取り権限が存在する場合、ブラウジングは引き続き機能する可能性があります。
+  </Accordion>
+  <Accordion title="プレイリストをキューに入れることができません">
+    Spotify 現在、リンクされたユーザーが所有しているか、または
+    そのプレイリストでコラボレーションします。また、音声が入っていることと、
+    Rumiの音楽サービスが完成しました。
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,24 @@
+---
+title: "Variables de commande"
+description: "11 variables de commande prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;command.alias&#125;</code> | Alias ​​utilisé pour déclencher la commande lorsqu'il est disponible. | <code>Exemple d'alias de commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.arg_count&#125;</code> | Nombre d'arguments pour la commande. | <code>128</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.category&#125;</code> | Catégorie de commande. | <code>Exemple de catégorie de commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.channel&#125;</code> | Mention de chaîne ou valeur de chaîne. Source : commande. | <code>Exemple de canal de commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.channel_id&#125;</code> | Discord ID de canal. Source : commande. | <code>Exemple d'identifiant de canal de commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.description&#125;</code> | Texte descriptif. Source : commande. | <code>Exemple de description de commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.name&#125;</code> | Nom de la commande qui rend actuellement cette réponse. | <code>Roumi</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.usage&#125;</code> | Utilisation pour la commande. | <code>Exemple d'utilisation de la commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.user&#125;</code> | Utilisateur pour la commande. | <code>Exemple d'utilisateur de commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.user_id&#125;</code> | ID utilisateur pour la commande. | <code>Exemple d'ID utilisateur de commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |
+| <code>&#123;command.user_mention&#125;</code> | Mention de l'utilisateur pour la commande. | <code>Exemple de mention d'utilisateur de commande</code> | Commandes personnalisées et modèles prenant en charge les commandes |

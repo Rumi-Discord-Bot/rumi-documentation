@@ -1,0 +1,79 @@
+---
+title: "Prilagođene naredbe"
+description: "Izradite naredbe specifične za poslužitelj s Rumijevim prilagođenim naredbenim modulom."
+icon: "wand-magic-sparkles"
+---
+
+Prilagođene naredbe omogućuju upraviteljima poslužitelja stvaranje detaljnih tijekova rada bez dodavanja
+veliki skup naredbi za moderiranje koje odgovaraju svima. Oni mogu proizvesti tekst ili
+ugrađuje, prihvaća argumente, rješava varijable, prikazuje gumbe, pokreće zaštićeno
+akcije, primijeniti ograničenja i pohraniti podatke poslužitelja.
+
+Glavna naredba je `customcommand`. Njegovi aliasi su `cc` i
+`customcommands`.
+
+<Info>
+Stvaranje i mijenjanje prilagođenih naredbi zahtijeva dopuštenje za upravljanje poslužiteljem.
+Trenutno besplatno ograničenje je 30 naredbi po poslužitelju; kvalificirani premium poslužitelji mogu
+pohraniti do 200.
+</Info>
+
+## Mapa naredbi
+
+| Zadatak | Naredba |
+| --- | --- |
+| Izradite ili uredite | `-cc set <name> [arguments] -- <response>` |
+| Test | `-cc preview <name> [sample arguments]` |
+| Pregledati | `-cc show <name>` |
+| Popis | `-cc list` |
+| Izbrisati | `-cc remove <name>` |
+| Pregled varijabli | `-cc variables` ili `-variables` |
+| Pregledajte sintaksu akcije | `-cc actions` |
+| Upravljajte ograničenjima | `-cc restrictions <name>` |
+| Upravljanje spremljenim podacima | `-cc data <operation> ...` |
+
+## Preporučeni tijek rada
+
+<Steps>
+  <Step title="Stvorite najmanji korisni odgovor">
+    Počnite s čistim tekstom i jednim ili dva argumenta.
+  </Step>
+  <Step title="Pregledaj ga">
+    Trčanje `-cc preview <name>` s realnim unosom uzorka.
+  </Step>
+  <Step title="Ograničite pristup">
+    Dodajte ograničenja uloge, kanala, korisnika ili dopuštenja prije zaštićene upotrebe.
+  </Step>
+  <Step title="Pregledajte spremljenu naredbu">
+    Trčanje `-cc show <name>` i potvrditi njegov odgovor i ograničenja.
+  </Step>
+</Steps>
+
+<Warning>
+Tretirajte naredbe s ulogama, porukama, ekonomijom ili radnjama upravljanja članovima kao što su
+alati za osoblje. Samo pouzdani upravitelji bi ih trebali moći uređivati.
+</Warning>
+
+## Što je pohranjeno
+
+Svaka naredba pohranjuje svoj predložak odgovora, deklarirane argumente i pristup
+ograničenja. Trčanje `set` ponovno ažurira tu istu naredbu. Pohranjen tijek rada
+podaci su odvojeni, tako da zamjena ili brisanje naredbe ne uklanja tiho
+njegovih brojača ili zapisa.
+
+## Učite gradeći
+
+<CardGroup cols={2}>
+  <Card title="Zašto separator postoji" icon="code" href="./syntax-and-separators">
+    Vidite gdje točno završava definicija i počinje odgovor.
+  </Card>
+  <Card title="Radni recepti" icon="book-open" href="./recipes">
+    Kopirajte male naredbe, pregledajte ih i sigurno proširite.
+  </Card>
+  <Card title="Ugrađuje i upravlja" icon="panels-top-left" href="./embeds-and-components">
+    Izradite polja, slike, gumbe, padajuće izbornike i odgovore na više stranica.
+  </Card>
+  <Card title="Potpuna referenca varijable" icon="brackets-curly" href="../variables/overview">
+    Pregledajte svaku varijablu generiranu iz Rumi's runtime registar.
+  </Card>
+</CardGroup>

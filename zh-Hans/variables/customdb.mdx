@@ -1,0 +1,23 @@
+---
+title: "自定义数据库变量"
+description: "Rumi 支持 10 个自定义数据库变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;customdb.&lt;operation&gt;:namespace:key[:value]&#125;</code> | 每个数据库操作的长格式别名：get、exists、set、inc、increment、dec、decrement、delete 和 del。 | <code>请参阅自定义命令指南中的语法和示例。</code> | 自定义命令；自定义数据助手还需要自动回复器中的 --db |
+| <code>&#123;db.dec:namespace:key:amount&#125;</code> | 减少自定义数据数量。 | <code>请参阅自定义命令指南中的语法和示例。</code> | 自定义命令；自定义数据助手还需要自动回复器中的 --db |
+| <code>&#123;db.decrement:namespace:key:amount&#125;</code> | db.dec 的长格式别名。 | <code>请参阅自定义命令指南中的语法和示例。</code> | 自定义命令；自定义数据助手还需要自动回复器中的 --db |
+| <code>&#123;db.del:namespace:key&#125;</code> | db.delete 的别名。 | <code>请参阅自定义命令指南中的语法和示例。</code> | 自定义命令；自定义数据助手还需要自动回复器中的 --db |
+| <code>&#123;db.delete:namespace:key&#125;</code> | 删除自定义数据键。 | <code>请参阅自定义命令指南中的语法和示例。</code> | 自定义命令；自定义数据助手还需要自动回复器中的 --db |
+| <code>&#123;db.exists:namespace:key&#125;</code> | 当自定义数据键存在时返回 true，否则返回 false。 | <code>请参阅自定义命令指南中的语法和示例。</code> | 自定义命令；自定义数据助手还需要自动回复器中的 --db |
+| <code>&#123;db.get:namespace:key&#125;</code> | 读取保存的自定义数据值。 | <code>42</code> | 自定义命令；使用 --db 进行自动回复 |
+| <code>&#123;db.inc:namespace:key:1&#125;</code> | 增加已保存的数字。将其放在自己的行上以隐藏原始结果。 | <code>43</code> | 自定义命令；使用 --db 进行自动回复 |
+| <code>&#123;db.increment:namespace:key:amount&#125;</code> | 增加自定义数据编号。 db.inc 的别名。 | <code>请参阅自定义命令指南中的语法和示例。</code> | 自定义命令；自定义数据助手还需要自动回复器中的 --db |
+| <code>&#123;db.set:namespace:key:value&#125;</code> | 保存自定义数据值。就其自身而言，突变不会产生可见的输出。 | <code>请参阅自定义命令指南中的语法和示例。</code> | 自定义命令；自定义数据助手还需要自动回复器中的 --db |

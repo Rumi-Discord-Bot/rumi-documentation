@@ -1,0 +1,44 @@
+---
+title: "Botovske varijable"
+description: "31 bot varijabla koju podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;bot.avatar&#125;</code> | URL slike avatara. Izvor: bot. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.command_count&#125;</code> | Broj naredbe za bota. | <code>128</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.custom.avatar&#125;</code> | URL slike avatara. Izvor: bot custom. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.custom.banner&#125;</code> | URL slike natpisa. Izvor: bot custom. | <code>Primjer bot prilagođenog bannera</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.custom.bio&#125;</code> | Bio za prilagođeni bot. | <code>Primjer prilagođene biografije bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.custom.name&#125;</code> | Naziv vrijednosti. Izvor: bot custom. | <code>Rumi</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.dashboard&#125;</code> | Nadzorna ploča za bota. | <code>Primjer nadzorne ploče bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.guild_count&#125;</code> | Broj ceha za bota. | <code>128</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.id&#125;</code> | Discord ID. Izvor: bot. | <code>123456789012345678</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.invite&#125;</code> | Poziv za bota. | <code>Primjer pozivnice za bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.mention&#125;</code> | Spomenuti Rumi. | <code>&lt;@123456789012345678&gt;</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.name&#125;</code> | Rumi korisničko ime za bot. | <code>Rumi</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.prefix&#125;</code> | Trenutačni prefiks naredbe. | <code>,</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.color.alert&#125;</code> | Upozorenje za boju odgovora bota. | <code>Primjer upozorenja u boji odgovora bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.color.bad&#125;</code> | Loše za boju odgovora bota. | <code>Boja odgovora primjera bota je loša</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.color.good&#125;</code> | Dobro za boju odgovora bota. | <code>Primjer boja odgovora bota je dobar</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.color.info&#125;</code> | Podaci za boju odgovora bota. | <code>Primjer informacija o boji odgovora bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.color.list&#125;</code> | Popis za boju odgovora bota. | <code>Primjer liste boja odgovora bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.emoji.alert&#125;</code> | Upozorenje za emoji odgovor bota. | <code>Primjer upozorenja o emojijima za odgovor bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.emoji.bad&#125;</code> | Loše za emoji odgovora bota. | <code>Primjer odgovora bota emoji loš</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.emoji.good&#125;</code> | Dobro za emotikone odgovora bota. | <code>Primjer bot odgovora emoji dobar</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.emoji.info&#125;</code> | Informacije za emotikone odgovora bota. | <code>Primjer informacija o emotikonima odgovora bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.emoji.list&#125;</code> | Popis emotikona za odgovor bota. | <code>Primjer popisa emotikona za odgovor bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.reply.mode&#125;</code> | Konfigurirani način rada. Izvor: odgovor bota. | <code>Primjer načina odgovora bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.shard_count&#125;</code> | Broj shardova za bota. | <code>128</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.shard_id&#125;</code> | Shard ID za bota. | <code>Primjer ID-a segmenta bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.support_server&#125;</code> | Server podrške za bot. | <code>Primjer poslužitelja za podršku botova</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.uptime&#125;</code> | Koliko dugo traje ovaj bot proces. | <code>Primjer neprekidnog rada bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.user_count&#125;</code> | Broj korisnika za bot. | <code>128</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.version&#125;</code> | Verzija za bot. | <code>Primjer verzije bota</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |
+| <code>&#123;bot.website&#125;</code> | Web stranica za bot. | <code>Primjer bot web stranice</code> | Ugradnje, prilagođene naredbe, automatski odgovori, dozivanje poruka |

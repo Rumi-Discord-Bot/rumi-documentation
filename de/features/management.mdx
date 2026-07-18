@@ -1,0 +1,44 @@
+---
+title: "Management"
+description: "Verwalten Sie eine Community, ohne Rumi unnötige Berechtigungen zu erteilen."
+icon: "sliders"
+---
+
+RumiDie Management-Tools konzentrieren sich auf <mark>Konfiguration, Prävention und Personal
+Arbeitsabläufe</mark>. Dazu gehören Serverfilter, Rollen- und Kanalverwaltung,
+Berechtigungsprüfung, Verifizierung und detaillierte benutzerdefinierte Befehle.
+
+## Keine eingebauten Bann- oder Kick-Befehle
+
+Rumi umfasst keine allgemeine Verwendung `ban` oder `kick` Befehle standardmäßig. Das
+ist beabsichtigt: ein Server, der nur Musik, Dienstprogramme oder Community-Funktionen benötigt
+sollten keine umfassenden Moderationsberechtigungen erteilen müssen.
+
+<Info>
+Gewähren Sie nur die Berechtigungen, die für die Befehle erforderlich sind, die Ihr Server tatsächlich verwendet.
+Jeder aktuelle Bedarf wird angezeigt `-help <command>`.
+</Info>
+
+## Was Sie schaffen können
+
+- Rollen: Rollen erstellen, verbinden, zuweisen, prüfen, aktualisieren, löschen und wiederherstellen.
+- Kanäle: Sperren, Entsperren, Ausblenden, Anzeigen, Slowmode konfigurieren und andere Kanäle
+  Aufgaben ausgesetzt in Rumi's Hilfemenü.
+- Filter: Blockieren Sie ausgewählte Ausdrücke und konfigurieren Sie den Namen oder das Symbol der Booster-Rolle
+  Filter.
+- Verifizierung: Konfigurieren Sie die Text- oder Captcha-Verifizierung für neue Mitglieder.
+- Berechtigungen: Überprüfen Sie die eines Mitglieds Discord Und Rumi-spezifische Berechtigungen.
+- Mitarbeiter-Workflows: Erstellen Sie serverspezifische Tools mit benutzerdefinierten Befehlen und Einschränkungen
+  genau, wer sie leiten kann.
+
+## Benutzerdefinierte Verwaltungsworkflows
+
+Manager können [benutzerdefinierte Befehle verwenden](../custom-commands/overview) zu erstellen
+Workflow, den ihr Server benötigt. Benutzerdefinierte Befehle unterstützen Argumente, Variablen,
+Einschränkungen, geschützte Aktionen, Schaltflächen, Einbettungen und gespeicherte Daten.
+
+<Warning>
+Ein benutzerdefinierter Befehl wird nicht umgangen Discord Berechtigungen oder Rollenhierarchie. Rumi
+und die Person, die eine geschützte Aktion konfiguriert oder ausführt, muss diese dennoch erfüllen
+Sicherheitskontrollen.
+</Warning>

@@ -1,0 +1,33 @@
+---
+title: "Varijable ulaznica"
+description: "20 varijabli ulaznica koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;ticket.channel&#125;</code> | Spominjanje kanala ili vrijednost kanala. Izvor: ulaznica. | <code>Primjer kanala ulaznica</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.channel_id&#125;</code> | Discord ID kanala. Izvor: ulaznica. | <code>Primjer ID-a kanala ulaznice</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.claimed_by&#125;</code> | Zatražio ulaznicu. | <code>Primjer ulaznice koju je zatražio</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.claimed_by_id&#125;</code> | Preuzeto putem ID-a za kartu. | <code>Primjer ulaznice koju je zatražio id</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.claimed_by_mention&#125;</code> | Preuzeto spomenom za ulaznicu. | <code>Primjer ulaznice tražene spominjanjem</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.closed_at&#125;</code> | Zatvoreno u za ulaznice. | <code>Primjer ulaznice zatvoren u</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.closed_at_timestamp&#125;</code> | Unix vremenska oznaka za zatvoreno u. | <code>1781460000</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.closed_by&#125;</code> | Zatvoreno za ulaznice. | <code>Primjer ulaznice zatvoren do</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.closed_by_id&#125;</code> | Zatvoreno ID-om za kartu. | <code>Primjer ulaznice zatvorene id</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.closed_by_mention&#125;</code> | Zatvoreno spominjanjem za ulaznicu. | <code>Primjer ulaznice zatvoren spominjanjem</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.created_at&#125;</code> | Discord- formatirano vrijeme izrade. Izvor: ulaznica. | <code>&lt;t:1781460000:F&gt;</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.created_at_timestamp&#125;</code> | Unix vremenska oznaka za vrijeme stvaranja. Izvor: ulaznica. | <code>&lt;t:1781460000:F&gt;</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.id&#125;</code> | Discord ID. Izvor: ulaznica. | <code>123456789012345678</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.number&#125;</code> | Broj karte. | <code>Primjer broja karte</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.reason&#125;</code> | Tekst razloga. Izvor: ulaznica. | <code>Nije naveden razlog.</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.status&#125;</code> | Trenutno stanje. Izvor: ulaznica. | <code>Primjer statusa tiketa</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.type&#125;</code> | Upišite ili naziv kategorije. Izvor: ulaznica. | <code>Primjer vrste karte</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.user&#125;</code> | Korisnik za kartu. | <code>Primjer korisnika ulaznice</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.user_id&#125;</code> | Korisnički ID za kartu. | <code>Primjer korisničkog ID-a ulaznice</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |
+| <code>&#123;ticket.user_mention&#125;</code> | Spominjanje korisnika za ulaznicu. | <code>Primjer spomena korisnika ulaznice</code> | Ploče s ulaznicama, dnevnici ulaznica, poruke s ulaznicama |

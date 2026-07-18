@@ -1,0 +1,31 @@
+---
+title: "Variables económicas"
+description: "18 variables económicas respaldadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;economy.balance&#125;</code> | Saldo total formateado para el usuario. | <code>1.250 monedas</code> | Comandos económicos, comandos personalizados, respuestas automáticas con contexto económico |
+| <code>&#123;economy.bank&#125;</code> | Saldo bancario cuando se dispone del contexto económico. | <code>830 monedas</code> | Comandos económicos, comandos personalizados, respuestas automáticas con contexto económico |
+| <code>&#123;economy.cash&#125;</code> | Saldo de billetera formateado del usuario del comando. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;economy.currency&#125;</code> | Icono de economía de servidor actual. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;economy.currency_name&#125;</code> | Nombre de la moneda actual de la economía del servidor. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;economy.daily_streak&#125;</code> | Recuento de rachas de recompensas diarias. Fuente: economía. | <code>1.250 monedas</code> | Comandos económicos, comandos personalizados, respuestas automáticas con contexto económico |
+| <code>&#123;economy.networth&#125;</code> | Billetera más saldo bancario cuando el contexto económico esté disponible. | <code>1.250 monedas</code> | Comandos económicos, comandos personalizados, respuestas automáticas con contexto económico |
+| <code>&#123;economy.rank&#125;</code> | Valor de clasificación. Fuente: economía. | <code>1.250 monedas</code> | Comandos económicos, comandos personalizados, respuestas automáticas con contexto económico |
+| <code>&#123;economy.raw_balance&#125;</code> | Cartera sin formato más saldo bancario del usuario del comando. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;economy.raw_bank&#125;</code> | Saldo bancario en números enteros sin formato del usuario del comando. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;economy.raw_cash&#125;</code> | Saldo de billetera de números enteros sin formato del usuario del comando. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;economy.wallet&#125;</code> | Saldo de billetera cuando el contexto económico está disponible. | <code>420 monedas</code> | Comandos económicos, comandos personalizados, respuestas automáticas con contexto económico |
+| <code>&#123;server_currency&#125;</code> | Alias ​​de compatibilidad para &#123;economía.moneda&#125;. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;target.economy.balance&#125;</code> | Cartera formateada más saldo bancario del objetivo resuelto. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;target.economy.bank&#125;</code> | Saldo bancario formateado del objetivo resuelto. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;target.economy.cash&#125;</code> | Saldo de billetera formateado del objetivo resuelto. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;user_balance&#125;</code> | Alias ​​de compatibilidad para el saldo total del usuario del comando. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;user_balance_locale&#125;</code> | Alias ​​de compatibilidad para el saldo total del usuario del comando formateado. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |

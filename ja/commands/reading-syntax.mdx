@@ -1,0 +1,112 @@
+---
+title: "コマンド構文の見方"
+description: "必須の引数、オプションの値、選択肢、フラグ、ID、および引用符で囲まれたテキストを理解します。"
+icon: "code"
+---
+
+Rumiのヘルプ エントリでは、コマンドがどのようなものかを示すために少量の表記が使用されています。
+期待しています。括弧は指示です。通常は入力しません。
+
+## 必須およびオプションの引数
+
+`<angle brackets>` 値が必要であることを意味します:
+
+```text
+role add <member> <role>
+```
+
+有効な実行は次のようになります。
+
+```text
+-role add @Moon Member
+```
+
+`[square brackets]` 値がオプションであることを意味します。
+
+```text
+level [user]
+```
+
+両方 `-level` そして `-level @Moon` 有効です。
+
+## 選択肢
+
+垂直バーは「1 つ選択する」ことを意味します。
+
+```text
+deposit <amount|all>
+```
+
+どちらかを使用してください `-deposit 500` または `-deposit all`。バーは入力しないでください。
+
+## スペースを含むテキスト
+
+一部のコマンドは、メッセージの残りの部分を 1 つの値として扱います。他の人は別のものを持っています
+引数をその後に置くので、引用符で境界を明確にします。
+
+```text
+-giveaway start "Discord Nitro" 24h 1 #giveaways
+```
+
+引用符なしで、 `Discord` そして `Nitro` 別の位置として読み取ることができます
+引数。引用は、賞品、名前、理由、タイトルなどに特に役立ちます。
+
+## フラグ
+
+フラグは次で始まります `--` コマンドの一部を変更せずに変更する
+主なアクション:
+
+```text
+-role create Event Host --color #c8d8f2
+-media caption --position=top --size=42 Welcome!
+-giveaway start "Nitro" 24h 1 --button
+```
+
+コマンドに応じて、フラグは次のように記述できます。 `--name value` または
+`--name=value`。両方の形式が一致しない場合は、そのコマンドのヘルプ例に従ってください。
+リストされています。
+
+## 言及、名前、ID
+
+Rumi 多くの場合、 Discord メンション、生の ID、または解決可能な名前。言及は
+最も曖昧でないもの:
+
+```text
+-role info @Staff
+-channel rename #old-name new-name
+-inviter 123456789012345678
+```
+
+2 つのロールまたはチャネルの名前が同じ場合は、メンションまたは ID を使用します。
+
+## サブコマンド
+
+多くの場合、コマンドの後の最初の単語でアクションが選択されます。
+
+```text
+-economy config
+-economy config currency petals
+-economy rob chance 35
+```
+
+これらを左から右に読んでください。 `economy` システムを開き、 `rob` それを選択します
+構成領域、および `chance` 設定を選択します。
+
+## カスタム コマンドで使用する理由 `--`
+
+の `customcommand set` コマンドはコマンド自体の引数を区切る必要があります
+保存する応答からの定義:
+
+```text
+-cc set greet <member> -- Hello {target.mention}!
+```
+
+スタンドアロン以前のすべて `--` カスタムコマンドを定義します。すべて
+後は返信またはスクリプトです。これにより、応答にスペースが含まれるようになります。
+変数、埋め込み、およびなしの複数行 Rumi それ以上のものと誤解する
+セットアップ引数。 [構文と区切り文字] を参照してください。](../custom-commands/syntax-and-separators)
+完全なカスタム コマンド形式の場合。
+
+<Info>
+走る `-help <command>` 例が不明瞭な場合はいつでも。それでも問題が解決しない場合は、次を使用して組み込み AI モデルに問い合わせることができます。 `-rumi <question>`.
+</Info>

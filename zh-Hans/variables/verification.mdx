@@ -1,0 +1,22 @@
+---
+title: "验证变量"
+description: "Rumi 支持 9 个验证变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;verification.captcha_code&#125;</code> | 用于验证的验证码。 | <code>验证码示例</code> | 验证面板和验证消息 |
+| <code>&#123;verification.channel&#125;</code> | 频道提及或频道价值。资料来源：验证。 | <code>验证通道示例</code> | 验证面板和验证消息 |
+| <code>&#123;verification.channel_id&#125;</code> | Discord 频道ID。资料来源：验证。 | <code>验证通道 ID 示例</code> | 验证面板和验证消息 |
+| <code>&#123;verification.mode&#125;</code> | 配置模式。资料来源：验证。 | <code>验证方式示例</code> | 验证面板和验证消息 |
+| <code>&#123;verification.status&#125;</code> | 当前状态。资料来源：验证。 | <code>验证状态示例</code> | 验证面板和验证消息 |
+| <code>&#123;verification.unverified_role&#125;</code> | 用于验证的未验证角色。 | <code>验证未验证角色的示例</code> | 验证面板和验证消息 |
+| <code>&#123;verification.unverified_role_id&#125;</code> | 用于验证的未验证角色 ID。 | <code>验证未验证角色 ID 的示例</code> | 验证面板和验证消息 |
+| <code>&#123;verification.verified_role&#125;</code> | 用于验证的已验证角色。 | <code>验证示例 验证角色</code> | 验证面板和验证消息 |
+| <code>&#123;verification.verified_role_id&#125;</code> | 用于验证的已验证角色 ID。 | <code>验证示例 已验证角色 ID</code> | 验证面板和验证消息 |

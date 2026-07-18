@@ -1,0 +1,23 @@
+---
+title: "Benutzerdefinierte DB-Variablen"
+description: "10 von Rumi unterstützte benutzerdefinierte Datenbankvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;customdb.&lt;operation&gt;:namespace:key[:value]&#125;</code> | Langform-Alias ​​für jede Datenbankoperation: get, exist, set, inc, increment, dec, decrement, delete und del. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;db.dec:namespace:key:amount&#125;</code> | Verringern Sie eine benutzerdefinierte Datennummer. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;db.decrement:namespace:key:amount&#125;</code> | Langform-Alias ​​von db.dec. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;db.del:namespace:key&#125;</code> | Alias ​​von db.delete. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;db.delete:namespace:key&#125;</code> | Löschen Sie einen benutzerdefinierten Datenschlüssel. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;db.exists:namespace:key&#125;</code> | Gibt true zurück, wenn der benutzerdefinierte Datenschlüssel vorhanden ist, andernfalls false. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;db.get:namespace:key&#125;</code> | Lesen Sie einen gespeicherten benutzerdefinierten Datenwert. | <code>42</code> | Benutzerdefinierte Befehle; Autoresponder mit --db |
+| <code>&#123;db.inc:namespace:key:1&#125;</code> | Erhöhen Sie eine gespeicherte Nummer. Fügen Sie es in eine eigene Zeile ein, um das Rohergebnis auszublenden. | <code>43</code> | Benutzerdefinierte Befehle; Autoresponder mit --db |
+| <code>&#123;db.increment:namespace:key:amount&#125;</code> | Erhöhen Sie eine benutzerdefinierte Datennummer. Alias ​​von db.inc. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;db.set:namespace:key:value&#125;</code> | Speichern Sie einen benutzerdefinierten Datenwert. Auf ihrer eigenen Linie erzeugt die Mutation keine sichtbare Ausgabe. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |

@@ -1,0 +1,24 @@
+---
+title: "変数を招待する"
+description: "Rumi でサポートされている 11 個の招待変数。"
+icon: "brackets-curly"
+---
+
+<Info>
+コンテキストが重要です。変数が返す `N/A` 現在のコマンドまたはイベントがソース値を提供しない場合。追加 `|fallback text` よりフレンドリーなフォールバックが必要な場合は、右中括弧の前に置きます。
+</Info>
+
+
+| 変数 | 返されるもの | 出力例 | で利用可能 |
+| --- | --- | --- | --- |
+| <code>&#123;invite.channel&#125;</code> | チャンネルの言及またはチャンネルの値。出典：招待状。 | <code>招待チャンネルの例</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.channel_id&#125;</code> | Discord チャンネルID。出典：招待状。 | <code>招待チャンネル ID の例</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.code&#125;</code> | 招待用のコード。 | <code>招待コードの例</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.created_at&#125;</code> | Discord-フォーマットされた作成時間。出典：招待状。 | <code>&lt;t:1781460000:F&gt;</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.created_at_timestamp&#125;</code> | 作成時の Unix タイムスタンプ。出典：招待状。 | <code>&lt;t:1781460000:F&gt;</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.inviter&#125;</code> | 招待するための招待者。 | <code>招待者の例</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.inviter_id&#125;</code> | 招待の招待者 ID。 | <code>招待状の招待者 ID の例</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.inviter_mention&#125;</code> | 招待者のメンション。 | <code>招待者の言及の例</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.max_uses&#125;</code> | 招待の最大使用数。 | <code>招待の最大使用例</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.url&#125;</code> | 直接URL。出典：招待状。 | <code>https://discord.com/channels/123/456/789</code> | 招待追跡メッセージとログ |
+| <code>&#123;invite.uses&#125;</code> | 招待状に使用します。 | <code>招待の使用例</code> | 招待追跡メッセージとログ |

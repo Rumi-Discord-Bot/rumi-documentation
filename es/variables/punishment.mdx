@@ -1,0 +1,41 @@
+---
+title: "Variables de castigo"
+description: "28 variables de castigo apoyadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;punishment.audit_reason&#125;</code> | Texto de motivo de Discord registros de auditoría cuando estén disponibles. | <code>No se proporcionó ningún motivo.</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.case_id&#125;</code> | Identificación de caso amigable para el castigo. | <code>ADVERTENCIA-A1B2</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.channel&#125;</code> | Mención del canal o valor del canal. Fuente: castigo. | <code>Ejemplo de canal de castigo</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.channel.mention&#125;</code> | Menciona el canal vinculado al evento de moderación. | <code>&lt;@123456789012345678&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.created_at&#125;</code> | Discord-hora de creación formateada. Fuente: castigo. | <code>&lt;t:1781460000:F&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.created_at_timestamp&#125;</code> | Marca de tiempo Unix para el tiempo de creación. Fuente: castigo. | <code>&lt;t:1781460000:F&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.duration&#125;</code> | Duración de los castigos temporales, como la duración del tiempo de espera. | <code>10m</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.executor.id&#125;</code> | Discord ID del ejecutor del registro de auditoría cuando Discord lo expone. | <code>123456789012345678</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.executor.mention&#125;</code> | Mencione al ejecutor del registro de auditoría cuando Discord lo expone. | <code>&lt;@123456789012345678&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.executor.tag&#125;</code> | Etiqueta de nombre de usuario del ejecutor del registro de auditoría cuando Discord lo expone. | <code>nombre de usuario</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.expires_at&#125;</code> | Discord-Tiempo de vencimiento formateado para castigos temporales. | <code>&lt;t:1781460000:F&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.expires_at_timestamp&#125;</code> | Marca de tiempo Unix para el tiempo de vencimiento. Fuente: castigo. | <code>&lt;t:1781460000:F&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.guild&#125;</code> | Gremio para el castigo. | <code>Ejemplo de gremio de castigo</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.invite_url&#125;</code> | URL de invitación. Fuente: castigo. | <code>Ejemplo de URL de invitación de castigo</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.public_id&#125;</code> | Identificación de caso accesible al público cuando esté disponible. | <code>CASO-42</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.reason&#125;</code> | Razón adjunta a la pena o caso. | <code>spam repetido</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.role&#125;</code> | Nombre del rol o valor del rol. Fuente: castigo. | <code>Ejemplo de rol de castigo</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.role_id&#125;</code> | Discord ID de rol. Fuente: castigo. | <code>Ejemplo de identificación del rol de castigo</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.role_mention&#125;</code> | Mencione el rol afectado. Fuente: castigo. | <code>Ejemplo de mención del rol de castigo</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.type&#125;</code> | Tipo de castigo, como advertencia, prohibición, expulsión, tiempo de espera, role_add o role_remove. | <code>advertir</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.user&#125;</code> | Muestra el usuario afectado por una acción de moderación. | <code>Ejemplo de usuario de castigo</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.user.avatar&#125;</code> | URL de la imagen de avatar. Fuente: usuario de castigo. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.user.created_at&#125;</code> | Discord-hora de creación formateada. Fuente: usuario de castigo. | <code>&lt;t:1781460000:F&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.user.id&#125;</code> | Discord ID del usuario sancionado. | <code>123456789012345678</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.user.joined_at&#125;</code> | Discord-Hora de conexión al servidor formateado. Fuente: usuario de castigo. | <code>&lt;t:1781460000:F&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.user.mention&#125;</code> | Menciona al usuario que fue sancionado. | <code>&lt;@123456789012345678&gt;</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.user.name&#125;</code> | Nombre de usuario del usuario sancionado. | <code>Rumi</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |
+| <code>&#123;punishment.user.tag&#125;</code> | Discord etiqueta de nombre de usuario/valor de estilo discriminador para el usuario castigado. | <code>nombre de usuario</code> | Registros de moderación, mensajes de invocación, respuestas de advertencia/prohibición/expulsión/tiempo de espera |

@@ -1,0 +1,43 @@
+---
+title: "Variables utilisateur"
+description: "30 variables utilisateur prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;user&#125;</code> | Affichez l'utilisateur qui a déclenché la réponse. | <code>&lt;@123456789012345678&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.avatar&#125;</code> | URL de l'avatar de l'utilisateur déclencheur. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.badges&#125;</code> | Badges pour l'utilisateur. | <code>Exemples de badges utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.badges_icons&#125;</code> | Icônes de badges pour l’utilisateur. | <code>Exemples d'icônes de badges utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.banner&#125;</code> | URL de l’image de bannière. Source : utilisateur. | <code>Exemple de bannière utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.boost_count&#125;</code> | Nombre de boost pour l'utilisateur. | <code>128</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.boost_since&#125;</code> | Boost depuis pour l'utilisateur. | <code>Exemple de boost d'utilisateurs depuis</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.boost_since_timestamp&#125;</code> | Horodatage Unix pour boost depuis. | <code>1781460000</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.color&#125;</code> | Couleur pour l'utilisateur. | <code>Exemple de couleur utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.created_at&#125;</code> | Discord-heure formatée à laquelle le compte utilisateur a été créé. | <code>&lt;t:1781460000:F&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.created_at_timestamp&#125;</code> | Horodatage Unix pour l’heure de création. Source : utilisateur. | <code>&lt;t:1781460000:F&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.display_avatar&#125;</code> | Afficher l'avatar de l'utilisateur. | <code>Exemple d'avatar d'affichage d'utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.display_name&#125;</code> | Nom d’affichage du serveur ou surnom du membre déclencheur. | <code>Clair de lune</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.global_name&#125;</code> | Nom d’affichage global de l’utilisateur déclencheur. | <code>Exemple de nom global d'utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.guild_avatar&#125;</code> | Avatar de guilde pour l'utilisateur. | <code>Exemple d'avatar de guilde d'utilisateurs</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.guild_banner&#125;</code> | Bannière de guilde pour l'utilisateur. | <code>Exemple de bannière de guilde d'utilisateurs</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.id&#125;</code> | Discord ID de l'utilisateur déclencheur. | <code>123456789012345678</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.is_boost&#125;</code> | Est Boost pour l'utilisateur. | <code>L'exemple d'utilisateur est boosté</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.is_bot&#125;</code> | Est-ce que Bot est destiné à l'utilisateur. | <code>L'exemple d'utilisateur est un bot</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.join_position&#125;</code> | Rejoindre la position pour l'utilisateur. | <code>Exemple de position de jointure d'un utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.join_position_sfx&#125;</code> | Rejoignez Position Sfx pour l'utilisateur. | <code>Exemple d'effet de position de jointure d'utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.joined_at&#125;</code> | Discord-heure formatée à laquelle le membre a rejoint ce serveur. | <code>&lt;t:1781460000:F&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.joined_at_timestamp&#125;</code> | Horodatage Unix pour l’heure de connexion au serveur. Source : utilisateur. | <code>&lt;t:1781460000:F&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.mention&#125;</code> | Mentionnez l'utilisateur qui a déclenché le message. | <code>&lt;@123456789012345678&gt;</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.name&#125;</code> | Nom d'utilisateur de l'utilisateur déclencheur. | <code>Roumi</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.role_list&#125;</code> | Mentionnez la liste des rôles d'utilisateur, le plus élevé en premier. | <code>Exemple de liste de rôles d'utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.role_list_text&#125;</code> | Liste en texte brut des rôles d'utilisateur, le plus élevé en premier. | <code>Exemple de texte de liste de rôles utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.tag&#125;</code> | Discord valeur de style de balise de nom d'utilisateur/discriminateur lorsqu'elle est disponible. | <code>nom d'utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.top_role&#125;</code> | Rôle principal pour l'utilisateur. | <code>Exemple de rôle principal d'utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |
+| <code>&#123;user.username&#125;</code> | Nom d'utilisateur de l'utilisateur déclencheur. | <code>Exemple de nom d'utilisateur</code> | Intégrations, commandes personnalisées, répondeurs automatiques, appels de messages |

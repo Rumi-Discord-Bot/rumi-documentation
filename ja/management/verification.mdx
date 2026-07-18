@@ -1,0 +1,86 @@
+---
+title: "会員認証"
+description: "テキストまたはキャプチャ検証を設定し、パネルを再送信し、メンバー向け UI をカスタマイズします。"
+icon: "user-check"
+---
+
+Rumi テキストキーワードまたはキャプチャ検証フローの背後に新しいメンバーを配置できます。
+システムはその構成をサーバーに保存し、そのパネルを再作成できます。
+必要なときに。
+
+## セットアップ前
+
+検証を構成する人には、**サーバーの管理** と **管理が必要です
+役割**。 Rumi ニーズ：
+
+- 役割の管理
+- チャンネルの管理
+- メッセージを送信する
+- メッセージの管理
+
+Rumiのロールは、検証フローが管理する必要があるロールの上に位置する必要があります。
+
+## テキスト検証
+
+チャンネルを選択し、メンバーはキーワードを入力する必要があります:
+
+```text
+-verification setup text #verify agree
+```
+
+キーワードは短く、明確にしてください。検証チャネルは次のとおりです。
+通常のコミュニティチャンネルは制御されたままですが、未確認のメンバーには表示されます
+あなたによって Discord 役割の権限。
+
+## キャプチャの検証
+
+```text
+-verification setup captcha #verify
+```
+
+キャプチャ モードでは、メンバーは入力する代わりに、生成されたチャレンジを完了するよう求められます。
+共通のキーワード。
+
+## パネルを確認または復元します
+
+```text
+-verification status
+-verification panel
+```
+
+`status` に、保存されたモードと設定を示します。 `panel` 設定されたものを送信します
+確認パネルが再度表示されます。これは、元のメッセージが削除された場合に役立ちます。
+
+## インターフェースをカスタマイズする
+
+カスタマイズ コマンドはキーと値を受け入れます。
+
+```text
+-verification customize panel.title Welcome
+-verification customize panel.text Type `{keyword}` to continue.
+-verification customize button.verify.style success
+-verification customize view
+```
+
+使用 `verification customize view` 編集する前にキーを確認できるようにする
+実行中のボットは現在サポートしています。カスタマイズを元に戻したい場合はリセットします
+Rumiのデフォルト:
+
+```text
+-verification customize reset
+```
+
+## 検証を無効にする
+
+```text
+-verification disable
+```
+
+無効にすると検証システムが停止します。自動的に再設計されない
+あなたの Discord チャネルは上書きされるため、未検証のロールと検証済みのロールを確認してください
+後から見ることができます。
+
+<Tip>
+管理者以外のアカウントでテストします。管理者は多くの機能をバイパスします Discord
+チャネル制限は、新しいメンバーが経験することを表すものではありません。
+</Tip>

@@ -1,0 +1,43 @@
+---
+title: "Gebruikersvariabelen"
+description: "30 gebruikersvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;user&#125;</code> | Geef de gebruiker weer die het antwoord heeft geactiveerd. | <code>&lt;@123456789012345678&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.avatar&#125;</code> | Avatar-URL voor de triggerende gebruiker. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.badges&#125;</code> | Badges voor gebruiker. | <code>Voorbeeld gebruikersbadges</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.badges_icons&#125;</code> | Badgespictogrammen voor gebruiker. | <code>Voorbeeld van pictogrammen voor gebruikersbadges</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.banner&#125;</code> | URL van bannerafbeelding. Bron: gebruiker. | <code>Voorbeeld gebruikersbanner</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.boost_count&#125;</code> | Aantal boosts voor gebruiker. | <code>128</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.boost_since&#125;</code> | Boost Sinds voor gebruiker. | <code>Voorbeeld gebruikersboost sinds</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.boost_since_timestamp&#125;</code> | Unix-tijdstempel voor boost sindsdien. | <code>1781460000</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.color&#125;</code> | Kleur voor gebruiker. | <code>Voorbeeld gebruikerskleur</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.created_at&#125;</code> | Discord-geformatteerde tijd waarop het gebruikersaccount is aangemaakt. | <code>&lt;t:1781460000:F&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.created_at_timestamp&#125;</code> | Unix-tijdstempel voor aanmaaktijd. Bron: gebruiker. | <code>&lt;t:1781460000:F&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.display_avatar&#125;</code> | Avatar voor gebruiker weergeven. | <code>Voorbeeld van een gebruikersschermavatar</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.display_name&#125;</code> | Weergavenaam of bijnaam van de server van het triggerende lid. | <code>Maanlicht</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.global_name&#125;</code> | Algemene weergavenaam van de triggerende gebruiker. | <code>Voorbeeld van een globale gebruikersnaam</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.guild_avatar&#125;</code> | Gilde-avatar voor gebruiker. | <code>Voorbeeld van een gebruikersgilde-avatar</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.guild_banner&#125;</code> | Gildebanner voor gebruiker. | <code>Voorbeeld van een gebruikersgildebanner</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.id&#125;</code> | Discord ID van de activerende gebruiker. | <code>123456789012345678</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.is_boost&#125;</code> | Is Boost voor gebruiker. | <code>Voorbeeldgebruiker is boost</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.is_bot&#125;</code> | Is Bot voor gebruiker. | <code>Voorbeeldgebruiker is bot</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.join_position&#125;</code> | Lid worden van positie voor gebruiker. | <code>Voorbeeld van deelnamepositie van gebruiker</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.join_position_sfx&#125;</code> | Sluit je aan bij Position Sfx voor gebruiker. | <code>Voorbeeld van gebruiker join-positie sfx</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.joined_at&#125;</code> | Discord-geformatteerde tijd waarop het lid lid werd van deze server. | <code>&lt;t:1781460000:F&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.joined_at_timestamp&#125;</code> | Unix-tijdstempel voor server-join-tijd. Bron: gebruiker. | <code>&lt;t:1781460000:F&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.mention&#125;</code> | Vermeld de gebruiker die het bericht heeft geactiveerd. | <code>&lt;@123456789012345678&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.name&#125;</code> | Gebruikersnaam van de triggerende gebruiker. | <code>Rumi</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.role_list&#125;</code> | Vermeld een lijst met de gebruikersrollen, de hoogste bovenaan. | <code>Voorbeeld van een gebruikersrollenlijst</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.role_list_text&#125;</code> | Lijst in platte tekst met de gebruikersrollen, de hoogste eerst. | <code>Voorbeeldtekst van een gebruikersrollijst</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.tag&#125;</code> | Discord gebruikersnaamtag/discriminatorstijlwaarde indien beschikbaar. | <code>gebruikersnaam</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.top_role&#125;</code> | Toprol voor gebruiker. | <code>Voorbeeld van de toprol van een gebruiker</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;user.username&#125;</code> | Gebruikersnaam van de triggerende gebruiker. | <code>Voorbeeld gebruikersnaam van gebruiker</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |

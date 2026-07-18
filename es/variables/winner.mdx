@@ -1,0 +1,21 @@
+---
+title: "Variables ganadoras"
+description: "8 variables ganadoras respaldadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;winner&#125;</code> | Datos de ganadores para anuncios de ganadores de sorteos. | <code>Ejemplo de ganador</code> | Plantillas de resultados de sorteos |
+| <code>&#123;winner.avatar&#125;</code> | URL de la imagen de avatar. Fuente: ganador. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Plantillas de resultados de sorteos |
+| <code>&#123;winner.bonus_entries&#125;</code> | Entradas de bonificación para el ganador. | <code>Ejemplos de entradas de bonificación para ganadores</code> | Plantillas de resultados de sorteos |
+| <code>&#123;winner.display_name&#125;</code> | Nombre para mostrar o apodo del servidor. Fuente: ganador. | <code>Luz de la luna</code> | Plantillas de resultados de sorteos |
+| <code>&#123;winner.entries&#125;</code> | Entradas para el ganador. | <code>Ejemplos de entradas ganadoras</code> | Plantillas de resultados de sorteos |
+| <code>&#123;winner.id&#125;</code> | Discord IDENTIFICACIÓN. Fuente: ganador. | <code>123456789012345678</code> | Plantillas de resultados de sorteos |
+| <code>&#123;winner.mention&#125;</code> | Discord mencionar texto. Fuente: ganador. | <code>&lt;@123456789012345678&gt;</code> | Plantillas de resultados de sorteos |
+| <code>&#123;winner.name&#125;</code> | Valor del nombre. Fuente: ganador. | <code>Rumi</code> | Plantillas de resultados de sorteos |

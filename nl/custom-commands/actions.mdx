@@ -1,0 +1,163 @@
+---
+title: "Acties"
+description: "Voeg beschermde leden-, rol-, bericht-, economie-, reactie- en gegevensacties toe."
+icon: "bolt"
+---
+
+Met acties kan een aangepaste opdracht meer doen dan alleen tekst retourneren. Loop:
+
+```text
+-cc actions
+```
+
+Rumi toont de huidige syntaxis voor actieknoppen, ledenbeheer
+acties, rollen, berichten, economische veranderingen, reacties, benoemde acties en gewoontes
+gegevens. Gebruik dat antwoord als de bron van de waarheid tijdens het bouwen van een script.
+
+## Veiligheidsmodel
+
+Beveiligde acties worden gecontroleerd wanneer een aangepaste opdracht wordt opgeslagen en uitgevoerd.
+Afhankelijk van de actie kunnen de controles het volgende omvatten:
+
+- Het configurerende lid Discord toestemming
+- De toestemming van het huidige lid of de expliciete toelatingslijst
+- Rumi'S Discord toestemming
+- Leden- en rollenhiërarchie
+- Of het doel valide en beheersbaar is
+
+Rumi erkent momenteel beschermde actiefamilies voor het verbieden, softbanning,
+schoppen, time-outs, waarschuwingen, rolveranderingen, berichtverwijdering, economische veranderingen,
+benoemde acties en aangepaste gegevens. Dit zijn <mark>bouwstenen binnen maatwerk
+opdrachten</mark>, geen standaard openbare moderatieopdrachten.
+
+## Bouw zorgvuldig
+
+1. Maak het tekstantwoord en bekijk een voorbeeld ervan.
+2. Voeg de kleinste benodigde actie toe.
+3. Beperk de opdracht tot een vertrouwde rol, kanaal of machtiging.
+4. Rennen `-cc show <name>` en bekijk het opgeslagen script.
+5. Test met een veilig doelwit vóór gebruik door het personeel.
+
+<Warning>
+Maak een destructieve actie nooit voor iedereen toegankelijk. Rumi's controles verminderen
+risico, maar serverbeheerders zijn verantwoordelijk voor de workflow en de toelatingslijsten ervan.
+</Warning>
+
+## Directe actie-indeling
+
+Zet acties op hun eigen lijn. Gebruik `&&` tussen argumenten, dus namen en redenen
+kan spaties bevatten zonder te veranderen waar het volgende argument begint.
+
+```text
+{mod:warn target && Repeated rule violation}
+{mod:timeout target && 10m && Cool down period}
+{econ:add user && 100 && Daily custom reward}
+{customdb:increment activity && {user.id} && 1}
+```
+
+Het zichtbare antwoord kan deze actielijnen volgen. Een actielijn op zich is dat niet
+aan de gebruiker getoond. Rumi valideert beschermde machtigingen wanneer de opdracht is
+opgeslagen en herhaalt controles op toestemming, doel en rollenhiërarchie wanneer deze wordt uitgevoerd.
+
+## Exacte grammatica met directe actie
+
+De onderstaande hoekbeugelvelden zijn vereist. Velden tussen vierkante haakjes zijn dat wel
+optioneel. Typ de haakjes zelf niet.
+
+| Actie | Exacte regeling |
+| --- | --- |
+| Verbod | `{mod:ban <target> && [reason]}` |
+| Softban | `{mod:softban <target> && [reason]}` |
+| Trap | `{mod:kick <target> && [reason]}` |
+| Time-out | `{mod:timeout <target> && <duration> && [reason]}` |
+| Time-out wissen | `{mod:untimeout <target> && [reason]}` |
+| Waarschuwen | `{mod:warn <target> && [reason]}` |
+| Rol toevoegen | `{mod:role.add <target> && <role> && [reason]}` |
+| Rol verwijderen | `{mod:role.remove <target> && <role> && [reason]}` |
+| Wissel van rol | `{mod:role.toggle <target> && <role> && [reason]}` |
+| Valuta toevoegen | `{econ:add <target> && <amount> && [reason]}` |
+| Valuta verwijderen | `{econ:remove <target> && <amount> && [reason]}` |
+| Portemonnee instellen | `{econ:set <target> && <amount> && [reason]}` |
+| Valuta overmaken | `{econ:transfer <source> && <destination> && <amount>}` |
+| Aangepaste gegevens instellen | `{customdb:set <namespace> && <key> && <value>}` |
+| Verhoog aangepaste gegevens | `{customdb:increment <namespace> && <key> && [amount]}` |
+| Aangepaste gegevens verwijderen | `{customdb:delete <namespace> && <key>}` |
+
+`mute` wordt geaccepteerd als alias voor `timeout`; `unmute` is een alias voor
+`untimeout`. Doelen kunnen een verklaard argument zijn, zoals `{target}`, een lid
+vermelding, een identiteitsbewijs, of `user`/`self` waar die actie het commandolid ondersteunt.
+
+`&&` scheidt argumenten met directe actie. Dit betekent dat een reden spaties mag bevatten
+zonder te worden verward met het doel of de duur. Herschik alleen argumenten
+wanneer de tabel een andere volgorde weergeeft, leest de actie-uitvoerder ze voor
+positie.
+
+## Actieknoppen
+
+Een knop is een `$v{button: ...}` blok. Knopvelden zijn gescheiden door `&&`.
+Ingetoetste velden kunnen opnieuw worden gerangschikt omdat hun naam hen identificeert:
+
+```text
+$v{button: label=Confirm && style=danger && action=mod:kick {target} Rule violation && reply=Member removed.}
+```
+
+De exacte vorm is:
+
+```text
+$v{button: label=<text> && style=<style> && [emoji=<emoji>] && action=<action-spec> && [reply=<text>]}
+```
+
+Knopvelden:
+
+| Veld | Geaccepteerde waarde |
+| --- | --- |
+| `label` | Knoptekst, tot Discord's limiet van 80 tekens. |
+| `style` | `primary`, `secondary`, `success`, of `danger`. Kleuraliassen zoals `blue`, `grey`, `green`, En `red` ook werken. |
+| `emoji` | Unicode-emoji of een aangepaste emoji Discord emoji-vermelding. |
+| `action` | Eén componentactiespecificatie. Herhalen `action=` een keten te vormen. |
+| `reply` | Kortstondige reactie die alleen wordt weergegeven op de clicker. |
+| `public` | Publieke reactie in het kanaal in plaats van een kortstondige reactie. |
+| `dm` | Tekst per DM naar de clicker gestuurd. |
+| `role` En `mode` | Rol om te veranderen op de clicker en `add`, `remove`, of `toggle`. |
+| `page` | `next`, `previous`, of een paginanummer gemaakt met `$v{page}`. |
+| `await`, `once`, `defer` | Booleaanse uitvoeringsbesturingselementen zoals `true` of `false`. |
+| `expires` | Hoe lang de besturing bruikbaar blijft, bijvoorbeeld `10m` of `1h`. |
+| `allow_user`, `allow_role`, `allow_channel` | Eén ID of een door komma's gescheiden ID-lijst mag het besturingselement gebruiken. |
+
+In tegenstelling tot directe actielijnen wordt een componentactie geschreven zonder de buitenste
+accolades en gebruikt spaties tussen de interne argumenten:
+
+```text
+action=mod:timeout {target} 10m Cool down
+action=econ:add user 100 Button reward
+```
+
+Herhaal het ingetoetste veld om verschillende acties achter elkaar uit te voeren:
+
+```text
+$v{button: label=Approve && style=success && action=mod:role.add {target} @Member Approved && action=reply:Approved {target.mention} && once=true}
+```
+
+## Koppelknoppen en vervolgkeuzelijsten
+
+Koppelingsknoppen voeren geen beveiligde acties uit:
+
+```text
+$v{button: label=Website && url=https://rumi.rocks && emoji=🔗}
+```
+
+Dropdowns gebruiken deze regeling:
+
+```text
+$v{select: <id> && <placeholder> && <label>|<action-fields>|[description]|[emoji]}
+```
+
+Scheid meerdere ingetoetste actievelden binnen één vervolgkeuzelijst met een
+puntkomma:
+
+```text
+$v{select: staff_menu && Choose an action && Warn|action=mod:warn {target} Menu warning;reply=Warning saved.|Create a warning|⚠️}
+```
+
+Elke optie wordt gescheiden door `&&`. Binnen een optie is de pijpgescheiden volgorde
+label, actievelden, optionele beschrijving en optionele emoji.

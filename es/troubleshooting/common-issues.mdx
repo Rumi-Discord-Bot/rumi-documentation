@@ -1,0 +1,136 @@
+---
+title: "Problemas comunes"
+description: "Resolver problemas comunes de comando, permisos, lenguaje, administración y música."
+icon: "wrench"
+---
+
+## Rumi no responde
+
+1. Confirmar Rumi está en línea.
+2. Confirma que puede ver el canal y enviar mensajes.
+3. Verifique el prefijo y la ortografía del comando.
+4. Pruebe `/help` o `-help`.
+5. Compruebe si el comando está restringido a un servidor o mensaje directo.
+
+## Falta un comando de barra diagonal
+
+Discord Puede llevar tiempo actualizar los comandos registrados globalmente. Reanudar Discord,
+verifique el permiso de comando de aplicación del bot y pruebe el formulario de prefijo.
+
+## El idioma no cambió
+
+Correr `-language` para ver el lenguaje efectivo y su fuente. Luego configure el
+alcance previsto explícitamente:
+
+```text
+-language user de
+-language server de
+```
+
+El idioma personal tiene prioridad sobre el idioma del servidor. Cambios en todo el servidor
+Requiere permiso de administrador.
+
+## Rumi dejó el servidor
+
+Rumi deja los servidores sin actividad registrada durante 30 días para preservar los recursos
+y estabilidad del servicio. puedes invitar Rumi nuevamente en cualquier momento. Una vez que los miembros usan
+el servidor y Rumi registra actividad, la ventana normal de inactividad comienza nuevamente.
+
+## Se deniega un comando de gestión
+
+Correr `-help <command>` y verifique los requisitos de miembro y bot. Para rol
+o cambios de canal, DiscordLa jerarquía de roles todavía se aplica. Rumi no puedo manejar
+un rol igual o superior a su rol más alto.
+
+## No puedo encontrar baneo o expulsión
+
+Rumi intencionalmente no proporciona fines generales `ban` o `kick` comandos por
+por defecto. Esto mantiene sus requisitos de permisos básicos más pequeños. Servidor
+Los gerentes pueden crear flujos de trabajo cuidadosamente restringidos con la
+[sistema de comando personalizado](../custom-commands/overview).
+
+## La música no comienza
+
+Confirma que estás en un canal de voz, Rumi puede conectarse y hablar, y la música
+El servicio está disponible.
+
+Si Rumi se une pero no reproduce, prueba con un nombre de pista directa o URL, luego inspecciona
+la cola. Una lista de reproducción o página de plataforma puede fallar incluso cuando la reproducción directa funciona
+porque su proveedor externo no está disponible.
+
+## Spotify Los controles me piden volver a vincular.
+
+Las funciones de reproductor, dispositivo, lista de reproducción y canción que me gusta usan diferentes Spotify
+permisos. Correr `-spotify link` nuevamente y aprobar la autorización actualizada.
+Los enlaces existentes creados antes de que se agregaran esas funciones no obtienen acceso nuevo
+automáticamente.
+
+SpotifyLos controles del dispositivo personal de Requieren un activo Spotify dispositivo y Spotify
+De primera calidad. Abierto Spotify en el dispositivo deseado, inicie la reproducción una vez y luego ejecute:
+
+```text
+-spotify devices
+-spotify player status
+```
+
+## No se asigna un rol de nivel
+
+Verifique las tres condiciones:
+
+1. Rumi tiene **Administrar roles**.
+2. RumiEl rol más alto está por encima del rol de recompensa.
+3. El hito aparece en `-levels settings`.
+
+Después de corregir la configuración, ejecute `-levels sync` para conciliar roles de recompensa usando
+la configuración actual.
+
+## Se desconocen las uniones por invitación
+
+Refrescar RumiInstantánea de la invitación actual:
+
+```text
+-invites refresh
+```
+
+Rumi no podemos garantizar la atribución cuando se eliminó una invitación, se colocó un enlace personalizado
+usado, falta el acceso por invitación o Discord no proporcionó suficiente estado para
+identificar qué contador cambió. Actualizar la instantánea ayuda a futuras uniones, pero
+no reconstruye los antiguos.
+
+## La conversión de medios falla
+
+Pruebe con una entrada más pequeña o más corta y utilice un archivo adjunto directo o una URL de archivo. Para
+conversión de vídeo, reducir `--duration`; para salida GIF, reducir duración, marco
+tasa o ancho. Las descargas de la plataforma dependen del servicio de medios y pueden fallar incluso
+cuando los archivos adjuntos funcionan.
+
+## Se imprime un comando personalizado `N/A`
+
+La variable existe, pero su valor fuente no estaba presente en esa ejecución. un objetivo
+La variable, por ejemplo, necesita un objetivo que se pueda resolver. Agregue una alternativa:
+
+```text
+{target.display_name|No member selected}
+```
+
+Usar `-cc show <name>` para inspeccionar el script guardado y `-cc vista previa <name>
+[argumentos de muestra]` para reproducirlo de forma segura. La [guía de prueba](../custom-commands/testing-and-debugging)
+recorre cada capa.
+
+## Se deniega una acción personalizada
+
+Las acciones protegidas verifican el miembro de configuración, el miembro que ejecuta el personalizado
+dominio, RumiLos permisos, el objetivo, la jerarquía de roles y los propios del comando.
+restricciones. Revisar:
+
+```text
+-cc show <name>
+-cc restrictions <name>
+-permissions @member
+```
+
+No elimine todas las restricciones sólo para que la acción pase. Arreglar lo específico
+problema de rol, canal, permiso o jerarquía.
+
+Si el problema continúa, únete al
+[servidor de soporte](https://discord.gg/NYs2jF9MCc).

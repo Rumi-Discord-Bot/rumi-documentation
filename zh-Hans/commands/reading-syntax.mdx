@@ -1,0 +1,112 @@
+---
+title: "如何阅读命令语法"
+description: "了解必需的参数、可选值、选择、标志、ID 和引用的文本。"
+icon: "code"
+---
+
+Rumi的帮助条目使用少量符号来显示命令的含义
+期望。括号内为说明；您通常不键入它们。
+
+## 必需和可选参数
+
+`<angle brackets>` 表示需要的值：
+
+```text
+role add <member> <role>
+```
+
+有效的运行将是：
+
+```text
+-role add @Moon Member
+```
+
+`[square brackets]` 表示该值是可选的：
+
+```text
+level [user]
+```
+
+两个都 `-level` 和 `-level @Moon` 是有效的。
+
+## 选择
+
+竖线表示“选择一个”：
+
+```text
+deposit <amount|all>
+```
+
+使用任一 `-deposit 500` 或者 `-deposit all`。不要输入栏。
+
+## 带空格的文本
+
+某些命令将消息的其余部分视为一个值。其他人还有另一个
+它后面的参数，所以引号使边界清晰：
+
+```text
+-giveaway start "Discord Nitro" 24h 1 #giveaways
+```
+
+没有引号， `Discord` 和 `Nitro` 可以理解为单独的位置
+论据。引用对于奖品、名称、原因和标题特别有用。
+
+## 旗帜
+
+标志开头为 `--` 并更改命令的一部分而不更改其
+主要动作：
+
+```text
+-role create Event Host --color #c8d8f2
+-media caption --position=top --size=42 Welcome!
+-giveaway start "Nitro" 24h 1 --button
+```
+
+根据命令，标志可以写为 `--name value` 或者
+`--name=value`。当两种形式都不是时，请遵循该命令的帮助示例
+列出。
+
+## 提及、名称和 ID
+
+Rumi 经常接受一个 Discord 提及、原始 ID 或可解析名称。提及的是
+最不模糊的：
+
+```text
+-role info @Staff
+-channel rename #old-name new-name
+-inviter 123456789012345678
+```
+
+当两个角色或频道具有相同名称时，请使用提及或 ID。
+
+## 子命令
+
+命令后的第一个词通常选择一个操作：
+
+```text
+-economy config
+-economy config currency petals
+-economy rob chance 35
+```
+
+从左到右阅读这些内容： `economy` 打开系统， `rob` 选择其
+配置区域，以及 `chance` 选择设置。
+
+## 为什么使用自定义命令 `--`
+
+这 `customcommand set` 命令必须分隔命令自己的参数
+它保存的响应的定义：
+
+```text
+-cc set greet <member> -- Hello {target.mention}!
+```
+
+独立之前的一切 `--` 定义自定义命令。一切
+之后是回复或脚本。这让响应包含空格，
+变量、嵌入和多行，无需 Rumi 误认为它们更多
+设置参数。请参阅[语法和分隔符](../custom-commands/syntax-and-separators)
+完整的自定义命令格式。
+
+<Info>
+跑步 `-help <command>` 每当例子不清楚时。如果您仍然遇到问题，您可以使用以下命令询问内置 AI 模型 `-rumi <question>`.
+</Info>

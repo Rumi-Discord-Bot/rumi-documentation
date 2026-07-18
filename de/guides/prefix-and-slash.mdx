@@ -1,0 +1,34 @@
+---
+title: "Präfix- und Schrägstrichbefehle"
+description: "Verstehen Sie die beiden Möglichkeiten, Rumi-Befehle auszuführen."
+icon: "code"
+---
+
+## Präfixbefehle
+
+Präfixbefehle werden wie gewohnt eingegeben Discord Nachricht. Das Standardpräfix ist
+`-`:
+
+```text
+-command argument
+```
+
+Die Serverkonfiguration stellt möglicherweise ein benutzerdefiniertes Präfix bereit. Wenn Sie sich nicht sicher sind, erwähnen Sie es Rumi oder
+verwenden DiscordSlash-Befehlsauswahl zur Erkennung verfügbarer Befehle.
+
+## Slash-Befehle
+
+Slash-Befehle verwenden DiscordAnwendungs-Befehlsschnittstelle:
+
+```text
+/command
+```
+
+Discord validiert Schrägstrichoptionen, bevor der Befehl an gesendet wird Rumi. Manche
+Befehle behalten nur ein Präfix bei, wenn ihr Argumentformat oder ihr Interaktionsablauf dies tun
+nicht sauber zuordnen DiscordSlash-Befehlsschema.
+
+## Lokalisierung
+
+Befehlsnamen ändern sich nicht mit der ausgewählten Sprache. Beschreibungen, Antworten,
+Validierungsmeldungen, Schaltflächen, Menüs und Modalbezeichnungen können lokalisiert werden.

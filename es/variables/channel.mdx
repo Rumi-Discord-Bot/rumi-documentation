@@ -1,0 +1,22 @@
+---
+title: "variables de canal"
+description: "9 variables de canal soportadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;channel.category_id&#125;</code> | ID de categoría para el canal. | <code>ID de categoría de canal de ejemplo</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;channel.category_name&#125;</code> | Nombre de categoría para el canal. | <code>Ejemplo de nombre de categoría de canal</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;channel.id&#125;</code> | Discord ID del canal actual. | <code>123456789012345678</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;channel.mention&#125;</code> | Menciona el canal actual. | <code>&lt;@123456789012345678&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;channel.name&#125;</code> | Nombre del canal actual. | <code>general</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;channel.position&#125;</code> | Posición para canal. | <code>Ejemplo de posición del canal</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;channel.slowmode_delay&#125;</code> | Retraso de modo lento para el canal. | <code>Ejemplo de retardo en modo lento de canal</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;channel.topic&#125;</code> | Texto del tema del canal actual, si existe. | <code>Tema de canal de ejemplo</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;channel.type&#125;</code> | Nombre del tipo o categoría. Fuente: canal. | <code>Tipo de canal de ejemplo</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |

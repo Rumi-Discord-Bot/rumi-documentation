@@ -1,0 +1,131 @@
+---
+title: "Spotify-Verknüpfung und -Steuerung"
+description: "Verknüpfen Sie Spotify, überprüfen Sie Geräte, steuern Sie die persönliche Wiedergabe, durchsuchen Sie Ihre Bibliothek und stellen Sie Titel in die Warteschlange von Discord Voice."
+icon: "spotify"
+---
+
+Spotify Verlinkung gibt Rumi Erlaubnis, die von Ihnen angeforderten Bibliotheksdaten zu lesen und
+Senden Sie Steuerelemente an Ihr eigenes Aktiv Spotify Gerät. Ihr Token wird dadurch nicht offengelegt
+Zu Discord oder private Playlists mit anderen Mitgliedern teilen.
+
+## Berechtigungen verknüpfen oder aktualisieren
+
+```text
+-spotify link
+-spotify status
+-spotify unlink
+```
+
+Öffnen Sie den einmaligen Link und genehmigen Sie die angeforderten Berechtigungen. Benutzer verlinkt
+Bevor Gerätesteuerungen und „Gefällt mir“-Titel hinzugefügt werden, müssen diese ausgeführt werden `-spotify link`
+wieder so Spotify kann die neuen Wiedergabe- und Bibliotheksbereiche gewähren.
+
+<Warning>
+Spotify Für den Anschluss von Wiedergabesteuerungen ist eine Verbindung erforderlich Spotify Prämie. Offen Spotify auf der
+Zieltelefon, Computer, Browser oder Lautsprecher mindestens einmal Spotify berichtet an
+verfügbares Gerät.
+</Warning>
+
+## Durchsuchen Sie Geräte und Wiedergabe
+
+```text
+-spotify devices
+-spotify player status
+-spotify pause
+-spotify resume
+-spotify next
+-spotify previous
+-spotify volume 45
+-spotify seek 1:30
+-spotify shuffle on
+-spotify repeat track
+```
+
+`seek` akzeptiert Sekunden (`90`), Uhrzeit (`1:30`) oder eine Dauer (`2m`). Wiederholen
+akzeptiert `off`, `track`, oder `context`.
+
+## Wiedergabe übertragen
+
+Laufen `-spotify devices` Erste. Übertragen Sie über die angezeigte Nummer, genaues Gerät
+Name, Teil seines Namens oder Geräte-ID:
+
+```text
+-spotify transfer 2
+-spotify transfer Kitchen speaker
+```
+
+Eingeschränkte Geräte können in der Liste angezeigt werden, akzeptieren jedoch keine Web-API-Steuerelemente.
+Geräte-IDs können sich ändern, daher ist die Auswahl anhand der aktuellen Liste oder des Gerätenamens sinnvoller
+praktischer als das Speichern einer ID.
+
+## Starten Sie einen Titel oder stellen Sie ihn in die Warteschlange Spotify
+
+```text
+-spotify play pink pony club
+-spotify play https://open.spotify.com/track/...
+-spotify queue deftones change
+```
+
+`spotify play` ersetzt die persönliche Wiedergabe Spotify Gerät. `spotify
+queue fügt dem Gerät ein Element hinzu Spotify Warteschlange. Keiner der Befehle ändert sich
+Rumi'S Discord Sprachwarteschlange.
+
+## Wiedergabelisten anzeigen
+
+```text
+-spotify playlists
+-spotify playlists @member
+```
+
+Sie können die **öffentlichen** Playlists eines anderen Mitglieds nur dann durchsuchen, wenn dies der Fall ist Discord
+Mitglied hat verlinkt Spotify. Private Playlists bleiben nur für ihren Besitzer sichtbar.
+
+Um eine Ihrer eigenen verknüpften Wiedergabelisten hinzuzufügen Rumi'S Discord Sprachwarteschlange, beitreten a
+Wählen Sie einen Sprachkanal aus und wählen Sie ihn anhand der Listennummer, des Namens, der ID oder aus Spotify URL:
+
+```text
+-spotify playlists queue 2
+-spotify playlists queue "Night drive" 30
+-spotify playlists queue https://open.spotify.com/playlist/... 50
+```
+
+Die optionale Endzahl begrenzt den Import auf 1–75 Titel.
+
+## Gefallene Lieder
+
+```text
+-spotify liked
+-spotify liked list 30
+-spotify liked queue 25
+```
+
+Gefällt mir Songs sind für den verknüpften Benutzer privat. Um sie in die Warteschlange zu stellen, muss der Benutzer wer
+besitzt diesen Link in einem Discord Sprachkanal.
+
+<Note>
+Rumi verwendet Spotify URLs und Metadaten als Sucheingaben für die konfigurierte Musik
+Service. Es werden keine Audiodaten heruntergeladen, erneut gesendet oder extrahiert Spotify.
+</Note>
+
+## Fehlerbehebung
+
+<AccordionGroup>
+  <Accordion title="Rumi bittet mich, die Verbindung wiederherzustellen">
+    Ihre gespeicherte Autorisierung ist älter als ein oder mehrere erforderliche Bereiche. Laufen
+    `-spotify link` und genehmigen Sie den aktualisierten Berechtigungsbildschirm.
+  </Accordion>
+  <Accordion title="Es ist kein Gerät verfügbar">
+    Offen Spotify auf das gewünschte Gerät und starten Sie einmal die Wiedergabe. Dann erneut ausführen
+    `-spotify devices`. Geräte mit privater Sitzung oder eingeschränkten Zugriffen können abgelehnt werden
+    Kontrollen.
+  </Accordion>
+  <Accordion title="Spotify gibt Premium zurück">
+    Endpunkte für die Wiedergabesteuerung sind begrenzt durch Spotify für Premium-Benutzer. Bibliothek
+    Das Surfen funktioniert möglicherweise weiterhin, wenn die erforderlichen Leseberechtigungen vorhanden sind.
+  </Accordion>
+  <Accordion title="Eine Playlist kann nicht in die Warteschlange gestellt werden">
+    Spotify stellt Playlist-Elemente derzeit nur dann zur Verfügung, wenn der verknüpfte Benutzer Eigentümer von oder ist
+    arbeitet an dieser Playlist mit. Bestätigen Sie auch, dass Sie in der Stimme sind und das
+    RumiDer Musikdienst von ist bereit.
+  </Accordion>
+</AccordionGroup>

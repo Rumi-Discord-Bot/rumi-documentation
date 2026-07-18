@@ -1,0 +1,125 @@
+---
+title: "Niveles y XP"
+description: "Configure XP, mensajes para subir de nivel, roles de recompensa, multiplicadores y canales ignorados."
+icon: "arrow-up-right-dots"
+---
+
+RumiEl sistema de nivelación rastrea la XP del servidor, muestra tarjetas de clasificación, crea una tabla de clasificación,
+y puede otorgar roles en los hitos elegidos. El XP de un miembro pertenece al servidor.
+donde se ganó.
+
+## Comience con la configuración
+
+Los administradores del servidor pueden habilitar el sistema e inspeccionar la configuración guardada:
+
+```text
+-levels enable
+-levels settings
+```
+
+Luego, los miembros pueden utilizar:
+
+```text
+-level
+-level @member
+-leaderboard
+```
+
+`level` también está disponible como `rank`. La tabla de clasificación muestra la XP del servidor.
+categoría.
+
+## Anuncios de subida de nivel
+
+Establecer un mensaje con `levels message`. El mensaje puede abarcar varias líneas y utilizar
+variables de nivel como `{user.mention}` y `{level}`:
+
+```text
+-levels message GG {user.mention}!
+You reached level {level}. --delete 15
+```
+
+El `--delete 15` la bandera dice Rumi para eliminar el anuncio después de 15 segundos.
+Obtenga una vista previa del resultado guardado antes de confiar en él:
+
+```text
+-levels preview
+```
+
+Elija si los anuncios utilizan texto normal o incrustado, y dónde están
+enviado:
+
+```text
+-levels messagemode text
+-levels messagemode embed
+-levels channel #level-ups
+```
+
+Correr `-variables level` para ver las variables actuales relacionadas con el nivel disponibles para
+plantillas de mensajes.
+
+## Roles de recompensa
+
+Asignar un rol a un hito:
+
+```text
+-levels role 10 @Veteran
+-levels role 25 @Regular
+```
+
+Usar `stackroles` elegir si los miembros conservan roles de hitos anteriores o
+Solo mantenga el rol asociado con su hito más alto alcanzado:
+
+```text
+-levels stackroles on
+-levels stackroles off
+```
+
+Elimine un hito y vuelva a aplicar la configuración de rol actual con:
+
+```text
+-levels roleclear 10
+-levels sync
+```
+
+Rumi necesita **Administrar roles**, y su rol más alto debe estar por encima de cada recompensa
+función que se espera que le asigne.
+
+## Multiplicadores y canales ignorados
+
+Establezca un multiplicador de XP para todo el servidor o un multiplicador asociado a una función:
+
+```text
+-levels multiplier 1.5
+-levels rolemultiplier @Booster 2
+```
+
+Se pueden excluir los canales en los que el chat normal no debería producir XP:
+
+```text
+-levels ignore #spam
+-levels unignore #spam
+```
+
+## Ajuste de XP y reputación
+
+El comando de gestión para cambios directos de XP es:
+
+```text
+-xp add @member 100
+-xp remove @member 50
+-xp set @member 1000
+```
+
+Rumi también tiene un sistema de reputación independiente:
+
+```text
+-rep give @member
+-rep remove @member
+-rep leaderboard
+```
+
+<Warning>
+Cambiar los multiplicadores o XP puede alterar el significado de las clasificaciones existentes. Controlar
+`-levels settings` antes y después de un cambio grande, luego use `-levels sync` si
+Es necesario conciliar los roles de recompensa.
+</Warning>

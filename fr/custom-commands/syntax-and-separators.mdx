@@ -1,0 +1,76 @@
+---
+title: "Syntaxe et séparateurs"
+description: "Comprenez les noms, les arguments déclarés, les limites de réponse, les solutions de secours et les scripts multilignes."
+icon: "code"
+---
+
+## Pourquoi `--` y a-t-il
+
+Le séparateur dit Rumi où se termine la définition de la commande et le fichier enregistré
+la réponse commence :
+
+```text
+-cc set greet <member> [message...] -- Hello {member}! {message|Welcome.}
+```
+
+Rumi lit la ligne en trois sections :
+
+| Section | Valeur |
+| --- | --- |
+| Opération | `-cc set` |
+| Définition | `greet <member> [message...]` |
+| Réponse enregistrée | `Hello {member}! {message\|Welcome.}` |
+
+Sans séparateur, les mots de la réponse pourraient ressembler à un argument
+déclarations. Le séparateur supprime cette ambiguïté. Il est consommé pendant que le
+La commande est enregistrée et n'est jamais incluse dans la réponse.
+
+`=>` et `->` sont des alternatives acceptées, mais `--` est utilisé dans toute la documentation
+car il est plus facile à reconnaître dans les longs scripts.
+
+<Warning>
+Le premier autonome `--`, `=>`, ou `->` est la frontière. N'importe quoi après c'est
+texte de réponse, même s'il commence par `--`. Mettre les déclarations d'arguments avant
+la frontière.
+</Warning>
+
+## Arguments déclarés
+
+| Formulaire | Signification |
+| --- | --- |
+| `<member>` | Argument obligatoire d'un mot |
+| `[reason]` | Argument facultatif d’un mot |
+| `<text...>` | Argument de repos requis ; consomme tout ce qui reste |
+| `[note...]` | Argument de repos facultatif |
+
+Les noms d'arguments commencent par une lettre et peuvent contenir des lettres, des chiffres, `_`, `-`,
+ou `.`. Un argument de repos doit être le dernier car il consomme toutes les entrées restantes.
+
+## Scripts multilignes
+
+Discord les messages peuvent contenir des sauts de ligne. Mettez les directives sur leurs propres lignes afin
+ils sont supprimés proprement de la réponse visible :
+
+```text
+-cc set daily --
+{cooldown:24h}
+{customdb:increment rewards && {user.id} && 1}
+You claimed reward number **{db.get:rewards:{user.id}}**.
+```
+
+Les autres directives autonomes prises en charge par le runtime incluent `{delete}` à
+supprimer le message invocateur, `{silent}` pour les commandes d'action uniquement,
+`{respond:#channel}` pour sélectionner un canal de réponse, `{dm:user}` envoyer le
+résultat par DM, et `{reaction:emoji}` pour réagir au déclencheur.
+
+## Valeurs et solutions de secours
+
+Utiliser `{variable|fallback}` lorsqu'une valeur peut être absente :
+
+```text
+Nickname: {user.display_name|No server nickname}
+Target: {target.mention|No target selected}
+```
+
+Rumi résout les arguments déclarés en premier, les valeurs d'assistance et les conditions ensuite,
+puis les variables de contexte et le script final d'intégration/composant.

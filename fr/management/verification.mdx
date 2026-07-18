@@ -1,0 +1,86 @@
+---
+title: "Vérification des membres"
+description: "Configurez la vérification par texte ou captcha, renvoyez le panneau et personnalisez l'interface utilisateur destinée aux membres."
+icon: "user-check"
+---
+
+Rumi peut placer de nouveaux membres derrière un flux de vérification par mot-clé texte ou captcha.
+Le système stocke sa configuration sur le serveur et peut recréer son panel
+en cas de besoin.
+
+## Avant la configuration
+
+La personne qui configure la vérification a besoin de **Gérer le serveur** et **Gérer
+Rôles**. Rumi besoins:
+
+- Gérer les rôles
+- Gérer les chaînes
+- Envoyer des messages
+- Gérer les messages
+
+RumiLe rôle de doit se situer au-dessus du rôle que le flux de vérification doit gérer.
+
+## Vérification du texte
+
+Choisissez une chaîne et le mot-clé que les membres doivent saisir :
+
+```text
+-verification setup text #verify agree
+```
+
+Gardez le mot-clé court et sans ambiguïté. Le canal de vérification doit être
+visible pour les membres non vérifiés tandis que les canaux communautaires normaux restent contrôlés
+par votre Discord autorisations de rôle.
+
+## Vérification des captchas
+
+```text
+-verification setup captcha #verify
+```
+
+Le mode Captcha demande aux membres de relever le défi généré au lieu de taper
+un mot-clé partagé.
+
+## Vérifiez ou restaurez le panneau
+
+```text
+-verification status
+-verification panel
+```
+
+`status` affiche le mode et la configuration enregistrés. `panel` envoie le configuré
+panneau de vérification à nouveau, ce qui est utile si son message d'origine a été supprimé.
+
+## Personnaliser l'interface
+
+La commande de personnalisation accepte une clé et une valeur :
+
+```text
+-verification customize panel.title Welcome
+-verification customize panel.text Type `{keyword}` to continue.
+-verification customize button.verify.style success
+-verification customize view
+```
+
+Utiliser `verification customize view` avant de procéder à l'édition afin que vous puissiez voir les touches
+le bot en cours d'exécution prend actuellement en charge. Réinitialisez la personnalisation lorsque vous souhaitez revenir à
+Rumiles valeurs par défaut :
+
+```text
+-verification customize reset
+```
+
+## Désactiver la vérification
+
+```text
+-verification disable
+```
+
+La désactivation arrête le système de vérification. Il ne redessine pas automatiquement
+ton Discord le canal écrase, alors examinez quels rôles non vérifiés et vérifiés
+on verra après.
+
+<Tip>
+Testez avec un compte non administrateur. Les administrateurs contournent de nombreux Discord
+les restrictions de canal et ne représentent pas ce qu’un nouveau membre vivra.
+</Tip>

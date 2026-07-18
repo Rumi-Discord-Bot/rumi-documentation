@@ -1,0 +1,22 @@
+---
+title: "Variables de vérification"
+description: "9 variables de vérification prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;verification.captcha_code&#125;</code> | Code Captcha pour vérification. | <code>Exemple de code captcha de vérification</code> | Panneaux de vérification et messages de vérification |
+| <code>&#123;verification.channel&#125;</code> | Mention de chaîne ou valeur de chaîne. Source : vérification. | <code>Exemple de canal de vérification</code> | Panneaux de vérification et messages de vérification |
+| <code>&#123;verification.channel_id&#125;</code> | Discord ID de canal. Source : vérification. | <code>Exemple d'identifiant de canal de validation</code> | Panneaux de vérification et messages de vérification |
+| <code>&#123;verification.mode&#125;</code> | Mode configuré. Source : vérification. | <code>Exemple de mode de vérification</code> | Panneaux de vérification et messages de vérification |
+| <code>&#123;verification.status&#125;</code> | Statut actuel. Source : vérification. | <code>Exemple de statut de vérification</code> | Panneaux de vérification et messages de vérification |
+| <code>&#123;verification.unverified_role&#125;</code> | Rôle non vérifié pour vérification. | <code>Exemple de rôle de vérification non vérifié</code> | Panneaux de vérification et messages de vérification |
+| <code>&#123;verification.unverified_role_id&#125;</code> | ID de rôle non vérifié pour vérification. | <code>Exemple de vérification d'ID de rôle non vérifié</code> | Panneaux de vérification et messages de vérification |
+| <code>&#123;verification.verified_role&#125;</code> | Rôle vérifié pour vérification. | <code>Exemple de rôle vérifié par vérification</code> | Panneaux de vérification et messages de vérification |
+| <code>&#123;verification.verified_role_id&#125;</code> | ID de rôle vérifié pour vérification. | <code>Exemple d'ID de rôle vérifié par vérification</code> | Panneaux de vérification et messages de vérification |

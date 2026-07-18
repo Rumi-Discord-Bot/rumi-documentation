@@ -1,0 +1,30 @@
+---
+title: "variables de fecha"
+description: "17 variables de fecha soportadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;date&#125;</code> | fecha actual o Discord salida de marca de tiempo. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.discord_relative&#125;</code> | Relativo Discord marca de tiempo para la hora actual. | <code>&lt;t:1781460000:R&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.discord_timestamp&#125;</code> | Actual Discord marca de tiempo. | <code>&lt;t:1781460000:F&gt;</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.now&#125;</code> | Ahora para la cita. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.now_proper&#125;</code> | Ahora apropiado para la fecha. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.now_short&#125;</code> | Ahora abreviatura de fecha. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.now_shorter&#125;</code> | Ahora más corto para la fecha. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.utc_now&#125;</code> | Utc Ahora para la fecha. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.utc_now_proper&#125;</code> | Utc ahora apropiado para la fecha. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.utc_now_short&#125;</code> | Utc ahora abreviatura de fecha. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.utc_now_shorter&#125;</code> | Utc ahora más corto para la fecha. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;date.utc_timestamp&#125;</code> | Marca de tiempo Unix para utc. | <code>1781460000</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;time&#125;</code> | fecha actual o Discord salida de marca de tiempo. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;time.now&#125;</code> | Ahora por el tiempo. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;time.now_military&#125;</code> | Ahora militar por tiempo. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;time.utc_now&#125;</code> | Utc Ahora por tiempo. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |
+| <code>&#123;time.utc_now_military&#125;</code> | Utc ahora militar por tiempo. | <code>15 de junio de 2026, 8:52 a.m.</code> | Incrustaciones, comandos personalizados, respuestas automáticas, mensajes de invocación |

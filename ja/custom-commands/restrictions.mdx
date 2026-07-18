@@ -1,0 +1,58 @@
+---
+title: "制限"
+description: "カスタム コマンドを実行できるユーザーと実行できる場所を制御します。"
+icon: "lock-keyhole"
+---
+
+制限により、ユーザー、ロール、およびチャネルを許可または拒否できます。カスタムコマンドでできることは、
+1 つ以上の名前付きも必要です Discord 権限。
+
+## ターゲットを許可する
+
+```text
+-cc allow <name> user @member
+-cc allow <name> role @Staff
+-cc allow <name> channel #staff-commands
+```
+
+## ターゲットを拒否する
+
+```text
+-cc deny <name> user @member
+-cc deny <name> role @Muted
+-cc deny <name> channel #off-topic
+```
+
+一致する逆コマンドを使用して、許可または拒否エントリを削除します。
+
+```text
+-cc unallow <name> role @Staff
+-cc undeny <name> channel #off-topic
+```
+
+＃＃ 必要とする Discord 権限
+
+使用 Discord などの権限名 `ManageMessages`:
+
+```text
+-cc requireperm cleanup ManageMessages
+```
+
+複数の権限名を指定できます。使用 `clear` 必要なものをすべて削除するには
+権限:
+
+```text
+-cc requireperm cleanup clear
+```
+
+## 制限を確認またはリセットする
+
+```text
+-cc restrictions <name>
+-cc restrictions <name> clear
+```
+
+<Warning>
+制限をクリアすると、すべての許可、拒否、および必須のアクセス許可ルールが削除されます
+そのカスタムコマンドから。結果を確認します。 `-cc show <name>`.
+</Warning>

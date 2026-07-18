@@ -1,0 +1,21 @@
+---
+title: "Varijable pobjednika"
+description: "8 pobjedničkih varijabli koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;winner&#125;</code> | Podaci o pobjednicima za objave pobjednika nagradne igre. | <code>Primjer pobjednika</code> | Predlošci rezultata darivanja |
+| <code>&#123;winner.avatar&#125;</code> | URL slike avatara. Izvor: pobjednik. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Predlošci rezultata darivanja |
+| <code>&#123;winner.bonus_entries&#125;</code> | Bonus unosi za pobjednika. | <code>Primjer unosa bonusa pobjednika</code> | Predlošci rezultata darivanja |
+| <code>&#123;winner.display_name&#125;</code> | Ime ili nadimak poslužitelja za prikaz. Izvor: pobjednik. | <code>Mjesečina</code> | Predlošci rezultata darivanja |
+| <code>&#123;winner.entries&#125;</code> | Prijave za pobjednika. | <code>Primjeri pobjedničkih unosa</code> | Predlošci rezultata darivanja |
+| <code>&#123;winner.id&#125;</code> | Discord ID. Izvor: pobjednik. | <code>123456789012345678</code> | Predlošci rezultata darivanja |
+| <code>&#123;winner.mention&#125;</code> | Discord spomenuti tekst. Izvor: pobjednik. | <code>&lt;@123456789012345678&gt;</code> | Predlošci rezultata darivanja |
+| <code>&#123;winner.name&#125;</code> | Naziv vrijednosti. Izvor: pobjednik. | <code>Rumi</code> | Predlošci rezultata darivanja |

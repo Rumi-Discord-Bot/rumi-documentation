@@ -1,0 +1,28 @@
+---
+title: "Variables de niveau"
+description: "15 variables de niveau prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;level&#125;</code> | Données de niveau et d'XP pour le membre qui a progressé. | <code>Exemple de niveau</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.new_rank&#125;</code> | Nouveau niveau atteint par le membre. | <code>12</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.next_rank&#125;</code> | Niveau suivant après celui actuel. | <code>Exemple de niveau rang suivant</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.old_rank&#125;</code> | Niveau précédent avant le niveau supérieur. | <code>11</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.progress&#125;</code> | Progressez vers le niveau suivant. | <code>74%</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.rank_position&#125;</code> | Position de classement du membre dans le classement. | <code>Exemple de position de classement de niveau</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.server_xp&#125;</code> | Serveur Xp pour le niveau. | <code>Exemple de serveur de niveau XP</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.server_xp_total&#125;</code> | Serveur Xp Total pour le niveau. | <code>Exemple de total d'expérience de serveur de niveau</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.total_messages&#125;</code> | Total des messages pour le niveau. | <code>Exemple de messages de niveau total</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.user_xp&#125;</code> | Valeur XP actuelle pour le membre. | <code>8,420</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.user_xp_total&#125;</code> | Utilisateur Xp Total pour le niveau. | <code>Exemple de total d'expérience utilisateur de niveau</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.voice_seconds&#125;</code> | Secondes vocales pour le niveau. | <code>Exemple de secondes de voix au niveau</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.voice_time&#125;</code> | Temps de voix pour le niveau. | <code>Exemple de temps de voix au niveau</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;level.xp_needed&#125;</code> | XP nécessaire pour le niveau suivant. | <code>9,000</code> | Messages de niveau, aperçus de niveau |
+| <code>&#123;xp&#125;</code> | Données de niveau et d'XP pour le membre qui a progressé. | <code>Exemple XP</code> | Messages de niveau, aperçus de niveau |

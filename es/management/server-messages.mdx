@@ -1,0 +1,205 @@
+---
+title: "Mensajes del servidor"
+description: "Configure mensajes fijos, únase a pings y respuestas a eventos reutilizables."
+icon: "message-lines"
+---
+
+Rumi Tiene varios sistemas de mensajes de servidor. Resuelven diferentes problemas:
+
+- **Mensajes fijos** mantienen un recordatorio cerca de la parte inferior de un canal activo.
+- **Ping al unirse** menciona nuevos miembros en canales seleccionados.
+- **Invocar respuestas** envía texto configurado o incrustaciones para el servidor compatible y
+  eventos de gestión.
+
+Los tres los configuran los miembros con **Administrar servidor**.
+
+## Disboard recordatorios de golpes
+
+Establezca un canal de recordatorio fijo o utilice `dynamic` entonces el recordatorio vuelve al
+Canal donde se detectó el golpe:
+
+```text
+-bumpreminder setup #bump-reminders @Bump Ping
+-bumpreminder setup dynamic here
+-bumpreminder status
+```
+
+El ping puede ser un rol, miembro, `here`, `everyone`, o `off`. Cambiando el ping
+no lo inserta automáticamente en el texto personalizado; incluir `{ping}` donde esta
+debería aparecer.
+
+```text
+-bumpreminder channel #bump-reminders
+-bumpreminder channel dynamic
+-bumpreminder ping @Bump Ping
+-bumpreminder ping off
+```
+
+### Detección y sincronización
+
+La detección automática vigila el éxito Disboard bulto. Cuando se detecta, Rumi
+envía la respuesta de éxito configurada y programa el recordatorio:
+
+```text
+-bumpreminder autodetect on
+-bumpreminder cooldown 2h
+```
+
+Si la detección no detecta un golpe, inicie el mismo cronómetro manualmente:
+
+```text
+-bumpreminder done
+```
+
+`done` está disponible intencionalmente después de la configuración sin requerir el administrador del servidor
+acceso, por lo que el miembro que ejecutó `/bump` puede marcarlo. Configuración y vistas previas
+todavía requiere **Administrar servidor**.
+
+### Texto sin formato y estilos para incrustar
+
+Elija el estilo de recordatorio independientemente del estilo de confirmación de éxito:
+
+```text
+-bumpreminder mode embed
+-bumpreminder successmode text
+```
+
+Configuración de texto sin formato:
+
+```text
+-bumpreminder reminder {ping} **{server}** can be bumped again. Run /bump now.
+-bumpreminder success Thanks {bumped_by}! Next bump: {next_bump}
+```
+
+Configuración de inserción de recordatorio:
+
+```text
+-bumpreminder content {ping}
+-bumpreminder title Time to bump
+-bumpreminder description **{server}** can be bumped again.\nRun `/bump` now.
+-bumpreminder color c8d8f2
+-bumpreminder image https://example.com/banner.png
+-bumpreminder thumbnail https://example.com/icon.png
+-bumpreminder footer Thanks for helping the server grow
+```
+
+Las inserciones exitosas tienen controles coincidentes: `successcontent`, `successtitle`,
+`successdescription`, `successcolor`, `successimage`, `successthumbnail`, y
+`successfooter`. Usar `reset` para texto, títulos, descripciones, colores o pies de página;
+usar `off` para borrar las URL de imágenes y miniaturas.
+
+### Marcadores de posición de relieve
+
+Correr `-bumpreminder variables` en Discord para ver la lista en vivo.
+
+| Marcador de posición | Valor |
+| --- | --- |
+| `{ping}` | Destino de ping configurado. |
+| `{server}` | Nombre del servidor. |
+| `{bumped_by}` o `{user}` | Miembro que chocó, cuando se conozca. |
+| `{next_bump}` | Tiempo relativo hasta el siguiente golpe. |
+| `{next_bump_time}` | Marca de tiempo completa del siguiente golpe. |
+| `{last_bump}` | Tiempo relativo desde el último golpe. |
+| `{last_bump_time}` | Marca de tiempo completa del último golpe. |
+| `{bump_count}` | Número de golpes Rumi ha rastreado. |
+| `{channel}` | Canal de recordatorio. |
+
+Obtenga una vista previa del recordatorio actual sin cambiar su temporizador o desactive el sistema:
+
+```text
+-bumpreminder test
+-bumpreminder disable
+```
+
+## Mensajes adhesivos
+
+Cree un adhesivo que se actualice después de varios mensajes:
+
+```text
+-sticky add #rules --every 10 -- Read the pinned rules before chatting.
+```
+
+O actualícelo en un intervalo de tiempo:
+
+```text
+-sticky add #info --time 30m -- {embed}$v{title: Reminder}$v{description: Check the links above.}
+```
+
+el independiente `--` separa las configuraciones fijas del contenido. Todo
+después de almacenarlo como texto sin formato o como script de inserción.
+
+Administre notas adhesivas guardadas por su ranura de lista o ID:
+
+```text
+-sticky list
+-sticky preview 1
+-sticky message 1 Updated sticky text.
+-sticky remove 1
+-sticky clear
+```
+
+Rumi necesita **Enviar mensajes**, **Incrustar enlaces** y **Administrar mensajes**.
+
+## Hacer ping al unirse
+
+Agregue un destino, un retraso de eliminación opcional y un mensaje opcional:
+
+```text
+-pingonjoin add #general 10s
+-pingonjoin add #rules 30s Welcome {user.mention}
+```
+
+Elija si el sistema se dirige a humanos, robots o ambos:
+
+```text
+-pingonjoin target human
+-pingonjoin target both
+```
+
+Edite un canal o el comportamiento predeterminado:
+
+```text
+-pingonjoin message #general {user.mention} read the rules.
+-pingonjoin delay #general 15s
+-pingonjoin preview #general
+-pingonjoin list
+```
+
+`clear` elimina todos los canales de ping configurados. `reset` también restaura el otro
+configuración de ping al unirse a sus valores predeterminados.
+
+## Invocar respuestas de eventos
+
+Configure un destino predeterminado:
+
+```text
+-invoke setup #mod-log
+-invoke list
+```
+
+Los disparadores admitidos son `warn`, `ban`, `unban`, `kick`, `timeout`, `untimeout`,
+`role_add`, `role_remove`, `member_join`, `member_leave`, y `boost`.
+
+Configure texto sin formato o un script para incrustar:
+
+```text
+-invoke set warn Staff warned {punishment.user.mention}.
+-invoke set member_join {embed}$v{title: Welcome}$v{description: Welcome {user.mention}.}
+```
+
+Elija un canal separado o comportamiento de DM para un evento:
+
+```text
+-invoke channel warn #mod-log
+-invoke dm warn on
+-invoke preview warn
+```
+
+Usar `-variables punishment`, `-variables user`, o la categoría de evento relevante
+al crear una plantilla de invocación.
+
+<Info>
+Una plantilla de invocación no crea el evento en sí. controla Rumila respuesta
+cuando el evento soportado correspondiente es observado o desencadenado por otro
+Rumi flujo de trabajo.
+</Info>

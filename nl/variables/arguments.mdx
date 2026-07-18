@@ -1,0 +1,29 @@
+---
+title: "Argumenten variabelen"
+description: "16 argumentvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;arg&#125;</code> | Alles getypt na de aangepaste opdracht of de overeenkomende autoresponder-trigger. | <code>blauwe cake met hagelslag</code> | Aangepaste opdrachten, autoresponders |
+| <code>&#123;arg.1&#125;</code> | Het eerste argument na de opdracht of trigger. | <code>blauw</code> | Aangepaste opdrachten, autoresponders |
+| <code>&#123;arg.2+&#125;</code> | Argument 2 en alles erna. | <code>taart met hagelslag</code> | Aangepaste opdrachten, autoresponders |
+| <code>&#123;arg.count&#125;</code> | Aantal geparseerde opdrachtargumenten. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;arg.raw&#125;</code> | Ongewijzigde opdrachtargumenttekst. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;args&#125;</code> | Alle tekst die na de opdracht wordt verstrekt. Alias ​​van &#123;arg&#125;. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;args.count&#125;</code> | Aantal geparseerde opdrachtargumenten. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;args.raw&#125;</code> | Ongewijzigde opdrachtargumenttekst. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;arg.1+&#125;</code> | Argument 1 en elk argument erna. Vervang 1 door de startpositie. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;args.rest.1&#125;</code> | Argument 1 en elk argument erna. Vervang 1 door de startpositie. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;variable&#124;fallback text&#125;</code> | Retourneer reservetekst wanneer een normale contextvariabele niet beschikbaar is. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;name&#125;</code> | Waarde van een aangegeven &lt;naam&gt; of [naam] aangepast commando-argument. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;arg.name&#125;</code> | Waarde van een gedeclareerd benoemd argument voor aangepaste opdrachten. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;arg1&#125;</code> | Compacte alias voor een genummerd argument. Vervang 1 door de positie. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;args.1&#125;</code> | Argument op een genummerde positie. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |
+| <code>&#123;1&#125;</code> | Argument op een genummerde positie. Vervang 1 door een positieve positie. | <code>Bekijk de syntaxis en voorbeelden in de handleidingen voor aangepaste opdrachten.</code> | Aangepaste opdrachten; helpers voor aangepaste gegevens hebben ook --db nodig in autoresponders |

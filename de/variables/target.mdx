@@ -1,0 +1,24 @@
+---
+title: "Zielvariablen"
+description: "11 von Rumi unterstützte Zielvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;target&#125;</code> | Zeigen Sie den aufgelösten Zielbenutzer an. | <code>&lt;@987654321098765432&gt;</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.avatar&#125;</code> | Avatar-Bild-URL. Quelle: Ziel. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.created_at&#125;</code> | Discord-formatierte Erstellungszeit. Quelle: Ziel. | <code>&lt;t:1781460000:F&gt;</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.display_name&#125;</code> | Serveranzeigename oder Spitzname des Zielmitglieds. | <code>Mondlicht</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.id&#125;</code> | Discord ID des Zielbenutzers. | <code>123456789012345678</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.is_bot&#125;</code> | Ist Bot für Ziel. | <code>Beispielziel ist Bot</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.joined_at&#125;</code> | Discord-formatierte Serverbeitrittszeit. Quelle: Ziel. | <code>&lt;t:1781460000:F&gt;</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.mention&#125;</code> | Erwähnen Sie den Zielbenutzer, normalerweise das zuerst genannte Mitglied. | <code>&lt;@123456789012345678&gt;</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.name&#125;</code> | Benutzername des Zielbenutzers. | <code>Rumi</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.tag&#125;</code> | Discord Benutzername-Tag/Diskriminator-Stilwert für das Ziel. | <code>Benutzername</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |
+| <code>&#123;target.username&#125;</code> | Discord Benutzername. Quelle: Ziel. | <code>Beispiel für einen Zielbenutzernamen</code> | Benutzerdefinierte Befehle, Autoresponder, Rollenspiele, Moderations-/Aufrufkontexte |

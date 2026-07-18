@@ -1,0 +1,50 @@
+---
+title: "音声アクティビティ"
+description: "サーバー、メンバー、チャネル、ローリング期間について追跡された音声時間を検査します。"
+icon: "waveform"
+---
+
+Rumi 監視している音声セッションを記録し、サーバー用に要約することができます
+管理者たち。レポートでは追跡された時間を使用します。 Discordのサーバーに関する洞察。
+
+## サーバーの合計
+
+```text
+-voicecount server
+-voicecount daily
+-voicecount weekly
+-voicecount monthly
+```
+
+サーバービューには、ライフタイム合計、セッション数、最近のローリング合計、
+最後に追跡された音声アクティビティ。日次、週次、月次のビューでは、
+それぞれ当日、7日、30日です。
+
+## メンバーとチャンネル
+
+```text
+-voicecount user @member
+-voicecount channel #General
+-voicecount leaderboard
+-voicecount active
+```
+
+`active` セッションを示します Rumi 現在アクティブとみなされます。 `leaderboard` をランク付けします
+追跡されたメンバーの合計はサーバー分析ストアで入手できます。
+
+## 追跡された合計をリセット
+
+```text
+-voicecount reset user @member
+-voicecount reset channel #General
+-voicecount reset server
+```
+
+リセットは破壊的です。問題を解決する最も狭いターゲットを選択します。
+サーバーをリセットすると、これらのレポートで使用される保存された音声分析がクリアされます。
+
+<Info>
+音声アクティビティが開始されるタイミング Rumi セッションを観察します。トラッカー以前からの時間
+実行されていた期間 Rumi 利用できなかった、または音声チャンネルにアクセスできませんでした
+後で再構築することはできません。
+</Info>

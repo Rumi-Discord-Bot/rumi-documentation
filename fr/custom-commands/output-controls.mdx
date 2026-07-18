@@ -1,0 +1,106 @@
+---
+title: "Contrôles de sortie"
+description: "Acheminez les réponses, envoyez des DM, ajoutez des réactions, appliquez des temps de recharge et contrôlez le message déclencheur."
+icon: "route"
+---
+
+Les contrôles de sortie sont des lignes de directive autonomes dans une réponse de commande personnalisée.
+Ils changent la façon dont Rumi envoie le résultat et ne sont pas affichés sous forme de texte de réponse.
+
+## Supprimer le déclencheur
+
+```text
+{delete}
+```
+
+Rumi supprime le message qui a exécuté la commande personnalisée. Cela nécessite **Gérer
+Messages** dans le canal source. Si la suppression échoue, le reste de la commande peut
+toujours être traité en fonction de ses autres paramètres.
+
+## Sortie silencieuse
+
+```text
+{silent}
+```
+
+Utiliser le mode silencieux pour une commande qui exécute uniquement des actions ou des données configurées
+mises à jour et ne doit pas envoyer sa réponse visible normale. Durant le développement,
+laisser une confirmation visible en place jusqu'à ce que l'action ait été testée.
+
+## Acheminer la réponse
+
+```text
+{respond:#suggestions}
+```
+
+Rumi envoie la sortie rendue au canal du serveur sélectionné. Il faut pouvoir
+pour afficher ce canal et envoyer le type de charge utile utilisé par la commande.
+
+Exemple:
+
+```text
+-cc set report <text...> --
+{respond:#reports}
+$v{embed}
+$v{author: {user.display_name} && {user.avatar}}
+$v{description: {text}}
+$v{footer: Sent from {channel.name}}
+```
+
+Restreindre les canaux sources de la commande si les rapports doivent être soumis uniquement depuis
+des lieux précis.
+
+## Envoyer un message direct
+
+```text
+{dm:user}
+```
+
+La sortie est envoyée à la cible utilisateur sélectionnée plutôt qu'au canal public.
+La livraison des DM peut échouer lorsque le destinataire bloque les DM des membres du serveur ou a
+bloqué Rumi.
+
+## Ajouter des réactions
+
+```text
+{react:✅}
+{react:✅ && ❌}
+```
+
+Rumi ajoute les réactions répertoriées au message déclencheur lorsqu'il peut lire le
+message et ajoutez ces réactions. Les emoji de serveur personnalisés doivent également être utilisables par
+Rumi.
+
+## Temps de recharge par utilisateur
+
+```text
+{cooldown:10m}
+```
+
+Le temps de recharge s'applique à l'utilisation répétée de cette commande personnalisée par un membre. Utiliser
+durées lisibles telles que `30s`, `10m`, ou `24h`.
+
+```text
+-cc set daily-note --
+{cooldown:24h}
+You can use this response again tomorrow.
+```
+
+## Combinez soigneusement les contrôles
+
+```text
+-cc set confidential <text...> --
+{cooldown:5m}
+{delete}
+{dm:user}
+Your saved note: {text}
+```
+
+Testez le routage et les DM avant d'ajouter `{delete}`. Sinon, une destination ratée
+ne peut vous laisser ni le message déclencheur ni la réponse attendue.
+
+<Warning>
+Les contrôles de sortie modifient la livraison, pas les autorisations. Actions protégées à l'intérieur du
+la même commande est toujours exécutée Rumil'autorisation, la restriction, la cible et le rôle de
+vérifications de la hiérarchie.
+</Warning>

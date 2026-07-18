@@ -1,0 +1,44 @@
+---
+title: "Gestion"
+description: "Gérez une communauté sans accorder d'autorisations inutiles à Rumi."
+icon: "sliders"
+---
+
+RumiLes outils de gestion de se concentrent sur <mark>configuration, prévention et personnel
+flux de travail</mark>. Ils incluent les filtres de serveur, la gestion des rôles et des canaux,
+inspection des autorisations, vérification et commandes personnalisées détaillées.
+
+## Pas de commandes d'interdiction ou de kick intégrées
+
+Rumi n'inclut pas les appareils à usage général `ban` ou `kick` commandes par défaut. Ce
+est intentionnel : un serveur qui n'a besoin que de fonctionnalités musicales, utilitaires ou communautaires
+ne devrait pas avoir à accorder de larges autorisations de modération.
+
+<Info>
+Accordez uniquement les autorisations requises par les commandes que votre serveur utilise réellement.
+Chaque exigence actuelle est indiquée par `-help <command>`.
+</Info>
+
+## Ce que vous pouvez gérer
+
+- Rôles : créer, connecter, attribuer, inspecter, mettre à jour, supprimer et restaurer des rôles.
+- Canaux : verrouiller, déverrouiller, masquer, révéler, configurer le mode lent et d'autres canaux
+  tâches exposées dans Rumile menu d'aide.
+- Filtres : bloquez les expressions sélectionnées et configurez le nom ou l'icône du rôle de rappel
+  filtres.
+- Vérification : configurez la vérification par texte ou captcha pour les nouveaux membres.
+- Autorisations : inspecter celles d'un membre Discord et Rumi-autorisations spécifiques.
+- Flux de travail du personnel : créez des outils spécifiques au serveur avec des commandes et des limites personnalisées
+  exactement qui peut les diriger.
+
+## Workflows de gestion personnalisés
+
+Les gestionnaires peuvent utiliser [commandes personnalisées](../custom-commands/overview) pour créer le
+flux de travail dont leur serveur a besoin. Les commandes personnalisées prennent en charge les arguments, les variables,
+restrictions, actions protégées, boutons, intégrations et données stockées.
+
+<Warning>
+Une commande personnalisée ne contourne pas Discord autorisations ou hiérarchie des rôles. Rumi
+et la personne qui configure ou exécute une action protégée doit toujours respecter ses
+contrôles de sécurité.
+</Warning>

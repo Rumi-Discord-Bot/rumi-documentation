@@ -1,0 +1,21 @@
+---
+title: "Variables gagnantes"
+description: "8 variables gagnantes prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;winner&#125;</code> | Données des gagnants pour les annonces des gagnants. | <code>Exemple de gagnant</code> | Modèles de résultats de cadeaux |
+| <code>&#123;winner.avatar&#125;</code> | URL de l’image de l’avatar. Source : gagnant. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Modèles de résultats de cadeaux |
+| <code>&#123;winner.bonus_entries&#125;</code> | Entrées bonus pour le gagnant. | <code>Exemples de participations bonus gagnant</code> | Modèles de résultats de cadeaux |
+| <code>&#123;winner.display_name&#125;</code> | Nom d’affichage ou surnom du serveur. Source : gagnant. | <code>Clair de lune</code> | Modèles de résultats de cadeaux |
+| <code>&#123;winner.entries&#125;</code> | Inscriptions pour le gagnant. | <code>Exemples de participations gagnantes</code> | Modèles de résultats de cadeaux |
+| <code>&#123;winner.id&#125;</code> | Discord IDENTIFIANT. Source : gagnant. | <code>123456789012345678</code> | Modèles de résultats de cadeaux |
+| <code>&#123;winner.mention&#125;</code> | Discord mentionner le texte. Source : gagnant. | <code>&lt;@123456789012345678&gt;</code> | Modèles de résultats de cadeaux |
+| <code>&#123;winner.name&#125;</code> | Valeur du nom. Source : gagnant. | <code>Roumi</code> | Modèles de résultats de cadeaux |

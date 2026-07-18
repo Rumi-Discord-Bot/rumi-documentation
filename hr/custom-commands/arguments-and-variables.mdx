@@ -1,0 +1,111 @@
+---
+title: "Argumenti i varijable"
+description: "Koristite unos naredbi, kontekst Discorda, pomoćnike, ugradnje i komponente."
+icon: "brackets-curly"
+---
+
+Trčanje `-variables` u Discord za Rumitrenutna referenca varijable. Ova stranica
+pokriva najčešće uzorke.
+
+## Čitaj unos naredbe
+
+| Varijabilna | Vrijednost |
+| --- | --- |
+| `{arg}` ili `{args}` | Sve upisano nakon naredbe |
+| `{1}`, `{2}` | Brojani argument |
+| `{arg.1}`, `{arg.2}` | Brojani argument |
+| `{arg.2+}` | Argument 2 i sve nakon njega |
+| `{args.rest.2}` | Argument 2 i sve nakon njega |
+| `{link}` | Imenovani argument deklariran kao `[link]` ili `<link>` |
+
+Obavezni i izborni argumenti se deklariraju kada se naredba kreira:
+
+```text
+-cc set ship <target> [reason...] -- {user.mention} chose {target.mention}. {reason|No reason given.}
+```
+
+`<target>` je potrebno, dok `[reason...]` nije obavezan. Tri točkice čine
+`reason` konzumirati svaku preostalu riječ umjesto samo sljedeće riječi. odmor
+argument bi trebao biti konačni deklarirani argument jer on troši sve
+nakon toga.
+
+Usporedite ove dvije definicije:
+
+```text
+-cc set pair <first> <second> -- First: {first}; second: {second}
+-cc set quote <text...> -- “{text}”
+```
+
+`-pair red blue` svakom imenu dodjeljuje jednu riječ. `-quote this is all one value`
+dodjeljuje cijelu frazu `text`.
+
+Ako potreban argument nedostaje, Rumi zaustavlja se i imenuje argument koji nedostaje.
+Neobavezna vrijednost može biti prazna, stoga upotrijebite zamjenu kada je odgovor još potreban
+čitljiv tekst.
+
+## Koristite Discord kontekst
+
+Uobičajene varijable uključuju `{user.mention}`, `{user.name}`, `{server.name}`, i
+`{channel.mention}`. Spomenuta ili prva meta također može izložiti vrijednosti kao što su
+`{target.mention}`, `{target.name}`, i `{target.avatar}`.
+
+Imenovani argumenti su tekstualne vrijednosti. Ciljne varijable se rješavaju odvojeno od
+prvi spomenuti ili razrješivi član. Kada radnja ovisi o članu,
+koristite spominjanje tijekom testiranja kako bi cilj bio nedvosmislen.
+
+Varijable prihvaćaju zamjenu nakon `|`. Zamjena se koristi kada je vrijednost
+nedostupan u tom kontekstu:
+
+```text
+{target.display_name|No member was selected}
+```
+
+<Note>
+Nema svaki događaj svaku vrijednost. Varijable ulaznice trebaju kontekst ulaznice, pobjednika
+varijable trebaju rezultat davanja, a varijable kazne trebaju upravljanje
+događaj. Referenca [kompletne varijable](../variables/overview) navodi gdje svaki
+varijabla je dostupna.
+</Note>
+
+## Transformirajte i odaberite vrijednosti
+
+```text
+{random:red|green|blue}
+{range:score:1-100}
+{choose:item:cookie|cake|pie}
+{upper:text}
+{lower:text}
+{title:text}
+{urlencode:text}
+{len:text}
+```
+
+Imenovan `range` i `choose` rezultati se kasnije mogu ponovno koristiti kao `{score}` ili `{item}`.
+
+Tekstualni pomoćnici transformiraju svoj unos; ne mijenjaju spremljenu naredbu. Za
+primjer, `{upper:{user.display_name}}` vraća verziju velikim slovima samo u tome
+odgovor.
+
+## Stvorite ugradnju
+
+Upotreba polja za ugradnju `$v{...}` blokovi:
+
+```text
+-cc set rules -- $v{title: Rules} $v{description: Welcome {user.mention}}
+```
+
+## Dodajte interaktivni izlaz
+
+Rumi podržava gumbe za veze, akcijske gumbe, padajuće izbornike i stranice s paginacijama.
+Počnite sa sintaksom koju prikazuje `-variables`, zatim pregledajte naredbu
+prije nego što ga podijelite.
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{page}
+```
+
+<Warning>
+Gumbi koji pokreću zaštićene radnje trebaju više pregleda od običnih poveznica. Koristiti
+`-cc actions` za njihovu trenutnu sintaksu i sigurnosne zahtjeve.
+</Warning>

@@ -1,0 +1,139 @@
+---
+title: "Pruebas y depuración"
+description: "Cree comandos personalizados en pequeños pasos y diagnostique argumentos, variables, acciones y límites de Discord."
+icon: "bug"
+---
+
+Un comando personalizado es más fácil de depurar cuando sabes qué capa falló. Pruebe el
+Primero los argumentos, luego las variables, luego la inserción y, por último, agregar acciones protegidas.
+
+## Inspeccionar qué Rumi salvado
+
+```text
+-cc show <name>
+```
+
+El resultado muestra la especificación del argumento guardado, el script de respuesta y la información actual.
+restricciones. Si la respuesta comienza en el lugar equivocado, consulte la versión independiente
+`--` usado en el original `cc set` dominio.
+
+Enumere todos los comandos guardados cuando no esté seguro de qué nombre se utilizó:
+
+```text
+-cc list
+```
+
+## Vista previa con argumentos realistas
+
+```text
+-cc preview greet @member
+-cc preview announce Saturday 8pm
+```
+
+La vista previa ejecuta la plantilla guardada con los argumentos de muestra que usted proporciona. Utilice el
+El mismo número y tipo de argumentos que un miembro usaría en el comando real.
+
+Para un problema de argumento, reduzca temporalmente la respuesta a texto sin formato:
+
+```text
+-cc set announce <day> <time> -- Day: {day}
+Time: {time}
+```
+
+Una vez que esos valores sean correctos, restaure la inserción o las acciones.
+
+## Diagnosticar variables faltantes
+
+Una variable sólo puede devolver información disponible en su contexto actual. Para
+Por ejemplo, una variable de destino necesita un argumento de destino o un miembro resuelto. Añadir un
+respaldo donde el valor es opcional:
+
+```text
+{target.display_name|No member selected}
+```
+
+Utilice la [Referencia de variables] generada](../variables/overview) o ejecutar:
+
+```text
+-variables target
+-variables message
+-variables customdb
+```
+
+Si una variable aparece como texto literal, revise su ortografía y sus llaves. si es
+regresa `N/A`, su valor fuente no estaba presente en ese contexto de comando.
+
+## Pruebe los condicionales por separado
+
+Rumi admite comprobaciones de existencia, comparaciones, contención de texto, roles y
+Discord permisos:
+
+```text
+{if:{user.id} == 123456789012345678}
+This is the configured user.
+{else}
+This is somebody else.
+{endif}
+```
+
+Otras formas de condición incluyen:
+
+```text
+{if:{message.content} contains hello}
+{if:user has role 123456789012345678}
+{if:user has permission ManageMessages}
+{if:{db.get:visits:{user.id}} >= 10}
+```
+
+mantener la apertura `{if:...}`, opcional `{else}`, y cerrando `{endif}` en su
+propias líneas durante la depuración. Las condiciones se pueden anidar, pero una condición plana es
+normalmente es más fácil de mantener.
+
+## Separar visualización de acciones
+
+Primero guarde una respuesta inofensiva:
+
+```text
+-cc set staffwarn <target> <reason...> --
+Would warn {target.mention} for: {reason}
+```
+
+Previsualízalo con un objetivo seguro. Sólo entonces agrega la acción:
+
+```text
+{mod:warn target && {reason}}
+Warned {target.mention} for: {reason}
+```
+
+Finalmente agregue la restricción de rol, canal o permiso. Rumi valida
+acciones protegidas al guardar y repite sus comprobaciones cuando se ejecuta el comando.
+
+## Problemas de componentes
+
+Cuando no aparece un botón o menú desplegable:
+
+1. Obtenga una vista previa del comando y lea RumiLa respuesta de validación.
+2. Verifique el formato de la URL para los botones de enlace.
+3. Cuente los componentes de cada fila y el total de filas.
+4. Acorte etiquetas, descripciones de opciones o incruste contenido.
+5. Compruebe si un botón de acción necesita un objetivo o un permiso que falta.
+
+Discord Los mensajes admiten hasta 5 filas de componentes. Rumi también aplica la inserción,
+límites de campos, botones y menús desplegables antes de enviar la carga útil.
+
+## Problemas con datos almacenados
+
+Inspeccione el espacio de nombres y la clave directamente:
+
+```text
+-cc data list visits
+-cc data get visits 123456789012345678
+```
+
+Los nombres de espacios de nombres y claves están separados. `visits:user-id` no es la misma búsqueda
+como `user-id:visits`.
+
+<Tip>
+Guarde una copia de trabajo antes de una edición importante. `-cc show <name>` te da la exacta
+respuesta guardada que se puede copiar en sus notas antes de reemplazarla.
+</Tip>

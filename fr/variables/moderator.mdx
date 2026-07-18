@@ -1,0 +1,25 @@
+---
+title: "Variables du modérateur"
+description: "12 variables de modérateur prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;moderator&#125;</code> | Affichez le modérateur ou l'exécuteur pour les événements de modération/d'appel. | <code>&lt;@222222222222222222&gt;</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.avatar&#125;</code> | URL de l’image de l’avatar. Source : modérateur. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.bot&#125;</code> | Bot pour modérateur. | <code>Exemple de bot modérateur</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.color&#125;</code> | Couleur pour le modérateur. | <code>Exemple de couleur de modérateur</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.created_at&#125;</code> | Discord-heure de création formatée. Source : modérateur. | <code>&lt;t:1781460000:F&gt;</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.display_name&#125;</code> | Nom d'affichage du serveur du modérateur ou de l'exécuteur. | <code>Clair de lune</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.id&#125;</code> | Discord ID du modérateur ou de l’exécuteur testamentaire. | <code>123456789012345678</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.mention&#125;</code> | Mentionnez le modérateur ou l’exécuteur pour les événements de modération/invocation. | <code>&lt;@123456789012345678&gt;</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.name&#125;</code> | Nom d'utilisateur du modérateur ou de l'exécuteur testamentaire. | <code>Roumi</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.role&#125;</code> | Nom du rôle ou valeur du rôle. Source : modérateur. | <code>Exemple de rôle de modérateur</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.tag&#125;</code> | Discord balise de nom d'utilisateur/valeur de style discriminateur pour le modérateur. | <code>nom d'utilisateur</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |
+| <code>&#123;moderator.username&#125;</code> | Discord nom d'utilisateur. Source : modérateur. | <code>Exemple de nom d'utilisateur de modérateur</code> | Journaux de modération, messages d'appel, modèles d'avertissement/bannissement/kick |

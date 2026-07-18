@@ -1,0 +1,131 @@
+---
+title: "Spotify-koppeling en bediening"
+description: "Koppel Spotify, inspecteer apparaten, bedien persoonlijk afspelen, blader door uw bibliotheek en zet nummers in de wachtrij met Discord-stem."
+icon: "spotify"
+---
+
+Spotify koppelen geeft Rumi toestemming om de door u aangevraagde bibliotheekgegevens in te lezen en
+stuur besturingselementen naar uw eigen actieve Spotify apparaat. Het stelt uw token niet bloot
+naar Discord of deel privéafspeellijsten met andere leden.
+
+## Rechten voor koppelen of vernieuwen
+
+```text
+-spotify link
+-spotify status
+-spotify unlink
+```
+
+Open de eenmalige link en keur de gevraagde machtigingen goed. Gebruikers gekoppeld
+voordat apparaatbedieningen en gelikete nummers werden toegevoegd, moeten worden uitgevoerd `-spotify link`
+nogmaals zo Spotify kan de nieuwe afspeel- en bibliotheekscopes toekennen.
+
+<Warning>
+Spotify Sluit afspeelbedieningen aan vereist Spotify Premie. Open Spotify op de
+doeltelefoon, computer, browser of luidspreker minstens één keer Spotify rapporteert een
+beschikbaar apparaat.
+</Warning>
+
+## Blader door apparaten en speel af
+
+```text
+-spotify devices
+-spotify player status
+-spotify pause
+-spotify resume
+-spotify next
+-spotify previous
+-spotify volume 45
+-spotify seek 1:30
+-spotify shuffle on
+-spotify repeat track
+```
+
+`seek` accepteert seconden (`90`), kloktijd (`1:30`), of een duur (`2m`). Herhalen
+accepteert `off`, `track`, of `context`.
+
+## Afspelen overzetten
+
+Loop `-spotify devices` Eerst. Overdracht via het weergegeven nummer, exact apparaat
+naam, een deel van de naam of apparaat-ID:
+
+```text
+-spotify transfer 2
+-spotify transfer Kitchen speaker
+```
+
+Beperkte apparaten kunnen in de lijst verschijnen, maar kunnen geen Web API-besturingselementen accepteren.
+Apparaat-ID's kunnen veranderen, dus selecteren op de huidige lijst of apparaatnaam is meer
+handig dan het opslaan van een ID.
+
+## Start een nummer of zet het in de wachtrij Spotify
+
+```text
+-spotify play pink pony club
+-spotify play https://open.spotify.com/track/...
+-spotify queue deftones change
+```
+
+`spotify play` vervangt het afspelen op het persoonlijke Spotify apparaat. `spotify
+wachtrij` voegt één item toe aan dat apparaat Spotify wachtrij. Geen van beide commando's verandert
+Rumi'S Discord stem wachtrij.
+
+## Bekijk afspeellijsten
+
+```text
+-spotify playlists
+-spotify playlists @member
+```
+
+Je kunt alleen in dat geval door de **openbare** afspeellijsten van een ander lid bladeren Discord
+lid is gekoppeld Spotify. Privéafspeellijsten blijven alleen zichtbaar voor de eigenaar ervan.
+
+Om een ​​van uw eigen gekoppelde afspeellijsten toe te voegen Rumi'S Discord stemwachtrij, sluit u aan bij een
+spraakkanaal en selecteer het op lijstnummer, naam, ID of Spotify URL:
+
+```text
+-spotify playlists queue 2
+-spotify playlists queue "Night drive" 30
+-spotify playlists queue https://open.spotify.com/playlist/... 50
+```
+
+Het optionele eindnummer beperkt de import tot 1–75 tracks.
+
+## Ik vond liedjes leuk
+
+```text
+-spotify liked
+-spotify liked list 30
+-spotify liked queue 25
+```
+
+Gelikete nummers zijn privé voor de gekoppelde gebruiker. Om ze in de wachtrij te plaatsen, is de gebruiker vereist die
+is eigenaar van die link in a Discord stem kanaal.
+
+<Note>
+Rumi gebruikt Spotify URL's en metadata als zoekinvoer voor de geconfigureerde muziek
+dienst. Er wordt geen audio gedownload, opnieuw uitgezonden of geëxtraheerd Spotify.
+</Note>
+
+## Problemen oplossen
+
+<AccordionGroup>
+  <Accordion title="Rumi vraagt ​​me om opnieuw verbinding te maken">
+    Uw opgeslagen autorisatie dateert van vóór een of meer vereiste bereiken. Loop
+    `-spotify link` en keur het bijgewerkte toestemmingsscherm goed.
+  </Accordion>
+  <Accordion title="Er is geen apparaat beschikbaar">
+    Open Spotify op het gewenste apparaat en start het afspelen eenmaal. Daarna opnieuw uitvoeren
+    `-spotify devices`. Privésessies of beperkte apparaten kunnen weigeren
+    controles.
+  </Accordion>
+  <Accordion title="Spotify retourneert Premium vereist">
+    Eindpunten voor afspeelbesturing zijn beperkt door Spotify voor Premium-gebruikers. Bibliotheek
+    Browsen werkt mogelijk nog steeds als de vereiste leesrechten aanwezig zijn.
+  </Accordion>
+  <Accordion title="Een afspeellijst kan niet in de wachtrij worden geplaatst">
+    Spotify geeft momenteel alleen afspeellijstitems weer als de gekoppelde gebruiker eigenaar is van of
+    werkt mee aan die afspeellijst. Bevestig ook dat u in stem bent en zo
+    Rumi's muziekservice is klaar.
+  </Accordion>
+</AccordionGroup>

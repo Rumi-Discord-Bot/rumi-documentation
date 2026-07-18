@@ -1,0 +1,79 @@
+---
+title: "Commandes personnalisées"
+description: "Créez des commandes spécifiques au serveur avec le module de commandes personnalisé de Rumi."
+icon: "wand-magic-sparkles"
+---
+
+Les commandes personnalisées permettent aux gestionnaires de serveurs de créer des flux de travail détaillés sans ajouter de
+un large ensemble de commandes de modération universelles. Ils peuvent produire du texte ou
+intègre, accepte les arguments, résout les variables, affiche les boutons, s'exécute protégé
+actions, appliquer des restrictions et stocker les données du serveur.
+
+La commande principale est `customcommand`. Ses pseudonymes sont `cc` et
+`customcommands`.
+
+<Info>
+La création et la modification de commandes personnalisées nécessitent l'autorisation de gestion du serveur.
+La limite gratuite actuelle est de 30 commandes par serveur ; les serveurs premium éligibles peuvent
+stocker jusqu'à 200.
+</Info>
+
+## Carte des commandes
+
+| Tâche | Commande |
+| --- | --- |
+| Créer ou modifier | `-cc set <name> [arguments] -- <response>` |
+| Test | `-cc preview <name> [sample arguments]` |
+| Inspecter | `-cc show <name>` |
+| Liste | `-cc list` |
+| Supprimer | `-cc remove <name>` |
+| Afficher les variables | `-cc variables` ou `-variables` |
+| Afficher la syntaxe des actions | `-cc actions` |
+| Gérer les restrictions | `-cc restrictions <name>` |
+| Gérer les données enregistrées | `-cc data <operation> ...` |
+
+## Flux de travail recommandé
+
+<Steps>
+  <Step title="Créez la plus petite réponse utile">
+    Commencez par du texte brut et un ou deux arguments.
+  </Step>
+  <Step title="Prévisualisez-le">
+    Courir `-cc preview <name>` avec une entrée d’échantillon réaliste.
+  </Step>
+  <Step title="Restreindre l'accès">
+    Ajoutez des restrictions de rôle, de canal, d’utilisateur ou d’autorisation avant une utilisation protégée.
+  </Step>
+  <Step title="Inspecter la commande enregistrée">
+    Courir `-cc show <name>` et confirmer sa réponse et ses restrictions.
+  </Step>
+</Steps>
+
+<Warning>
+Traitez les commandes avec des actions de rôle, de message, d'économie ou de gestion des membres comme
+outils du personnel. Seuls les gestionnaires de confiance devraient pouvoir les modifier.
+</Warning>
+
+## Ce qui est stocké
+
+Chaque commande stocke son modèle de réponse, ses arguments déclarés et ses accès
+restrictions. En cours d'exécution `set` met à nouveau à jour cette même commande. Flux de travail stocké
+les données sont séparées, donc le remplacement ou la suppression d'une commande ne supprime pas silencieusement
+ses compteurs ou enregistrements.
+
+## Apprenez en construisant
+
+<CardGroup cols={2}>
+  <Card title="Pourquoi le séparateur existe" icon="code" href="./syntax-and-separators">
+    Voyez exactement où se termine la définition et où commence la réponse.
+  </Card>
+  <Card title="Recettes de travail" icon="book-open" href="./recipes">
+    Copiez de petites commandes, prévisualisez-les et étendez-les en toute sécurité.
+  </Card>
+  <Card title="Intégrations et contrôles" icon="panels-top-left" href="./embeds-and-components">
+    Créez des champs, des images, des boutons, des listes déroulantes et des réponses sur plusieurs pages.
+  </Card>
+  <Card title="Référence complète des variables" icon="brackets-curly" href="../variables/overview">
+    Parcourez chaque variable générée à partir de Rumile registre d'exécution de.
+  </Card>
+</CardGroup>

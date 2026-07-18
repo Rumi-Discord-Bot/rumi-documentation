@@ -1,0 +1,22 @@
+---
+title: "Kanalvariablen"
+description: "9 von Rumi unterstützte Kanalvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;channel.category_id&#125;</code> | Kategorie-ID für den Kanal. | <code>Beispiel-ID einer Kanalkategorie</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;channel.category_name&#125;</code> | Kategoriename für den Kanal. | <code>Beispielname für eine Kanalkategorie</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;channel.id&#125;</code> | Discord ID des aktuellen Kanals. | <code>123456789012345678</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;channel.mention&#125;</code> | Erwähnen Sie den aktuellen Kanal. | <code>&lt;@123456789012345678&gt;</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;channel.name&#125;</code> | Name des aktuellen Kanals. | <code>allgemein</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;channel.position&#125;</code> | Position für Kanal. | <code>Beispiel-Kanalposition</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;channel.slowmode_delay&#125;</code> | Slowmode-Verzögerung für den Kanal. | <code>Beispiel einer Slowmode-Verzögerung für einen Kanal</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;channel.topic&#125;</code> | Thementext für den aktuellen Kanal, falls vorhanden. | <code>Beispiel-Kanalthema</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |
+| <code>&#123;channel.type&#125;</code> | Typ- oder Kategoriename. Quelle: Kanal. | <code>Beispielkanaltyp</code> | Einbettungen, benutzerdefinierte Befehle, Autoresponder, Aufrufnachrichten |

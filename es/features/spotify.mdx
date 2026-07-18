@@ -1,0 +1,131 @@
+---
+title: "Enlaces y controles de Spotify"
+description: "Vincula Spotify, inspecciona dispositivos, controla la reproducción personal, explora tu biblioteca y pone en cola pistas en Discord Voice."
+icon: "spotify"
+---
+
+Spotify vinculando da Rumi permiso para leer los datos de la biblioteca que solicita y
+envía controles a tu propio activo Spotify dispositivo. No expone tu token.
+a Discord o compartir listas de reproducción privadas con otros miembros.
+
+## Vincular o actualizar permisos
+
+```text
+-spotify link
+-spotify status
+-spotify unlink
+```
+
+Abra el enlace único y apruebe los permisos solicitados. Usuarios vinculados
+antes de que se agreguen los controles del dispositivo y las canciones que me gustan, es necesario ejecutar `-spotify link`
+otra vez así Spotify puede otorgar los nuevos alcances de reproducción y biblioteca.
+
+<Warning>
+Spotify Conectar los controles de reproducción requieren Spotify De primera calidad. Abierto Spotify en el
+apunte al teléfono, computadora, navegador o altavoz al menos una vez para Spotify informa un
+dispositivo disponible.
+</Warning>
+
+## Explorar dispositivos y reproducir
+
+```text
+-spotify devices
+-spotify player status
+-spotify pause
+-spotify resume
+-spotify next
+-spotify previous
+-spotify volume 45
+-spotify seek 1:30
+-spotify shuffle on
+-spotify repeat track
+```
+
+`seek` acepta segundos (`90`), hora del reloj (`1:30`), o una duración (`2m`). Repetir
+acepta `off`, `track`, o `context`.
+
+## Transferir reproducción
+
+Correr `-spotify devices` primero. Transferir por el número mostrado, dispositivo exacto
+nombre, parte de su nombre o ID del dispositivo:
+
+```text
+-spotify transfer 2
+-spotify transfer Kitchen speaker
+```
+
+Los dispositivos restringidos pueden aparecer en la lista pero no pueden aceptar controles de API web.
+Los ID de los dispositivos pueden cambiar, por lo que seleccionar según la lista actual o el nombre del dispositivo es más
+más conveniente que guardar una identificación.
+
+## Iniciar o poner en cola una pista en Spotify
+
+```text
+-spotify play pink pony club
+-spotify play https://open.spotify.com/track/...
+-spotify queue deftones change
+```
+
+`spotify play` reemplaza la reproducción en el personal Spotify dispositivo. `spotify
+cola` agrega un elemento a la lista de ese dispositivo Spotify cola. Ningún comando cambia
+Rumi's Discord cola de voz.
+
+## Ver listas de reproducción
+
+```text
+-spotify playlists
+-spotify playlists @member
+```
+
+Puedes explorar las listas de reproducción **públicas** de otro miembro solo cuando ese Discord
+miembro ha vinculado Spotify. Las listas de reproducción privadas permanecen visibles sólo para su propietario.
+
+Para agregar una de sus propias listas de reproducción vinculadas a Rumi's Discord cola de voz, únete a una
+canal de voz y selecciónelo por número de lista, nombre, ID o Spotify URL:
+
+```text
+-spotify playlists queue 2
+-spotify playlists queue "Night drive" 30
+-spotify playlists queue https://open.spotify.com/playlist/... 50
+```
+
+El número final opcional limita la importación a entre 1 y 75 pistas.
+
+## Canciones que me gustan
+
+```text
+-spotify liked
+-spotify liked list 30
+-spotify liked queue 25
+```
+
+Las canciones que le gustan son privadas para el usuario vinculado. Ponerlos en cola requiere que el usuario que
+posee ese enlace para estar en un Discord canal de voz.
+
+<Note>
+Rumi usos Spotify URL y metadatos como entradas de búsqueda para la música configurada
+servicio. No descarga, retransmite ni extrae audio de Spotify.
+</Note>
+
+## Solución de problemas
+
+<AccordionGroup>
+  <Accordion title="Rumi me pide volver a conectarme">
+    Su autorización guardada es anterior a uno o más ámbitos requeridos. Correr
+    `-spotify link` y apruebe la pantalla de permisos actualizada.
+  </Accordion>
+  <Accordion title="No hay ningún dispositivo disponible">
+    Abierto Spotify en el dispositivo deseado e inicie la reproducción una vez. Luego vuelva a ejecutar
+    `-spotify devices`. Los dispositivos de sesión privada o restringidos pueden rechazar
+    controles.
+  </Accordion>
+  <Accordion title="Spotify devuelve Premium requerido">
+    Los puntos finales de control de reproducción están limitados por Spotify a usuarios Premium. Biblioteca
+    Es posible que la navegación aún funcione cuando los permisos de lectura necesarios estén presentes.
+  </Accordion>
+  <Accordion title="Una lista de reproducción no se puede poner en cola">
+    Spotify actualmente expone elementos de la lista de reproducción solo cuando el usuario vinculado posee o
+    colabora en esa lista de reproducción. También confirma que estás en voz y que
+    RumiEl servicio de música de está listo.
+  </Accordion>
+</AccordionGroup>

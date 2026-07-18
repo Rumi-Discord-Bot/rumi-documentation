@@ -1,0 +1,20 @@
+---
+title: "消息变量"
+description: "Rumi 支持 7 个消息变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;message.author&#125;</code> | 作者留言。 | <code>消息作者示例</code> | 自定义命令、自动回复、嵌入 |
+| <code>&#123;message.author.id&#125;</code> | Discord ID。来源：消息作者。 | <code>123456789012345678</code> | 自定义命令、自动回复、嵌入 |
+| <code>&#123;message.author.mention&#125;</code> | Discord 提及文字。来源：消息作者。 | <code>&lt;@123456789012345678&gt;</code> | 自定义命令、自动回复、嵌入 |
+| <code>&#123;message.content&#125;</code> | 触发消息内容。 | <code>-warn @user spam</code> | 自定义命令、自动回复、嵌入 |
+| <code>&#123;message.created_at&#125;</code> | Discord-格式化的创建时间。来源：消息。 | <code>&lt;t:1781460000:F&gt;</code> | 自定义命令、自动回复、嵌入 |
+| <code>&#123;message.id&#125;</code> | Discord 触发消息的ID。 | <code>123456789012345678</code> | 自定义命令、自动回复、嵌入 |
+| <code>&#123;message.url&#125;</code> | 触发消息的直接链接。 | <code>https://discord.com/channels/123/456/789</code> | 自定义命令、自动回复、嵌入 |

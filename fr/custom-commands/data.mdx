@@ -1,0 +1,63 @@
+---
+title: "Données stockées"
+description: "Stockez et réutilisez les données du serveur pour les workflows de commandes personnalisés."
+icon: "database"
+---
+
+Les données de commande personnalisées sont organisées par un `namespace` et `key`. Les espaces de noms sont conservés
+les flux de travail non liés sont séparés, par exemple `cases:latest` et `events:count`.
+
+## Données de la liste
+
+```text
+-cc data list
+-cc data list cases
+```
+
+## Lire et écrire une valeur
+
+```text
+-cc data get cases latest
+-cc data set cases latest "Reviewed by staff"
+```
+
+## Incrémenter un nombre
+
+Le montant par défaut est `1` lorsqu'il est omis. Le fournir explicitement est plus clair :
+
+```text
+-cc data inc cases next 1
+```
+
+`increment` est un pseudonyme pour `inc`.
+
+## Supprimer une valeur
+
+```text
+-cc data delete cases latest
+```
+
+`del` et `remove` sont des alias pour les données `delete` opération.
+
+## Lire les données dans une réponse
+
+Les modèles de commandes personnalisés prennent en charge les lectures telles que :
+
+```text
+{db.get:cases:latest}
+{db.exists:cases:latest}
+```
+
+Ils peuvent également incrémenter une valeur à partir de la réponse :
+
+```text
+{db.inc:cases:next:1}
+```
+
+Placez une instruction d'incrémentation sur sa propre ligne lorsque vous souhaitez la mise à jour sans
+montrant son résultat brut. Courir `-variables customdb` pour la référence actuelle du modèle.
+
+<Warning>
+La suppression d'une commande personnalisée n'implique pas que toutes les données utilisées par son workflow soient
+supprimé. Supprimez explicitement les entrées dont vous n’avez plus besoin.
+</Warning>

@@ -1,0 +1,25 @@
+---
+title: "Moderatorvariabelen"
+description: "12 moderatorvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;moderator&#125;</code> | Geef de moderator of uitvoerder weer voor het modereren/oproepen van gebeurtenissen. | <code>&lt;@222222222222222222&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.avatar&#125;</code> | URL van avatarafbeelding. Bron: moderator. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.bot&#125;</code> | Bot voor moderator. | <code>Voorbeeld moderatorbot</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.color&#125;</code> | Kleur voor moderator. | <code>Voorbeeld moderatorkleur</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.created_at&#125;</code> | Discord-geformatteerde aanmaaktijd. Bron: moderator. | <code>&lt;t:1781460000:F&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.display_name&#125;</code> | Weergavenaam van de server van de moderator of uitvoerder. | <code>Maanlicht</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.id&#125;</code> | Discord ID van de moderator of uitvoerder. | <code>123456789012345678</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.mention&#125;</code> | Vermeld de moderator of uitvoerder voor moderatie/aanroep van gebeurtenissen. | <code>&lt;@123456789012345678&gt;</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.name&#125;</code> | Gebruikersnaam van de moderator of uitvoerder. | <code>Rumi</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.role&#125;</code> | Rolnaam of rolwaarde. Bron: moderator. | <code>Voorbeeld moderatorrol</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.tag&#125;</code> | Discord gebruikersnaamtag/discriminatorstijlwaarde voor de moderator. | <code>gebruikersnaam</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |
+| <code>&#123;moderator.username&#125;</code> | Discord gebruikersnaam. Bron: moderator. | <code>Voorbeeld moderator-gebruikersnaam</code> | Moderatielogboeken, oproepen van berichten, waarschuwings-/ban-/kick-sjablonen |

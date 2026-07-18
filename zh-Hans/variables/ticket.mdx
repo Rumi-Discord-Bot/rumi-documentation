@@ -1,0 +1,33 @@
+---
+title: "票证变量"
+description: "Rumi 支持 20 个票证变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;ticket.channel&#125;</code> | 频道提及或频道价值。来源：门票。 | <code>门票渠道示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.channel_id&#125;</code> | Discord 频道ID。来源：门票。 | <code>票证渠道 ID 示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.claimed_by&#125;</code> | 门票领取者。 | <code>领取门票的示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.claimed_by_id&#125;</code> | 通过 ID 领取门票。 | <code>通过 ID 领取的票证示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.claimed_by_mention&#125;</code> | 通过提及领取门票。 | <code>通过提及索取的门票示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.closed_at&#125;</code> | 门票截止时间。 | <code>门票示例截止时间为</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.closed_at_timestamp&#125;</code> | 关闭时间的 Unix 时间戳。 | <code>1781460000</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.closed_by&#125;</code> | 门票关闭。 | <code>示例票证关闭时间</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.closed_by_id&#125;</code> | 已根据票证 ID 关闭。 | <code>按 ID 关闭的票证示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.closed_by_mention&#125;</code> | 因门票提及而关闭。 | <code>通过提及关闭的示例票证</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.created_at&#125;</code> | Discord-格式化的创建时间。来源：门票。 | <code>&lt;t:1781460000:F&gt;</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.created_at_timestamp&#125;</code> | 创建时间的 Unix 时间戳。来源：门票。 | <code>&lt;t:1781460000:F&gt;</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.id&#125;</code> | Discord ID。来源：门票。 | <code>123456789012345678</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.number&#125;</code> | 票号。 | <code>票号示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.reason&#125;</code> | 原因文字。来源：门票。 | <code>没有提供理由。</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.status&#125;</code> | 当前状态。来源：门票。 | <code>票证状态示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.type&#125;</code> | 类型或类别名称。来源：门票。 | <code>门票类型示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.user&#125;</code> | 购票用户。 | <code>票证用户示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.user_id&#125;</code> | 票证的用户 ID。 | <code>票证用户 ID 示例</code> | 票务面板、票务日志、票务消息 |
+| <code>&#123;ticket.user_mention&#125;</code> | 用户提及票证。 | <code>票证用户提及示例</code> | 票务面板、票务日志、票务消息 |

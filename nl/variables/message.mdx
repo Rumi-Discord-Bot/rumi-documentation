@@ -1,0 +1,20 @@
+---
+title: "Berichtvariabelen"
+description: "7 berichtvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;message.author&#125;</code> | Auteur voor bericht. | <code>Voorbeeld berichtauteur</code> | Aangepaste opdrachten, autoresponders, insluitingen |
+| <code>&#123;message.author.id&#125;</code> | Discord Identiteitskaart. Bron: auteur van bericht. | <code>123456789012345678</code> | Aangepaste opdrachten, autoresponders, insluitingen |
+| <code>&#123;message.author.mention&#125;</code> | Discord tekst vermelden. Bron: auteur van bericht. | <code>&lt;@123456789012345678&gt;</code> | Aangepaste opdrachten, autoresponders, insluitingen |
+| <code>&#123;message.content&#125;</code> | De triggerende berichtinhoud. | <code>-warn @user spam</code> | Aangepaste opdrachten, autoresponders, insluitingen |
+| <code>&#123;message.created_at&#125;</code> | Discord-geformatteerde aanmaaktijd. Bron: bericht. | <code>&lt;t:1781460000:F&gt;</code> | Aangepaste opdrachten, autoresponders, insluitingen |
+| <code>&#123;message.id&#125;</code> | Discord ID van het triggerende bericht. | <code>123456789012345678</code> | Aangepaste opdrachten, autoresponders, insluitingen |
+| <code>&#123;message.url&#125;</code> | Een directe link naar het activerende bericht. | <code>https://discord.com/channels/123/456/789</code> | Aangepaste opdrachten, autoresponders, insluitingen |

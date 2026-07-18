@@ -1,0 +1,25 @@
+---
+title: "Variables moderadoras"
+description: "12 variables moderadoras soportadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;moderator&#125;</code> | Muestra el moderador o ejecutor para eventos de moderación/invocación. | <code>&lt;@222222222222222222&gt;</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.avatar&#125;</code> | URL de la imagen de avatar. Fuente: moderador. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.bot&#125;</code> | Bot para moderador. | <code>Ejemplo de robot moderador</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.color&#125;</code> | Color para moderador. | <code>Ejemplo de color del moderador</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.created_at&#125;</code> | Discord-hora de creación formateada. Fuente: moderador. | <code>&lt;t:1781460000:F&gt;</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.display_name&#125;</code> | Nombre para mostrar del servidor del moderador o ejecutor. | <code>Luz de la luna</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.id&#125;</code> | Discord ID del moderador o ejecutor. | <code>123456789012345678</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.mention&#125;</code> | Mencione al moderador o ejecutor para eventos de moderación/invocación. | <code>&lt;@123456789012345678&gt;</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.name&#125;</code> | Nombre de usuario del moderador o ejecutor. | <code>Rumi</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.role&#125;</code> | Nombre del rol o valor del rol. Fuente: moderador. | <code>Ejemplo de rol de moderador</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.tag&#125;</code> | Discord etiqueta de nombre de usuario/valor de estilo discriminador para el moderador. | <code>nombre de usuario</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |
+| <code>&#123;moderator.username&#125;</code> | Discord nombre de usuario. Fuente: moderador. | <code>Ejemplo de nombre de usuario de moderador</code> | Registros de moderación, mensajes de invocación, plantillas de advertencia/prohibición/expulsión |

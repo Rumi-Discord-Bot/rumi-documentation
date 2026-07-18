@@ -1,0 +1,136 @@
+---
+title: "Häufige Probleme"
+description: "Lösen Sie häufig auftretende Befehls-, Berechtigungs-, Sprach-, Verwaltungs- und Musikprobleme."
+icon: "wrench"
+---
+
+## Rumi antwortet nicht
+
+1. Bestätigen Rumi ist online.
+2. Bestätigen Sie, dass der Kanal angezeigt und Nachrichten gesendet werden können.
+3. Überprüfen Sie die Schreibweise des Präfixes und des Befehls.
+4. Versuchen Sie es `/help` oder `-help`.
+5. Prüfen Sie, ob der Befehl auf einen Server oder eine Direktnachricht beschränkt ist.
+
+## Ein Slash-Befehl fehlt
+
+Discord Es kann einige Zeit dauern, global registrierte Befehle zu aktualisieren. Neustart Discord,
+Überprüfen Sie die Anwendungsbefehlsberechtigung des Bots und versuchen Sie es mit der Präfixform.
+
+## Die Sprache hat sich nicht geändert
+
+Laufen `-language` um die effektive Sprache und ihre Quelle anzuzeigen. Dann stellen Sie die ein
+ausdrücklich vorgesehenen Geltungsbereich:
+
+```text
+-language user de
+-language server de
+```
+
+Die persönliche Sprache hat Vorrang vor der Serversprache. Serverweite Änderungen
+erfordern Administratorrechte.
+
+## Rumi hat den Server verlassen
+
+Rumi Lässt Server 30 Tage lang ohne aufgezeichnete Aktivität zurück, um Ressourcen zu schonen
+und Servicestabilität. Sie können einladen Rumi jederzeit wieder. Sobald Mitglieder verwenden
+der Server und Rumi Wenn die Aktivität aufgezeichnet wird, beginnt das normale Inaktivitätsfenster erneut.
+
+## Ein Verwaltungsbefehl wurde abgelehnt
+
+Laufen `-help <command>` und überprüfen Sie sowohl die Mitglieder- als auch die Bot-Anforderungen. Für Rolle
+oder Kanalwechsel, DiscordDie Rollenhierarchie von ist weiterhin gültig. Rumi nicht schaffen
+eine Rolle auf oder über ihrer höchsten Rolle.
+
+## Ich kann Ban oder Kick nicht finden
+
+Rumi bietet absichtlich keinen allgemeinen Zweck `ban` oder `kick` Befehle von
+Standard. Dadurch bleiben die grundlegenden Berechtigungsanforderungen geringer. Server
+Manager können damit sorgfältig eingeschränkte Arbeitsabläufe erstellen
+[Benutzerdefiniertes Befehlssystem](../custom-commands/overview).
+
+## Musik startet nicht
+
+Bestätigen Sie, dass Sie sich in einem Sprachkanal befinden. Rumi kann sich verbinden und sprechen, und die Musik
+Service verfügbar ist.
+
+Wenn Rumi tritt bei, wird aber nicht abgespielt. Versuchen Sie es mit einem direkten Titelnamen oder einer URL und überprüfen Sie es dann
+die Warteschlange. Eine Playlist oder Plattformseite kann auch dann fehlschlagen, wenn die direkte Wiedergabe funktioniert
+weil sein externer Anbieter nicht verfügbar ist.
+
+## Spotify Kontrollen fordern mich auf, die Verbindung erneut herzustellen
+
+Die Funktionen „Player“, „Gerät“, „Wiedergabeliste“ und „Gefällt mir“-Songs verwenden unterschiedliche Funktionen Spotify
+Berechtigungen. Laufen `-spotify link` erneut und genehmigen Sie die aktualisierte Autorisierung.
+Vorhandene Links, die vor dem Hinzufügen dieser Funktionen erstellt wurden, erhalten keinen neuen Zugriff
+automatisch.
+
+SpotifyFür die Steuerung persönlicher Geräte ist eine aktive Aktivierung erforderlich Spotify Gerät und Spotify
+Prämie. Offen Spotify Starten Sie auf dem gewünschten Gerät die Wiedergabe einmal und führen Sie dann Folgendes aus:
+
+```text
+-spotify devices
+-spotify player status
+```
+
+## Eine Level-Rolle ist nicht zugewiesen
+
+Überprüfen Sie alle drei Bedingungen:
+
+1. Rumi hat **Rollen verwalten**.
+2. RumiDie höchste Rolle liegt über der Belohnungsrolle.
+3. Der Meilenstein erscheint in `-levels settings`.
+
+Nachdem Sie das Setup korrigiert haben, führen Sie es aus `-levels sync` um Belohnungsrollen mit abzugleichen
+die aktuelle Konfiguration.
+
+## Eingeladene Beitritte sind unbekannt
+
+Aktualisieren RumiAktueller Einladungs-Schnappschuss:
+
+```text
+-invites refresh
+```
+
+Rumi Wenn eine Einladung gelöscht wurde, kann die Zuordnung nicht garantiert werden, da es sich um einen Vanity-Link handelte
+verwendet, der Einladungszugriff fehlt, oder Discord nicht genügend Staat zur Verfügung gestellt
+Identifizieren Sie, welcher Zähler sich geändert hat. Das Aktualisieren des Snapshots hilft jedoch bei zukünftigen Verknüpfungen
+rekonstruiert keine alten.
+
+## Medienkonvertierung schlägt fehl
+
+Versuchen Sie es mit einer kleineren oder kürzeren Eingabe und verwenden Sie einen direkten Anhang oder eine Datei-URL. Für
+Videokonvertierung, reduzieren `--duration`; Reduzieren Sie für die GIF-Ausgabe die Dauer und den Frame
+Rate oder Breite. Plattform-Downloads hängen vom Mediendienst ab und können sogar fehlschlagen
+wenn angehängte Dateien funktionieren.
+
+## Ein benutzerdefinierter Befehl wird gedruckt `N/A`
+
+Die Variable existiert, aber ihr Quellwert war in diesem Lauf nicht vorhanden. Ein Ziel
+Eine Variable benötigt beispielsweise ein auflösbares Ziel. Fügen Sie einen Fallback hinzu:
+
+```text
+{target.display_name|No member selected}
+```
+
+Verwenden `-cc show <name>` um das gespeicherte Skript und die `-cc-Vorschau zu überprüfen <name>
+[Beispielargumente]`, um es sicher zu reproduzieren. Der [Testleitfaden](../custom-commands/testing-and-debugging)
+geht durch jede Schicht.
+
+## Eine benutzerdefinierte Aktion wird abgelehnt
+
+Geschützte Aktionen überprüfen das konfigurierende Mitglied und das Mitglied, das die benutzerdefinierte Aktion ausführt
+Befehl, RumiDie Berechtigungen des Befehls, das Ziel, die Rollenhierarchie und die eigenen des Befehls
+Einschränkungen. Rezension:
+
+```text
+-cc show <name>
+-cc restrictions <name>
+-permissions @member
+```
+
+Entfernen Sie nicht jede Einschränkung, nur damit die Aktion erfolgreich ist. Beheben Sie das Spezifische
+Stattdessen handelt es sich um ein Rollen-, Kanal-, Berechtigungs- oder Hierarchieproblem.
+
+Wenn das Problem weiterhin besteht, treten Sie dem bei
+[Support-Server](https://discord.gg/NYs2jF9MCc).

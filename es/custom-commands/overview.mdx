@@ -1,0 +1,79 @@
+---
+title: "Comandos personalizados"
+description: "Cree comandos específicos del servidor con el módulo de comandos personalizado de Rumi."
+icon: "wand-magic-sparkles"
+---
+
+Los comandos personalizados permiten a los administradores de servidores crear flujos de trabajo detallados sin agregar un
+gran conjunto de comandos de moderación universales. Pueden producir texto o
+incrusta, acepta argumentos, resuelve variables, muestra botones, ejecuta protegido
+acciones, aplicar restricciones y almacenar datos del servidor.
+
+El comando principal es `customcommand`. Sus alias son `cc` y
+`customcommands`.
+
+<Info>
+Crear y cambiar comandos personalizados requiere el permiso de administración del servidor.
+El límite gratuito actual es de 30 comandos por servidor; Los servidores premium elegibles pueden
+almacenar hasta 200.
+</Info>
+
+## Mapa de comando
+
+| Tarea | Dominio |
+| --- | --- |
+| Crear o editar | `-cc set <name> [arguments] -- <response>` |
+| Prueba | `-cc preview <name> [sample arguments]` |
+| Inspeccionar | `-cc show <name>` |
+| Lista | `-cc list` |
+| Borrar | `-cc remove <name>` |
+| Ver variables | `-cc variables` o `-variables` |
+| Ver sintaxis de acción | `-cc actions` |
+| Administrar restricciones | `-cc restrictions <name>` |
+| Administrar datos guardados | `-cc data <operation> ...` |
+
+## Flujo de trabajo recomendado
+
+<Steps>
+  <Step title="Crea la respuesta útil más pequeña">
+    Comience con texto sin formato y uno o dos argumentos.
+  </Step>
+  <Step title="Vista previa">
+    Correr `-cc preview <name>` con entrada de muestra realista.
+  </Step>
+  <Step title="Restringir el acceso">
+    Agregue restricciones de roles, canales, usuarios o permisos antes del uso protegido.
+  </Step>
+  <Step title="Inspeccionar el comando guardado">
+    Correr `-cc show <name>` y confirmar su respuesta y restricciones.
+  </Step>
+</Steps>
+
+<Warning>
+Trate los comandos con roles, mensajes, economía o acciones de gestión de miembros como
+herramientas del personal. Sólo los administradores de confianza deberían poder editarlos.
+</Warning>
+
+## Qué se almacena
+
+Cada comando almacena su plantilla de respuesta, argumentos declarados y acceso.
+restricciones. Correr `set` nuevamente actualiza ese mismo comando. Flujo de trabajo almacenado
+Los datos están separados, por lo que reemplazar o eliminar un comando no elimina silenciosamente
+sus contadores o registros.
+
+## Aprende construyendo
+
+<CardGroup cols={2}>
+  <Card title="Por qué existe el separador" icon="code" href="./syntax-and-separators">
+    Vea exactamente dónde termina la definición y comienza la respuesta.
+  </Card>
+  <Card title="Recetas de trabajo" icon="book-open" href="./recipes">
+    Copie pequeños comandos, obtenga una vista previa de ellos y amplíelos de forma segura.
+  </Card>
+  <Card title="Integraciones y controles" icon="panels-top-left" href="./embeds-and-components">
+    Cree campos, imágenes, botones, menús desplegables y respuestas de varias páginas.
+  </Card>
+  <Card title="Referencia de variables completa" icon="brackets-curly" href="../variables/overview">
+    Explore cada variable generada a partir de RumiRegistro de tiempo de ejecución.
+  </Card>
+</CardGroup>

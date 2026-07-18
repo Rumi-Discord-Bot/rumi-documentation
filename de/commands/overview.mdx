@@ -1,0 +1,77 @@
+---
+title: "Befehlskatalog"
+description: "Finden Sie genaue Befehlsnamen, Beschreibungen, Aliase und Berechtigungen."
+icon: "list"
+---
+
+Rumiist in-Discord Das Hilfemenü ist die Quelle der Wahrheit für die verfügbaren Befehle
+zu dir:
+
+```text
+-help
+```
+
+Verwenden `-help <command>` um einen bestimmten Befehl zu überprüfen. Zum Beispiel:
+
+```text
+-help customcommand
+```
+
+Hilfeeinträge können Folgendes umfassen:
+
+- Befehls- und Unterbefehlsnamen
+- Beschreibungen und Präfix-Aliase
+- Verwendungs- und Argumentationsinformationen
+- Erforderliche Benutzer- und Bot-Berechtigungen
+- Nur-Server- und NSFW-Einschränkungen
+- Unterstützung für Slash-Befehle
+
+<Info>
+Auf dieser Website werden Arbeitsabläufe ausführlich erläutert. Wenn ein Führer und Rumiist der aktuelle Hilfeeintrag
+unterscheiden, folgen Sie dem Hilfeeintrag des Bots.
+</Info>
+
+## Effektiv suchen
+
+Durchsuchen Sie das Hilfemenü nach Kategorie oder suchen Sie nach einem Befehl anhand des Namens. Nützliche Bereiche
+Dazu gehören Management, Musik, Dienstprogramm, Wirtschaft, Rollen, Kanäle und Server-Tools.
+
+<CardGroup cols={2}>
+  <Card title="Management" icon="sliders" href="../features/management">
+    Filter, Mitarbeiterzugriff, Automatisierung, Rollen, Kanäle, Überprüfung und Einladungen.
+  </Card>
+  <Card title="Gemeinschaftssysteme" icon="users" href="../features/levels">
+    Levels, Economy-Einstellungen, Shops und Giveaways.
+  </Card>
+  <Card title="Benutzerdefinierte Befehle" icon="wand-magic-sparkles" href="../custom-commands/overview">
+    Argumente, Variablen, Einbettungen, Komponenten, Aktionen, Einschränkungen und Daten.
+  </Card>
+  <Card title="Musik" icon="music" href="../features/music">
+    Discord Sprachwiedergabe, Spotify Gerätesteuerungen und Last.fm Abhördaten.
+  </Card>
+  <Card title="Medien und Spiele" icon="photo-film" href="../features/media-and-embeds">
+    Bild- und Videotools, Einbettungen, interaktive Spiele und Spielsuche.
+  </Card>
+  <Card title="Persönliche Werkzeuge" icon="toolbox" href="../features/personal-tools">
+    Erwähnungen, Übersetzungen, Lesezeichen und Aufgabenlisten.
+  </Card>
+</CardGroup>
+
+## Befehlsaliase
+
+Einige Befehle haben kürzere Aliase. Zum Beispiel, `cc` öffnet sich `customcommand`,
+`rr` öffnet sich `reactionrole`, Und `rank` öffnet sich `level`. Aliase führen denselben Befehl aus
+und verwenden Sie dieselben Berechtigungen und gespeicherten Einstellungen.
+
+Der Hilfeeintrag zeigt unterstützte Aliase. Gehen Sie nicht davon aus, dass jedes verkürzte Wort es ist
+ein Alias; Wenn es nicht aufgeführt ist, verwenden Sie den vollständigen Befehlsnamen.
+
+## Nur-Präfix-Befehle
+
+Rumi verfügt über mehr Präfixbefehle als Schrägstrichbefehle. Dies ist zwar beabsichtigt
+Der Slash-Katalog wird bereinigt. Es muss ein Befehl mit der Bezeichnung **Nur Präfix** vorhanden sein
+wird mit dem Serverpräfix ausgeführt, auch wenn Slash-Befehle mit ähnlichen Namen in vorkommen
+Discord.
+
+Siehe [wie man die Befehlssyntax liest](./reading-syntax) für erforderliche Werte,
+optionale Argumente, Auswahlmöglichkeiten, Flags, Anführungszeichen und Unterbefehle.

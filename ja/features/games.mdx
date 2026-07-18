@@ -1,0 +1,99 @@
+---
+title: "ゲーム"
+description: "インタラクティブな Discord ゲームをプレイし、サポートされているゲーム プロファイルとサーバーを検索します。"
+icon: "gamepad"
+---
+
+Rumiの Games モジュールには 2 種類のコマンドが含まれています: 内部でプレイされるゲーム Discord
+ゲームまたはプラットフォームプロバイダーから公開情報を取得するルックアップ。
+ゲーム コマンドは現在プレフィックスのみです。
+
+## インタラクティブ ゲーム
+
+### じゃんけん
+
+```text
+-rps play bo3
+-rps challenge @member bo5
+-rps stats
+-rps leaderboard
+```
+
+マッチでは、必要に応じてプライベート ボタンの選択肢が使用されます。サポートされている最高の値
+コマンドは `bo1`, `bo3`, `bo5`, `bo7`、 そして `bo9`.
+
+### 三目並べと地雷
+
+```text
+-tictactoe @member
+-mines
+```
+
+どちらもインタラクティブなコンポーネントを使用します。ゲームに参加しているプレイヤーのみが行うことができます
+ボタンを制御します。
+
+### 高速チャット ゲーム
+
+```text
+-fasttype
+-fasttype Type this exact custom phrase
+-mathrace hard
+-unscramble 5 20
+```
+
+`fasttype` 最初の正確なフレーズを待ちます。 `mathrace` 最初を待ちます
+正解と、 `unscramble` ワードレースを実行します。オプションの番号が変わります
+コマンドがサポートする目標スコアまたは時間。
+
+### お茶とサバイバルゲーム
+
+```text
+-blacktea 3 20
+-greentea 5 15
+-redtea 3 20
+-whitetea 3 20
+-wordchain 3 20
+-forbiddenword 30
+```
+
+お茶のバリエーションでは、異なる除外ルールが使用されます。読む `-help <game>` の前に
+セッションが大規模になるため、ラウンドの報酬がスピード、有効な単語、
+またはフラグメントを回避します。
+
+### 小規模なゲーム
+
+```text
+-coinflip
+-roll 2d20
+-slots
+-coinrace
+```
+
+これらはサーバーの経済性を使用しません。エコノミーカジノゲームは終了しています
+`-casino`、ゲームモジュールではありません。
+
+## ゲームとプラットフォームの検索
+
+このモジュールには現在、Roblox、Minecraft、Fortnite、Steam、
+Valorant、Apex Legends、オーバーウォッチ、リーグ・オブ・レジェンド、osu!、クラッシュ・オブ・クラン、
+Clash Royale、Brawl Stars、Roblox グループ。
+
+現在のコマンドの例:
+
+```text
+-roblox user Builderman
+-roblox avatar Builderman
+-minecraft status play.example.net
+-minecraft player Notch
+-fortnite <account>
+```
+
+走る `-help roblox`, `-help minecraft`、または関連するゲームコマンドの前に
+見上げる。各プロバイダーは、異なるユーザー名、タグ、リージョン、アカウント ID、または
+サーバーアドレス。
+
+<Info>
+ルックアップ データは外部ゲーム サービスから取得されます。プライベートプロファイル、無効です
+識別子、プロバイダーの停止、またはオプションの API 統合の欠落により、
+その間でも結果は Rumi それ自体はオンラインです。
+</Info>

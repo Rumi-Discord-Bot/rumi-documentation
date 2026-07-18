@@ -1,0 +1,374 @@
+---
+title: "Pokloni"
+description: "Stvorite, zakažite, ponovite, ograničite, ponderirajte i upravljajte darovima."
+icon: "gift"
+---
+
+Rumi može pokrenuti darivanje gumba ili reakcije, odabrati do 25 pobjednika, spremiti za višekratnu upotrebu
+unaprijed postavljene postavke, primijenite uvjete prihvatljivosti, dodijelite bonus unose, zakažite kasnije
+započeti i ponoviti nagradnu igru ​​u određenom intervalu.
+
+Ovaj vodič koristi zadanu vrijednost `-` prefiks. Zamijenite ga ako vaš poslužitelj koristi prilagođeni
+prefiks.
+
+## Započnite darivanje
+
+Najbrži oblik koristi četiri vrijednosti ovim redoslijedom:
+
+```text
+-giveaway start "Discord Nitro" 24h 2 #giveaways
+```
+
+1. `"Discord Nitro"` je nagrada. Stavite navodnike oko nagrada koje sadrže razmake.
+2. `24h` je koliko dugo ulaz ostaje otvoren.
+3. `2` je broj dobitnika, od 1 do 25.
+4. `#giveaways` nije obavezan. bez toga, Rumi koristi konfigurirani kanal za darivanje, a zatim trenutni kanal.
+
+Trajanja podržavaju sekunde, minute, sate, dane i tjedne: `30s`, `45m`, `12h`,
+`3d`, ili `2w`. Nagradna igra mora trajati najmanje 10 sekundi, a ne duže od
+365 dana.
+
+### Gumb ili unos reakcije
+
+Unos gumba je zadani osim ako konfiguracija poslužitelja ne kaže drugačije:
+
+```text
+-giveaway start "Profile colour" 2h 1 --button
+```
+
+Koristiti `--reaction` za unos reakcije. Dodajte emoji iza njega ili ga izostavite
+koristiti 🎉:
+
+```text
+-giveaway start "Nitro" 24h 1 --reaction 🎟️
+-giveaway start "Mystery prize" 30m 1 --reaction
+```
+
+Rumi treba **Dodaj reakcije** i **Pročitaj povijest poruka** za reakciju
+darivanja. Oba načina unosa zahtijevaju **Pošalji poruke** i **Ugradi veze** u
+kanal za darivanja.
+
+## Oznake izgleda i isporuke
+
+Zastavice se mogu postaviti nakon potrebnih početnih vrijednosti. Navedite bilo koju vrijednost od više riječi.
+
+| Zastava | Što mijenja |
+| --- | --- |
+| `--winners <count>` | Nadjačava broj pozicijskih pobjednika. |
+| `--host <user\|me>` | Prikazuje drugog člana kao domaćina. |
+| `--title <text>` | Zamjenjuje ugrađeni naslov. |
+| `--description <text>` | Dodaje prilagođeni tekst tijela. |
+| `--footer <text>` | Dodaje ugrađeno podnožje. |
+| `--image <url>` | Dodaje veliku ugrađenu sliku. Vrijednost mora biti HTTP(S) URL. |
+| `--thumbnail <url>` | Dodaje malu ugrađenu minijaturu. |
+| `--color <hex>` | Mijenja boju ugradnje, na primjer `#c8d8f2`. |
+| `--content <text>` | Postavlja običan tekst iznad ugrađenog. `--message` također se prihvaća. |
+| `--button-label <text>` | Mijenja tekst gumba za unos. |
+| `--button-emoji <emoji>` | Postavlja emoji na gumb za unos. |
+| `--button-style <style>` | Koristi `primary`, `secondary`, `success`, ili `danger`. |
+| `--winner-message <text>` | Mijenja poruku poslanu kada se odaberu pobjednici. |
+| `--end-message <text>` | Mijenja poruku koja se koristi kada darivanje završi. |
+| `--dm-winner <true\|false>` | Zaobilazi postavku pobjednika-DM poslužitelja za ovu nagradnu igru. |
+| `--preset <name>` | Učitava spremljenu unaprijed postavljenu postavku prije primjene drugih oznaka. |
+
+Na primjer:
+
+```text
+-giveaway start "Two months of Nitro" 3d 2 #giveaways --button --title "Weekend draw" --description "Press the button below to enter." --color #b7a7ff --dm-winner true
+```
+
+## ID-ovi i svakodnevno upravljanje
+
+Rumi svakom poklonu daje kratki ID poslužitelja kao što je `#1`. Naredbe koje traže
+ID također prihvaća Discord ID poruke.
+
+```text
+-giveaway list
+-giveaway list active
+-giveaway list scheduled
+-giveaway info #1
+-giveaway entries #1
+-giveaway stats
+-giveaway stats user @moon
+```
+
+`list` prihvaća `active`, `ended`, `cancelled`, ili `scheduled`. `entries` pojavljuje se
+do 25 valjanih unosa. `stats user` izvješćuje o zabilježenim ulascima i dobicima člana
+preko poslužitelja darivanja koja Rumi provjere.
+
+### Uredi, završi, odustani i ponovno premotaj
+
+```text
+-giveaway edit #1 --prize "Nitro Basic" --winners 2
+-giveaway edit #1 --duration 6h --title "Extended draw"
+-giveaway end #1
+-giveaway cancel #1
+-giveaway cancel #1 --delete-message
+-giveaway reroll #1 --winners 2
+```
+
+- `edit` mijenja samo isporučena polja. `--duration 6h` postavlja kraj na šest sati od uređivanja.
+- `end` odmah zatvara aktivnu nagradnu igru ​​i odabire dobitnike.
+- `cancel` zatvara ga bez odabira dobitnika. Poruka ostaje osim ako `--delete-message` koristi se.
+- `reroll` odabire zamjenske pobjednike među prihvatljivim prijavama u završenoj nagradnoj igri.
+
+## Uvjeti prihvatljivosti
+
+Uvjet kontrolira tko može ući ili pobijediti. Uvjeti se kombiniraju s **I**:
+član mora zadovoljiti sve primjenjive uvjete.
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 100
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition list #1
+```
+
+### Rasponi uvjeta
+
+| Opseg | Kada Rumi provjerava ga | Dobro za |
+| --- | --- | --- |
+| `entry` | Kada član pritisne gumb ili doda reakciju. | Trenutni zahtjevi koji bi trebali blokirati ulazak. |
+| `winner` | Kada Rumi bira ili prebacuje pobjednike. | Zahtjevi koji se mogu promijeniti prije završetka izvlačenja. |
+| `both` | Prilikom prijave i ponovno tijekom odabira pobjednika. | Pravila koja moraju vrijediti tijekom cijelog darivanja. |
+
+Ako sudionik s gumbom ne prođe provjeru unosa, Rumi govori im zašto. Ako reakcija
+sudionik pada, Rumi uklanja njihovu reakciju. Član koji ne prođe provjeru pobjednika je
+preskočio i Rumi nastavlja tražiti kvalificiranog pobjednika.
+
+### Svaka vrsta stanja
+
+| Tip | Obavezne zastavice | Značenje |
+| --- | --- | --- |
+| `messages` | `--min <count>` | Zahtijeva barem navedeni broj poruka snimljenih od strane Rumi u ovom poslužitelju. |
+| `vc_time` | `--min <duration>` | Zahtijeva barem određeno vrijeme praćenja glasa, kao što je `10h`. `vc-time` također se prihvaća. |
+| `server_age` | `--min <duration>` | Zahtijeva da član bude toliko dugo na trenutnom poslužitelju. |
+| `account_age` | `--min <duration>` | Zahtijeva Discord račun biti barem toliko star. |
+| `role` | `--role <role>` | Zahtijeva jednu ulogu. |
+| `not_role` | `--role <role>` | Odbija članove koji imaju ulogu. |
+| `boosting` | nikakav | Zahtijeva aktivno pojačanje za trenutni poslužitelj. |
+| `verified` | nikakav | Zahtijeva završetak Discordprovjera članstva. Ovo nije RumiCaptcha sustav provjere. |
+| `warnings` | `--max <count>` | Ne dopušta više od zadanog broja zapisa upozorenja na ovom poslužitelju. |
+| `bans` | `--max <count>` | Ne dopušta više od zadanog broja snimljenih radnji zabrane na ovom poslužitelju. |
+| `mutual_server` | `--server <server-id>` | Zahtijeva članstvo na drugom poslužitelju koji također ima Rumi. |
+| `invited_to_server` | `--server <server-id>`, izborno `--inviter <user\|me>` | Zahtijeva praćenje članstva na ciljnom poslužitelju putem potrebnog pozivatelja. |
+| `inviter` | isto kao `invited_to_server` | Alias ​​za uvjet povijesti poziva. |
+| `joined_via_invite` | isto kao `invited_to_server` | Alias ​​za uvjet povijesti poziva. |
+
+`warnings` i `bans` su maksimumi, dakle `--max 0` znači da nema zabilježenih upozorenja ili
+radnje zabrane. Mogu se koristiti starije postavke `--min` za ove dvije vrste; Rumi ipak prihvaća
+to, ali `--max` je jasnije.
+
+### Primjeri praktičnih uvjeta
+
+Zahtijevati 250 praćenih poruka prije unosa:
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 250
+```
+
+Zahtijeva račun star 30 dana i sedam dana na poslužitelju:
+
+```text
+-giveaway condition add #1 --type account_age --scope both --min 30d
+-giveaway condition add #1 --type server_age --scope both --min 7d
+```
+
+Dopusti članove, ali isključi isključenu ulogu:
+
+```text
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition add #1 --type not_role --scope both --role @Muted
+```
+
+Zahtijevati pet sati praćene glasovne aktivnosti kada se izvlače dobitnici:
+
+```text
+-giveaway condition add #1 --type vc_time --scope winner --min 5h
+```
+
+Zahtijevaj članstvo u drugoj zajednici:
+
+```text
+-giveaway condition add #1 --type mutual_server --scope entry --server 123456789012345678
+```
+
+Zahtijevajte da se član pridruži partnerskom poslužitelju putem vaše pozivnice:
+
+```text
+-giveaway condition add #1 --type invited_to_server --scope both --server 123456789012345678 --inviter me
+```
+
+Za uvjete poziva, Rumi mora biti na ciljnom poslužitelju, sudionik mora i dalje
+biti tamo član i Rumi treba **Upravljanje poslužiteljem** tamo za održavanje pozivnice
+praćenje. Povijest poziva ne može se rekonstruirati za pridruživanja koja nikada nisu bila
+snimljeno.
+
+Uklonite jedno pravilo pomoću ID-a uvjeta koji prikazuje `condition list`, ili uklonite sve
+pravila:
+
+```text
+-giveaway condition remove #1 cond-1234
+-giveaway condition clear #1
+```
+
+## Bonus unosi
+
+Svaki važeći član počinje s jednim unosom. Bonus pravila dodaju težinu tom unosu;
+ne zaobilaze uvjete. Slažu se odgovarajući bonusi, ali jedan član ne može pobijediti
+više od jednog pobjedničkog mjesta u istom izvlačenju.
+
+```text
+-giveaway bonus add #1 --role @VIP --entries 2
+-giveaway bonus add #1 --messages 500 --entries 1
+-giveaway bonus add #1 --vc-time 10h --entries 3
+-giveaway bonus add #1 --booster --entries 2
+```
+
+Dostupne vrste bonusa su:
+
+| Zastava | Tko prima dodatnu težinu |
+| --- | --- |
+| `--role <role>` | Članovi s odabranom ulogom. |
+| `--messages <count>` | Broj članova na ili iznad broja praćenih poruka. |
+| `--vc-time <duration>` | Članovi na ili iznad vremena praćenog glasa. |
+| `--booster` | Trenutačni pojačivači poslužitelja. |
+
+`--entries` prihvaća od 1 do 100. Na primjer, normalan član ima jednu priliku;
+član koji odgovara `--entries 2` ima ukupno tri ponderirana unosa.
+
+```text
+-giveaway bonus list #1
+-giveaway bonus remove #1 bonus-1234
+```
+
+## Unaprijed postavljene postavke
+
+Unaprijed postavljene postavke spremaju potpuni izgled davanja tako da osoblje ne mora dugo ponavljati
+set zastava.
+
+```text
+-giveaway preset create nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --color #b7a7ff
+-giveaway preset list
+-giveaway preset view nitro
+-giveaway start --preset nitro
+```
+
+Uredite samo ono što treba promijeniti; ostala spremljena polja ostaju netaknuta:
+
+```text
+-giveaway preset edit nitro --duration 48h --winners 2
+```
+
+Zastavice isporučene uz `--preset` poništi svoje spremljene vrijednosti za taj
+darivanje:
+
+```text
+-giveaway start --preset nitro --winners 3 --title "Three winners today"
+```
+
+Izbrišite unaprijed postavljenu postavku kada više nije potrebna:
+
+```text
+-giveaway preset delete nitro
+```
+
+Brisanje unaprijed postavljenih postavki ne poništava darivanja ili ponavljajuća pravila koja su već postojala
+stvoren od njega.
+
+## Planirana darivanja
+
+Zakazivanje pohranjuje darivanje sada i objavljuje ga kasnije:
+
+```text
+-giveaway schedule --starts-in 2h --prize "Discord Nitro" --duration 24h --winners 1 --channel #giveaways --button
+```
+
+`--starts-in` je kašnjenje prije objave. `--duration` je koliko dugo ulaz
+ostaje otvoren **poslije Rumi objavljuje ga**. Pozadinski trkač grubo provjerava
+svakih 30 sekundi, tako da se objavljivanje može dogoditi ubrzo nakon točno ciljanog vremena.
+
+Sve oznake pojavljivanja iz naredbe start također rade s `schedule`. možete
+također raspored iz unaprijed postavljenih postavki:
+
+```text
+-giveaway schedule --starts-in 1d --preset nitro --channel #events
+```
+
+Prije nego što počne, darivanje se pojavljuje pod:
+
+```text
+-giveaway list scheduled
+-giveaway info #1
+```
+
+Koristiti `giveaway cancel #1` ako zakazana nagradna igra nikada ne bude objavljena.
+Zakazani redovi ostaju dospjeli ako Discord ili je ciljni kanal privremen
+nedostupan, dopuštajući Rumi kako biste pokušali ponovno na kasnijoj prolaznici.
+
+## Ponavljajuća darivanja
+
+Pravilo koje se ponavlja stvara novo darivanje u fiksnom intervalu. Najpouzdaniji
+postavljanje je prvo izgraditi i pregledati unaprijed postavljenu postavku:
+
+```text
+-giveaway preset create weekly-nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --channel #giveaways
+-giveaway recurring create weekly --every 7d --preset weekly-nitro
+```
+
+Također možete staviti teret darivanja izravno na pravilo:
+
+```text
+-giveaway recurring create daily-coins --every 1d --prize "10,000 coins" --duration 2h --winners 1 --channel #giveaways --button
+```
+
+Važno ponašanje koje se ponavlja:
+
+- Prvo darivanje počinje jedno puno `--every` interval nakon stvaranja pravila.
+- Svako izvođenje stvara vlastiti ID, poruku, unose i pobjednike.
+- Raspored napreduje od planirane kadence, tako da se mala kašnjenja trkača ne pomiču pri svakom kasnijem trčanju.
+- Neuspjelo objavljivanje pokušava se ponovno nakon otprilike pet minuta umjesto preskakanja cijelog intervala.
+- Pravilo pohranjuje snimku svojih postavki davanja. Kasnije uređivanje izvorne unaprijed postavljene postavke ne mijenja postojeće ponavljajuće pravilo; izbrišite i ponovno izradite pravilo da biste primijenili novu unaprijed postavljenu postavku.
+- Brisanje pravila sprječava buduća pokretanja, ali ne poništava darivanje koje je već stvoreno.
+
+```text
+-giveaway recurring list
+-giveaway recurring delete weekly
+```
+
+## Postavke davanja poslužitelja
+
+Članovi s **Manage Server**, administratori i konfigurirana nagradna igra
+uloga menadžera može upravljati darivanjem. Organizator darivanja također može prekinuti ili otkazati svoje
+vlastito darivanje. Pregledavanje popisa, informacija, unosa i statistike ostaje dostupno
+bez pristupa upravljanju.
+
+```text
+-giveaway config view
+-giveaway config channel #giveaways
+-giveaway config channel off
+-giveaway config manager-role @Giveaway Manager
+-giveaway config manager-role off
+-giveaway config default-entry button
+-giveaway config default-entry reaction
+-giveaway config default-color #c8d8f2
+-giveaway config dm-winners on
+-giveaway config remove-entry-on-leave on
+-giveaway config log-channel #giveaway-logs
+-giveaway config log-channel off
+```
+
+| Postavka | Učinak |
+| --- | --- |
+| `channel` | Zadani cilj kada početak, raspored, unaprijed postavljeno ili ponavljajuće opterećenje ne imenuje kanal. |
+| `manager-role` | Omogućuje toj ulozi upravljanje poklonima bez davanja širokih dozvola za upravljanje poslužiteljem. |
+| `default-entry` | Odabire gumb ili unos reakcije kada nije navedena nijedna zastavica. |
+| `default-color` | Postavlja zadanu boju ugradnje. |
+| `dm-winners` | Pokušava slanja izravne poruke dobitnicima. Zatvoreni DM-ovi mogu spriječiti dostavu. |
+| `remove-entry-on-leave` | Stavlja nevažeći unos kada njegov član napusti poslužitelj. |
+| `log-channel` | Šalje zapise o upravljanju darivanjem na odabrani kanal. |
+
+<Tip>
+Najprije napravite kratku probnu nagradnu igru, a zatim dodajte uvjete i bonus pravila
+dijeleći ga široko. `-giveaway info #1` je najbrži način za potvrdu struje
+broj unosa, uvjeti, pravila bonusa, domaćin, status i poveznica na poruku.
+</Tip>

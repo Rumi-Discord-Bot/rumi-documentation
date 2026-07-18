@@ -1,0 +1,50 @@
+---
+title: "Sprachaktivität"
+description: "Überprüfen Sie die erfasste Sprachzeit für den Server, die Mitglieder, die Kanäle und die fortlaufenden Zeiträume."
+icon: "waveform"
+---
+
+Rumi zeichnet von ihm beobachtete Sprachsitzungen auf und kann sie für den Server zusammenfassen
+Manager. Die Berichte verwenden die erfasste Zeit, nicht DiscordServereinblicke.
+
+## Serversummen
+
+```text
+-voicecount server
+-voicecount daily
+-voicecount weekly
+-voicecount monthly
+```
+
+Die Serveransicht umfasst Lebenszeit-Gesamtwerte, Sitzungsanzahl, aktuelle rollierende Gesamtwerte,
+und die zuletzt verfolgte Sprachaktivität. Tägliche, wöchentliche und monatliche Ansichten decken das ab
+aktueller Tag, 7 Tage bzw. 30 Tage.
+
+## Mitglieder und Kanäle
+
+```text
+-voicecount user @member
+-voicecount channel #General
+-voicecount leaderboard
+-voicecount active
+```
+
+`active` zeigt Sitzungen Rumi gilt derzeit als aktiv. `leaderboard` rangiert die
+Nachverfolgte Mitgliedergesamtzahlen, die im Server Analytics Store verfügbar sind.
+
+## Verfolgte Gesamtsummen zurücksetzen
+
+```text
+-voicecount reset user @member
+-voicecount reset channel #General
+-voicecount reset server
+```
+
+Zurücksetzen ist destruktiv. Wählen Sie das engste Ziel, das das Problem löst.
+Durch das Zurücksetzen des Servers werden die von diesen Berichten verwendeten gespeicherten Sprachanalysen gelöscht.
+
+<Info>
+Die Sprachaktivität beginnt wann Rumi beobachtet eine Sitzung. Zeit vor dem Tracker
+lief, Perioden wann Rumi war nicht verfügbar oder es waren keine Sprachkanäle verfügbar
+kann später nicht mehr rekonstruiert werden.
+</Info>

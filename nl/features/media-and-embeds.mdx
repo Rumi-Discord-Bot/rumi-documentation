@@ -1,0 +1,132 @@
+---
+title: "Media en insluitingen"
+description: "Bewerk afbeeldingen en video, exporteer media en bouw herbruikbare Discord-insluitingen."
+icon: "photo-film"
+---
+
+Rumi's mediaopdracht accepteert bijlagen, directe URL's en wordt ondersteund
+acties: de media die aan een beantwoord bericht zijn gekoppeld. De insluittools worden compact
+script in een Discord embed die kan worden bekeken, opgeslagen en hergebruikt.
+
+## Media-invoer kiezen
+
+De minst dubbelzinnige invoer is een directe bijlage of URL:
+
+```text
+-media blur https://example.com/image.png 3
+-media bgremove https://example.com/photo.jpg
+```
+
+U kunt ook reageren op een bericht dat media bevat en de opdracht uitvoeren zonder een
+URL. Als de bron een platformpagina is in plaats van een direct bestand, wordt beschikbaarheid
+hangt ervan af of Rumi's mediadienst ondersteunt dat platform.
+
+## Beeldeffecten
+
+Huidige beeldacties omvatten:
+
+- `blur [amount]`
+- `brightness [amount]`
+- `contrast [amount]`
+- `deepfry`
+- `flip`
+- `glitch`
+- `grayscale`
+- `invert`
+- `jail-bars`
+- `pixelate [factor]`
+- `resize <width>x<height>`
+- `rotate [degrees]`
+- `vaporwave`
+- `wasted`
+
+Voorbeelden:
+
+```text
+-media pixelate 18
+-media resize 512x512
+-media rotate 180
+```
+
+## Bijschriften
+
+```text
+-media caption Welcome to the server
+-media caption --position=top --size=42 --color=#ffffff Welcome!
+```
+
+Bijschriftvlaggen omvatten positie, lettertypefamilie, tekstkleur, achtergrondkleur en
+lettergrootte. Gebruik `-help media caption` voor de huidige aliassen en geaccepteerde vorm.
+
+## GIF- en MP4-conversie
+
+```text
+-media gif <url>
+-media mp4 <url> --start 10s --duration 30s
+-media togif <url> --start 5s --duration 6s --fps 12 --width 480
+```
+
+`media gif` haalt het originele ondersteunde GIF- of mediabestand op. `media mp4`
+creëert een downloadbare MP4, terwijl `media togif` maakt een korte GIF-clip.
+Rumi past invoer-, uitvoer-, duur- en verwerkingslimieten toe, dus een grote bron
+heeft mogelijk een kortere clip of kleinere afmetingen nodig.
+
+## Achtergrond verwijderen
+
+```text
+-media bgremove
+```
+
+Voeg een afbeelding toe, voeg een afbeeldings-URL toe of reageer op een afbeelding. Rumi retourneert een
+transparante PNG wanneer de geconfigureerde service voor het verwijderen van de achtergrond slaagt.
+
+## Scripts insluiten
+
+Begin met een voorbeeld:
+
+```text
+-embed preview {embed}$v{title: Rules}$v{description: Read the channels below.}$v{color: 6A8FB3}
+```
+
+`{embed}` start het insluitscript. Elk `$v{property: value}` voegt een eigenschap toe.
+Bijvoorbeeld:
+
+```text
+{embed}
+$v{title: Event night}
+$v{description: Join us at {timestamp}.}
+$v{field: Where && #events && true}
+$v{field: Host && {user.mention} && true}
+$v{thumbnail: {guild.icon}}
+$v{color: 6A8FB3}
+```
+
+De drie velddelen zijn naam, waarde en of deze inline moet zijn.
+
+## Bewaar en hergebruik insluitingen
+
+```text
+-embed save event <script>
+-embed list
+-embed load event
+-embed edit event <updated script>
+-embed delete event
+```
+
+Stuur een script rechtstreeks naar het huidige kanaal of geef een ander kanaal op:
+
+```text
+-embed send {embed}$v{description: Hello!}
+-embed send #announcements {embed}$v{title: Update}$v{description: New event this weekend.}
+```
+
+Gebruik `-embed validate <script>` wanneer u alleen syntaxisfeedback wilt. Ingesloten opgeslagen
+sjablonen en aangepaste opdrachten delen dezelfde insluitscriptideeën, dus de
+[gids voor insluitingen en componenten](../custom-commands/embeds-and-components) is nuttig
+voor beide.
+
+<Warning>
+Rumi kan niet maken Discord accepteer een inbedding die groter is dan Discord's veld, tekst of
+componentlimieten. Valideer en bekijk lange scripts voordat u ze naar een
+publieke zender.
+</Warning>

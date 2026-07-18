@@ -1,0 +1,31 @@
+---
+title: "Variables économiques"
+description: "18 variables économiques prises en charge par Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Le contexte compte. Une variable renvoie `N/A` lorsque la commande ou l'événement en cours ne fournit pas sa valeur source. Ajouter `|fallback text` avant l'accolade fermante lorsque vous avez besoin d'une solution de repli plus conviviale.
+</Info>
+
+
+| Variable | Ce qu'il retourne | Exemple de sortie | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;economy.balance&#125;</code> | Solde total formaté pour l'utilisateur. | <code>1 250 pièces</code> | Commandes économiques, commandes personnalisées, répondeurs automatiques avec contexte économique |
+| <code>&#123;economy.bank&#125;</code> | Solde bancaire lorsque le contexte économique est disponible. | <code>830 pièces</code> | Commandes économiques, commandes personnalisées, répondeurs automatiques avec contexte économique |
+| <code>&#123;economy.cash&#125;</code> | Solde du portefeuille formaté de l'utilisateur de la commande. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;economy.currency&#125;</code> | Icône d'économie actuelle du serveur. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;economy.currency_name&#125;</code> | Nom de la devise actuelle de l’économie du serveur. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;economy.daily_streak&#125;</code> | Nombre de séquences de récompenses quotidiennes. Source : économie. | <code>1 250 pièces</code> | Commandes économiques, commandes personnalisées, répondeurs automatiques avec contexte économique |
+| <code>&#123;economy.networth&#125;</code> | Portefeuille plus solde bancaire lorsque le contexte économique est disponible. | <code>1 250 pièces</code> | Commandes économiques, commandes personnalisées, répondeurs automatiques avec contexte économique |
+| <code>&#123;economy.rank&#125;</code> | Valeur de classement. Source : économie. | <code>1 250 pièces</code> | Commandes économiques, commandes personnalisées, répondeurs automatiques avec contexte économique |
+| <code>&#123;economy.raw_balance&#125;</code> | Portefeuille non formaté plus solde bancaire de l'utilisateur de la commande. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;economy.raw_bank&#125;</code> | Solde bancaire en nombre entier non formaté de l'utilisateur de la commande. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;economy.raw_cash&#125;</code> | Solde du portefeuille en nombre entier non formaté de l'utilisateur de la commande. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;economy.wallet&#125;</code> | Solde du portefeuille lorsque le contexte économique est disponible. | <code>420 pièces</code> | Commandes économiques, commandes personnalisées, répondeurs automatiques avec contexte économique |
+| <code>&#123;server_currency&#125;</code> | Alias ​​de compatibilité pour &#123;économie.monnaie&#125;. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;target.economy.balance&#125;</code> | Portefeuille formaté plus solde bancaire de la cible résolue. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;target.economy.bank&#125;</code> | Solde bancaire formaté de la cible résolue. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;target.economy.cash&#125;</code> | Solde du portefeuille formaté de la cible résolue. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;user_balance&#125;</code> | Alias ​​de compatibilité pour le solde total de l'utilisateur de la commande. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |
+| <code>&#123;user_balance_locale&#125;</code> | Alias ​​de compatibilité pour le solde total de l'utilisateur de la commande formatée. | <code>Consultez la syntaxe et les exemples dans les guides de commandes personnalisées.</code> | Commandes personnalisées ; les aides aux données personnalisées nécessitent également --db dans les répondeurs automatiques |

@@ -1,0 +1,24 @@
+---
+title: "Variables objetivo"
+description: "11 variables objetivo respaldadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;target&#125;</code> | Muestra el usuario objetivo resuelto. | <code>&lt;@987654321098765432&gt;</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.avatar&#125;</code> | URL de la imagen de avatar. Fuente: objetivo. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.created_at&#125;</code> | Discord-hora de creación formateada. Fuente: objetivo. | <code>&lt;t:1781460000:F&gt;</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.display_name&#125;</code> | Nombre para mostrar del servidor o apodo del miembro de destino. | <code>Luz de la luna</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.id&#125;</code> | Discord ID del usuario objetivo. | <code>123456789012345678</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.is_bot&#125;</code> | Es Bot para objetivo. | <code>El objetivo de ejemplo es bot</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.joined_at&#125;</code> | Discord-Hora de conexión al servidor formateado. Fuente: objetivo. | <code>&lt;t:1781460000:F&gt;</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.mention&#125;</code> | Mencione al usuario objetivo, normalmente el primer miembro mencionado. | <code>&lt;@123456789012345678&gt;</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.name&#125;</code> | Nombre de usuario del usuario objetivo. | <code>Rumi</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.tag&#125;</code> | Discord etiqueta de nombre de usuario/valor de estilo discriminador para el objetivo. | <code>nombre de usuario</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |
+| <code>&#123;target.username&#125;</code> | Discord nombre de usuario. Fuente: objetivo. | <code>Ejemplo de nombre de usuario objetivo</code> | Comandos personalizados, respuestas automáticas, juegos de rol, contextos de moderación/invocación |

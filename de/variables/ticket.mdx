@@ -1,0 +1,33 @@
+---
+title: "Ticketvariablen"
+description: "20 von Rumi unterstützte Ticketvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;ticket.channel&#125;</code> | Kanalerwähnung oder Kanalwert. Quelle: Ticket. | <code>Beispiel eines Ticketkanals</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.channel_id&#125;</code> | Discord Kanal-ID. Quelle: Ticket. | <code>Beispiel einer Ticketkanal-ID</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.claimed_by&#125;</code> | Beansprucht von für ein Ticket. | <code>Beispielticket, beansprucht von</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.claimed_by_id&#125;</code> | Von der ID für das Ticket beansprucht. | <code>Beispielticket, das von der ID beansprucht wurde</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.claimed_by_mention&#125;</code> | Durch Erwähnung des Tickets beansprucht. | <code>Beispielticket, das durch Erwähnung beansprucht wird</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.closed_at&#125;</code> | Für Tickets geschlossen. | <code>Beispielticket geschlossen um</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.closed_at_timestamp&#125;</code> | Unix-Zeitstempel für geschlossen um. | <code>1781460000</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.closed_by&#125;</code> | Geschlossen wegen Ticket. | <code>Beispielticket geschlossen von</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.closed_by_id&#125;</code> | Geschlossen durch ID für Ticket. | <code>Beispielticket geschlossen durch ID</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.closed_by_mention&#125;</code> | Geschlossen durch Erwähnung des Tickets. | <code>Beispielticket, das durch Erwähnung geschlossen wurde</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.created_at&#125;</code> | Discord-formatierte Erstellungszeit. Quelle: Ticket. | <code>&lt;t:1781460000:F&gt;</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.created_at_timestamp&#125;</code> | Unix-Zeitstempel für die Erstellungszeit. Quelle: Ticket. | <code>&lt;t:1781460000:F&gt;</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.id&#125;</code> | Discord AUSWEIS. Quelle: Ticket. | <code>123456789012345678</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.number&#125;</code> | Nummer für Ticket. | <code>Beispiel einer Ticketnummer</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.reason&#125;</code> | Begründungstext. Quelle: Ticket. | <code>Kein Grund angegeben.</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.status&#125;</code> | Aktueller Stand. Quelle: Ticket. | <code>Beispiel eines Ticketstatus</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.type&#125;</code> | Typ- oder Kategoriename. Quelle: Ticket. | <code>Beispiel-Tickettyp</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.user&#125;</code> | Benutzer für Ticket. | <code>Beispiel eines Ticketbenutzers</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.user_id&#125;</code> | Benutzer-ID für das Ticket. | <code>Beispiel einer Ticketbenutzer-ID</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |
+| <code>&#123;ticket.user_mention&#125;</code> | Benutzererwähnung für Ticket. | <code>Beispiel für die Erwähnung eines Ticketbenutzers</code> | Ticketpanels, Ticketprotokolle, Ticketnachrichten |

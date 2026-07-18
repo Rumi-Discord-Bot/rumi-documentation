@@ -1,0 +1,163 @@
+---
+title: "Aktionen"
+description: "Fügen Sie geschützte Mitglieder-, Rollen-, Nachrichten-, Wirtschafts-, Reaktions- und Datenaktionen hinzu."
+icon: "bolt"
+---
+
+Mit Aktionen kann ein benutzerdefinierter Befehl mehr als nur Text zurückgeben. Laufen:
+
+```text
+-cc actions
+```
+
+Rumi zeigt die aktuelle Syntax für Aktionsschaltflächen und Mitgliederverwaltung an
+Aktionen, Rollen, Nachrichten, wirtschaftliche Veränderungen, Reaktionen, benannte Aktionen und Bräuche
+Daten. Nutzen Sie diese Antwort als Quelle der Wahrheit beim Erstellen eines Skripts.
+
+## Sicherheitsmodell
+
+Geschützte Aktionen werden überprüft, wenn ein benutzerdefinierter Befehl gespeichert und ausgeführt wird.
+Abhängig von der Aktion können die Prüfungen Folgendes umfassen:
+
+- Das konfigurierende Mitglied Discord Erlaubnis
+– Die Erlaubnis oder explizite Zulassungsliste des aktiven Mitglieds
+- Rumi'S Discord Erlaubnis
+- Mitglieder- und Rollenhierarchie
+- Ob das Ziel gültig und überschaubar ist
+
+Rumi erkennt derzeit geschützte Aktionsfamilien für Banning, Softbanning,
+Kicking, Timeouts, Warnungen, Rollenwechsel, Nachrichtenlöschung, Wirtschaftsänderungen,
+benannte Aktionen und benutzerdefinierte Daten. Diese sind <mark>Bausteine ​​nach Maß
+Befehle</mark>, keine standardmäßigen öffentlichen Moderationsbefehle.
+
+## Bauen Sie sorgfältig auf
+
+1. Erstellen Sie die Nur-Text-Antwort und zeigen Sie eine Vorschau an.
+2. Fügen Sie die kleinste erforderliche Aktion hinzu.
+3. Beschränken Sie den Befehl auf eine vertrauenswürdige Rolle, einen vertrauenswürdigen Kanal oder eine vertrauenswürdige Berechtigung.
+4. Laufen `-cc show <name>` und überprüfen Sie das gespeicherte Skript.
+5. Testen Sie es mit einem sicheren Ziel, bevor Sie es mit dem Personal einsetzen.
+
+<Warning>
+Machen Sie niemals eine destruktive Aktion für jedermann zugänglich. RumiDie Schecks werden reduziert
+Risiko, aber Servermanager sind für den Workflow und seine Zulassungslisten verantwortlich.
+</Warning>
+
+## Direktes Aktionsformat
+
+Setzen Sie Aktionen auf ihre eigenen Linien. Verwenden `&&` zwischen Argumenten, also Namen und Gründen
+kann Leerzeichen enthalten, ohne dass sich ändert, wo das nächste Argument beginnt.
+
+```text
+{mod:warn target && Repeated rule violation}
+{mod:timeout target && 10m && Cool down period}
+{econ:add user && 100 && Daily custom reward}
+{customdb:increment activity && {user.id} && 1}
+```
+
+Die sichtbare Antwort kann diesen Aktionslinien folgen. Eine Aktionslinie selbst ist es nicht
+dem Benutzer angezeigt. Rumi validiert geschützte Berechtigungen, wenn der Befehl ausgeführt wird
+gespeichert und wiederholt Berechtigungs-, Ziel- und Rollenhierarchieprüfungen, wenn es ausgeführt wird.
+
+## Exakte Direktaktionsgrammatik
+
+Die folgenden spitzen Klammerfelder sind Pflichtfelder. Felder in eckigen Klammern sind
+optional. Geben Sie nicht die Klammern selbst ein.
+
+| Aktion | Genaue Vereinbarung |
+| --- | --- |
+| Verbot | `{mod:ban <target> && [reason]}` |
+| Softban | `{mod:softban <target> && [reason]}` |
+| Kick | `{mod:kick <target> && [reason]}` |
+| Time-out | `{mod:timeout <target> && <duration> && [reason]}` |
+| Timeout löschen | `{mod:untimeout <target> && [reason]}` |
+| Warnen | `{mod:warn <target> && [reason]}` |
+| Rolle hinzufügen | `{mod:role.add <target> && <role> && [reason]}` |
+| Rolle entfernen | `{mod:role.remove <target> && <role> && [reason]}` |
+| Rolle umschalten | `{mod:role.toggle <target> && <role> && [reason]}` |
+| Währung hinzufügen | `{econ:add <target> && <amount> && [reason]}` |
+| Währung entfernen | `{econ:remove <target> && <amount> && [reason]}` |
+| Geldbörse einstellen | `{econ:set <target> && <amount> && [reason]}` |
+| Währung überweisen | `{econ:transfer <source> && <destination> && <amount>}` |
+| Legen Sie benutzerdefinierte Daten fest | `{customdb:set <namespace> && <key> && <value>}` |
+| Benutzerdefinierte Daten erhöhen | `{customdb:increment <namespace> && <key> && [amount]}` |
+| Benutzerdefinierte Daten löschen | `{customdb:delete <namespace> && <key>}` |
+
+`mute` wird als Alias ​​für akzeptiert `timeout`; `unmute` ist ein Alias ​​für
+`untimeout`. Ziele können ein deklariertes Argument sein, z `{target}`, ein Mitglied
+Erwähnung, eine ID, oder `user`/`self` wobei diese Aktion das Befehlsmitglied unterstützt.
+
+`&&` trennt direkte Argumente. Dies bedeutet, dass ein Grund Leerzeichen enthalten kann
+ohne mit dem Ziel oder der Dauer verwechselt zu werden. Ordnen Sie Argumente nur neu an
+Wenn die Tabelle eine andere Reihenfolge anzeigt, liest der Aktionsausführer sie nach
+Position.
+
+## Aktionsschaltflächen
+
+Ein Knopf ist ein `$v{button: ...}` Block. Schaltflächenfelder werden durch getrennt `&&`.
+Schlüsselfelder können neu angeordnet werden, da sie durch ihre Namen identifiziert werden:
+
+```text
+$v{button: label=Confirm && style=danger && action=mod:kick {target} Rule violation && reply=Member removed.}
+```
+
+Die genaue Form ist:
+
+```text
+$v{button: label=<text> && style=<style> && [emoji=<emoji>] && action=<action-spec> && [reply=<text>]}
+```
+
+Schaltflächenfelder:
+
+| Feld | Akzeptierter Wert |
+| --- | --- |
+| `label` | Schaltflächentext, bis zu Discordist auf 80 Zeichen begrenzt. |
+| `style` | `primary`, `secondary`, `success`, oder `danger`. Farbaliase wie `blue`, `grey`, `green`, Und `red` funktionieren auch. |
+| `emoji` | Unicode-Emoji oder ein benutzerdefiniertes Discord Emoji-Erwähnung. |
+| `action` | Eine Komponentenaktionsspezifikation. Wiederholen `action=` eine Kette bilden. |
+| `reply` | Kurzlebige Antwort, die nur dem Klicker angezeigt wird. |
+| `public` | Öffentliche Reaktion im Kanal statt einer kurzlebigen Reaktion. |
+| `dm` | Von DM an den Klicker gesendeter Text. |
+| `role` Und `mode` | Rolle zum Ändern des Clickers und `add`, `remove`, oder `toggle`. |
+| `page` | `next`, `previous`oder eine mit erstellte Seitenzahl `$v{page}`. |
+| `await`, `once`, `defer` | Boolesche Ausführungskontrollen wie z `true` oder `false`. |
+| `expires` | Wie lange bleibt die Steuerung nutzbar, z `10m` oder `1h`. |
+| `allow_user`, `allow_role`, `allow_channel` | Eine ID oder eine durch Kommas getrennte ID-Liste darf das Steuerelement verwenden. |
+
+Im Gegensatz zu direkten Aktionszeilen wird eine Komponentenaktion ohne die äußere geschrieben
+setzt geschweifte Klammern und verwendet Leerzeichen zwischen seinen internen Argumenten:
+
+```text
+action=mod:timeout {target} 10m Cool down
+action=econ:add user 100 Button reward
+```
+
+Wiederholen Sie das eingegebene Feld, um mehrere Aktionen der Reihe nach auszuführen:
+
+```text
+$v{button: label=Approve && style=success && action=mod:role.add {target} @Member Approved && action=reply:Approved {target.mention} && once=true}
+```
+
+## Schaltflächen und Dropdowns verknüpfen
+
+Link-Buttons führen keine geschützten Aktionen aus:
+
+```text
+$v{button: label=Website && url=https://rumi.rocks && emoji=🔗}
+```
+
+Dropdowns verwenden diese Anordnung:
+
+```text
+$v{select: <id> && <placeholder> && <label>|<action-fields>|[description]|[emoji]}
+```
+
+Trennen Sie mehrere Schlüsselaktionsfelder innerhalb einer Dropdown-Option mit einem
+Semikolon:
+
+```text
+$v{select: staff_menu && Choose an action && Warn|action=mod:warn {target} Menu warning;reply=Warning saved.|Create a warning|⚠️}
+```
+
+Jede Option wird durch getrennt `&&`. Innerhalb einer Option lautet die durch Pipes getrennte Reihenfolge
+Beschriftung, Aktionsfelder, optionale Beschreibung und optionales Emoji.

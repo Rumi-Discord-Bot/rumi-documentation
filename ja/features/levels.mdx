@@ -1,0 +1,125 @@
+---
+title: "レベルとXP"
+description: "XP、レベルアップメッセージ、報酬ロール、乗数、無視されるチャネルを設定します。"
+icon: "arrow-up-right-dots"
+---
+
+Rumiのレベリング システムはサーバー XP を追跡し、ランク カードを表示し、リーダーボードを構築します。
+選択したマイルストーンで役割を与えることができます。メンバーの XP はサーバーに属します
+どこで稼いだのか。
+
+## まずは設定から​​始めましょう
+
+サーバー管理者はシステムを有効にして、保存された設定を検査できます。
+
+```text
+-levels enable
+-levels settings
+```
+
+メンバーは次のものを使用できるようになります。
+
+```text
+-level
+-level @member
+-leaderboard
+```
+
+`level` としても利用可能です `rank`。リーダーボードにはサーバーの XP が表示されます
+ランキング。
+
+## レベルアップのお知らせ
+
+メッセージを設定してください `levels message`。メッセージは複数行にまたがることができ、以下を使用できます。
+などのレベル変数 `{user.mention}` そして `{level}`:
+
+```text
+-levels message GG {user.mention}!
+You reached level {level}. --delete 15
+```
+
+の `--delete 15` フラグが伝える Rumi 15 秒後にアナウンスを削除します。
+保存された結果を信頼する前にプレビューします。
+
+```text
+-levels preview
+```
+
+アナウンスで通常のテキストを使用するか埋め込みを使用するか、およびその場所を選択します
+送信済み：
+
+```text
+-levels messagemode text
+-levels messagemode embed
+-levels channel #level-ups
+```
+
+走る `-variables level` 利用可能な現在のレベル関連の変数を確認するには
+メッセージテンプレート。
+
+## 報酬の役割
+
+ロールをマイルストーンに割り当てます。
+
+```text
+-levels role 10 @Veteran
+-levels role 25 @Regular
+```
+
+使用 `stackroles` メンバーが以前のマイルストーンの役割を保持するか、または
+最も高い到達マイルストーンに関連付けられたロールのみを保持します。
+
+```text
+-levels stackroles on
+-levels stackroles off
+```
+
+マイルストーンを 1 つ削除し、次のように現在のロール構成を再適用します。
+
+```text
+-levels roleclear 10
+-levels sync
+```
+
+Rumi **役割の管理**が必要であり、その最上位の役割はすべての報酬より上位に位置する必要があります
+割り当てることが期待される役割。
+
+## 乗算器と無視されるチャネル
+
+サーバー全体の XP 乗数、またはロールに関連付けられた乗数を設定します。
+
+```text
+-levels multiplier 1.5
+-levels rolemultiplier @Booster 2
+```
+
+通常のチャットで XP が生成されないチャネルは除外できます。
+
+```text
+-levels ignore #spam
+-levels unignore #spam
+```
+
+## XP と評判の調整
+
+XP を直接変更するための管理コマンドは次のとおりです。
+
+```text
+-xp add @member 100
+-xp remove @member 50
+-xp set @member 1000
+```
+
+Rumi 別の評判システムもあります。
+
+```text
+-rep give @member
+-rep remove @member
+-rep leaderboard
+```
+
+<Warning>
+マルチプライヤーや XP を変更すると、既存のランキングの意味が変わる可能性があります。チェック
+`-levels settings` 大きな変更の前後で、次を使用します。 `-levels sync` もし
+報酬の役割を調整する必要がある。
+</Warning>

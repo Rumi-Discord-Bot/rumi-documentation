@@ -1,0 +1,374 @@
+---
+title: "プレゼント"
+description: "景品を作成、スケジュール、繰り返し、制限、重み付け、管理します。"
+icon: "gift"
+---
+
+Rumi ボタンまたはリアクションの景品を実行でき、最大 25 人の当選者を選択でき、再利用可能な保存が可能
+プリセット、資格条件の適用、ボーナスエントリーの付与、後でスケジュールする
+を開始し、一定間隔でプレゼントを繰り返します。
+
+このガイドではデフォルトを使用します `-` 接頭辞。サーバーがカスタムを使用している場合は置き換えてください。
+接頭辞。
+
+## プレゼントを開始する
+
+最も速い形式では、4 つの値をこの順序で使用します。
+
+```text
+-giveaway start "Discord Nitro" 24h 2 #giveaways
+```
+
+1. `"Discord Nitro"` が賞品です。スペースを含む賞品を引用符で囲みます。
+2. `24h` エントリーが開いている期間です。
+3. `2` は 1 から 25 までの勝者の数です。
+4. `#giveaways` はオプションです。それがなければ、 Rumi 設定されたプレゼント チャネルを使用し、次に現在のチャネルを使用します。
+
+期間は秒、分、時間、日、週をサポートします。 `30s`, `45m`, `12h`,
+`3d`、 または `2w`。プレゼントは少なくとも 10 秒間実行する必要があります。
+365日。
+
+### ボタンまたはリアクションの入力
+
+サーバー設定に別の記載がない限り、ボタン エントリがデフォルトです。
+
+```text
+-giveaway start "Profile colour" 2h 1 --button
+```
+
+使用 `--reaction` リアクション入力用。絵文字の後に絵文字を入力するか、省略します
+使用するには 🎉:
+
+```text
+-giveaway start "Nitro" 24h 1 --reaction 🎟️
+-giveaway start "Mystery prize" 30m 1 --reaction
+```
+
+Rumi 反応するには **反応の追加** と **メッセージ履歴の読み取り** が必要です
+景品。どちらの入力モードでも、**メッセージの送信**と**リンクの埋め込み**が必要です。
+プレゼントチャンネル。
+
+## 外観と配信フラグ
+
+フラグは必要な開始値の後に配置できます。複数単語の値を引用符で囲みます。
+
+| フラグ | 何が変わるのか |
+| --- | --- |
+| `--winners <count>` | 位置勝者の数をオーバーライドします。 |
+| `--host <user\|me>` | 別のメンバーをホストとして表示します。 |
+| `--title <text>` | 埋め込みタイトルを置き換えます。 |
+| `--description <text>` | カスタム本文テキストを追加します。 |
+| `--footer <text>` | 埋め込みフッターを追加します。 |
+| `--image <url>` | 大きな埋め込み画像を追加します。値は HTTP(S) URL である必要があります。 |
+| `--thumbnail <url>` | 小さな埋め込みサムネイルを追加します。 |
+| `--color <hex>` | たとえば、埋め込み色を変更します。 `#c8d8f2`. |
+| `--content <text>` | 埋め込みの上にプレーンテキストを配置します。 `--message` も受け付けております。 |
+| `--button-label <text>` | 入力ボタンのテキストを変更します。 |
+| `--button-emoji <emoji>` | 入力ボタンに絵文字を配置します。 |
+| `--button-style <style>` | 用途 `primary`, `secondary`, `success`、 または `danger`. |
+| `--winner-message <text>` | 当選者決定時のメッセージを変更します。 |
+| `--end-message <text>` | プレゼント終了時のメッセージを変更します。 |
+| `--dm-winner <true\|false>` | このプレゼントに対するサーバーの勝者 DM 設定をオーバーライドします。 |
+| `--preset <name>` | 他のフラグを適用する前に、保存されたプリセットをロードします。 |
+
+例えば：
+
+```text
+-giveaway start "Two months of Nitro" 3d 2 #giveaways --button --title "Weekend draw" --description "Press the button below to enter." --color #b7a7ff --dm-winner true
+```
+
+## IDと日常管理
+
+Rumi 各景品には次のような短いサーバー ID が与えられます。 `#1`。要求するコマンド
+IDでも受け付けます Discord メッセージID。
+
+```text
+-giveaway list
+-giveaway list active
+-giveaway list scheduled
+-giveaway info #1
+-giveaway entries #1
+-giveaway stats
+-giveaway stats user @moon
+```
+
+`list` 受け入れる `active`, `ended`, `cancelled`、 または `scheduled`. `entries` 現れる
+有効なエントリは 25 までです。 `stats user` メンバーの記録されたエントリーと勝利を報告します
+サーバー全体で特典を提供します Rumi 小切手。
+
+### 編集、終了、キャンセル、再ロール
+
+```text
+-giveaway edit #1 --prize "Nitro Basic" --winners 2
+-giveaway edit #1 --duration 6h --title "Extended draw"
+-giveaway end #1
+-giveaway cancel #1
+-giveaway cancel #1 --delete-message
+-giveaway reroll #1 --winners 2
+```
+
+- `edit` 指定されたフィールドのみを変更します。 `--duration 6h` 終了を編集から 6 時間に設定します。
+- `end` アクティブなプレゼントを直ちに終了し、当選者を選択します。
+- `cancel` 勝者を選ばずに終了します。メッセージは次の場合に残ります。 `--delete-message` が使用されます。
+- `reroll` 終了したプレゼントの対象となるエントリーから代わりの当選者を選出します。
+
+## 資格条件
+
+条件によって、誰が参加できるか、誰が勝つことができるかが決まります。条件は **AND** で結合されます。
+メンバーは該当するすべての条件に合格する必要があります。
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 100
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition list #1
+```
+
+### 条件スコープ
+
+| 範囲 | いつ Rumi それをチェックします | に良い |
+| --- | --- | --- |
+| `entry` | メンバーがボタンを押したり、リアクションを加えたりしたとき。 | 参入を阻止すべき即時要件。 |
+| `winner` | いつ Rumi 勝者を選択または再ロールします。 | 抽選が終了する前に要件が変更される可能性があります。 |
+| `both` | エントリー時と勝者選択時に再度。 | プレゼント全体に適用されるルール。 |
+
+ボタン入力者がエントリーチェックに失敗した場合、 Rumi その理由を彼らに話します。反応があった場合
+参入者は失敗し、 Rumi 彼らの反応を取り除きます。勝者チェックに失敗したメンバーは、
+スキップして Rumi 資格のある当選者を探し続けます。
+
+### すべての条件タイプ
+
+| タイプ | 必須のフラグ | 意味 |
+| --- | --- | --- |
+| `messages` | `--min <count>` | 少なくとも指定された数のメッセージが録音される必要があります Rumi このサーバーでは。 |
+| `vc_time` | `--min <duration>` | 少なくとも指定された追跡音声時間が必要です。たとえば、 `10h`. `vc-time` も受け付けております。 |
+| `server_age` | `--min <duration>` | メンバーが現在のサーバーにその期間滞在している必要があります。 |
+| `account_age` | `--min <duration>` | が必要です Discord アカウントは少なくともそのくらい古いものである必要があります。 |
+| `role` | `--role <role>` | 1 つの役割が必要です。 |
+| `not_role` | `--role <role>` | 役割を持つメンバーを拒否します。 |
+| `boosting` | なし | 現在のサーバーのアクティブなブーストが必要です。 |
+| `verified` | なし | 完了が必要です Discordの入会審査。これはそうではありません Rumiのキャプチャ検証システム。 |
+| `warnings` | `--max <count>` | このサーバーでは、指定された数を超える警告レコードを許可しません。 |
+| `bans` | `--max <count>` | このサーバーでは、指定された数を超える禁止アクションの記録が許可されません。 |
+| `mutual_server` | `--server <server-id>` | 同様の機能を持つ別のサーバーのメンバーシップが必要です Rumi. |
+| `invited_to_server` | `--server <server-id>`、オプションで `--inviter <user\|me>` | 必要な招待者を通じてターゲット サーバーで追跡されたメンバーシップが必要です。 |
+| `inviter` | と同じ `invited_to_server` | 招待履歴条件の別名。 |
+| `joined_via_invite` | と同じ `invited_to_server` | 招待履歴条件の別名。 |
+
+`warnings` そして `bans` は最大値なので、 `--max 0` 警告が記録されていない、または
+行為を禁止する。古いセットアップでは使用される可能性があります `--min` これら 2 つのタイプの場合。 Rumi まだ受け入れます
+それ、しかし `--max` より明確です。
+
+### 実際の条件例
+
+エントリの前に 250 件の追跡メッセージが必要です:
+
+```text
+-giveaway condition add #1 --type messages --scope entry --min 250
+```
+
+30 日経過したアカウントとサーバーに 7 日間存在する必要があります。
+
+```text
+-giveaway condition add #1 --type account_age --scope both --min 30d
+-giveaway condition add #1 --type server_age --scope both --min 7d
+```
+
+メンバーを許可しますが、ミュートされた役割を除外します。
+
+```text
+-giveaway condition add #1 --type role --scope both --role @Member
+-giveaway condition add #1 --type not_role --scope both --role @Muted
+```
+
+勝者が決まると、5 時間の音声アクティビティの追跡が必要になります。
+
+```text
+-giveaway condition add #1 --type vc_time --scope winner --min 5h
+```
+
+別のコミュニティへのメンバーシップが必要です。
+
+```text
+-giveaway condition add #1 --type mutual_server --scope entry --server 123456789012345678
+```
+
+メンバーが招待を通じてパートナー サーバーに参加していることを要求します。
+
+```text
+-giveaway condition add #1 --type invited_to_server --scope both --server 123456789012345678 --inviter me
+```
+
+招待条件としては、 Rumi ターゲットサーバーに存在する必要がありますが、参加者はまだ存在する必要があります
+そこのメンバーになって、 Rumi 招待を維持するには **サーバーの管理** が必要です
+トラッキング。一度も行われたことのない結合については、招待履歴を再構築できません。
+記録された。
+
+で示される条件 ID を使用して 1 つのルールを削除します。 `condition list`、またはすべて削除します
+ルール:
+
+```text
+-giveaway condition remove #1 cond-1234
+-giveaway condition clear #1
+```
+
+## ボーナスエントリー
+
+すべての有効なメンバーは 1 つのエントリから始まります。ボーナス ルールはそのエントリに重みを加えます。
+条件を回避しません。マッチングボーナスは累積されますが、1 人のメンバーが勝つことはできません
+同じ抽選で複数の勝者スロット。
+
+```text
+-giveaway bonus add #1 --role @VIP --entries 2
+-giveaway bonus add #1 --messages 500 --entries 1
+-giveaway bonus add #1 --vc-time 10h --entries 3
+-giveaway bonus add #1 --booster --entries 2
+```
+
+利用可能なボーナスの種類は次のとおりです。
+
+| フラグ | 追加の重量を受け取るのは誰ですか |
+| --- | --- |
+| `--role <role>` | 選択した役割を持つメンバー。 |
+| `--messages <count>` | 追跡されたメッセージ数以上のメンバー。 |
+| `--vc-time <duration>` | 追跡された音声時間以上のメンバー。 |
+| `--booster` | 現在のサーバーブースター。 |
+
+`--entries` 1 から 100 までを受け入れます。たとえば、通常の会員には 1 回のチャンスがあります。
+メンバーマッチング `--entries 2` には、合計 3 つの重み付けされたエントリがあります。
+
+```text
+-giveaway bonus list #1
+-giveaway bonus remove #1 bonus-1234
+```
+
+## プリセット
+
+プリセットにより完全な特典レイアウトが保存されるため、スタッフは長いメッセージを繰り返す必要がありません。
+フラグのセット。
+
+```text
+-giveaway preset create nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --color #b7a7ff
+-giveaway preset list
+-giveaway preset view nitro
+-giveaway start --preset nitro
+```
+
+変更する必要がある部分のみを編集します。他の保存されたフィールドはそのまま残ります。
+
+```text
+-giveaway preset edit nitro --duration 48h --winners 2
+```
+
+付属のフラグ `--preset` その保存された値を上書きします
+譲る：
+
+```text
+-giveaway start --preset nitro --winners 3 --title "Three winners today"
+```
+
+プリセットが不要になったら削除します。
+
+```text
+-giveaway preset delete nitro
+```
+
+プリセットを削除しても、すでに設定されているプレゼントや定期的なルールはキャンセルされません。
+そこから作成されました。
+
+## プレゼント予定
+
+スケジュール設定では、プレゼントを今保存し、後で公開します。
+
+```text
+-giveaway schedule --starts-in 2h --prize "Discord Nitro" --duration 24h --winners 1 --channel #giveaways --button
+```
+
+`--starts-in` 公開までの遅延です。 `--duration` エントリーの長さはどれくらいですか
+**後も開いたまま Rumi それを公開します**。バックグラウンドランナーが大まかにチェック
+30 秒ごとに更新されるため、正確な目標時間の直後に公開される可能性があります。
+
+start コマンドのすべての外観フラグも機能します。 `schedule`。あなたはできる
+プリセットからスケジュールすることもできます。
+
+```text
+-giveaway schedule --starts-in 1d --preset nitro --channel #events
+```
+
+開始前に、プレゼントは次の下に表示されます。
+
+```text
+-giveaway list scheduled
+-giveaway info #1
+```
+
+使用 `giveaway cancel #1` 予定されているプレゼントを決して公開しない場合。
+次の場合、スケジュールされた行の期限が残ります。 Discord または、ターゲットチャンネルが一時的に
+利用不可、許可 Rumi 後のランナーパスで再試行します。
+
+## 定期的なプレゼント
+
+定期的なルールにより、一定の間隔で新しい特典が作成されます。最も信頼できる
+セットアップでは、最初にプリセットを構築して検査します。
+
+```text
+-giveaway preset create weekly-nitro --prize "Discord Nitro" --duration 24h --winners 1 --button --channel #giveaways
+-giveaway recurring create weekly --every 7d --preset weekly-nitro
+```
+
+プレゼント ペイロードをルールに直接置くこともできます。
+
+```text
+-giveaway recurring create daily-coins --every 1d --prize "10,000 coins" --duration 2h --winners 1 --channel #giveaways --button
+```
+
+重要な繰り返しの動作:
+
+- 最初のプレゼントは満員から始まります `--every` ルール作成後の間隔。
+- 実行ごとに、独自の特典 ID、メッセージ、エントリー、および勝者が作成されます。
+- スケジュールは意図したリズムから進むため、ランナーの多少の遅延がその後の実行ごとに移動することはありません。
+- 失敗したパブリケーションは、間隔全体をスキップするのではなく、約 5 分後に再試行されます。
+- ルールは、特典設定のスナップショットを保存します。元のプリセットを後で編集しても、既存の繰り返しルールは変更されません。ルールを削除して再作成し、新しいプリセットを適用します。
+- ルールを削除すると、今後の実行は防止されますが、すでに作成された特典はキャンセルされません。
+
+```text
+-giveaway recurring list
+-giveaway recurring delete weekly
+```
+
+## サーバー特典設定
+
+**サーバーの管理**を持つメンバー、管理者、および設定された特典
+マネージャーの役​​割は景品を管理できます。プレゼント主催者は、特典を終了またはキャンセルすることもできます。
+自分のプレゼント。リスト、情報、エントリ、統計の表示は引き続き利用可能です
+管理アクセスなしで。
+
+```text
+-giveaway config view
+-giveaway config channel #giveaways
+-giveaway config channel off
+-giveaway config manager-role @Giveaway Manager
+-giveaway config manager-role off
+-giveaway config default-entry button
+-giveaway config default-entry reaction
+-giveaway config default-color #c8d8f2
+-giveaway config dm-winners on
+-giveaway config remove-entry-on-leave on
+-giveaway config log-channel #giveaway-logs
+-giveaway config log-channel off
+```
+
+| 設定 | 効果 |
+| --- | --- |
+| `channel` | 開始、スケジュール、プリセット、または定期的なペイロードにチャンネルの名前が指定されていない場合のデフォルトのターゲット。 |
+| `manager-role` | そのロールは、広範なサーバー管理権限を付与せずにプレゼントを管理できます。 |
+| `default-entry` | どちらのフラグも指定されていない場合は、ボタンまたは反応エントリを選択します。 |
+| `default-color` | デフォルトの埋め込み色を設定します。 |
+| `dm-winners` | 当選者にダイレクトメッセージを送信しようとします。 DMを非公開にすると配信が出来なくなる場合がございます。 |
+| `remove-entry-on-leave` | メンバーがサーバーから離れると、エントリを無効にします。 |
+| `log-channel` | プレゼント管理レコードを選択したチャンネルに送信します。 |
+
+<Tip>
+最初に短いテストの特典を作成し、次に条件とボーナス ルールを追加します。
+それを広く共有します。 `-giveaway info #1` 現在の状態を確認する最も簡単な方法です
+エントリー数、条件、ボーナスルール、ホスト、ステータス、メッセージリンク。
+</Tip>

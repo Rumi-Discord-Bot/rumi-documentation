@@ -1,0 +1,82 @@
+---
+title: "埋め込みとコンポーネント"
+description: "構造化された埋め込み、リンク ボタン、アクション コントロール、ドロップダウン、ページ分割された出力を構築します。"
+icon: "panels-top-left"
+---
+
+Rumiさんの `$v{...}` ブロックで説明する Discord メッセージの内容。混合することができます
+通常のテキストと変数を使用します。
+
+## 埋め込みプロパティ
+
+```text
+-cc set profile [member] --
+$v{embed}
+$v{author: {target.display_name|{user.display_name}} && {target.avatar|{user.avatar}}}
+$v{title: Member profile}
+$v{description: Requested by {user.mention}}
+$v{thumbnail: {target.avatar|{user.avatar}}}
+$v{field: Account && {target.name|{user.name}} && true}
+$v{field: Joined && {target.joined_at|Unavailable} && true}
+$v{color: 6A8FB3}
+$v{footer: Rumi custom commands && {bot.avatar}}
+$v{timestamp: {date.utc_now}}
+```
+
+サポートされている埋め込みプロパティは次のとおりです。 `title`, `description`/`desc`, `url`, `color`,
+`image`/`gif`, `thumbnail`/`thumb`, `timestamp`, `footer`, `author`、 そして
+`field`。使用 `&&` 著者、フッター、フィールド内で各部分を区切ります。
+
+<Accordion title="Rumi によって課された Discord の制限">
+  メッセージには最大 10 個の埋め込みと 5 つのコンポーネント行を含めることができます。埋め込みにより許可されるのは、
+  25 フィールド、256 文字のタイトル、4,096 文字の説明、および 6,000
+  テキストの合計文字数。ボタンのラベルは 80 文字に制限されています。
+  ドロップダウンには最大 25 個のオプションを含めることができます。
+</Accordion>
+
+## リンクボタン
+
+リンク ボタンはボット アクションを実行しません。
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{button: label=Support && url=https://discord.gg/NYs2jF9MCc && emoji=💬}
+```
+
+## アクションボタン
+
+URL のないボタンは対話セッションを作成します。アクションはまだ通過します
+で使用されるのと同じ権限、ターゲット、ロール階層、および制限チェック
+直接のカスタムコマンドアクション。
+
+```text
+$v{button: Confirm && danger && action=mod:warn target && await=true && once=true}
+```
+
+便利な制御オプションには次のものがあります。 `reply=...`, `ephemeral=true`, `dm=true`,
+`await=true`, `once=true`, `expires=10m`、 そして `allow_role=@Role`.
+
+## ドロップダウン
+
+最初の 2 つの部分は内部名とプレースホルダーです。以下それぞれ
+オプションの用途 `label|action|description|emoji`:
+
+```text
+$v{dropdown: color && Choose a color && Red|reply=You chose red|Warm|🔴 && Blue|reply=You chose blue|Cool|🔵}
+```
+
+## 複数のページと埋め込み
+
+使用 `$v{embed}` 同じメッセージ内で別の埋め込みを開始します。置く `$v{page}` の上
+独自の行を追加して、別のナビゲート可能なページを開始します。
+
+```text
+$v{embed}$v{title: Page one}$v{description: First section}
+$v{page}
+$v{embed}$v{title: Page two}$v{description: Second section}
+```
+
+常に実行する `-cc preview <name>` コンポーネントを追加した後。キャッチのプレビュー
+無効な URL、色、フィールド サイズ、 Discord メンバーの前のコンポーネント制限
+コマンドを使用します。
+

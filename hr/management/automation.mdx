@@ -1,0 +1,113 @@
+---
+title: "Automatizacija poruka"
+description: "Izgradite automatske odgovore i automatske reakcije s odgovarajućim načinima rada, hlađenjima, dopuštenjima, kanalima, ugrađenim i prilagođenim podacima."
+icon: "gears"
+---
+
+Autoresponderi reagiraju na obične poruke bez dodavanja druge javnosti
+naredba. Automatske reakcije odgovaraju poruci i dodaju konfigurirane reakcije.
+
+## Zašto `--` pojavljuje se ovdje
+
+Automatski odgovori imaju i odgovarajuće oznake i odgovor. Završni samostalni
+`--` završava zastavice i započinje odgovor:
+
+```text
+-autoresponder set "hello there" --exact -- General Kenobi.
+```
+
+Prvi `--exact` je zastava. Kasnije samostalno `--` je granica. Ovaj
+sprječava da se tekst odgovora pogrešno zamijeni s opcijama.
+
+## Načini podudaranja
+
+| Zastava | Ponašanje |
+| --- | --- |
+| `--exact` | Cijela poruka mora odgovarati |
+| `--startswith` | Poruka mora započeti okidačem |
+| `--endswith` | Poruka mora završiti okidačem |
+| `--contains` | Okidač se može pojaviti bilo gdje |
+| `--match` | Tretirajte okidač kao regularni izraz |
+| `--within 30s` | Primijeni prozor hlađenja po korisniku |
+
+Odaberite samo jedan odgovarajući način. `exact` najsigurniji je za okidače poput naredbi;
+`contains` koristan je za fraze; `startswith` i `endswith` sačuvati ekstra
+tekst na drugoj strani. `match` tumači okidač kao regularni izraz
+i namijenjen je ljudima koji već znaju testirati regex uzorke.
+
+## Oznake odgovora i sigurnosti
+
+```text
+-autoresponder set "rules" --exact --embed -- $v{title: Rules}$v{description: Be kind.}
+-autoresponder set "counter" --exact --db -- {db.inc:uses:{user.id}:1}Count: {db.get:uses:{user.id}}
+-autoresponder set "staff" --exact --require-permission ManageMessages -- Staff response
+-autoresponder set "hello" --contains --ignore-channel #bots -- Hi {user.mention}
+```
+
+`--embed` raščlanjuje `$v{...}` izlaz, dok `--text` nameće normalan tekst. `--db`
+omogućuje čitanje i pisanje prilagođenih podataka za taj odgovarač. Dopuštenje i ignorirano
+zastavice kanala drže osjetljive automatizacije u opsegu.
+
+`--require-permission` provjerava člana koji je poslao odgovarajuću poruku. Koristite a
+Discord naziv dopuštenja kao što je `ManageMessages`. `--ignore-channel` može biti
+ponavlja se kada isti odgovor treba ostati izvan nekoliko kanala.
+
+`--languagedetect` je premium opcija. Prevodi dolazni tekst na engleski
+prije podudaranja, što omogućuje jednom engleskom okidaču da prepozna ekvivalentne poruke
+na drugim jezicima. Ne prevodi spremljeni odgovor.
+
+## Popis, testiranje i uklanjanje osoba koje odgovaraju
+
+Rumi brojevi autorespondera na popisu:
+
+```text
+-autoresponder list
+-autoresponder test 1
+-autoresponder remove 1
+```
+
+`test` pokreće spremljeni okidač kroz isti put automatizacije poruke. Iskoristi ga
+nakon dodavanja varijabli, prilagođenih podataka ili radnji kako biste mogli uhvatiti neispravan
+odgovor prije nego što članovi naiđu na njega. Poslužitelj može pohraniti do 500 odgovora.
+
+## Ekskluzivni ciljevi
+
+Ekskluzivi sužavaju jednog odgovarača na određeni kanal, ulogu ili člana. The
+prvi broj je utor za odgovor koji prikazuje `autoresponder list`:
+
+```text
+-autoresponder exclusive set 1 #general
+-autoresponder exclusive set 1 @Event Team
+-autoresponder exclusive set 1 @member
+-autoresponder exclusive list 1
+```
+
+Dodajte više od jednog cilja kada osoba koja odgovara treba raditi u nekoliko odobrenih
+mjesta ili za više odobrenih grupa. Uklonite samo metu koju više niste
+potreba:
+
+```text
+-autoresponder exclusive remove 1 #general
+```
+
+Zanemareni kanal i ekskluzivni kanal rješavaju suprotne probleme:
+`--ignore-channel` blokira odabrane kanale, dok isključivi cilj ograničava
+odgovor na odabrane ciljeve.
+
+<Warning>
+Regularni i široki izrazi `--contains` okidači mogu odgovarati više poruka
+od očekivanog. Započnite u testnom kanalu, dodajte `--within`, i pregledajte okidač
+prije omogućavanja zaštićene akcije.
+</Warning>
+
+## Autoreakcije
+
+Autoreakcije dijele iste osnovne načine podudaranja:
+
+```text
+-autoreaction add "good morning" ☀️ ❤️ --startswith
+```
+
+Koristite usko podudaranje za uobičajene riječi. A `contains` autoreakcija povezana s a
+kratki okidač može dodati reakcije mnogo češće nego što je planirano.
+

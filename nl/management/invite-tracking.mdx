@@ -1,0 +1,63 @@
+---
+title: "Het bijhouden van uitnodigingen"
+description: "Houd uitnodigingen, actieve genodigden, vanity-joins, scoreborden en deelnamelogboeken bij."
+icon: "user-plus"
+---
+
+Rumi's uitnodigingstracker vergelijkt Discord gebruik uitnodigen als leden lid worden. Het registreert
+de uitnodiger wanneer Discord biedt voldoende informatie en scheidt normaal
+uitnodiging, ijdelheid en onbekende joins.
+
+## Tracking inschakelen en inspecteren
+
+```text
+-invites enable
+-invites settings
+```
+
+Voor het wijzigen van instellingen is **Server beheren** vereist. Gebruik `settings` om te bevestigen of
+tracking is ingeschakeld en of er een join-log-kanaal is geconfigureerd.
+
+## Voeg een deelnamelogboek toe
+
+```text
+-invites log #join-logs
+-invites log off
+```
+
+Het logkanaal ontvangt de trackinginformatie Rumi zou kunnen oplossen voor nieuw
+sluit zich aan.
+
+## Bekijk leden- en serverstatistieken
+
+```text
+-invites
+-invites @member
+-invites top weekly
+-inviter @member
+-joins monthly
+-vanityjoins alltime
+```
+
+De tracker onderscheidt het totale aantal joins, actieve genodigden, leden die zijn vertrokken,
+normale uitnodigingen, vanity-joins en joins waarvan de uitnodiger niet kan zijn
+bepaald.
+
+Ondersteunde rapportperioden omvatten `daily`, `weekly`, `monthly`, En `alltime`.
+
+## Vernieuw de momentopname
+
+```text
+-invites refresh
+```
+
+Dit vraagt Rumi om de huidige uitnodigingslijst opnieuw op te halen. Het verfrist de
+vergelijkingsmomentopname; het kan de informatie van de uitnodiger niet reconstrueren Discord deed
+niet voorzien in een eerdere toetreding.
+
+<Info>
+Toeschrijving van uitnodigingen is niet gegarandeerd voor elke deelname. Uitnodigingslinks verwijderd,
+vanity-links, ontbrekende machtigingen, niet-beschikbare cachestatus en gelijktijdig
+Door wijzigingen in uitnodigingen kan een join als onbekend gemarkeerd blijven. `-invites refresh` updates
+de momentopname Rumi gebruikt voor toekomstige vergelijkingen.
+</Info>

@@ -1,0 +1,96 @@
+---
+title: "服务器定制"
+description: "自定义鲁米的服务器配置文件和标准响应外观。"
+icon: "palette"
+---
+
+Rumi 可以为每个服务器保留不同的服务器配置文件和响应主题。
+这些设置不会重命名或重新着色命令名称，也不会改变
+机器人在其他社区的全球形象。
+
+## 查看保存的定制
+
+```text
+-custom view
+-custom response list
+```
+
+`custom view` 显示服务器配置文件字段。 `custom response list` 显示了
+当前保存的响应类型、模式、颜色和自定义表情符号 Rumi.
+
+更改这些设置需要**管理服务器**。
+
+## 服务器配置文件
+
+```text
+-custom nick Rumi Support
+-custom bio Community tools and music
+-custom avatar <image URL>
+-custom banner <image URL>
+```
+
+对于头像和横幅更改，请附加图像或提供图像 URL。 Discord
+必须支持服务器中机器人的配置文件字段。
+
+清除一个字段而不影响其他字段：
+
+```text
+-custom clear nick
+-custom clear avatar
+-custom clear banner
+-custom clear bio
+```
+
+如果 Discord 状态和保存的配置文件不同步，请重新应用它：
+
+```text
+-custom apply
+```
+
+## 响应模式
+
+每种响应类型都可以使用普通嵌入或纯文本：
+
+```text
+-custom response mode good embed
+-custom response mode bad text
+```
+
+跑步 `-custom response list` 查看接受的响应类型名称
+运行机器人。响应类型代表回复的目的，例如
+成功、错误、信息结果或列表。
+
+## 响应颜色
+
+```text
+-custom response color good #7fc8a9
+-custom response color bad #d97b7b
+```
+
+颜色会影响该类型的嵌入模式回复。纯文本回复没有嵌入
+边框颜色。
+
+## 回复表情符号
+
+Rumi 使用配置的自定义 Discord 表情符号，或者当该类型没有表情符号时
+表情符号。它不会替代默认的 Unicode 表情符号。
+
+```text
+-custom response emoji good <:approved:123456789012345678>
+-custom response emoji good off
+-custom response emoji good reset
+```
+
+自定义表情符号必须可供使用 Rumi。使用 `off` 对于没有图标和 `reset` 为了
+Rumi的配置默认。
+
+使用以下命令重置整个响应类型：
+
+```text
+-custom response reset good
+```
+
+<Tip>
+更改一种响应类型，运行生成该类型回复的命令，然后
+在设计其余部分之前检查结果。
+</Tip>

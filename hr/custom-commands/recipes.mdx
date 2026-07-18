@@ -1,0 +1,159 @@
+---
+title: "Prilagođeni recepti za naredbe"
+description: "Kopirajte potpune primjere za argumente, ugradnje, nasumične vrijednosti, brojače, hlađenja i tijek rada osoblja."
+icon: "book-open"
+---
+
+Gradite jedan po jedan sloj. Spremite naredbu, pregledajte je s realističnim unosom,
+zatim dodajte ograničenja prije zaštićenih radnji.
+
+<AccordionGroup>
+  <Accordion title="Jednostavna naredba dobrodošlice">
+    ```text
+    -cc set hello -- Hello {user.mention}! Welcome to **{guild.name}**.
+    ```
+
+    Testirajte s `-cc preview hello`.
+  </Accordion>
+
+  <Accordion title="Ponovite traženu poruku">
+    ```text
+    -cc set say <text...> -- {text}
+    ```
+
+    Trčanje `-say The event starts soon` vraća cijeli argument ostatka.
+  </Accordion>
+
+  <Accordion title="Odaberite nasumični odgovor">
+    ```text
+    -cc set snack -- {choose:Cookie|Cake|Fruit|Popcorn}
+    ```
+
+    Imenujte rezultat kada se ponovno koristi:
+
+    ```text
+    -cc set lucky --
+    {range:number:1-100}
+    Your lucky number is **{number}**.
+    ```
+  </Accordion>
+
+  <Accordion title="Izradite karticu profila člana">
+    ```text
+    -cc set profile [member] --
+    $v{embed}
+    $v{title: {target.display_name|{user.display_name}}}
+    $v{thumbnail: {target.avatar|{user.avatar}}}
+    $v{field: Account created && {target.created_at|{user.created_at}} && false}
+    $v{field: Joined server && {target.joined_at|{user.joined_at}} && false}
+    $v{color: 6A8FB3}
+    ```
+
+    Probati `-profile @member` i `-profile`.
+  </Accordion>
+
+  <Accordion title="Brojite upotrebe s prilagođenim podacima">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    You have used this command **{db.get:visits:{user.id}}** times.
+    ```
+
+    Samostalna mutacija ažurira vrijednost bez ispisa sirove mutacije
+    proizlaziti. Pregledajte ga pomoću `-cc data get visits <user-id>`.
+  </Accordion>
+
+  <Accordion title="Nagrada za hlađenje">
+    ```text
+    -cc set treat --
+    {cooldown:24h}
+    {range:reward:50-150}
+    {econ:add user && reward && Custom daily treat}
+    You received **{reward}** coins.
+    ```
+
+    Gospodarske akcije su zaštićene. Ograničite naredbu i testirajte je sa sefom
+    iznos prije nego što ga objavite.
+  </Accordion>
+
+  <Accordion title="Tijek rada upozorenja osoblja">
+    ```text
+    -cc set staffwarn <target> <reason...> --
+    {mod:warn target && {reason}}
+    Warned {target.mention}: **{reason}**
+    ```
+
+    ```text
+    -cc requireperm staffwarn ModerateMembers
+    -cc allow staffwarn role @Staff
+    -cc allow staffwarn channel #staff-commands
+    ```
+
+    Rumi provjerava trkača, dopuštenja bota, cilj i hijerarhiju uloga kada je
+    izvršava.
+  </Accordion>
+
+  <Accordion title="Vodič za poslužitelj na dvije stranice">
+    ```text
+    -cc set guide --
+    $v{embed}$v{title: Getting started}$v{description: Read #rules and choose your roles.}
+    $v{page}
+    $v{embed}$v{title: Need help?}$v{description: Ask in #support.}
+    ```
+  </Accordion>
+
+  <Accordion title="Pokažite drugačiji odgovor osoblju">
+    ```text
+    -cc set panel --
+    {if:user has permission ManageMessages}
+    Staff controls are available in #staff-commands.
+    {else}
+    Ask a staff member if you need help.
+    {endif}
+    ```
+
+    Time se provjerava uživo član Discord dopuštenje svaki put kada naredba
+    trči. Ne daje to dopuštenje.
+  </Accordion>
+
+  <Accordion title="Prekretnica posjeta po korisniku">
+    ```text
+    -cc set visits --
+    {db.inc:visits:{user.id}:1}
+    {if:{db.get:visits:{user.id}} >= 10}
+    Welcome back {user.mention}. You have visited at least ten times.
+    {else}
+    Welcome {user.mention}. Visit number: {db.get:visits:{user.id}}.
+    {endif}
+    ```
+
+    Imenski prostor je `visits`; svaki Discord korisnički ID je zaseban ključ.
+  </Accordion>
+
+  <Accordion title="Odgovorite na drugom kanalu">
+    ```text
+    -cc set suggestion <text...> --
+    {respond:#suggestions}
+    $v{embed}
+    $v{author: {user.display_name} && {user.avatar}}
+    $v{description: {text}}
+    $v{footer: Submitted from {channel.name}}
+    ```
+
+    Ograničite naredbu na kanale na kojima se podnesci trebaju prihvatiti.
+    Rumi mora imati mogućnost pregledavanja i slanja ugrađenih sadržaja u odredišni kanal.
+  </Accordion>
+
+  <Accordion title="Reagirajte i uklonite poruku okidača">
+    ```text
+    -cc set submit <text...> --
+    {react:✅}
+    {delete}
+    Submission received: {text}
+    ```
+
+    `{delete}` uklanja poruku pokretača člana kada Rumi ima **Upravljanje
+    Poruke**. Reakcija se dodaje prije nego što okidač nestane kada Discord
+    to dopušta.
+  </Accordion>
+</AccordionGroup>

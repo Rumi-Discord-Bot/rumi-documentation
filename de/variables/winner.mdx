@@ -1,0 +1,21 @@
+---
+title: "Gewinnervariablen"
+description: "8 von Rumi unterstützte Gewinnervariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;winner&#125;</code> | Gewinnerdaten für die Bekanntgabe von Giveaway-Gewinnern. | <code>Beispielsieger</code> | Ergebnisvorlagen für Giveaways |
+| <code>&#123;winner.avatar&#125;</code> | Avatar-Bild-URL. Quelle: Gewinner. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Ergebnisvorlagen für Giveaways |
+| <code>&#123;winner.bonus_entries&#125;</code> | Bonuseinträge für Gewinner. | <code>Beispiele für Gewinner-Bonuseinträge</code> | Ergebnisvorlagen für Giveaways |
+| <code>&#123;winner.display_name&#125;</code> | Anzeigename oder Spitzname des Servers. Quelle: Gewinner. | <code>Mondlicht</code> | Ergebnisvorlagen für Giveaways |
+| <code>&#123;winner.entries&#125;</code> | Einträge für Gewinner. | <code>Beispielhafte Gewinnerbeiträge</code> | Ergebnisvorlagen für Giveaways |
+| <code>&#123;winner.id&#125;</code> | Discord AUSWEIS. Quelle: Gewinner. | <code>123456789012345678</code> | Ergebnisvorlagen für Giveaways |
+| <code>&#123;winner.mention&#125;</code> | Discord Text erwähnen. Quelle: Gewinner. | <code>&lt;@123456789012345678&gt;</code> | Ergebnisvorlagen für Giveaways |
+| <code>&#123;winner.name&#125;</code> | Namenswert. Quelle: Gewinner. | <code>Rumi</code> | Ergebnisvorlagen für Giveaways |

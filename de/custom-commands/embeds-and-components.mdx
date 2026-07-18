@@ -1,0 +1,82 @@
+---
+title: "Einbettungen und Komponenten"
+description: "Erstellen Sie strukturierte Einbettungen, Linkschaltflächen, Aktionssteuerelemente, Dropdowns und paginierte Ausgaben."
+icon: "panels-top-left"
+---
+
+Rumi'S `$v{...}` Blöcke beschreiben Discord Nachrichteninhalt. Sie können gemischt werden
+mit gewöhnlichem Text und Variablen.
+
+## Eigenschaften einbetten
+
+```text
+-cc set profile [member] --
+$v{embed}
+$v{author: {target.display_name|{user.display_name}} && {target.avatar|{user.avatar}}}
+$v{title: Member profile}
+$v{description: Requested by {user.mention}}
+$v{thumbnail: {target.avatar|{user.avatar}}}
+$v{field: Account && {target.name|{user.name}} && true}
+$v{field: Joined && {target.joined_at|Unavailable} && true}
+$v{color: 6A8FB3}
+$v{footer: Rumi custom commands && {bot.avatar}}
+$v{timestamp: {date.utc_now}}
+```
+
+Unterstützte Einbettungseigenschaften sind `title`, `description`/`desc`, `url`, `color`,
+`image`/`gif`, `thumbnail`/`thumb`, `timestamp`, `footer`, `author`, Und
+`field`. Verwenden `&&` innerhalb von Autoren, Fußzeilen und Feldern, um ihre Teile zu trennen.
+
+<Accordion title="Von Rumi durchgesetzte Discord-Grenzwerte">
+  Eine Nachricht kann bis zu 10 Einbettungen und 5 Komponentenzeilen enthalten. Eine Einbettung ermöglicht
+  25 Felder, ein Titel mit 256 Zeichen, eine Beschreibung mit 4.096 Zeichen und 6.000
+  Gesamtzahl der Textzeichen. Schaltflächenbeschriftungen sind auf 80 Zeichen begrenzt und a
+  Das Dropdown-Menü kann bis zu 25 Optionen enthalten.
+</Accordion>
+
+## Link-Schaltflächen
+
+Link-Schaltflächen führen keine Bot-Aktion aus:
+
+```text
+$v{button: Website && https://rumi.rocks}
+$v{button: label=Support && url=https://discord.gg/NYs2jF9MCc && emoji=💬}
+```
+
+## Aktionsschaltflächen
+
+Schaltflächen ohne URL erstellen eine Interaktionssitzung. Die Aktion läuft trotzdem
+Dieselben Berechtigungs-, Ziel-, Rollenhierarchie- und Einschränkungsprüfungen, die von a verwendet werden
+direkte benutzerdefinierte Befehlsaktion.
+
+```text
+$v{button: Confirm && danger && action=mod:warn target && await=true && once=true}
+```
+
+Zu den nützlichen Steuerungsmöglichkeiten gehören: `reply=...`, `ephemeral=true`, `dm=true`,
+`await=true`, `once=true`, `expires=10m`, Und `allow_role=@Role`.
+
+## Dropdowns
+
+Die ersten beiden Teile sind der interne Name und der Platzhalter. Jeweils folgende
+Option verwendet `label|action|description|emoji`:
+
+```text
+$v{dropdown: color && Choose a color && Red|reply=You chose red|Warm|🔴 && Blue|reply=You chose blue|Cool|🔵}
+```
+
+## Mehrere Seiten und Einbettungen
+
+Verwenden `$v{embed}` um eine weitere Einbettung in derselben Nachricht zu starten. Setzen `$v{page}` An
+eine eigene Zeile, um eine separate navigierbare Seite zu starten:
+
+```text
+$v{embed}$v{title: Page one}$v{description: First section}
+$v{page}
+$v{embed}$v{title: Page two}$v{description: Second section}
+```
+
+Laufen Sie immer `-cc preview <name>` nach dem Hinzufügen von Komponenten. Vorschau der Fänge
+ungültige URLs, Farben, Feldgrößen usw Discord Komponentengrenzen vor Mitgliedern
+Verwenden Sie den Befehl.
+

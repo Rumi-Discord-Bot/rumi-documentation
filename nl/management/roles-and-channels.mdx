@@ -1,0 +1,226 @@
+---
+title: "Rollen en kanalen"
+description: "Creëer en organiseer Discord-rollen en -kanalen met de managementopdrachten van Rumi."
+icon: "layer-group"
+---
+
+Rumi kan rollen maken, inspecteren, toewijzen, hernoemen, opnieuw kleuren, verwijderen en herstellen. Het
+kan ook tekst, stem, categorie, podium, forum en
+aankondigingskanalen.
+
+## Rolhiërarchie komt op de eerste plaats
+
+Discord Laat een bot alleen rollen beheren die lager zijn dan zijn eigen hoogste rol. Dezelfde regel
+is van toepassing op het lid dat een rolopdracht uitvoert. Voordat u een mislukte probleemoplossing oplost
+toewijzing, controleer de volgorde in **Serverinstellingen → Rollen**.
+
+Zowel het lid als Rumi heb **Rollen beheren** nodig voor de `role` beheer
+commando.
+
+## Rollen maken en inspecteren
+
+```text
+-role create Event Host --color #c8d8f2
+-role info Event Host
+-role rename Event Host Events Team
+-role color Events Team #6A8FB3
+```
+
+Gebruik een vermelding of ID wanneer meerdere rollen een naam delen.
+
+## Rollen toevoegen en verwijderen
+
+```text
+-role add @member Member
+-role remove @member Member
+```
+
+Rumi controleert het doellid en de rollenhiërarchie voordat de wijziging wordt toegepast.
+
+## Verbonden roldoeleinden
+
+Een verbonden rol slaat een herbruikbare doelnaam op, zoals `staff`, tegen een
+bestaande Discord rol:
+
+```text
+-role connect staff @Staff
+-role list
+-role disconnect staff
+```
+
+Hierdoor ontstaat er geen tweede rol. Het geeft Rumi een stabiel doel om naar te verwijzen
+zelfs als de rol anderszins wordt gebruikt door een grotere workflow.
+
+## Verwijderen en herstellen
+
+`role delete` houdt een herstelmomentopname bij. `role restore` herstelt de meest recente
+verwijderde of gewijzigde rolmomentopname ondersteund door de opdracht:
+
+```text
+-role delete Old Staff
+-role restore
+```
+
+Herstel maakt of updatet Discord status van de opgeslagen momentopname; Het
+kan niet-gerelateerde wijzigingen die buitenaf zijn aangebracht niet ongedaan maken Rumi na de verwijdering.
+
+## Sluit je aan bij rollen
+
+Wijs automatisch rollen toe aan mensen, bots of beide wanneer ze zich aansluiten:
+
+```text
+-joinrole add human @Member
+-joinrole add bot @Bot
+-joinrole add both @Community
+-joinrole list
+```
+
+Verwijder geselecteerde rollen of wis één doelgroep:
+
+```text
+-joinrole remove human @Member
+-joinrole clear bot
+```
+
+Rumi moet nog steeds boven elke geconfigureerde deelnamerol staan.
+
+## Persoonlijke boosterrollen
+
+Actieve serverboosters kunnen een rol creëren en vormgeven Rumi regelt voor hen:
+
+```text
+-boosterrole view
+-boosterrole create Moonlight
+-boosterrole rename Pink Dawn
+-boosterrole color #ff88cc
+-boosterrole color #ff88cc, #ffddee
+```
+
+Het tweekleurige formulier vraagt Discord's verlooprolkleur. Of Discord
+laat zien dat elke rolweergavefunctie kan afhangen van de beschikbare rol van de server
+functies.
+
+Stel een rolpictogram in vanuit een bijlage, afbeeldings-URL, Unicode-emoji of aangepast Discord
+emoji-vermelding. Gebruik `clear` om het te verwijderen:
+
+```text
+-boosterrole icon ✨
+-boosterrole icon <:sparkle:123456789012345678>
+-boosterrole icon https://example.com/icon.png
+-boosterrole icon clear
+```
+
+### Deel een boosterrol
+
+De booster die een rol bezit, kan deze delen met andere leden:
+
+```text
+-boosterrole share @friend
+-boosterrole share remove @friend
+```
+
+Medewerkers met **Rollen beheren** kunnen alle eigenaren en shares inspecteren en instellen hoeveel
+leden waarmee elke eigenaar kan delen:
+
+```text
+-boosterrole share list
+-boosterrole share limit 3
+-boosterrole share limit none
+```
+
+`boosterrole limit off` schakelt creatie op de hele server uit; het is anders dan
+de deellimiet:
+
+```text
+-boosterrole limit on
+-boosterrole limit off
+```
+
+### Positie en opruimen
+
+Bewaar gegenereerde rollen binnen een bedoeld gedeelte van de rollenlijst door een naam te geven
+boven- en onderanker:
+
+```text
+-boosterrole hoist @Booster Top @Booster Bottom
+```
+
+Beide ankers moeten beheersbaar blijven Rumi. Opschonen verwijdert verouderd eigendom
+en aandelen na het stimuleren van statuswijzigingen:
+
+```text
+-boosterrole cleanup
+-boosterrole cleanup auto on
+-boosterrole cleanup auto off
+```
+
+### Naam- en pictogramfilters
+
+Eenvoudige woordfilters blokkeren ongewenste tekst in boosterrolnamen:
+
+```text
+-boosterrole filter add admin
+-boosterrole filter remove admin
+-boosterrole filter list
+-boosterrole filter clear
+```
+
+Premium-servers kunnen reguliere-expressiefilters toevoegen voor nauwkeurigere overeenkomsten:
+
+```text
+-boosterrole regex filter add ^admin
+-boosterrole regex filter list
+-boosterrole regex filter remove ^admin
+-boosterrole regex filter clear
+```
+
+Voeg alleen een regex toe die u begrijpt; een breed patroon kan gewone namen afwijzen.
+Pictogramtekstfiltering en een gecombineerde instellingenweergave zijn beschikbaar via:
+
+```text
+-boosterrole filtericon nsfw on
+-boosterrole filters
+```
+
+## Reactierollen
+
+De `reactionrole` commando, ook beschikbaar als `rr`, verbindt een emoji op a
+bericht naar een rol:
+
+```text
+-help reactionrole
+```
+
+Gebruik het huidige Help-item voor de volgorde van het bericht, de emoji en de rolargumenten.
+Reactierollen vereisen Rumi om het doelbericht te lezen, reacties toe te voegen, en
+de geselecteerde rol beheren.
+
+## Kanalen maken
+
+```text
+-channel create text announcements
+-channel create voice Lounge
+-channel create category Events
+-channel create text event-chat --category Events
+```
+
+Ondersteunde kanaaltypen zijn `text`, `voice`, `category`, `stage`, `forum`, En
+`announcement`.
+
+## Kanalen hernoemen, verplaatsen en verwijderen
+
+```text
+-channel rename #old-name new-name
+-channel move #event-chat Events
+-channel move #event-chat 3
+-channel delete #temporary
+```
+
+Als er geen kanaal beschikbaar is voor een ondersteunde actie, Rumi kan de stroom gebruiken
+kanaal. Het verstrekken van een kanaalvermelding is veiliger als het om een ​​destructieve actie gaat
+betrokken.
+
+<Warning>
+Kanaalverwijdering is permanent ingeschakeld Discord. Controleer de vermelding in uw opdracht
+voordat u het verzendt; Rolherstel herstelt verwijderde kanalen niet.
+</Warning>

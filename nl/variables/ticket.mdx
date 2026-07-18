@@ -1,0 +1,33 @@
+---
+title: "Ticketvariabelen"
+description: "20 ticketvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;ticket.channel&#125;</code> | Kanaalvermelding of kanaalwaarde. Bron: kaartje. | <code>Voorbeeld ticketkanaal</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.channel_id&#125;</code> | Discord kanaal-ID. Bron: kaartje. | <code>Voorbeeld ticketkanaal-ID</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.claimed_by&#125;</code> | Geclaimd door voor ticket. | <code>Voorbeeldticket geclaimd door</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.claimed_by_id&#125;</code> | Geclaimd door ID voor ticket. | <code>Voorbeeldticket geclaimd door id</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.claimed_by_mention&#125;</code> | Geclaimd door vermelding voor ticket. | <code>Voorbeeldticket geclaimd door vermelding</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.closed_at&#125;</code> | Gesloten om voor ticket. | <code>Voorbeeld ticket gesloten om</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.closed_at_timestamp&#125;</code> | Unix-tijdstempel voor gesloten om. | <code>1781460000</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.closed_by&#125;</code> | Gesloten door voor ticket. | <code>Voorbeeld ticket gesloten door</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.closed_by_id&#125;</code> | Gesloten op ID voor ticket. | <code>Voorbeeld ticket afgesloten op id</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.closed_by_mention&#125;</code> | Gesloten door vermelding voor ticket. | <code>Voorbeeld ticket afgesloten door vermelding</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.created_at&#125;</code> | Discord-geformatteerde aanmaaktijd. Bron: kaartje. | <code>&lt;t:1781460000:F&gt;</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.created_at_timestamp&#125;</code> | Unix-tijdstempel voor aanmaaktijd. Bron: kaartje. | <code>&lt;t:1781460000:F&gt;</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.id&#125;</code> | Discord Identiteitskaart. Bron: kaartje. | <code>123456789012345678</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.number&#125;</code> | Nummer voor kaartje. | <code>Voorbeeld ticketnummer</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.reason&#125;</code> | Reden tekst. Bron: kaartje. | <code>Geen reden opgegeven.</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.status&#125;</code> | Huidige status. Bron: kaartje. | <code>Voorbeeld ticketstatus</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.type&#125;</code> | Type- of categorienaam. Bron: kaartje. | <code>Voorbeeld tickettype</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.user&#125;</code> | Gebruiker voor ticket. | <code>Voorbeeld ticketgebruiker</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.user_id&#125;</code> | Gebruikers-ID voor ticket. | <code>Voorbeeld ticketgebruikers-ID</code> | Ticketpanelen, ticketlogboeken, ticketberichten |
+| <code>&#123;ticket.user_mention&#125;</code> | Gebruikersvermelding voor ticket. | <code>Voorbeeld van vermelding van een ticketgebruiker</code> | Ticketpanelen, ticketlogboeken, ticketberichten |

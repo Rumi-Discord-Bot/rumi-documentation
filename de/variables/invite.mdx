@@ -1,0 +1,24 @@
+---
+title: "Variablen einladen"
+description: "11 von Rumi unterstützte Einladungsvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;invite.channel&#125;</code> | Kanalerwähnung oder Kanalwert. Quelle: Einladung. | <code>Beispiel eines Einladungskanals</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.channel_id&#125;</code> | Discord Kanal-ID. Quelle: Einladung. | <code>Beispiel für eine Einladungskanal-ID</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.code&#125;</code> | Code für Einladung. | <code>Beispiel für einen Einladungscode</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.created_at&#125;</code> | Discord-formatierte Erstellungszeit. Quelle: Einladung. | <code>&lt;t:1781460000:F&gt;</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.created_at_timestamp&#125;</code> | Unix-Zeitstempel für die Erstellungszeit. Quelle: Einladung. | <code>&lt;t:1781460000:F&gt;</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.inviter&#125;</code> | Einladender für Einladung. | <code>Beispiel für einen Einladungseinladen</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.inviter_id&#125;</code> | Einladender-ID für die Einladung. | <code>Beispiel für die ID des Einladenden</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.inviter_mention&#125;</code> | Erwähnung des Einladenden für die Einladung. | <code>Beispiel für die Erwähnung einer Einladung durch den Einladenden</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.max_uses&#125;</code> | Max. Wird für Einladungen verwendet. | <code>Beispiel für die maximale Nutzung einer Einladung</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.url&#125;</code> | Direkte URL. Quelle: Einladung. | <code>https://discord.com/channels/123/456/789</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |
+| <code>&#123;invite.uses&#125;</code> | Wird für Einladungen verwendet. | <code>Beispiele für die Verwendung von Einladungen</code> | Laden Sie Tracking-Nachrichten und Protokolle ein |

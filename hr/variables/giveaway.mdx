@@ -1,0 +1,46 @@
+---
+title: "Varijable darivanja"
+description: "33 varijable darivanja koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;giveaway.bonus_rules&#125;</code> | Pravila bonusa za darivanje. | <code>Primjer pravila bonusa za darivanje</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.channel&#125;</code> | Spominjanje kanala ili vrijednost kanala. Izvor: nagradna igra. | <code>Primjer kanala za darivanje</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.channel_id&#125;</code> | Discord ID kanala. Izvor: nagradna igra. | <code>Primjer ID-a kanala za darivanje</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.conditions&#125;</code> | Uvjeti za darivanje. | <code>Primjeri uvjeta darivanja</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.created_at&#125;</code> | Discord- formatirano vrijeme izrade. Izvor: nagradna igra. | <code>&lt;t:1781460000:F&gt;</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.created_at_timestamp&#125;</code> | Unix vremenska oznaka za vrijeme stvaranja. Izvor: nagradna igra. | <code>&lt;t:1781460000:F&gt;</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.description&#125;</code> | Tekst opisa. Izvor: nagradna igra. | <code>Primjer opisa darivanja</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.duration&#125;</code> | Trajanje teksta. Izvor: nagradna igra. | <code>Primjer trajanja darivanja</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.ends_at&#125;</code> | Završava u za darivanje. | <code>Primjer darivanja završava u</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.ends_at_timestamp&#125;</code> | Unix vremenska oznaka za završava u. | <code>1781460000</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.ends_relative&#125;</code> | Ends Relative za darivanje. | <code>Primjer darivanja završava relativno</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.entries_count&#125;</code> | Broj unosa za darivanje. Izvor: nagradna igra. | <code>128</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.entry_conditions&#125;</code> | Uvjeti prijave za darivanje. | <code>Primjeri uvjeta ulaska u nagradnu igru</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.entry_mode&#125;</code> | Način prijave za darivanje. | <code>Primjer načina unosa darivanja</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.host&#125;</code> | Domaćin darivanja. Izvor: nagradna igra. | <code>Primjer domaćina darivanja</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.host_id&#125;</code> | ID domaćina za darivanje. | <code>Primjer ID-a hosta za dodjelu</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.host_mention&#125;</code> | Navedite domaćina darivanja. Izvor: nagradna igra. | <code>Primjer spominjanja domaćina nagradne igre</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.id&#125;</code> | Discord ID. Izvor: nagradna igra. | <code>123456789012345678</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.message_id&#125;</code> | Discord ID poruke. Izvor: nagradna igra. | <code>Primjer ID-a poruke za darivanje</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.message_url&#125;</code> | Izravno Discord poveznica poruke. Izvor: nagradna igra. | <code>Primjer URL poruke za darivanje</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.number&#125;</code> | Broj za darivanje. | <code>Primjer nagradnog broja</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.prize&#125;</code> | Podijelna nagrada. Izvor: nagradna igra. | <code>Primjer nagradne igre</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.public_id&#125;</code> | Javno prilagođen ID. Izvor: nagradna igra. | <code>Primjer nagradnog javnog ID-a</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.reaction_emoji&#125;</code> | Emotikoni reakcije za darivanje. | <code>Primjer emotikona reakcije na darivanje</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.reroll_count&#125;</code> | Broj rerolla za darivanje. | <code>128</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.starts_at&#125;</code> | Počinje u za darivanje. | <code>Primjer darivanja počinje u</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.starts_at_timestamp&#125;</code> | Unix vremenska oznaka za počinje u. | <code>1781460000</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.status&#125;</code> | Trenutno stanje. Izvor: nagradna igra. | <code>Primjer statusa darivanja</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.title&#125;</code> | Prikaz naslova. Izvor: nagradna igra. | <code>Primjer naslova darivanja</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.winner_conditions&#125;</code> | Pobjednik Uvjeti za darivanje. | <code>Primjer uvjeta pobjednika nagradne igre</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.winner_mentions&#125;</code> | Popis za spominjanje pobjednika. Izvor: nagradna igra. | <code>Primjer spominjanja dobitnika nagradne igre</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.winners&#125;</code> | Popis pobjednika. Izvor: nagradna igra. | <code>Primjeri dobitnika nagradne igre</code> | Poruke o darivanja i predlošci rezultata darivanja |
+| <code>&#123;giveaway.winners_count&#125;</code> | Broj dobitnika nagradne igre. Izvor: nagradna igra. | <code>128</code> | Poruke o darivanja i predlošci rezultata darivanja |

@@ -1,0 +1,186 @@
+---
+title: "Economía de servidores"
+description: "Configure límites de moneda, recompensas, bancos, transferencias, tiendas, robos y casinos."
+icon: "coins"
+---
+
+Cada servidor tiene el suyo Rumi economía. Nombres de monedas, montos de recompensa, configuraciones,
+Los saldos y los artículos de la tienda se mantienen en la economía de ese servidor en lugar de compartirse.
+entre comunidades no relacionadas.
+
+## Qué pueden hacer los miembros
+
+Los comandos cotidianos son sencillos:
+
+```text
+-balance
+-balance @member
+-daily
+-weekly
+-work
+-deposit 500
+-deposit all
+-withdraw 250
+-give @member 100
+-economytop
+```
+
+Los saldos en efectivo y bancarios están separados. `deposit` mueve efectivo al banco;
+`withdraw` lo mueve hacia atrás. Transferencias realizadas con `give` puede verse afectado por la
+impuesto de transferencia configurado en el servidor.
+
+## Configuración inicial
+
+Los miembros con **Administrar servidor** pueden inspeccionar y editar la configuración:
+
+```text
+-economy config
+-economy config currency petals
+-economy config icon 🌸
+-economy config daily 250
+-economy config weekly 2500
+-economy config work 50 350
+-economy config cooldown work 3600
+```
+
+El rango de trabajo es un pago mínimo y máximo. Los tiempos de reutilización se introducen en
+segundos en el comando de configuración económica.
+
+Deshabilite un comando económico sin deshabilitar todo el sistema:
+
+```text
+-economy config disable rob
+-economy config enable rob
+```
+
+`economy config reset confirm` restablece la configuración a sus valores predeterminados pero no
+No eliminar saldos. `economy reset confirm` es diferente: restablece el
+saldos de los usuarios del servidor. Leer RumiConfirme cuidadosamente antes de usar cualquiera de los dos.
+
+## Robos y juegos de casino.
+
+El robo se puede ajustar o desactivar:
+
+```text
+-economy rob
+-economy rob on
+-economy rob cooldown 3600
+-economy rob limits 25 500
+-economy rob chance 35
+-economy rob fine 20
+-economy rob protection 12
+```
+
+Los miembros usan `-rob @member [amount]`. Rumi aplica la oportunidad guardada, límites,
+Multa por intento fallido, tiempo de recuperación y período de protección.
+
+Los controles del casino funcionan de la misma manera:
+
+```text
+-economy casino on
+-economy casino cooldown 20
+-economy casino limits 10 1000
+-casino coinflip 100 heads
+-casino slots 100
+```
+
+## Tiendas e inventarios
+
+Los miembros pueden navegar por la tienda del servidor, comprar artículos, inspeccionar su inventario y
+vender artículos compatibles:
+
+```text
+-shop
+-shop view <item>
+-buy <item>
+-inventory
+-sell <item>
+```
+
+### Construir un artículo de tienda
+
+Los miembros con **Administrar servidor** pueden crear y mantener artículos de la tienda del servidor. El
+crear formato es `name`, `buy price`, opcional `sell price`, entonces `|` y el
+descripción:
+
+```text
+-shop add coffee 150 45 | Fresh server coffee
+-shop add vip-pass 5000 0 | Unlocks the VIP role
+-shop view coffee
+```
+
+Los nombres de los elementos son tokens únicos, así que use `vip-pass` en vez de `VIP pass`. una venta
+precio de `0` evita que el artículo devuelva moneda cuando se vende. `edit` usos
+el mismo formato completo:
+
+```text
+-shop edit coffee 175 50 | A warm drink and a small energy boost
+```
+
+Para cambios más pequeños, utilice los comandos enfocados:
+
+```text
+-shop price coffee 200
+-shop sellprice coffee 60
+-shop desc coffee A limited seasonal drink
+-shop remove coffee
+```
+
+### Elementos respaldados por roles
+
+Adjunte uno o más Discord roles a un artículo:
+
+```text
+-shop role add vip-pass @VIP
+-shop role add vip-pass @Supporter
+-shop role remove vip-pass @Supporter
+```
+
+Rumi debe poder gestionar cada rol adjunto, lo que significa su rol más alto
+debe sentarse encima de ellos en DiscordLista de roles.
+
+### Códigos de artículos y tarjetas de regalo
+
+Un código de artículo se almacena en un artículo y el personal puede mantenerlo:
+
+```text
+-shop code create vip-pass WELCOME1
+-shop code remove vip-pass WELCOME1
+```
+
+Las tarjetas de regalo son códigos de moneda canjeables asociados con un artículo. Suministrar el
+Cantidad de moneda y número de usos después del código:
+
+```text
+-shop giftcard create vip-pass LAUNCH500 500 25
+-shop giftcard remove vip-pass LAUNCH500
+```
+
+Los miembros canjean un código válido con:
+
+```text
+-shop redeem LAUNCH500
+```
+
+Cada canje exitoso agrega el monto configurado a la cuenta de ese miembro.
+gana y consume un uso. Trate los códigos de tarjetas de regalo como enlaces privados: cualquiera
+Quien conozca un código válido puede intentar canjearlo mientras queden usos.
+
+`rumishop` es Rumies la tienda de bots global y está separada de la configurada por el servidor
+comercio.
+
+## Auditoría de cambios
+
+Rumi registra cambios y transacciones en la configuración de la economía:
+
+```text
+-economy audit
+-economy logs
+```
+
+Son útiles después de cambiar recompensas, impuestos, configuraciones de robo o límites del casino.
+
+<Tip>
+Primero establezca recompensas conservadoras y límites de apuestas. Es más fácil aumentar un
+el ritmo de la economía que reparar los equilibrios después de una configuración demasiado generosa.
+</Tip>

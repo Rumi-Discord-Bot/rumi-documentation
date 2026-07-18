@@ -1,0 +1,46 @@
+---
+title: "Giveaway-Variablen"
+description: "33 von Rumi unterstützte Giveaway-Variablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;giveaway.bonus_rules&#125;</code> | Bonusregeln für Giveaways. | <code>Beispielregeln für Giveaway-Boni</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.channel&#125;</code> | Kanalerwähnung oder Kanalwert. Quelle: Giveaway. | <code>Beispiel eines Giveaway-Kanals</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.channel_id&#125;</code> | Discord Kanal-ID. Quelle: Giveaway. | <code>Beispiel für eine Giveaway-Kanal-ID</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.conditions&#125;</code> | Bedingungen für die Verlosung. | <code>Beispielhafte Giveaway-Bedingungen</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.created_at&#125;</code> | Discord-formatierte Erstellungszeit. Quelle: Giveaway. | <code>&lt;t:1781460000:F&gt;</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.created_at_timestamp&#125;</code> | Unix-Zeitstempel für die Erstellungszeit. Quelle: Giveaway. | <code>&lt;t:1781460000:F&gt;</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.description&#125;</code> | Beschreibungstext. Quelle: Giveaway. | <code>Beispiel einer Giveaway-Beschreibung</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.duration&#125;</code> | Dauertext. Quelle: Giveaway. | <code>Beispiel für die Dauer eines Giveaways</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.ends_at&#125;</code> | Endet bei zum Verschenken. | <code>Beispiel-Gewinnspiel endet um</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.ends_at_timestamp&#125;</code> | Unix-Zeitstempel für endet um. | <code>1781460000</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.ends_relative&#125;</code> | Endet relativ zur Verlosung. | <code>Beispiel-Werbegeschenk endet relativ</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.entries_count&#125;</code> | Anzahl der Giveaway-Einträge. Quelle: Giveaway. | <code>128</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.entry_conditions&#125;</code> | Teilnahmebedingungen für das Gewinnspiel. | <code>Beispielhafte Teilnahmebedingungen für ein Giveaway</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.entry_mode&#125;</code> | Teilnahmemodus für Giveaways. | <code>Beispiel für einen Giveaway-Eintrittsmodus</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.host&#125;</code> | Giveaway-Host. Quelle: Giveaway. | <code>Beispiel eines Giveaway-Hosts</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.host_id&#125;</code> | Host-ID zum Verschenken. | <code>Beispiel einer Giveaway-Host-ID</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.host_mention&#125;</code> | Erwähnen Sie den Gastgeber des Giveaways. Quelle: Giveaway. | <code>Beispiel für die Erwähnung eines Giveaway-Gastgebers</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.id&#125;</code> | Discord AUSWEIS. Quelle: Giveaway. | <code>123456789012345678</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.message_id&#125;</code> | Discord Nachrichten-ID. Quelle: Giveaway. | <code>Beispiel-ID einer Giveaway-Nachricht</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.message_url&#125;</code> | Direkt Discord Nachrichtenlink. Quelle: Giveaway. | <code>Beispiel einer Werbegeschenk-Nachrichten-URL</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.number&#125;</code> | Nummer zum Verschenken. | <code>Beispiel einer Giveaway-Nummer</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.prize&#125;</code> | Gewinnspiel. Quelle: Giveaway. | <code>Beispiel für einen Gewinn</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.public_id&#125;</code> | Öffentlichkeitsfreundlicher Ausweis. Quelle: Giveaway. | <code>Beispiel für eine öffentliche Werbegeschenk-ID</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.reaction_emoji&#125;</code> | Reaktions-Emoji zum Verschenken. | <code>Beispiel für ein Giveaway-Reaktions-Emoji</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.reroll_count&#125;</code> | Anzahl der Wiederholungen für die Verlosung. | <code>128</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.starts_at&#125;</code> | Beginnt bei zum Verschenken. | <code>Beispiel-Gewinnspiel beginnt bei</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.starts_at_timestamp&#125;</code> | Unix-Zeitstempel für Starts um. | <code>1781460000</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.status&#125;</code> | Aktueller Stand. Quelle: Giveaway. | <code>Beispiel für einen Giveaway-Status</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.title&#125;</code> | Titel anzeigen. Quelle: Giveaway. | <code>Beispiel für einen Giveaway-Titel</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.winner_conditions&#125;</code> | Gewinnerbedingungen für die Verlosung. | <code>Beispielbedingungen für Gewinner eines Gewinnspiels</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.winner_mentions&#125;</code> | Erwähnungsliste der Gewinner. Quelle: Giveaway. | <code>Beispiele für Erwähnungen von Giveaway-Gewinnern</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.winners&#125;</code> | Gewinnerliste. Quelle: Giveaway. | <code>Beispielhafte Gewinner einer Verlosung</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |
+| <code>&#123;giveaway.winners_count&#125;</code> | Anzahl der Gewinner des Gewinnspiels. Quelle: Giveaway. | <code>128</code> | Giveaway-Nachrichten und Giveaway-Ergebnisvorlagen |

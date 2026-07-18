@@ -1,0 +1,19 @@
+---
+title: "Slučajne varijable"
+description: "6 slučajnih varijabli koje podržava Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Kontekst je bitan. Vraća se varijabla `N/A` kada trenutna naredba ili događaj ne daje svoju izvornu vrijednost. Dodati `|fallback text` prije završne vitičaste zagrade kada trebate prijateljskiju zamjenu.
+</Info>
+
+
+| Varijabilna | Što se vraća | Primjer izlaza | Dostupno u |
+| --- | --- | --- | --- |
+| <code>&#123;choice:name:one&#124;two&#124;three&#125;</code> | Odaberite jednom, spremite rezultat kao naziv i izložite ga &#123;ime&#125;. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Nasumično odaberite jednu opciju. | <code>dva</code> | Prilagođene naredbe, automatski odgovori |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Vrati jednu opciju odvojenu cijevima bez spremanja. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;random:one&#124;two&#124;three&#125;</code> | Vrati jednu opciju odvojenu cijevima bez spremanja. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |
+| <code>&#123;range:reward:100-500&#125;</code> | Odaberite nasumični broj i spremite ga kao vrijednost za višekratnu upotrebu. | <code>348, then use &#123;reward&#125;</code> | Prilagođene naredbe, automatski odgovori |
+| <code>&#123;range:1-100&#125;</code> | Vrati nasumični cijeli broj u uključivom rasponu. | <code>Pogledajte sintaksu i primjere u vodičima za prilagođene naredbe.</code> | Prilagođene naredbe; pomoćnici prilagođenih podataka također zahtijevaju --db u automatskim odgovorima |

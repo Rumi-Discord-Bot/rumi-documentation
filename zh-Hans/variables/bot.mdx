@@ -1,0 +1,44 @@
+---
+title: "机器人变量"
+description: "Rumi 支持 31 个机器人变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;bot.avatar&#125;</code> | 头像图片网址。来源：机器人。 | <code>https://cdn.discordapp.com/.../avatar.png</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.command_count&#125;</code> | 机器人的命令数。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.custom.avatar&#125;</code> | 头像图片网址。来源：机器人自定义。 | <code>https://cdn.discordapp.com/.../avatar.png</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.custom.banner&#125;</code> | 横幅图像 URL。来源：机器人自定义。 | <code>机器人自定义横幅示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.custom.bio&#125;</code> | 用于机器人定制的生物。 | <code>机器人自定义简介示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.custom.name&#125;</code> | 名称值。来源：机器人自定义。 | <code>鲁米</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.dashboard&#125;</code> | 机器人的仪表板。 | <code>机器人仪表板示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.guild_count&#125;</code> | 机器人的公会数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.id&#125;</code> | Discord ID。来源：机器人。 | <code>123456789012345678</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.invite&#125;</code> | 邀请机器人。 | <code>机器人邀请示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.mention&#125;</code> | 提到 Rumi. | <code>&lt;@123456789012345678&gt;</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.name&#125;</code> | Rumi 机器人用户名。 | <code>鲁米</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.prefix&#125;</code> | 当前命令前缀。 | <code>,</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.color.alert&#125;</code> | 机器人回复颜色警报。 | <code>机器人回复颜色警报示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.color.bad&#125;</code> | 不利于机器人回复颜色。 | <code>示例机器人回复颜色不好</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.color.good&#125;</code> | 适合机器人回复颜色。 | <code>示例机器人回复颜色良好</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.color.info&#125;</code> | 机器人回复颜色信息。 | <code>机器人回复颜色信息示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.color.list&#125;</code> | 机器人回复颜色列表。 | <code>机器人回复颜色列表示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.emoji.alert&#125;</code> | 机器人回复表情符号警报。 | <code>机器人回复表情符号警报示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.emoji.bad&#125;</code> | 不利于机器人回复表情符号。 | <code>机器人回复表情符号不好的示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.emoji.good&#125;</code> | 适合机器人回复表情符号。 | <code>示例机器人回复表情符号很好</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.emoji.info&#125;</code> | 机器人回复表情符号的信息。 | <code>机器人回复表情符号信息示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.emoji.list&#125;</code> | 机器人回复表情符号列表。 | <code>机器人回复表情符号列表示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.reply.mode&#125;</code> | 配置模式。来源：机器人回复。 | <code>机器人回复模式示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.shard_count&#125;</code> | 机器人的分片数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.shard_id&#125;</code> | 机器人的分片 ID。 | <code>机器人分片 ID 示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.support_server&#125;</code> | 机器人的支持服务器。 | <code>机器人支持服务器示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.uptime&#125;</code> | 该机器人进程已经运行了多长时间。 | <code>机器人正常运行时间示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.user_count&#125;</code> | 机器人的用户数量。 | <code>128</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.version&#125;</code> | 机器人版本。 | <code>机器人版本示例</code> | 嵌入、自定义命令、自动回复、调用消息 |
+| <code>&#123;bot.website&#125;</code> | 机器人网站。 | <code>机器人网站示例</code> | 嵌入、自定义命令、自动回复、调用消息 |

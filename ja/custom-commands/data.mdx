@@ -1,0 +1,63 @@
+---
+title: "保存データ"
+description: "カスタム コマンド ワークフロー用にサーバー データを保存して再利用します。"
+icon: "database"
+---
+
+カスタム コマンド データは、 `namespace` そして `key`。名前空間が保持する
+無関係なワークフローは分離します。たとえば、 `cases:latest` そして `events:count`.
+
+## リストデータ
+
+```text
+-cc data list
+-cc data list cases
+```
+
+## 値の読み取りと書き込み
+
+```text
+-cc data get cases latest
+-cc data set cases latest "Reviewed by staff"
+```
+
+## 数値をインクリメントする
+
+金額のデフォルトは、 `1` 省略した場合。明示的に指定すると、より明確になります。
+
+```text
+-cc data inc cases next 1
+```
+
+`increment` のエイリアスです `inc`.
+
+## 値を削除する
+
+```text
+-cc data delete cases latest
+```
+
+`del` そして `remove` データのエイリアスです `delete` 手術。
+
+## 応答内のデータの読み取り
+
+カスタム コマンド テンプレートは、次のような読み取りをサポートします。
+
+```text
+{db.get:cases:latest}
+{db.exists:cases:latest}
+```
+
+応答から値をインクリメントすることもできます。
+
+```text
+{db.inc:cases:next:1}
+```
+
+更新を行わない場合は、インクリメント命令を独自の行に配置します。
+その生の結果を示しています。走る `-variables customdb` 現在のテンプレート参照用。
+
+<Warning>
+カスタム コマンドを削除しても、そのワークフローで使用されるすべてのデータが削除されるわけではありません。
+削除されました。不要になったエントリを明示的に削除します。
+</Warning>

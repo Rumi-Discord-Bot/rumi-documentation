@@ -1,0 +1,125 @@
+---
+title: "Razine i XP"
+description: "Konfigurirajte XP, poruke o višoj razini, nagradne uloge, množitelje i zanemarene kanale."
+icon: "arrow-up-right-dots"
+---
+
+RumiSustav niveliranja prati server XP, prikazuje rang kartice, gradi ljestvicu s najboljim rezultatima,
+i može dodijeliti uloge na odabranim prekretnicama. XP člana pripada poslužitelju
+gdje je zarađeno.
+
+## Počnite s postavkama
+
+Upravitelji poslužitelja mogu omogućiti sustav i pregledati spremljenu konfiguraciju:
+
+```text
+-levels enable
+-levels settings
+```
+
+Članovi tada mogu koristiti:
+
+```text
+-level
+-level @member
+-leaderboard
+```
+
+`level` također je dostupan kao `rank`. Ploča s najboljim rezultatima pokazuje XP poslužitelja
+rangiranje.
+
+## Najave viših razina
+
+Postavite poruku s `levels message`. Poruka može obuhvaćati više redaka i koristiti
+varijable razine kao što su `{user.mention}` i `{level}`:
+
+```text
+-levels message GG {user.mention}!
+You reached level {level}. --delete 15
+```
+
+The `--delete 15` zastava govori Rumi kako biste uklonili najavu nakon 15 sekundi.
+Pregledajte spremljeni rezultat prije nego što se pouzdate u njega:
+
+```text
+-levels preview
+```
+
+Odaberite hoće li najave koristiti normalan tekst ili ugrađeni tekst i gdje se nalaze
+poslao:
+
+```text
+-levels messagemode text
+-levels messagemode embed
+-levels channel #level-ups
+```
+
+Trčanje `-variables level` da biste vidjeli dostupne varijable vezane uz trenutnu razinu
+predlošci poruka.
+
+## Nagradite uloge
+
+Dodijelite ulogu prekretnici:
+
+```text
+-levels role 10 @Veteran
+-levels role 25 @Regular
+```
+
+Koristiti `stackroles` kako bi odabrali hoće li članovi zadržati ranije uloge prekretnica ili
+zadržati samo ulogu povezanu s njihovim najvećim dostignutim prekretnicom:
+
+```text
+-levels stackroles on
+-levels stackroles off
+```
+
+Uklonite jednu prekretnicu i ponovno primijenite trenutnu konfiguraciju uloge s:
+
+```text
+-levels roleclear 10
+-levels sync
+```
+
+Rumi treba **Upravljanje ulogama**, a njegova najviša uloga mora biti iznad svake nagrade
+ulogu koju se očekuje da dodijeli.
+
+## Množitelji i zanemareni kanali
+
+Postavite XP množitelj na cijelom poslužitelju ili množitelj pridružen ulozi:
+
+```text
+-levels multiplier 1.5
+-levels rolemultiplier @Booster 2
+```
+
+Kanali na kojima normalno ćaskanje ne bi trebalo proizvoditi XP mogu se isključiti:
+
+```text
+-levels ignore #spam
+-levels unignore #spam
+```
+
+## Podešavanje XP-a i reputacije
+
+Upravljačka naredba za izravne XP promjene je:
+
+```text
+-xp add @member 100
+-xp remove @member 50
+-xp set @member 1000
+```
+
+Rumi također ima zaseban sustav reputacije:
+
+```text
+-rep give @member
+-rep remove @member
+-rep leaderboard
+```
+
+<Warning>
+Promjena množitelja ili XP-a može promijeniti značenje postojećeg rangiranja. Provjeriti
+`-levels settings` prije i poslije velike promjene, zatim koristite `-levels sync` ako
+potrebno je uskladiti uloge nagrađivanja.
+</Warning>

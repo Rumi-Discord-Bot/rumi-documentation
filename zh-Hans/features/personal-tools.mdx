@@ -1,0 +1,145 @@
+---
+title: "个人工具"
+description: "查找最近提及的内容、翻译消息、保存书签以及管理待办事项列表。"
+icon: "toolbox"
+---
+
+这些命令存储或显示运行它们的成员的信息。他们
+不要创建共享服务器任务列表或公开某个成员已保存的书签
+给另一位成员。
+
+## 过去 24 小时内的提及次数
+
+```text
+-mentions
+```
+
+Rumi 显示当前服务器中对您的直接提及和回复。
+每个条目包括捕获的消息内容和回复上下文
+可用的。如果捕获的消息后来被删除，保存的快照仍然可以
+出现，直到它落在 24 小时窗口之外。
+
+自我 ping 被忽略。该命令仅显示活动 Rumi 观察的同时
+可以访问该频道；它无法恢复之前的旧消息
+追踪者看到了他们。
+
+## 翻译文本或回复
+
+```text
+-translate es hello
+-translate from en to ja hello
+```
+
+要翻译消息而不复制消息，请回复该消息并提供
+仅目标语言：
+
+```text
+-translate fr
+```
+
+结果面板允许命令作者更改目标语言、交换
+平移方向，或关闭控件。查看可用的语言代码
+和：
+
+```text
+-translate languages
+```
+
+## 货币工具
+
+按货币代码或支持的货币名称转换金额：
+
+```text
+-currency convert 25 USD to EUR
+-currency convert 5000 JPY to KES
+```
+
+当您尚不知道确切的代码时，该命令的其余部分很有用：
+
+| 命令 | 目的 |
+| --- | --- |
+| `currency rates <base> [page]` | 使用一种货币作为基础浏览汇率。 |
+| `currency list [page]` | 浏览支持的货币。 |
+| `currency search <query>` | 通过代码或名称的一部分查找代码。 |
+| `currency info <code\|name>` | 检查一种支持的货币。 |
+| `currency popular [base]` | 显示常用的基础转换。 |
+| `currency compare <amount> <from> <to1> <to2> ...` | 比较多个目标的相同数量。 |
+| `currency inverse <amount> <from> to <to>` | 显示转换及其反比关系。 |
+| `currency history <YYYY-MM-DD> <amount> <from> to <to>` | 使用历史日期的汇率进行转换。 |
+| `currency symbols` | 显示可识别的货币符号。 |
+
+示例：
+
+```text
+-currency search shilling
+-currency info KES
+-currency rates GBP 2
+-currency compare 100 USD EUR GBP KES JPY
+-currency history 2025-01-15 100 USD to EUR
+```
+
+### 为订阅评分
+
+保存货币对以便稍后跟踪：
+
+```text
+-currency subscribe USD KES
+-currency subscriptions
+-currency unsubscribe USD KES
+```
+
+费率来自 Rumi配置的货币数据提供者。它们对于
+参考和比较，不作为银行的保证结算报价或
+支付服务。
+
+## 书签
+
+保存带有可选注释的链接：
+
+```text
+-bookmark add https://example.com Useful reference
+```
+
+或者回复一个 Discord 消息并运行：
+
+```text
+-bookmark add Follow up later
+```
+
+浏览、搜索、编辑或删除已保存的项目：
+
+```text
+-bookmark list
+-bookmark list reference
+-bookmark edit bm-1234 Better note
+-bookmark remove bm-1234
+```
+
+Rumi 保存项目时返回友好的书签 ID。而是使用该 ID
+比编辑或删除它时的列表位置更重要。
+
+## 待办事项列表
+
+```text
+-todo add Finish the event schedule
+-todo list
+-todo view todo-1234
+-todo complete todo-1234
+-todo reopen todo-1234
+-todo edit todo-1234 Finish the event schedule tonight
+-todo remove todo-1234
+```
+
+已完成的项目在正常列表中隐藏。将它们包括在内：
+
+```text
+-todo list --done
+```
+
+`-todo clear` 删除整个个人待办事项列表，因此仅在您不需要时才使用它
+不再需要任何未完成或已完成的项目。
+
+<Tip>
+书签和待办事项 ID 旨在即使在分页或搜索时也能保持稳定
+更改项目在显示列表中的位置。
+</Tip>

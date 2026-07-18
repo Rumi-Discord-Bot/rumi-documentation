@@ -1,0 +1,96 @@
+---
+title: "サーバーのカスタマイズ"
+description: "Rumi のサーバー プロファイルと標準応答の外観をカスタマイズします。"
+icon: "palette"
+---
+
+Rumi サーバーごとに異なるサーバー プロファイルと応答テーマを保持できます。
+これらの設定は、コマンド名の名前変更や色の変更は行わず、また、コマンド名の変更も行いません。
+他のコミュニティにおけるボットのグローバル プロフィール。
+
+## 保存されたカスタマイズを表示する
+
+```text
+-custom view
+-custom response list
+```
+
+`custom view` に、サーバ プロファイル フィールドを示します。 `custom response list` を示しています
+現在保存されている応答タイプ、モード、色、カスタム絵文字 Rumi.
+
+これらの設定を変更するには、**サーバーの管理** が必要です。
+
+## サーバープロファイル
+
+```text
+-custom nick Rumi Support
+-custom bio Community tools and music
+-custom avatar <image URL>
+-custom banner <image URL>
+```
+
+アバターとバナーを変更するには、画像を添付するか、画像の URL を指定します。 Discord
+サーバー内のボットのプロファイル フィールドをサポートする必要があります。
+
+他のフィールドに影響を与えずに 1 つのフィールドをクリアします。
+
+```text
+-custom clear nick
+-custom clear avatar
+-custom clear banner
+-custom clear bio
+```
+
+もし Discord 状態と保存されたプロファイルが同期していない場合は、再適用します。
+
+```text
+-custom apply
+```
+
+## 応答モード
+
+各応答タイプでは、通常の埋め込みまたはプレーン テキストを使用できます。
+
+```text
+-custom response mode good embed
+-custom response mode bad text
+```
+
+走る `-custom response list` によって受け入れられる応答タイプ名を確認するには、
+実行中のボット。応答タイプは、応答の目的を表します。
+成功、エラー、情報結果、またはリスト。
+
+## 応答の色
+
+```text
+-custom response color good #7fc8a9
+-custom response color bad #d97b7b
+```
+
+色は、そのタイプの埋め込みモードの返信に影響します。プレーンテキストの返信には埋め込みがありません
+境界線の色。
+
+## 応答絵文字
+
+Rumi 構成されたカスタムを使用します Discord 絵文字、またはそのタイプに絵文字がない場合は絵文字なし
+絵文字。デフォルトの Unicode 絵文字を置き換えるものではありません。
+
+```text
+-custom response emoji good <:approved:123456789012345678>
+-custom response emoji good off
+-custom response emoji good reset
+```
+
+カスタム絵文字は次のユーザーが使用できる必要があります Rumi。使用 `off` アイコンがない場合と `reset` のために
+Rumiの設定されたデフォルト。
+
+次のコマンドを使用して、1 つの応答タイプ全体をリセットします。
+
+```text
+-custom response reset good
+```
+
+<Tip>
+1 つの応答タイプを変更し、その種類の応答を生成するコマンドを実行し、
+残りの部分をスタイリングする前に結果を確認してください。
+</Tip>

@@ -1,0 +1,205 @@
+---
+title: "Serverberichten"
+description: "Configureer sticky-berichten, neem deel aan pings en herbruikbare gebeurtenisreacties."
+icon: "message-lines"
+---
+
+Rumi heeft verschillende server-berichtsystemen. Ze lossen verschillende problemen op:
+
+- **Sticky berichten** houden een herinnering bij aan de onderkant van een actief kanaal.
+- **Ping on join** vermeldt nieuwe leden in geselecteerde kanalen.
+- **Reacties aanroepen** geconfigureerde tekst of insluitingen verzenden voor ondersteunde server en
+  management evenementen.
+
+Ze worden alle drie geconfigureerd door leden met **Manage Server**.
+
+## Disboard herinneringen opwerpen
+
+Stel een vast herinneringskanaal in, of gebruik `dynamic` zodat de herinnering terugkeert naar de
+kanaal waar de hobbel werd gedetecteerd:
+
+```text
+-bumpreminder setup #bump-reminders @Bump Ping
+-bumpreminder setup dynamic here
+-bumpreminder status
+```
+
+De ping kan een rol, lid, `here`, `everyone`, of `off`. De ping wijzigen
+voegt het niet automatisch in aangepaste tekst in; erbij betrekken `{ping}` waar het
+zou moeten verschijnen.
+
+```text
+-bumpreminder channel #bump-reminders
+-bumpreminder channel dynamic
+-bumpreminder ping @Bump Ping
+-bumpreminder ping off
+```
+
+### Detectie en timing
+
+Automatische detectiehorloges voor een succes Disboard buil. Wanneer gedetecteerd, Rumi
+verzendt het geconfigureerde succesantwoord en plant de herinnering:
+
+```text
+-bumpreminder autodetect on
+-bumpreminder cooldown 2h
+```
+
+Als de detectie een hobbel mist, start u dezelfde timer handmatig:
+
+```text
+-bumpreminder done
+```
+
+`done` is opzettelijk beschikbaar na installatie zonder dat server-manager nodig is
+toegang, dus het lid dat liep `/bump` kan het markeren. Configuratie en previews
+vereist nog steeds **Server beheren**.
+
+### Platte tekst en insluitstijlen
+
+Kies de herinneringsstijl onafhankelijk van de succesbevestigingsstijl:
+
+```text
+-bumpreminder mode embed
+-bumpreminder successmode text
+```
+
+Instellingen voor platte tekst:
+
+```text
+-bumpreminder reminder {ping} **{server}** can be bumped again. Run /bump now.
+-bumpreminder success Thanks {bumped_by}! Next bump: {next_bump}
+```
+
+Instellingen voor het insluiten van herinneringen:
+
+```text
+-bumpreminder content {ping}
+-bumpreminder title Time to bump
+-bumpreminder description **{server}** can be bumped again.\nRun `/bump` now.
+-bumpreminder color c8d8f2
+-bumpreminder image https://example.com/banner.png
+-bumpreminder thumbnail https://example.com/icon.png
+-bumpreminder footer Thanks for helping the server grow
+```
+
+Succesvolle insluitingen hebben bijpassende besturingselementen: `successcontent`, `successtitle`,
+`successdescription`, `successcolor`, `successimage`, `successthumbnail`, En
+`successfooter`. Gebruik `reset` voor tekst, titels, beschrijvingen, kleuren of voetteksten;
+gebruik `off` om afbeeldings- en miniatuur-URL's te wissen.
+
+### Tijdelijke aanduidingen voor bumpen
+
+Loop `-bumpreminder variables` in Discord om de livelijst te zien.
+
+| Tijdelijke aanduiding | Waarde |
+| --- | --- |
+| `{ping}` | Geconfigureerd pingdoel. |
+| `{server}` | Servernaam. |
+| `{bumped_by}` of `{user}` | Lid dat heeft gestoten, wanneer bekend. |
+| `{next_bump}` | Relatieve tijd tot de volgende hobbel. |
+| `{next_bump_time}` | Volledige tijdstempel voor de volgende bump. |
+| `{last_bump}` | Relatieve tijd sinds de laatste hobbel. |
+| `{last_bump_time}` | Volledige tijdstempel van de laatste bump. |
+| `{bump_count}` | Aantal hobbels Rumi heeft gevolgd. |
+| `{channel}` | Herinneringskanaal. |
+
+Bekijk een voorbeeld van de huidige herinnering zonder de timer te wijzigen, of schakel het systeem uit:
+
+```text
+-bumpreminder test
+-bumpreminder disable
+```
+
+## Sticky berichten
+
+Maak een sticky aan die na een aantal berichten vernieuwd wordt:
+
+```text
+-sticky add #rules --every 10 -- Read the pinned rules before chatting.
+```
+
+Of ververs het met een tijdsinterval:
+
+```text
+-sticky add #info --time 30m -- {embed}$v{title: Reminder}$v{description: Check the links above.}
+```
+
+De zelfstandige `--` scheidt sticky instellingen van de inhoud. Alles
+nadat het is opgeslagen als platte tekst of een insluitscript.
+
+Beheer opgeslagen stickies op basis van hun lijstslot of ID:
+
+```text
+-sticky list
+-sticky preview 1
+-sticky message 1 Updated sticky text.
+-sticky remove 1
+-sticky clear
+```
+
+Rumi heeft **Berichten verzenden**, **Links insluiten** en **Berichten beheren** nodig.
+
+## Ping bij deelname
+
+Voeg een bestemming, optionele verwijdervertraging en optioneel bericht toe:
+
+```text
+-pingonjoin add #general 10s
+-pingonjoin add #rules 30s Welcome {user.mention}
+```
+
+Kies of het systeem zich richt op mensen, bots of beide:
+
+```text
+-pingonjoin target human
+-pingonjoin target both
+```
+
+Bewerk één kanaal of het standaardgedrag:
+
+```text
+-pingonjoin message #general {user.mention} read the rules.
+-pingonjoin delay #general 15s
+-pingonjoin preview #general
+-pingonjoin list
+```
+
+`clear` verwijdert elk geconfigureerd ping-kanaal. `reset` herstelt ook de ander
+ping-on-join-instellingen naar hun standaardwaarden.
+
+## Roep gebeurtenisreacties op
+
+Stel een standaardbestemming in:
+
+```text
+-invoke setup #mod-log
+-invoke list
+```
+
+Ondersteunde triggers zijn `warn`, `ban`, `unban`, `kick`, `timeout`, `untimeout`,
+`role_add`, `role_remove`, `member_join`, `member_leave`, En `boost`.
+
+Configureer platte tekst of een insluitscript:
+
+```text
+-invoke set warn Staff warned {punishment.user.mention}.
+-invoke set member_join {embed}$v{title: Welcome}$v{description: Welcome {user.mention}.}
+```
+
+Kies een apart kanaal of DM-gedrag voor één evenement:
+
+```text
+-invoke channel warn #mod-log
+-invoke dm warn on
+-invoke preview warn
+```
+
+Gebruik `-variables punishment`, `-variables user`, of de relevante evenementencategorie
+bij het bouwen van een aanroepsjabloon.
+
+<Info>
+Een aanroepsjabloon creëert niet de gebeurtenis zelf. Het controleert Rumi's reactie
+wanneer de overeenkomstige ondersteunde gebeurtenis wordt waargenomen of geactiveerd door een andere gebeurtenis
+Rumi werkstroom.
+</Info>

@@ -1,0 +1,205 @@
+---
+title: "服务器消息"
+description: "配置粘性消息、加入 ping 和可重用的事件响应。"
+icon: "message-lines"
+---
+
+Rumi 有多个服务器消息系统。他们解决不同的问题：
+
+- **粘性消息** 在活动频道的底部附近保留提醒。
+- **加入时 Ping** 提及选定频道中的新成员。
+- **调用响应**发送配置的文本或嵌入支持的服务器和
+  管理事件。
+
+这三者均由成员使用 **管理服务器** 进行配置。
+
+## Disboard 碰撞提醒
+
+设置固定提醒通道，或者使用 `dynamic` 所以提醒会返回到
+检测到碰撞的通道：
+
+```text
+-bumpreminder setup #bump-reminders @Bump Ping
+-bumpreminder setup dynamic here
+-bumpreminder status
+```
+
+ping 可能是角色、成员、 `here`, `everyone`， 或者 `off`。更改 ping
+不会自动将其插入到自定义文本中；包括 `{ping}` 它在哪里
+应该出现。
+
+```text
+-bumpreminder channel #bump-reminders
+-bumpreminder channel dynamic
+-bumpreminder ping @Bump Ping
+-bumpreminder ping off
+```
+
+### 检测和计时
+
+自动检测手表以确保成功 Disboard 撞。当检测到时， Rumi
+发送配置的成功响应并安排提醒：
+
+```text
+-bumpreminder autodetect on
+-bumpreminder cooldown 2h
+```
+
+如果检测错过了碰撞，请手动启动相同的计时器：
+
+```text
+-bumpreminder done
+```
+
+`done` 设置后无需服务器管理器即可使用
+访问权限，所以运行的成员 `/bump` 可以标记一下。配置和预览
+仍然需要**管理服务器**。
+
+### 纯文本和嵌入样式
+
+选择独立于成功确认样式的提醒样式：
+
+```text
+-bumpreminder mode embed
+-bumpreminder successmode text
+```
+
+纯文本设置：
+
+```text
+-bumpreminder reminder {ping} **{server}** can be bumped again. Run /bump now.
+-bumpreminder success Thanks {bumped_by}! Next bump: {next_bump}
+```
+
+提醒嵌入设置：
+
+```text
+-bumpreminder content {ping}
+-bumpreminder title Time to bump
+-bumpreminder description **{server}** can be bumped again.\nRun `/bump` now.
+-bumpreminder color c8d8f2
+-bumpreminder image https://example.com/banner.png
+-bumpreminder thumbnail https://example.com/icon.png
+-bumpreminder footer Thanks for helping the server grow
+```
+
+成功嵌入具有匹配的控件： `successcontent`, `successtitle`,
+`successdescription`, `successcolor`, `successimage`, `successthumbnail`， 和
+`successfooter`。使用 `reset` 文本、标题、描述、颜色或页脚；
+使用 `off` 清除图像和缩略图 URL。
+
+### 凹凸占位符
+
+跑步 `-bumpreminder variables` 在 Discord 查看实时列表。
+
+| 占位符 | 价值 |
+| --- | --- |
+| `{ping}` | 配置的 ping 目标。 |
+| `{server}` | 服务器名称。 |
+| `{bumped_by}` 或者 `{user}` | 已知时发生碰撞的成员。 |
+| `{next_bump}` | 到下一次碰撞的相对时间。 |
+| `{next_bump_time}` | 完整的下一个碰撞时间戳。 |
+| `{last_bump}` | 自上次碰撞以来的相对时间。 |
+| `{last_bump_time}` | 完整的最后碰撞时间戳。 |
+| `{bump_count}` | 颠簸数 Rumi 已追踪。 |
+| `{channel}` | 提醒频道。 |
+
+预览当前提醒而不更改其计时器，或禁用系统：
+
+```text
+-bumpreminder test
+-bumpreminder disable
+```
+
+## 置顶消息
+
+创建一个在出现多条消息后刷新的便签：
+
+```text
+-sticky add #rules --every 10 -- Read the pinned rules before chatting.
+```
+
+或者按时间间隔刷新：
+
+```text
+-sticky add #info --time 30m -- {embed}$v{title: Reminder}$v{description: Check the links above.}
+```
+
+独立式 `--` 将粘性设置与内容分开。一切
+将其存储为纯文本或嵌入脚本后。
+
+按其列表位置或 ID 管理已保存的即时贴：
+
+```text
+-sticky list
+-sticky preview 1
+-sticky message 1 Updated sticky text.
+-sticky remove 1
+-sticky clear
+```
+
+Rumi 需要**发送消息**、**嵌入链接**和**管理消息**。
+
+## 加入 Ping
+
+添加目的地、可选删除延迟和可选消息：
+
+```text
+-pingonjoin add #general 10s
+-pingonjoin add #rules 30s Welcome {user.mention}
+```
+
+选择系统是否针对人类、机器人或两者：
+
+```text
+-pingonjoin target human
+-pingonjoin target both
+```
+
+编辑一个通道或默认行为：
+
+```text
+-pingonjoin message #general {user.mention} read the rules.
+-pingonjoin delay #general 15s
+-pingonjoin preview #general
+-pingonjoin list
+```
+
+`clear` 删除每个配置的 ping 通道。 `reset` 也恢复其他
+ping-on-join 设置为其默认值。
+
+## 调用事件响应
+
+设置默认目的地：
+
+```text
+-invoke setup #mod-log
+-invoke list
+```
+
+支持的触发器有 `warn`, `ban`, `unban`, `kick`, `timeout`, `untimeout`,
+`role_add`, `role_remove`, `member_join`, `member_leave`， 和 `boost`.
+
+配置纯文本或嵌入脚本：
+
+```text
+-invoke set warn Staff warned {punishment.user.mention}.
+-invoke set member_join {embed}$v{title: Welcome}$v{description: Welcome {user.mention}.}
+```
+
+为一个事件选择单独的渠道或 DM 行为：
+
+```text
+-invoke channel warn #mod-log
+-invoke dm warn on
+-invoke preview warn
+```
+
+使用 `-variables punishment`, `-variables user`，或相关事件类别
+构建调用模板时。
+
+<Info>
+调用模板本身并不创建事件。它控制 Rumi的回应
+当另一个事件观察到或触发相应的支持事件时
+Rumi 工作流程。
+</Info>

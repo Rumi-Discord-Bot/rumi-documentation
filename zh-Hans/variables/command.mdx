@@ -1,0 +1,24 @@
+---
+title: "命令变量"
+description: "Rumi 支持 11 个命令变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;command.alias&#125;</code> | 用于在可用时触发命令的别名。 | <code>命令别名示例</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.arg_count&#125;</code> | 命令的 arg 数量。 | <code>128</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.category&#125;</code> | 命令类别。 | <code>命令类别示例</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.channel&#125;</code> | 频道提及或频道价值。来源：命令。 | <code>命令通道示例</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.channel_id&#125;</code> | Discord 频道ID。来源：命令。 | <code>命令通道 ID 示例</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.description&#125;</code> | 描述文字。来源：命令。 | <code>命令描述示例</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.name&#125;</code> | 当前呈现此响应的命令的名称。 | <code>鲁米</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.usage&#125;</code> | 命令的用法。 | <code>命令用法示例</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.user&#125;</code> | 命令的用户。 | <code>命令用户示例</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.user_id&#125;</code> | 命令的用户 ID。 | <code>示例命令用户 ID</code> | 自定义命令和命令感知模板 |
+| <code>&#123;command.user_mention&#125;</code> | 命令的用户提及。 | <code>用户提及的示例命令</code> | 自定义命令和命令感知模板 |

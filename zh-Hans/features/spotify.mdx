@@ -1,0 +1,131 @@
+---
+title: "Spotify 链接和控制"
+description: "链接 Spotify、检查设备、控制个人播放、浏览您的音乐库以及在 Discord 语音中对曲目进行排序。"
+icon: "spotify"
+---
+
+Spotify 链接给出 Rumi 读取您请求的图书馆数据的权限以及
+将控件发送到您自己的活动 Spotify 设备。它不会暴露您的令牌
+到 Discord 或与其他成员共享私人播放列表。
+
+## 链接或刷新权限
+
+```text
+-spotify link
+-spotify status
+-spotify unlink
+```
+
+打开一次性链接并批准请求的权限。用户已链接
+在添加设备控件和喜欢的歌曲之前需要运行 `-spotify link`
+又是这样 Spotify 可以授予新的播放和库范围。
+
+<Warning>
+Spotify 连接播放控件需要 Spotify 优质的。打开 Spotify 于
+至少一次以手机、计算机、浏览器或扬声器为目标 Spotify 报告一个
+可用设备。
+</Warning>
+
+## 浏览设备和播放
+
+```text
+-spotify devices
+-spotify player status
+-spotify pause
+-spotify resume
+-spotify next
+-spotify previous
+-spotify volume 45
+-spotify seek 1:30
+-spotify shuffle on
+-spotify repeat track
+```
+
+`seek` 接受秒 (`90`), 时钟时间 (`1:30`），或持续时间（`2m`）。重复
+接受 `off`, `track`， 或者 `context`.
+
+## 传输播放
+
+跑步 `-spotify devices` 第一的。通过显示的号码、确切的设备进行转接
+名称、部分名称或设备 ID：
+
+```text
+-spotify transfer 2
+-spotify transfer Kitchen speaker
+```
+
+受限制的设备可以显示在列表中，但不能接受 Web API 控制。
+设备ID可以更改，因此通过当前列表或设备名称进行选择更方便
+比保存ID方便。
+
+## 开始或排队曲目 Spotify
+
+```text
+-spotify play pink pony club
+-spotify play https://open.spotify.com/track/...
+-spotify queue deftones change
+```
+
+`spotify play` 取代个人播放 Spotify 设备。 `spotify
+队列`将一项添加到该设备的 Spotify 队列。两个命令都没有改变
+Rumi的 Discord 语音队列。
+
+## 查看播放列表
+
+```text
+-spotify playlists
+-spotify playlists @member
+```
+
+仅当您可以浏览其他成员的**公开**播放列表时， Discord
+会员已链接 Spotify。私人播放列表仅对其所有者可见。
+
+将您自己的链接播放列表之一添加到 Rumi的 Discord 语音队列，加入
+语音通道并通过列表号码、名称、ID 或 Spotify 网址：
+
+```text
+-spotify playlists queue 2
+-spotify playlists queue "Night drive" 30
+-spotify playlists queue https://open.spotify.com/playlist/... 50
+```
+
+可选的最终数量将导入的曲目限制为 1–75 个。
+
+## 喜欢的歌曲
+
+```text
+-spotify liked
+-spotify liked list 30
+-spotify liked queue 25
+```
+
+喜欢的歌曲对于链接的用户来说是私有的。对它们进行排队需要用户
+拥有该链接位于 Discord 语音频道。
+
+<Note>
+Rumi 用途 Spotify URL 和元数据作为已配置音乐的搜索输入
+服务。它不会下载、转播或提取音频 Spotify.
+</Note>
+
+## 故障排除
+
+<AccordionGroup>
+  <Accordion title="鲁米要求我重新连接">
+    您保存的授权早于一个或多个所需范围。跑步
+    `-spotify link` 并批准更新的权限屏幕。
+  </Accordion>
+  <Accordion title="没有可用的设备">
+    打开 Spotify 在所需的设备上并开始播放一次。然后重新运行
+    `-spotify devices`。私人会话或受限设备可能会拒绝
+    控制。
+  </Accordion>
+  <Accordion title="Spotify 需要退回 Premium">
+    播放控制端点受到以下限制 Spotify 给高级用户。图书馆
+    当存在所需的读取权限时，浏览可能仍然有效。
+  </Accordion>
+  <Accordion title="播放列表无法排队">
+    Spotify 目前仅当链接的用户拥有或
+    就该播放列表进行协作。还要确认您有声音并且
+    Rumi的音乐服务已准备就绪。
+  </Accordion>
+</AccordionGroup>

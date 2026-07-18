@@ -1,0 +1,46 @@
+---
+title: "Weggeefvariabelen"
+description: "33 weggeefvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;giveaway.bonus_rules&#125;</code> | Bonusregels voor weggeefacties. | <code>Voorbeeld weggeefbonusregels</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.channel&#125;</code> | Kanaalvermelding of kanaalwaarde. Bron: winactie. | <code>Voorbeeld weggeefkanaal</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.channel_id&#125;</code> | Discord kanaal-ID. Bron: winactie. | <code>Voorbeeld weggeefkanaal-ID</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.conditions&#125;</code> | Voorwaarden voor winactie. | <code>Voorbeeld weggeefvoorwaarden</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.created_at&#125;</code> | Discord-geformatteerde aanmaaktijd. Bron: winactie. | <code>&lt;t:1781460000:F&gt;</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.created_at_timestamp&#125;</code> | Unix-tijdstempel voor aanmaaktijd. Bron: winactie. | <code>&lt;t:1781460000:F&gt;</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.description&#125;</code> | Beschrijving tekst. Bron: winactie. | <code>Voorbeeld winactiebeschrijving</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.duration&#125;</code> | Duur tekst. Bron: winactie. | <code>Voorbeeld duur van de weggeefactie</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.ends_at&#125;</code> | Eindigt op voor weggeefactie. | <code>Voorbeeld winactie eindigt op</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.ends_at_timestamp&#125;</code> | Unix-tijdstempel voor eindigt op. | <code>1781460000</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.ends_relative&#125;</code> | Eindigt relatief voor weggeefactie. | <code>Voorbeeld winactie eindigt relatief</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.entries_count&#125;</code> | Aantal winactie-inzendingen. Bron: winactie. | <code>128</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.entry_conditions&#125;</code> | Deelnamevoorwaarden voor winactie. | <code>Voorbeeld deelnamevoorwaarden winactie</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.entry_mode&#125;</code> | Toegangsmodus voor weggeefactie. | <code>Voorbeeld van een giveaway-invoermodus</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.host&#125;</code> | Giveaway gastheer. Bron: winactie. | <code>Voorbeeld weggeefhost</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.host_id&#125;</code> | Host-ID voor weggeefactie. | <code>Voorbeeld host-ID voor weggeefactie</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.host_mention&#125;</code> | Vermeld de host van de weggeefactie. Bron: winactie. | <code>Voorbeeld van een vermelding van een weggever</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.id&#125;</code> | Discord Identiteitskaart. Bron: winactie. | <code>123456789012345678</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.message_id&#125;</code> | Discord bericht-ID. Bron: winactie. | <code>Voorbeeld weggeefbericht-ID</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.message_url&#125;</code> | Direct Discord berichtlink. Bron: winactie. | <code>Voorbeeld van een weggeefbericht-URL</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.number&#125;</code> | Nummer voor weggeefactie. | <code>Voorbeeld weggeefnummer</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.prize&#125;</code> | Weggeef prijs. Bron: winactie. | <code>Voorbeeld weggeefprijs</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.public_id&#125;</code> | Publieksvriendelijke ID. Bron: winactie. | <code>Voorbeeld openbare ID voor weggeefactie</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.reaction_emoji&#125;</code> | Reactie-emoji voor winactie. | <code>Voorbeeld weggeefreactie-emoji</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.reroll_count&#125;</code> | Aantal herrollen voor weggeefactie. | <code>128</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.starts_at&#125;</code> | Begint bij voor weggeefactie. | <code>Voorbeeld winactie begint om</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.starts_at_timestamp&#125;</code> | Unix-tijdstempel voor begint op. | <code>1781460000</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.status&#125;</code> | Huidige status. Bron: winactie. | <code>Voorbeeld weggeefstatus</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.title&#125;</code> | Titel weergeven. Bron: winactie. | <code>Voorbeeld titel van een weggeefactie</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.winner_conditions&#125;</code> | Winnaarvoorwaarden voor winactie. | <code>Voorbeeld winnaarvoorwaarden winactie</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.winner_mentions&#125;</code> | Lijst met winnaars. Bron: winactie. | <code>Voorbeeld winnaar van winactie vermeldt</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.winners&#125;</code> | Winnaar lijst. Bron: winactie. | <code>Voorbeeld winnaars winactie</code> | Weggeefberichten en weggeefresultaatsjablonen |
+| <code>&#123;giveaway.winners_count&#125;</code> | Aantal winnaars van de winactie. Bron: winactie. | <code>128</code> | Weggeefberichten en weggeefresultaatsjablonen |

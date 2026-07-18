@@ -1,0 +1,59 @@
+---
+title: "Maken en bekijken"
+description: "Een aangepaste opdracht maken, inspecteren, testen, bijwerken en verwijderen."
+icon: "flask"
+---
+
+## Maak een opdracht
+
+Plaats `--`, `=>`, of `->` tussen de commandodefinitie en het antwoord ervan.
+
+```text
+-cc set welcome -- Welcome {user.mention} to {guild.name}
+```
+
+Aangepaste opdrachtnamen gebruiken kleine letters, cijfers, onderstrepingstekens of koppeltekens
+en zijn beperkt tot 32 tekens. Een naam kan een bestaande niet vervangen Rumi
+commando of alias.
+
+## Argumenten toevoegen
+
+Plaats argumentspecificaties na de naam en vóór het scheidingsteken:
+
+```text
+-cc set say <text...> -- {text}
+-cc set link [link] -- [Open the link]({link|https://rumi.rocks})
+```
+
+- `<name>` is vereist.
+- `[name]` is optioneel.
+- Toevoegen `...` om de resterende woorden in één argument te verzamelen.
+
+Vereiste argumenten stoppen de opdracht en identificeren wat er ontbreekt. Optioneel
+argumenten worden omgezet in een lege waarde, dus gebruik een fallback als lege uitvoer dat zou doen
+er ongemakkelijk uitzien: `{link|https://rumi.rocks}`.
+
+## Bekijk een voorbeeld voor gebruik
+
+Preview voert de opgeslagen opdracht uit met voorbeeldargumenten:
+
+```text
+-cc preview say This is a test
+-cc preview link https://example.com
+```
+
+## Inspecteren, bijwerken of verwijderen
+
+```text
+-cc show welcome
+-cc set welcome -- Hello {user.mention}
+-cc remove welcome
+```
+
+Rennen `set` opnieuw met dezelfde naam wordt de bestaande aangepaste opdracht bijgewerkt.
+
+<Note>
+De `--` token is een scheidingsteken en maakt geen deel uit van het opgeslagen antwoord. Zien
+[Syntaxis en scheidingstekens](./syntax-and-separators) voor waarom het is
+nodig is en hoe het zich gedraagt ​​rond argumenten en antwoordtekst.
+</Note>

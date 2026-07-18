@@ -1,0 +1,44 @@
+---
+title: "Botvariabelen"
+description: "31 botvariabelen ondersteund door Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+Context is belangrijk. Een variabele retourneert `N/A` wanneer de huidige opdracht of gebeurtenis de bronwaarde niet levert. Toevoegen `|fallback text` vóór de sluitbeugel als je een vriendelijkere terugval nodig hebt.
+</Info>
+
+
+| Variabel | Wat het teruggeeft | Voorbeelduitvoer | Beschikbaar binnen |
+| --- | --- | --- | --- |
+| <code>&#123;bot.avatar&#125;</code> | URL van avatarafbeelding. Bron: bot. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.command_count&#125;</code> | Aantal opdrachten voor bot. | <code>128</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.custom.avatar&#125;</code> | URL van avatarafbeelding. Bron: bot aangepast. | <code>https://cdn.discordapp.com/.../avatar.png</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.custom.banner&#125;</code> | URL van bannerafbeelding. Bron: bot aangepast. | <code>Voorbeeld van een aangepaste banner voor een bot</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.custom.bio&#125;</code> | Bio voor bot-aangepast. | <code>Voorbeeld van een aangepaste bio van een bot</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.custom.name&#125;</code> | Naam waarde. Bron: bot aangepast. | <code>Rumi</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.dashboard&#125;</code> | Dashboard voor bot. | <code>Voorbeeld botdashboard</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.guild_count&#125;</code> | Gildenummer voor bot. | <code>128</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.id&#125;</code> | Discord Identiteitskaart. Bron: bot. | <code>123456789012345678</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.invite&#125;</code> | Uitnodigen voor bot. | <code>Voorbeeld bot-uitnodiging</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.mention&#125;</code> | Noemen Rumi. | <code>&lt;@123456789012345678&gt;</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.name&#125;</code> | Rumi bot-gebruikersnaam. | <code>Rumi</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.prefix&#125;</code> | Huidig ​​opdrachtvoorvoegsel. | <code>,</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.color.alert&#125;</code> | Waarschuwing voor botantwoordkleur. | <code>Voorbeeld van een kleurwaarschuwing voor een botantwoord</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.color.bad&#125;</code> | Slecht voor botantwoordkleur. | <code>Voorbeeld botantwoordkleur slecht</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.color.good&#125;</code> | Goed voor botantwoordkleur. | <code>Voorbeeld botantwoord kleur goed</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.color.info&#125;</code> | Info voor kleur van botantwoord. | <code>Voorbeeld van botantwoordkleurinformatie</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.color.list&#125;</code> | Lijst voor botantwoordkleur. | <code>Voorbeeld van een kleurenlijst voor botantwoorden</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.emoji.alert&#125;</code> | Waarschuwing voor emoji van botantwoord. | <code>Voorbeeld van botantwoord-emoji-waarschuwing</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.emoji.bad&#125;</code> | Slecht voor bot-antwoord-emoji. | <code>Voorbeeld bot antwoord emoji slecht</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.emoji.good&#125;</code> | Goed voor bot-antwoord-emoji. | <code>Voorbeeld bot antwoord emoji goed</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.emoji.info&#125;</code> | Info voor botantwoord-emoji. | <code>Voorbeeld bot-antwoord emoji-informatie</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.emoji.list&#125;</code> | Lijst voor botantwoord-emoji. | <code>Voorbeeld van een emoji-lijst met botantwoorden</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.reply.mode&#125;</code> | Geconfigureerde modus. Bron: botantwoord. | <code>Voorbeeld botantwoordmodus</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.shard_count&#125;</code> | Aantal scherf voor bot. | <code>128</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.shard_id&#125;</code> | Shard-ID voor bot. | <code>Voorbeeld bot-shard-ID</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.support_server&#125;</code> | Ondersteuningsserver voor bot. | <code>Voorbeeld bot-ondersteuningsserver</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.uptime&#125;</code> | Hoe lang dit botproces actief is. | <code>Voorbeeld bot-uptime</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.user_count&#125;</code> | Aantal gebruikers voor bot. | <code>128</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.version&#125;</code> | Versie voor bot. | <code>Voorbeeld botversie</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |
+| <code>&#123;bot.website&#125;</code> | Website voor bot. | <code>Voorbeeld botwebsite</code> | Insluitingen, aangepaste opdrachten, autoresponders, oproepen van berichten |

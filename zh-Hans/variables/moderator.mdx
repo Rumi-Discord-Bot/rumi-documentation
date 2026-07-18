@@ -1,0 +1,25 @@
+---
+title: "调节变量"
+description: "Rumi 支持 12 个调节器变量。"
+icon: "brackets-curly"
+---
+
+<Info>
+背景很重要。变量返回 `N/A` 当当前命令或事件未提供其源值时。添加 `|fallback text` 当您需要更友好的后备时，在右大括号之前。
+</Info>
+
+
+| 多变的 | 它返回什么 | 输出示例 | 可用于 |
+| --- | --- | --- | --- |
+| <code>&#123;moderator&#125;</code> | 显示仲裁/调用事件的仲裁者或执行者。 | <code>&lt;@222222222222222222&gt;</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.avatar&#125;</code> | 头像图片网址。来源：主持人。 | <code>https://cdn.discordapp.com/.../avatar.png</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.bot&#125;</code> | 主持人机器人。 | <code>主持人机器人示例</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.color&#125;</code> | 主持人的颜色。 | <code>主持人颜色示例</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.created_at&#125;</code> | Discord-格式化的创建时间。来源：主持人。 | <code>&lt;t:1781460000:F&gt;</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.display_name&#125;</code> | 主持人或执行者的服务器显示名称。 | <code>月光</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.id&#125;</code> | Discord 主持人或执行人的ID。 | <code>123456789012345678</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.mention&#125;</code> | 提及仲裁/调用事件的仲裁者或执行者。 | <code>&lt;@123456789012345678&gt;</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.name&#125;</code> | 主持人或执行者的用户名。 | <code>鲁米</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.role&#125;</code> | 角色名称或角色值。来源：主持人。 | <code>主持人角色示例</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.tag&#125;</code> | Discord 主持人的用户名标签/鉴别器样式值。 | <code>用户名</code> | 审核日志、调用消息、警告/禁止/踢模板 |
+| <code>&#123;moderator.username&#125;</code> | Discord 用户名。来源：主持人。 | <code>主持人用户名示例</code> | 审核日志、调用消息、警告/禁止/踢模板 |

@@ -1,0 +1,76 @@
+---
+title: "Last.fm"
+description: "Povežite Last.fm za pregled profila, skroblova, ljestvica, omiljenih zapisa, kolaže i usporedbe okusa."
+icon: "lastfm"
+---
+
+Last.fm povezivanje omogućuje Rumi čitanje korisnika Last.fm profil i povijest slušanja.
+Ne kontrolira Spotify reprodukcija ili Rumi's Discord glasovni red.
+
+## Povežite račun
+
+```text
+-lastfm link
+```
+
+Otvorite poveznicu za jednokratnu autorizaciju Rumi pruža i završiti Last.fm protok.
+Nakon toga potvrdite vezu:
+
+```text
+-lastfm profile
+```
+
+Odspojite ga s:
+
+```text
+-lastfm unlink
+```
+
+## Trenutno i nedavno slušanje
+
+```text
+-lastfm nowplaying
+-lastfm recent
+-lastfm loved
+```
+
+`nowplaying` prikazuje aktivnu stazu kada Last.fm označava jedan kao igranje;
+inače može prikazati najnoviji scrobble.
+
+Većina naredbi za gledanje prihvaća drugu vezu Discord član ili a Last.fm
+korisničko ime:
+
+```text
+-lastfm nowplaying @member
+-lastfm recent some_lastfm_name
+```
+
+## Karte
+
+```text
+-lastfm toptracks 1month
+-lastfm topartists overall @member
+-lastfm topalbums 3month
+-lastfm collage 1month
+```
+
+Točka dolazi prije izbornog člana ili korisničkog imena. `collage` vraća a
+sažetak albuma u stilu ljestvice pomoću podataka o slušanosti dostupnih s Last.fm.
+
+## Usporedi ukus slušanja
+
+Oba Discord članovi trebaju povezane račune:
+
+```text
+-lastfm compare @member
+-lastfm compare @member 1month
+```
+
+Rumi uspoređuje zajedničke izvođače i pjesme za odabrano razdoblje. Rezultat je
+na temelju Last.fm scrobbles, tako da slušanje bez skrobiranja neće biti uključeno.
+
+<Info>
+Last.fm i Spotify su odvojene veze. Koristiti `-spotify link` za osobne
+Spotify kontrole, popisi za reprodukciju i svidjele pjesme; koristiti `-lastfm link` za škrabanje
+i Last.fm karte.
+</Info>

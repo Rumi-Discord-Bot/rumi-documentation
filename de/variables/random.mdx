@@ -1,0 +1,19 @@
+---
+title: "Zufallsvariablen"
+description: "6 von Rumi unterstützte Zufallsvariablen."
+icon: "brackets-curly"
+---
+
+<Info>
+Der Kontext ist wichtig. Eine Variable gibt zurück `N/A` wenn der aktuelle Befehl oder das aktuelle Ereignis seinen Quellwert nicht bereitstellt. Hinzufügen `|fallback text` vor der schließenden Klammer, wenn Sie einen freundlicheren Fallback benötigen.
+</Info>
+
+
+| Variable | Was es zurückgibt | Beispielausgabe | Verfügbar in |
+| --- | --- | --- | --- |
+| <code>&#123;choice:name:one&#124;two&#124;three&#125;</code> | Wählen Sie einmal aus, speichern Sie das Ergebnis unter dem Namen und stellen Sie es zur Verfügung &#123;Name&#125;. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Wählen Sie zufällig eine Option aus. | <code>zwei</code> | Benutzerdefinierte Befehle, Autoresponder |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Gibt eine durch Pipes getrennte Option zurück, ohne sie zu speichern. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;random:one&#124;two&#124;three&#125;</code> | Gibt eine durch Pipes getrennte Option zurück, ohne sie zu speichern. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |
+| <code>&#123;range:reward:100-500&#125;</code> | Wählen Sie eine Zufallszahl aus und speichern Sie sie als wiederverwendbaren Wert. | <code>348, then use &#123;reward&#125;</code> | Benutzerdefinierte Befehle, Autoresponder |
+| <code>&#123;range:1-100&#125;</code> | Gibt eine zufällige ganze Zahl im inklusiven Bereich zurück. | <code>Die Syntax und Beispiele finden Sie in den Handbüchern zu benutzerdefinierten Befehlen.</code> | Benutzerdefinierte Befehle; Benutzerdefinierte Datenhilfsprogramme erfordern auch --db in Autorespondern |

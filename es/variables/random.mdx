@@ -1,0 +1,19 @@
+---
+title: "variables aleatorias"
+description: "6 variables aleatorias soportadas por Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+El contexto importa. Una variable regresa `N/A` cuando el comando o evento actual no proporciona su valor fuente. Agregar `|fallback text` antes de la llave de cierre cuando necesita un respaldo más amigable.
+</Info>
+
+
+| Variable | lo que devuelve | Salida de ejemplo | Disponible en |
+| --- | --- | --- | --- |
+| <code>&#123;choice:name:one&#124;two&#124;three&#125;</code> | Elija una vez, guarde el resultado como nombre y expóngalo a través de &#123;nombre&#125;. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Elija una opción al azar. | <code>dos</code> | Comandos personalizados, respuestas automáticas |
+| <code>&#123;choose:one&#124;two&#124;three&#125;</code> | Devuelve una opción separada por tubería sin guardarla. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;random:one&#124;two&#124;three&#125;</code> | Devuelve una opción separada por tubería sin guardarla. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |
+| <code>&#123;range:reward:100-500&#125;</code> | Elija un número aleatorio y guárdelo como un valor reutilizable. | <code>348, then use &#123;reward&#125;</code> | Comandos personalizados, respuestas automáticas |
+| <code>&#123;range:1-100&#125;</code> | Devuelve un número entero aleatorio en el rango inclusivo. | <code>Consulte la sintaxis y los ejemplos en las guías de comandos personalizados.</code> | Comandos personalizados; los asistentes de datos personalizados también requieren --db en las respuestas automáticas |

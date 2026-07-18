@@ -1,0 +1,99 @@
+---
+title: "Spiele"
+description: "Spielen Sie interaktive Discord-Spiele und suchen Sie nach unterstützten Spielprofilen und Servern."
+icon: "gamepad"
+---
+
+RumiDas Spielemodul von enthält zwei Arten von Befehlen: darin gespielte Spiele Discord
+und Suchvorgänge, die öffentliche Informationen von einem Spiel- oder Plattformanbieter abrufen.
+Spielbefehle sind derzeit nur mit Präfixen verfügbar.
+
+## Interaktive Spiele
+
+### Schere aus Stein und Papier
+
+```text
+-rps play bo3
+-rps challenge @member bo5
+-rps stats
+-rps leaderboard
+```
+
+Bei Übereinstimmungen werden bei Bedarf private Schaltflächenoptionen verwendet. Best-of-Werte unterstützt von
+der Befehl sind `bo1`, `bo3`, `bo5`, `bo7`, Und `bo9`.
+
+### Tic-Tac-Toe und Minen
+
+```text
+-tictactoe @member
+-mines
+```
+
+Beide nutzen interaktive Komponenten. Nur die mit dem Spiel verbundenen Spieler können dies tun
+Steuern Sie seine Tasten.
+
+### Schnelle Chat-Spiele
+
+```text
+-fasttype
+-fasttype Type this exact custom phrase
+-mathrace hard
+-unscramble 5 20
+```
+
+`fasttype` wartet auf den ersten exakten Satz, `mathrace` wartet auf den ersten
+richtige Antwort, und `unscramble` führt ein Wortrennen durch. Ihre optionalen Nummern ändern sich
+die Zielpunktzahl oder die Zeit, in der der Befehl sie unterstützt.
+
+### Tee- und Überlebensspiele
+
+```text
+-blacktea 3 20
+-greentea 5 15
+-redtea 3 20
+-whitetea 3 20
+-wordchain 3 20
+-forbiddenword 30
+```
+
+Die Teevarianten nutzen unterschiedliche Ausscheidungsregeln. Lesen `-help <game>` vor einem
+größere Sitzung, damit jeder weiß, ob die Runde Geschwindigkeit, gültige Wörter belohnt,
+oder ein Fragment vermeiden.
+
+### Kleine Spiele
+
+```text
+-coinflip
+-roll 2d20
+-slots
+-coinrace
+```
+
+Diese nutzen nicht die Serverökonomie. Economy-Casinospiele sind unter
+`-casino`, nicht das Spielemodul.
+
+## Spiel- und Plattformsuche
+
+Das Modul enthält derzeit Befehle für Roblox, Minecraft, Fortnite, Steam,
+Valorant, Apex Legends, Overwatch, League of Legends, osu!, Clash of Clans,
+Clash Royale-, Brawl Stars- und Roblox-Gruppen.
+
+Beispiele aus den aktuellen Befehlen:
+
+```text
+-roblox user Builderman
+-roblox avatar Builderman
+-minecraft status play.example.net
+-minecraft player Notch
+-fortnite <account>
+```
+
+Laufen `-help roblox`, `-help minecraft`, oder der entsprechende Spielbefehl vor a
+Nachschlagen. Jeder Anbieter erwartet einen anderen Benutzernamen, ein anderes Tag, eine andere Region, eine andere Konto-ID oder
+Serveradresse.
+
+<Info>
+Die Suchdaten stammen von externen Spielediensten. Ein privates Profil, ungültig
+Identifikator, Anbieterausfall oder fehlende optionale API-Integration können eine verhindern
+Ergebnis auch während Rumi selbst ist online.
+</Info>
