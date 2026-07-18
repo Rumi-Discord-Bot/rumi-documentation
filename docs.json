@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Rumi Documentation",
-  "favicon": "/images/favicon.png",
+  "favicon": "/images/logo.jpg",
   "colors": {
     "primary": "#3B6F9F",
     "light": "#6A8FB3",
@@ -163,6 +163,21 @@
             "icon": "circle-question",
             "expanded": false,
             "pages": ["troubleshooting/common-issues"]
+          },
+          {
+            "group": "Documentation languages",
+            "icon": "languages",
+            "expanded": false,
+            "pages": [
+              "languages/en",
+              "languages/nl",
+              "languages/de",
+              "languages/es",
+              "languages/ja",
+              "languages/zh-CN",
+              "languages/hr",
+              "languages/fr"
+            ]
           }
         ]
       }
