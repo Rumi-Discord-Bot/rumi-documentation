@@ -1,0 +1,195 @@
+---
+title: "Social media feeds"
+description: "Connect a social account and send new streams, posts, videos, or uploads to a Discord channel."
+icon: "share-nodes"
+---
+
+Social feeds let a server announce new public activity from an account its owner
+connects to Rumi. Each feed has its own destination channel, optional ping,
+announcement text, and enabled state.
+
+Rumi currently handles these updates:
+
+| Platform | What Rumi announces |
+| --- | --- |
+| Twitch | A new live session. |
+| TikTok | New public videos. |
+| YouTube | New channel uploads. |
+
+<Note>
+Instagram and Threads connections are paused while Rumi waits for the required
+public access from Meta. They will return later; neither platform is offered in
+the connection menu for now.
+</Note>
+
+<Note>
+Rumi starts from the latest item it finds when the connection is completed. It
+does not repost the account's existing history into your channel.
+</Note>
+
+## Before connecting
+
+The member configuring a feed needs **Manage Server**. In the destination
+channel, Rumi needs **View Channel**, **Send Messages**, and **Embed Links**.
+
+The social platform may show its own consent screen. Only continue when the
+account and permissions shown there are the ones you intend to connect. The
+one-time Rumi link expires after 15 minutes.
+
+Some providers require their integration to be approved before Rumi can offer
+it publicly. If a platform is unavailable, the command says so before opening
+the connection page.
+
+## Connect an account
+
+With slash commands, run `/social connect`, then select:
+
+- `provider`: Twitch, TikTok, or YouTube.
+- `channel`: the channel that should receive new posts. It defaults to the
+  current channel when omitted.
+- `ping_role`: an optional role to notify.
+- `ping_everyone`: whether to notify `@everyone` instead of a role.
+
+The prefix version uses the same settings:
+
+```text
+-social connect twitch #streams
+-social connect youtube #videos --ping @Uploads
+-social connect tiktok #social --ping everyone
+```
+
+Select **Connect**, sign in on the provider's own page, and approve the request.
+The browser returns to `rumi.rocks` and confirms whether the account and feed
+were saved. You can then close that tab and return to Discord.
+
+<Warning>
+An `@everyone` feed requires the person configuring it to have **Mention
+Everyone**. A saved role ping only allows that specific role to be mentioned;
+text placed in a custom template cannot create extra pings.
+</Warning>
+
+## Check and control feeds
+
+```text
+-social list
+-social pause 1
+-social resume 1
+-social remove 1
+-social unlink youtube
+```
+
+`list` numbers the feeds and shows their platform, connected account, channel,
+status, ping, and whether the announcement uses the default or a custom
+template. Commands that request a feed accept that list number, provider, or
+full feed ID.
+
+- `pause` keeps the connection but stops checks for that feed.
+- `resume` starts checking it again.
+- `remove` deletes the feed. If the connected account has no feeds left, Rumi
+  also removes its locally stored account authorization.
+- `unlink` disconnects one of your accounts completely. It removes the encrypted
+  authorization, all feeds using that account across your servers, and their
+  delivery history. Only the Discord user who connected the account can unlink it.
+
+## Customize the announcement
+
+The media embed is always generated from the provider's post. A template adds
+your own Markdown text above that embed:
+
+```text
+-social edit 1 -- {account} just posted **{post.title}**!
+{post.url}
+```
+
+The `--` marks where the announcement begins. It prevents the command parser
+from treating words in your message as more command settings. Slash users can
+enter the same text directly in `/social edit` under `template`.
+
+Templates can contain up to 1,800 characters. Rumi checks every variable before
+saving, so a misspelled or unsupported variable is reported immediately.
+
+To restore the normal announcement:
+
+```text
+-social reset 1
+```
+
+## Announcement variables
+
+Run either command to see the live list from the bot:
+
+```text
+-social variables
+-variables social
+```
+
+Useful examples include:
+
+| Variable | Value |
+| --- | --- |
+| `{provider}` | Connected platform code, such as `youtube`. |
+| `{account}` | Account or channel display name. |
+| `{username}` | Provider username when available. |
+| `{profile_url}` | Public account or channel URL. |
+| `{channel}` | Discord announcement channel mention. |
+| `{post.title}` | Stream, post, or video title. |
+| `{post.description}` | Caption or description. |
+| `{post.url}` | Direct public post URL. |
+| `{post.image}` | Preview or thumbnail URL when supplied. |
+| `{post.published_at}` | ISO publication time. |
+| `{post.published_relative}` | Discord relative time, such as `5 minutes ago`. |
+
+The complete generated reference is available under [Social variables](/variables/social).
+
+### Template examples
+
+Simple upload notice:
+
+```text
+-social edit 1 -- New from **{account}**: {post.title}
+{post.url}
+```
+
+Include a relative time:
+
+```text
+-social edit 1 -- **{account}** posted {post.published_relative}
+> {post.description}
+{post.url}
+```
+
+Point members to the profile:
+
+```text
+-social edit 1 -- Keep up with **{account}** on {provider}: {profile_url}
+New post: {post.url}
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The connection link expired">
+    Run `-social connect` again. Each link is single-purpose and remains valid
+    for 15 minutes.
+  </Accordion>
+  <Accordion title="The account connected but old posts were not sent">
+    This is intentional. Rumi records the latest item as its starting point and
+    announces only newer activity.
+  </Accordion>
+  <Accordion title="New posts are not appearing">
+    Confirm the feed is enabled with `-social list`, then check Rumi's View
+    Channel, Send Messages, and Embed Links permissions in the destination.
+    Provider updates are checked periodically and may not appear instantly.
+  </Accordion>
+  <Accordion title="A template variable was rejected">
+    Run `-social variables` or `-variables social` and copy the exact spelling.
+    Variables for ordinary custom commands are not automatically available in
+    social announcements because there is no command user or triggering Discord
+    message when a background post arrives.
+  </Accordion>
+  <Accordion title="The ping text appears but nobody is notified">
+    Check that the feed still points to an existing role and that Rumi can
+    mention it. For `@everyone`, both the configuring member and Rumi need the
+    relevant channel permission.
+  </Accordion>
+</AccordionGroup>

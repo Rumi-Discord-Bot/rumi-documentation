@@ -1,0 +1,25 @@
+---
+title: "Social variables"
+description: "12 social variables supported by Rumi."
+icon: "brackets-curly"
+---
+
+<Info>
+These variables work only in social feed announcement templates. They use the exact values supplied by the connected provider when a background post is detected. Run `-social variables` in Discord to view the same live list.
+</Info>
+
+
+| Variable | What it returns | Example output | Available in |
+| --- | --- | --- | --- |
+| <code>&#123;account&#125;</code> | Connected account display name. | <code>Rumi</code> | Social feed announcement templates |
+| <code>&#123;channel&#125;</code> | Discord announcement channel mention. | <code>&lt;#123456789012345678&gt;</code> | Social feed announcement templates |
+| <code>&#123;post.description&#125;</code> | Caption or description supplied by the provider. | <code>The new update is here.</code> | Social feed announcement templates |
+| <code>&#123;post.id&#125;</code> | Provider ID of the new stream, post, video, or upload. | <code>dQw4w9WgXcQ</code> | Social feed announcement templates |
+| <code>&#123;post.image&#125;</code> | Preview, thumbnail, or cover image URL when available. | <code>https://i.ytimg.com/vi/example/hqdefault.jpg</code> | Social feed announcement templates |
+| <code>&#123;post.published_at&#125;</code> | Publication time in ISO 8601 format. | <code>2026-07-20T12:00:00.000Z</code> | Social feed announcement templates |
+| <code>&#123;post.published_relative&#125;</code> | Discord relative timestamp for the publication time. | <code>&lt;t:1784548800:R&gt;</code> | Social feed announcement templates |
+| <code>&#123;post.title&#125;</code> | Title of the new media item. | <code>A new video</code> | Social feed announcement templates |
+| <code>&#123;post.url&#125;</code> | Direct public URL for the new media item. | <code>https://youtu.be/dQw4w9WgXcQ</code> | Social feed announcement templates |
+| <code>&#123;profile_url&#125;</code> | Public profile or channel URL for the connected account. | <code>https://youtube.com/@rumi</code> | Social feed announcement templates |
+| <code>&#123;provider&#125;</code> | Connected platform name. | <code>youtube</code> | Social feed announcement templates |
+| <code>&#123;username&#125;</code> | Connected account username when the provider supplies one. | <code>rumi</code> | Social feed announcement templates |

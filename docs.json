@@ -74,7 +74,8 @@
                     "pages": [
                       "features/levels",
                       "features/economy",
-                      "features/giveaways"
+                      "features/giveaways",
+                      "features/social-feeds"
                     ]
                   },
                   {
@@ -140,7 +141,8 @@
                           "variables/ticket",
                           "variables/verification",
                           "variables/economy",
-                          "variables/invite"
+                          "variables/invite",
+                          "variables/social"
                         ]
                       },
                       {
